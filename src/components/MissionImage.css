@@ -1,0 +1,32 @@
+.mission-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(
+    155deg,
+    var(--color-bg-elevated) 0%,
+    var(--color-bg-card) 55%,
+    var(--color-violet) 140%
+  );
+  box-shadow:
+    0 0 0 1px rgba(35, 230, 200, 0.15),
+    0 0 30px -6px var(--color-teal-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.mission-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, var(--color-teal-glow), transparent 55%);
+}
+
+.mission-image__icon {
+  font-size: 64px;
+  filter: drop-shadow(0 0 12px var(--color-teal-glow));
+  z-index: 1;
+}

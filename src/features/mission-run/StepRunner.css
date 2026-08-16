@@ -1,0 +1,79 @@
+.step-runner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.step-runner__progress {
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+}
+
+.step-runner__dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(35, 230, 200, 0.35);
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.step-runner__dot--done {
+  background: var(--color-teal);
+  border-color: var(--color-teal);
+}
+
+.step-runner__dot--active {
+  box-shadow: 0 0 0 3px var(--color-teal-glow);
+}
+
+.step-runner__card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid rgba(35, 230, 200, 0.2);
+}
+
+.step-runner__step-number {
+  margin: 0;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--color-text-dim);
+}
+
+.step-runner__step-text {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 18px;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.step-runner__step-text input {
+  width: 24px;
+  height: 24px;
+  margin-top: 2px;
+  accent-color: var(--color-teal);
+  flex-shrink: 0;
+}
+
+.step-runner__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.step-runner__nav {
+  display: flex;
+  gap: 12px;
+}

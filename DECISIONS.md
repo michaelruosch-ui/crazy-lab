@@ -1,0 +1,63 @@
+# Architecture Decision Records
+
+## ADR-001: Installierbare PWA statt native App
+
+**Status:** Angenommen (Sprint 1)
+
+**Kontext:** Crazy Lab soll zuerst auf Elenas iPhone installierbar sein, ohne App-Store-Prozess,
+und später auf iPad/Mac erweiterbar sein.
+
+**Entscheidung:** Umsetzung als Progressive Web App (Vite + React + `vite-plugin-pwa`,
+Strategie `generateSW`) statt nativer iOS-App.
+
+**Konsequenzen:** Installation über Safari "Zum Home-Bildschirm" statt App Store; kein Apple-
+Entwicklerkonto nötig für Sprint 1-18; Einschränkungen von iOS-PWAs (z. B. Push-Notifications,
+Speicherlimits) müssen in späteren Sprints beachtet werden, insbesondere ab Sprint 5 (iPhone-QA)
+und Sprint 24 (App-Store-Version, falls dort eine native Verpackung gewünscht wird).
+
+## ADR-002: Lokale Speicherung über IndexedDB ohne Backend
+
+**Status:** Angenommen (Sprint 1)
+
+**Kontext:** Die App muss offline nutzbar sein, ohne Anmeldung und ohne externe Dienste im MVP.
+
+**Entscheidung:** Alle veränderlichen Daten (aktuell: Tagebucheinträge) werden in IndexedDB
+gespeichert, gekapselt hinter einem `DiaryRepository`-Interface in `src/storage`. Zugriff über
+die schlanke Bibliothek `idb` (Promise-Wrapper um die native IndexedDB-API), da sie die
+Fehleranfälligkeit von Callback-basiertem IndexedDB-Code reduziert, ohne ein grosses
+State-Management-Framework einzuführen.
+
+**Konsequenzen:** Kein Server, kein Login, volle Offline-Fähigkeit. Cloud-Synchronisation
+(Sprint 19) erfordert eine zweite Repository-Implementierung hinter demselben Interface plus
+eine Konfliktlösungsstrategie; das ist durch die Kapselung vorbereitet, aber nicht Teil von
+Sprint 1.
+
+## ADR-003: Statische, versionierte Missionsdaten als TypeScript-Modul
+
+**Status:** Angenommen (Sprint 1)
+
+**Kontext:** Missionen müssen zur Build-Zeit typsicher validierbar sein, ohne Backend oder
+externe Datenquelle in Sprint 1-18.
+
+**Entscheidung:** Missionen werden als typisiertes TypeScript-Array in `src/data/missions.ts`
+gepflegt statt als JSON, damit der Compiler fehlende Pflichtfelder direkt erkennt. Jede Mission
+trägt ein `contentVersion`-Feld; Tagebucheinträge speichern einen `missionSnapshot` mit
+`contentVersion`, damit spätere Inhaltsänderungen bestehende Tagebucheinträge nicht verfälschen.
+
+**Konsequenzen:** Inhaltspflege erfordert einen Code-Deploy (kein CMS). Das ist für Sprint 1-18
+akzeptabel; Sprint 21 ("Neue geprüfte Inhalte") muss diese Entscheidung überdenken, falls
+redaktionelle Freigabe ausserhalb von Code-Deploys gewünscht ist.
+
+## ADR-004: ESLint + Prettier statt oxlint (Vite-Default)
+
+**Status:** Angenommen (Sprint 1)
+
+**Kontext:** Das aktuelle Vite-React-TS-Scaffold bringt standardmässig `oxlint` mit.
+
+**Entscheidung:** `oxlint` wurde entfernt und durch ESLint (Flat Config, `typescript-eslint`,
+`eslint-plugin-react-hooks`, `eslint-plugin-react-refresh`) plus Prettier ersetzt, wie in der
+Projektspezifikation explizit gefordert.
+
+**Konsequenzen:** Etwas langsamere Lint-Läufe als mit oxlint, dafür ausgereiftere
+React-Hooks-Regeln (u. a. `react-hooks/set-state-in-effect`, das in Sprint 1 zwei echte
+Effect-Antipatterns in `useTimer` und `useDiaryEntries` aufgedeckt hat).

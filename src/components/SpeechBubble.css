@@ -1,0 +1,17 @@
+.speech-bubble {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: var(--color-bg-card);
+  border: 1px solid rgba(35, 230, 200, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: 0 0 24px -8px var(--color-teal-glow);
+}
+
+.speech-bubble__text {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 15px;
+  line-height: 1.5;
+}

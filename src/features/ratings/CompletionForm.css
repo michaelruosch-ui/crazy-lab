@@ -1,0 +1,118 @@
+.completion-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.completion-form fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.completion-form legend {
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 4px;
+  padding: 0;
+}
+
+.completion-form input[type='text'],
+.completion-form textarea {
+  background: var(--color-bg-card);
+  border: 1px solid rgba(35, 230, 200, 0.3);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  color: var(--color-text);
+  font-size: 16px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.star-picker {
+  display: flex;
+  gap: 6px;
+}
+
+.star {
+  background: none;
+  border: none;
+  font-size: 32px;
+  color: rgba(35, 230, 200, 0.25);
+  cursor: pointer;
+  min-width: var(--touch-target);
+  min-height: var(--touch-target);
+}
+
+.star--filled {
+  color: var(--color-teal);
+  text-shadow: 0 0 10px var(--color-teal-glow);
+}
+
+.completion-form__pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill {
+  min-height: var(--touch-target);
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(35, 230, 200, 0.3);
+  background: var(--color-bg-card);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pill--active {
+  background: linear-gradient(135deg, var(--color-teal), var(--color-violet));
+  color: #051012;
+  border-color: transparent;
+}
+
+.completion-form__toggles {
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.completion-form__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text);
+}
+
+.completion-form__checkbox input {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--color-teal);
+}
+
+.completion-form__stamp-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.stamp {
+  width: var(--touch-target);
+  height: var(--touch-target);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-card);
+  border: 1px solid rgba(35, 230, 200, 0.3);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.stamp--active {
+  border-color: var(--color-teal);
+  box-shadow: 0 0 12px -2px var(--color-teal-glow);
+}

@@ -1,0 +1,27 @@
+.timer {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  text-align: center;
+  border: 1px solid rgba(35, 230, 200, 0.25);
+}
+
+.timer__display {
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--color-teal);
+  text-shadow: 0 0 16px var(--color-teal-glow);
+  margin-bottom: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer__controls {
+  display: flex;
+  gap: 10px;
+}
+
+.timer__done {
+  margin-top: 10px;
+  color: var(--color-acid);
+  font-weight: 700;
+}

@@ -1,0 +1,44 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.badge--teal {
+  background: rgba(35, 230, 200, 0.15);
+  color: var(--color-teal);
+}
+
+.badge--violet {
+  background: rgba(164, 99, 242, 0.2);
+  color: #c9a3ff;
+}
+
+.badge--pink {
+  background: rgba(255, 79, 163, 0.18);
+  color: #ff9bcb;
+}
+
+.badge--acid {
+  background: rgba(182, 255, 60, 0.18);
+  color: var(--color-acid);
+}
+
+.badge--safety-green {
+  background: rgba(79, 255, 160, 0.18);
+  color: var(--color-safe);
+}
+
+.badge--safety-yellow {
+  background: rgba(255, 207, 79, 0.2);
+  color: var(--color-warning);
+}
+
+.badge--safety-red {
+  background: rgba(255, 79, 106, 0.2);
+  color: var(--color-danger);
+}
