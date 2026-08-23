@@ -97,6 +97,23 @@ keine Features.
    festlichem Rahmen als "Geburtstagsmission für {Name}" statt der normalen Tagesmission -
    dieselbe Auswahllogik, nur andere Präsentation (siehe DECISIONS.md ADR-013).
 
+### Stempel-Animation (Sprint 4)
+
+1. `features/ratings/CompletionForm` erhält eine `mascotId`-Prop (Default
+   `DEFAULT_PROFILE.mascotVariant`, real befüllt von `MissionFlowPage` aus dem geladenen
+   Profil). Tippt man in der Abschlussbewertung einen Stempel an, setzt das Formular sofort den
+   gewählten Stempel UND merkt sich zusätzlich `animatingStamp`, wodurch
+   `components/StampAnimation` als Overlay gerendert wird.
+2. `StampAnimation` liest über `getMascotEntry`/`PALETTES` aus `components/mascotArt.ts` Farbe
+   und "blutig"-Merkmal des aktuell gewählten Maskottchens und zeichnet eine dazu passende,
+   fellbedeckte Pranke (CSS-Formen, keine Canvas-Neuzeichnung), die den gewählten Stempel
+   (dynamisch aus `domain/rating.STAMPS`) aufs Tagebuch-Blatt drückt. Blutstropfen erscheinen
+   nur, wenn der Katalogeintrag `gore: true` hat.
+3. Die Animation ruft `onDone` nach ca. 1.9 s automatisch auf (oder sofort bei
+   `prefers-reduced-motion`); Antippen des abgedunkelten Hintergrunds beendet sie vorzeitig. Das
+   Formular bleibt darunter unverändert nutzbar - die Animation ist ein zusätzliches Overlay,
+   kein Bestandteil des Speichervorgangs.
+
 ## Speicherung
 
 IndexedDB, Datenbank `crazylab`, aktuell Version 3 mit vier Object Stores:

@@ -1,0 +1,281 @@
+.stamp-animation-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(7, 16, 24, 0.86);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.stamp-animation {
+  width: 100%;
+  max-width: 320px;
+  --blood: #ff4f6a;
+  --wood: #6b4a30;
+  --wood-dark: #3c2a1a;
+}
+
+.stamp-animation__stage {
+  position: relative;
+  height: 300px;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.05), transparent 60%),
+    var(--color-bg-elevated);
+  border: 1px solid rgba(35, 230, 200, 0.2);
+  overflow: hidden;
+}
+
+.stamp-animation__rig-anchor {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 0;
+  height: 0;
+  transform: scale(1.3);
+  transform-origin: 0 0;
+}
+
+.stamp-animation__rig {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 70px;
+  height: 130px;
+  margin-left: -35px;
+  margin-top: -160px;
+  transform-origin: 50% 90%;
+  animation: stamp-rig-motion 1.9s cubic-bezier(0.45, 0, 0.2, 1) forwards;
+}
+
+.stamp-animation__stamp-block {
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  width: 44px;
+  height: 62px;
+  margin-left: -22px;
+  border-radius: 9px 9px 5px 5px;
+  background: linear-gradient(160deg, var(--wood) 0%, var(--wood-dark) 100%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.stamp-animation__stamp-face {
+  position: absolute;
+  left: 50%;
+  bottom: -12px;
+  width: 34px;
+  height: 34px;
+  margin-left: -17px;
+  border-radius: 50%;
+  background: #f2e9da;
+  border: 2px solid #cbb994;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
+
+.stamp-animation__paw {
+  position: absolute;
+  left: 50%;
+  top: -6px;
+  width: 74px;
+  height: 76px;
+  margin-left: -37px;
+}
+
+.stamp-animation__cuff {
+  position: absolute;
+  left: 50%;
+  top: -30px;
+  width: 44px;
+  height: 60px;
+  margin-left: -22px;
+  background: linear-gradient(160deg, var(--fur-light), var(--fur-body));
+  border-radius: 18px;
+  transform: rotate(18deg);
+}
+
+.stamp-animation__palm {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  width: 66px;
+  height: 46px;
+  margin-left: -33px;
+  background: radial-gradient(circle at 35% 25%, var(--fur-light), var(--fur-body) 65%, var(--fur-dark));
+  border-radius: 46% 46% 50% 50% / 60% 60% 50% 50%;
+  box-shadow: inset 0 -5px 7px rgba(0, 0, 0, 0.25);
+}
+
+.stamp-animation__finger {
+  position: absolute;
+  top: 14px;
+  width: 17px;
+  height: 40px;
+  background: linear-gradient(165deg, var(--fur-light), var(--fur-body));
+  border-radius: 9px;
+}
+
+.stamp-animation__finger::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -3px;
+  width: 0;
+  height: 0;
+  margin-left: -5px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 8px solid var(--fur-dark);
+}
+
+.stamp-animation__finger--1 { left: 2px; top: 18px; transform: rotate(-16deg); }
+.stamp-animation__finger--2 { left: 21px; top: 10px; }
+.stamp-animation__finger--3 { left: 40px; top: 12px; transform: rotate(9deg); }
+.stamp-animation__finger--4 { left: 56px; top: 22px; transform: rotate(22deg); }
+
+.stamp-animation__thumb {
+  position: absolute;
+  left: -14px;
+  top: 34px;
+  width: 16px;
+  height: 30px;
+  background: linear-gradient(165deg, var(--fur-light), var(--fur-body));
+  border-radius: 9px;
+  transform: rotate(-40deg);
+}
+
+.stamp-animation__thumb::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -3px;
+  width: 0;
+  height: 0;
+  margin-left: -5px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 7px solid var(--fur-dark);
+}
+
+.stamp-animation__fur-tuft {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 9px solid var(--fur-dark);
+}
+
+.stamp-animation__blood {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--blood);
+}
+
+.stamp-animation__blood::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  width: 2.5px;
+  height: 12px;
+  margin-left: -1.25px;
+  background: var(--blood);
+  border-radius: 2px;
+}
+
+.stamp-animation__blood--1 { left: 10px; top: -8px; }
+.stamp-animation__blood--2 { left: 50px; top: 6px; }
+
+.stamp-animation__page {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  width: 190px;
+  height: 74px;
+  transform: translateX(-50%);
+  background: var(--color-bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 50% 100%;
+  animation: stamp-page-squash 1.9s ease forwards;
+}
+
+.stamp-animation__mark {
+  font-size: 32px;
+  opacity: 0;
+  transform: translateX(-50%) scale(0.5);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -18px;
+  animation: stamp-mark-reveal 1.9s ease forwards;
+}
+
+.stamp-animation__ink-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  border-radius: 50%;
+  border: 2px solid var(--color-teal);
+  opacity: 0;
+  animation: stamp-ink-ring 1.9s ease forwards;
+}
+
+@keyframes stamp-rig-motion {
+  0% { transform: translate(150px, -120px) rotate(35deg) scale(0.55); opacity: 0; }
+  10% { opacity: 1; }
+  34% { transform: translate(0, 0) rotate(6deg) scale(1); }
+  44% { transform: translate(0, 0) rotate(6deg) scale(1); }
+  56% { transform: translate(3px, 46px) rotate(1deg) scale(0.97); }
+  66% { transform: translate(0, 30px) rotate(4deg) scale(1); }
+  78% { transform: translate(0, 0) rotate(6deg) scale(1); }
+  92% { transform: translate(140px, -110px) rotate(35deg) scale(0.55); opacity: 1; }
+  100% { transform: translate(150px, -120px) rotate(35deg) scale(0.55); opacity: 0; }
+}
+
+@keyframes stamp-page-squash {
+  0%, 53% { transform: translateX(-50%) scaleY(1); }
+  58% { transform: translateX(-50%) scaleY(0.93); }
+  68% { transform: translateX(-50%) scaleY(1); }
+  100% { transform: translateX(-50%) scaleY(1); }
+}
+
+@keyframes stamp-mark-reveal {
+  0%, 54% { opacity: 0; transform: translateX(-50%) scale(0.5); }
+  60% { opacity: 1; transform: translateX(-50%) scale(1.2); }
+  70% { transform: translateX(-50%) scale(1); }
+  100% { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+@keyframes stamp-ink-ring {
+  0%, 54% { opacity: 0; transform: scale(0.3); }
+  60% { opacity: 0.75; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2.4); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp-animation__rig,
+  .stamp-animation__page,
+  .stamp-animation__mark,
+  .stamp-animation__ink-ring {
+    animation: none;
+  }
+  .stamp-animation__mark {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}

@@ -104,7 +104,12 @@ export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
 
   return (
     <>
-      <CompletionForm mission={mission} onSubmit={trySave} submitting={saveStatus === 'saving'} />
+      <CompletionForm
+        mission={mission}
+        onSubmit={trySave}
+        submitting={saveStatus === 'saving'}
+        mascotId={profile?.mascotVariant}
+      />
       {saveStatus === 'error' && (
         <div className="mission-flow__save-error" role="alert">
           <p>

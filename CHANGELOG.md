@@ -1,5 +1,23 @@
 # Changelog
 
+## Sprint 4 - abgeschlossen (2026-08-23)
+
+Von Michael und Elena final bestätigt nach drei Feedback-Runden. Sprint 5 ist freigegeben.
+
+## Sprint 4 - Stempel-Animation (2026-08-23)
+
+### Hinzugefügt
+
+- Neue Komponente `components/StampAnimation.tsx`: Beim Antippen eines Stempels in der
+  Abschlussbewertung erscheint eine kurze Animation, in der eine zum gewählten Maskottchen
+  passende, fellbedeckte Pranke (Farbe und "blutig"-Merkmal aus dem Maskottchen-Katalog) den
+  gewählten Stempel sichtbar aufs Tagebuch-Blatt drückt. Automatisches Ende nach ca. 1.9 s,
+  Antippen des Hintergrunds beendet sie vorzeitig; respektiert `prefers-reduced-motion`.
+- `CompletionForm` und `MissionFlowPage` reichen dafür das aktuelle Profil-Maskottchen durch
+  (`mascotId`-Prop).
+- 6 neue Tests (Blut-Anzeige je nach Maskottchen, Timing, vorzeitiges Beenden, Formular bleibt
+  nach der Animation normal bedienbar) - insgesamt 78.
+
 ## Sprint 4 - Maskottchen-Katalog erweitert (2026-08-23)
 
 ### Behoben

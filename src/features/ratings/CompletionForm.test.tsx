@@ -33,4 +33,38 @@ describe('CompletionForm', () => {
     render(<CompletionForm mission={drinkMission} onSubmit={vi.fn()} />)
     expect(screen.getByText('Geschmack')).toBeInTheDocument()
   })
+
+  it('zeigt beim Wählen eines Stempels die Stempel-Animation mit dem passenden Maskottchen', async () => {
+    const user = userEvent.setup()
+    render(
+      <CompletionForm mission={drinkMission} onSubmit={vi.fn()} mascotId="blutiger-kuschelbaer" />,
+    )
+
+    expect(screen.queryByRole('presentation')).not.toBeInTheDocument()
+
+    await user.click(screen.getByRole('button', { name: 'Gruselig' }))
+
+    const overlay = screen.getByRole('presentation')
+    expect(overlay).toBeInTheDocument()
+    expect(overlay.querySelectorAll('.stamp-animation__blood').length).toBe(2)
+  })
+
+  it('lässt sich nach Antippen der Stempel-Animation normal absenden', async () => {
+    const user = userEvent.setup()
+    const onSubmit = vi.fn()
+    render(<CompletionForm mission={drinkMission} onSubmit={onSubmit} />)
+
+    await user.click(screen.getByRole('button', { name: 'Lecker' }))
+    const overlay = screen.getByRole('presentation')
+
+    // Die Animation blockiert das Formular bewusst kurz (wie ein Feiermoment) - Antippen
+    // des Hintergrunds beendet sie vorzeitig, danach ist das Formular wieder normal bedienbar.
+    await user.click(overlay)
+    expect(screen.queryByRole('presentation')).not.toBeInTheDocument()
+
+    await user.click(screen.getByRole('button', { name: 'Im Labortagebuch speichern' }))
+
+    expect(onSubmit).toHaveBeenCalledOnce()
+    expect(onSubmit.mock.calls[0]![0].stamp).toBe('lecker')
+  })
 })

@@ -5,15 +5,24 @@ hier im Abschnitt "Unpriorisierte Ideen" und werden später priorisiert.
 
 ## Aktueller Sprint
 
+### Sprint 5 - PWA auf Elenas iPhone
+
+Status: In Arbeit. Offline-Prüfung, Icons/Manifest, Installationsanleitung, Update-Hinweis,
+Safari/iPhone-QA. Rein technischer Sprint ohne neue sichtbare Funktionen - Ziel ist eine
+zuverlässige, "richtige" Installation statt der bisherigen Behelfslösung über die lokale
+Netzwerk-IP.
+
+## Abgeschlossene Sprints
+
 ### Sprint 4 - Forschernamen, Maskottchen und Geburtstage
 
-Status: Implementierung abgeschlossen, Typecheck/Lint/Tests(72)/Build grün, manuell im Browser
-bei iPhone-Breite durchgespielt (Onboarding, Maskottchen-Wahl aus 33 Entwürfen, Namenseingabe,
-Profil bearbeiten, Geburtstagsmission). Zwei Feedback-Runden der Familie eingearbeitet: iOS-
+Status: **Abgeschlossen (2026-08-23).** Drei Feedback-Runden der Familie eingearbeitet: iOS-
 Datumsfeld-Bug behoben, Maskottchen-Katalog von 3 CSS-Varianten auf 33 individuelle
 Canvas-Entwürfe (8 Tierarten) erweitert, "Blutiger Kuschelbär" (Elenas Favorit) verfeinert
-(grösseres Auge, sichtbare Zunge). **Noch offen:** finale Rückmeldung von Michael und Elena nach
-echtem Test auf dem iPhone.
+(grösseres Auge, sichtbare Zunge), und eine Stempel-Animation ergänzt: eine zum gewählten
+Maskottchen passende, fellbedeckte Pranke stempelt in der Abschlussbewertung sichtbar den
+gewählten Stempel aufs Tagebuch-Blatt (siehe DECISIONS.md ADR-016). Von Michael und Elena final
+bestätigt.
 
 - [x] Onboarding (`/`, vor jeder anderen Route): Maskottchen wählen, Forschername vergeben
 - [x] 33 individuelle Maskottchen-Entwürfe (8 Tierarten × Farbwelt/Blutig-Variante) als
@@ -24,10 +33,10 @@ echtem Test auf dem iPhone.
 - [x] Geburtstagsmissionen: an einem gespeicherten Geburtstag wird die Tagesmission festlich
       als "Geburtstagsmission für {Name}" hervorgehoben (siehe DECISIONS.md ADR-013)
 - [x] Gewähltes Maskottchen erscheint im Startseiten-Header und in der Hilfe-Sprechblase
-- [x] 16 neue Tests seit Sprint-4-Start (Geburtstagslogik, Profil-Repository, Onboarding-Ablauf,
-      Profilseite, Maskottchen-Katalog-Integrität) - insgesamt 72
-
-## Abgeschlossene Sprints
+- [x] Stempel-Animation: passende Pranke (Farbe/Fell/Blut je nach Maskottchen) stempelt den
+      gewählten Stempel sichtbar aufs Tagebuch-Blatt (siehe DECISIONS.md ADR-016)
+- [x] 22 neue Tests seit Sprint-4-Start (Geburtstagslogik, Profil-Repository, Onboarding-Ablauf,
+      Profilseite, Maskottchen-Katalog-Integrität, Stempel-Animation) - insgesamt 78
 
 ### Sprint 3 - Lokale Persistenz und Präferenzen
 
@@ -84,15 +93,6 @@ positiv beantwortet.
 - [x] Familientest mit Fix erfolgreich (Abschnitt 8 der Spezifikation, alle 7 Fragen positiv)
 
 ## Offene Sprints
-
-### P0 - Sichtbarer Prototyp
-
-- **Sprint 3 - Lokale Persistenz und Präferenzen:** robustes IndexedDB-Repository, strukturierte
-  Bewertungen, Präferenzprofil, nachvollziehbare lokale Gewichtung und Tests.
-- **Sprint 4 - Forschernamen, Maskottchen und Geburtstage:** Onboarding, drei provisorische
-  Maskottchen, Profil, veränderbarer Forschername, mehrere Geburtstage und Geburtstagsmissionen.
-- **Sprint 5 - PWA auf Elenas iPhone:** Offline-Prüfung, Icons/Manifest, Installationsanleitung,
-  Update-Hinweis, Safari/iPhone-QA.
 
 ### P1 - Getränke zuerst vollständig ausbauen
 

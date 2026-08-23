@@ -301,3 +301,29 @@ vorhanden). In Vitest/jsdom loggt `HTMLCanvasElement.getContext('2d')` eine harm
 über eine `null`-Prüfung, Tests bleiben grün. Der Katalog liegt bewusst in `components`, nicht
 in `domain` - `domain/profile.ts` kennt nur den `MascotId`-String, keine Zeichen- oder
 Farblogik.
+
+## ADR-016: Stempel-Animation als CSS-Overlay, nicht als Canvas-Neuzeichnung
+
+**Status:** Angenommen (Sprint 4, dritte Feedback-Runde)
+
+**Kontext:** Elena wünschte sich eine sichtbare Animation, bei der eine zum gewählten
+Maskottchen passende Pranke den gewählten Stempel aufs Tagebuch-Blatt drückt. Zur Ideenfindung
+wurden zunächst drei Konzepte (Stempel-Schlag, Schwung-Stempel, Zauber-Stempel) und danach eine
+verfeinerte "Hand-Stempel"-Variante als eigenständige HTML/CSS-Prototypen gezeigt und
+gemeinsam mit der Familie ausgewählt.
+
+**Entscheidung:** `components/StampAnimation.tsx` reproduziert den zuletzt gezeigten Prototyp
+nahezu 1:1 (gleiche Klassenstruktur, gleiche Keyframes) statt neu mit der
+Canvas-Maskottchen-Engine (`mascotArt.ts`) zu arbeiten. Farbe/Fell der Pranke kommen aus
+`PALETTES[entry.palette]`, Blutstropfen werden nur bei `entry.gore === true` gerendert - beides
+über `getMascotEntry(mascotId)` aus dem bestehenden Maskottchen-Katalog. Der dargestellte
+Stempel ist dynamisch (`domain/rating.STAMPS`), nicht mehr das Platzhalter-🔮 aus dem
+Prototyp.
+
+**Konsequenzen:** Zwei parallele Darstellungstechniken für "Maskottchen-Grafik" existieren jetzt
+nebeneinander: `Mascot`/`mascotArt.ts` zeichnet ganze Maskottchen auf `<canvas>`,
+`StampAnimation` zeichnet nur eine Pranke rein über CSS-Formen (kein Canvas). Bewusst so belassen,
+weil die Pranke eine andere Perspektive/Pose ist als die Maskottchen-Porträts und ein
+Canvas-Umbau keinen echten Vorteil gebracht, aber Wiederholungsaufwand verursacht hätte. Bei
+einer künftigen grösseren Überarbeitung der Maskottchen-Grafik sollten beide Stellen gemeinsam
+betrachtet werden.
