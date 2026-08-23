@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getMissionById, STARTER_MISSION_ID } from '../data'
-import { DEFAULT_PROFILE, type CompletionRating, type DiaryEntry } from '../domain'
+import { DEFAULT_PROFILE, generateId, type CompletionRating, type DiaryEntry } from '../domain'
 import { MissionDetailView } from '../features/missions'
 import { StepRunner } from '../features/mission-run'
 import { CompletionForm } from '../features/ratings'
@@ -14,7 +14,7 @@ type SaveStatus = 'idle' | 'saving' | 'error'
 
 function buildEntry(missionId: string, rating: CompletionRating, mission: NonNullable<ReturnType<typeof getMissionById>>): DiaryEntry {
   return {
-    id: crypto.randomUUID(),
+    id: generateId(),
     profileId: DEFAULT_PROFILE.id,
     missionSnapshot: {
       missionId,

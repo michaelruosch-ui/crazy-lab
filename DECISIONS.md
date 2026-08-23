@@ -64,7 +64,10 @@ Effect-Antipatterns in `useTimer` und `useDiaryEntries` aufgedeckt hat).
 
 ## ADR-005: Timeout + Wiederholungsversuch beim Öffnen der IndexedDB
 
-**Status:** Angenommen (Sprint 1, Bugfix nach Familientest)
+**Status:** Angenommen, aber unbestätigte Hypothese - hat den beim Familientest beobachteten Bug
+nicht behoben (die tatsächliche Ursache war `crypto.randomUUID`, siehe ADR-006). Bleibt als
+sinnvolle Absicherung für den beschriebenen WebKit-Bug im Code, ohne dass dieser konkrete Bug je
+bestätigt auftrat.
 
 **Kontext:** Beim Test auf Elenas iPhone als installierte "Zum Home-Bildschirm"-App blieb das
 Speichern eines Tagebucheintrags hängen; das Tagebuch liess sich nicht anzeigen. Ursache ist ein
@@ -83,3 +86,29 @@ später doch noch auflösen und eine ungenutzte zusätzliche Verbindung erzeugen
 lokale Single-User-App unproblematisch. Dieses Verhalten ist auf echten iOS-Geräten nur manuell
 reproduzierbar (nicht zuverlässig automatisiert testbar) und wurde daher durch Familientest statt
 durch einen Unit-Test verifiziert.
+
+## ADR-006: `generateId()` statt `crypto.randomUUID()` für Tagebuch-IDs
+
+**Status:** Angenommen (Sprint 1, Bugfix nach Familientest)
+
+**Kontext:** Die tatsächliche Ursache des beim Familientest beobachteten Speicher-Bugs (siehe
+ADR-005-Kontext) war `crypto.randomUUID()`: Diese Funktion erfordert einen sicheren Kontext
+(HTTPS oder `localhost`). Zum Testen auf Elenas iPhone wird die App aber über die lokale
+Netzwerk-IP des Mac per HTTP aufgerufen (`http://<Mac-IP>:PORT`) - kein sicherer Kontext im Sinne
+der Browser-Spezifikation. In Safari ist `crypto.randomUUID` dort schlicht `undefined`, was bei
+jedem Speicherversuch einen `TypeError` warf. Gefunden, weil die App den echten Fehlertext direkt
+in der Oberfläche anzeigte (siehe `src/app/MissionFlowPage.tsx`) und Michael ihn per Sprachnachricht
+weitergeben konnte, statt Remote-Debugging einrichten zu müssen.
+
+**Entscheidung:** Neue Hilfsfunktion `generateId()` in `src/domain/id.ts`: nutzt
+`crypto.randomUUID()`, wenn verfügbar, sonst `crypto.getRandomValues()` (funktioniert ohne
+sicheren Kontext) für eine spec-konforme UUID v4, sonst als letzten Ausweg einen
+`Math.random()`-basierten String. Ersetzt den direkten `crypto.randomUUID()`-Aufruf in
+`MissionFlowPage.tsx`.
+
+**Konsequenzen:** IDs sind weiterhin eindeutig genug für eine lokale Single-User-App, aber nicht
+mehr durchgehend kryptographisch stark - für Tagebuch-Eintrags-IDs unproblematisch. Diese Lektion
+gilt für alle künftigen Sprints: sicherer-Kontext-abhängige Browser-APIs (`crypto.randomUUID`,
+Service-Worker-Registrierung, u. a.) verhalten sich auf `http://<LAN-IP>` anders als auf
+`https://` oder `localhost`. Solange ohne HTTPS auf dem iPhone getestet wird, sollte neuer Code
+auf solche APIs geprüft werden, bevor er beim Familientest scheitert.

@@ -4,14 +4,30 @@
 
 ### Behoben
 
-- IndexedDB-Öffnen konnte auf dem iPhone bei der allerersten Nutzung der installierten
-  "Zum Home-Bildschirm"-App unendlich hängen bleiben (bekannter Safari-Bug bei Standalone-PWAs).
-  Der Abschluss-Speichervorgang wirkte dadurch eingefroren, und das Labortagebuch liess sich
-  nicht anzeigen. Behoben durch Timeout + automatischen Wiederholungsversuch beim Öffnen der
-  Datenbank (`src/storage/db.ts`).
+- **Tatsächliche Ursache des Speicher-Bugs:** `crypto.randomUUID()` erfordert einen sicheren
+  Kontext (HTTPS oder localhost). Beim Testen über die lokale Netzwerk-IP per HTTP
+  (`http://<Mac-IP>:4173`, nötig um auf Elenas iPhone zu installieren) ist die Funktion in Safari
+  nicht vorhanden, wodurch jeder Speicherversuch mit `TypeError: crypto.randomUUID is not a
+  function` fehlschlug - reproduzierbar und nicht durch Wiederholen behebbar. Neue Hilfsfunktion
+  `generateId()` (`src/domain/id.ts`) fällt auf `crypto.getRandomValues()` und zuletzt auf
+  `Math.random()` zurück, wenn `crypto.randomUUID` fehlt.
+- Ein erster Fix-Versuch (Timeout + Wiederholungsversuch beim Öffnen der IndexedDB,
+  `src/storage/db.ts`) adressierte eine plausible, aber nicht die tatsächliche Ursache. Bleibt als
+  sinnvolle Absicherung für den bekannten iOS-Standalone-PWA-Bug erhalten, hat das Problem beim
+  Familientest aber nicht gelöst.
 - Die Oberfläche zeigt jetzt sichtbar "Wird gespeichert..." während des Speicherns und bei einem
-  Fehler eine Meldung mit "Nochmals versuchen"-Knopf, statt scheinbar untätig zu bleiben
-  (`src/app/MissionFlowPage.tsx`, `src/features/ratings/CompletionForm.tsx`).
+  Fehler eine Meldung mit dem echten Fehlertext sowie einem "Nochmals versuchen"-Knopf, statt
+  scheinbar untätig zu bleiben (`src/app/MissionFlowPage.tsx`,
+  `src/features/ratings/CompletionForm.tsx`). Das hat die eigentliche Fehlersuche ohne
+  Remote-Debugging auf dem iPhone ermöglicht.
+
+### Bekannte Einschränkung beim Testen über LAN-HTTP
+
+Nicht nur `crypto.randomUUID`, auch die Service-Worker-Registrierung (Grundlage für echte
+Offline-Fähigkeit) erfordert einen sicheren Kontext. Solange auf Elenas iPhone über
+`http://<Mac-IP>:PORT` getestet wird, registriert sich der Service Worker in Safari
+wahrscheinlich nicht. Echte Offline-Prüfung ist erst mit einer HTTPS-fähigen Testumgebung möglich
+und ist ohnehin explizit Teil von Sprint 5 ("PWA auf Elenas iPhone").
 
 ## Sprint 1 - Projektfundament und Vertical Slice (2026-08-16)
 

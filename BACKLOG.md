@@ -10,9 +10,11 @@ hier im Abschnitt "Unpriorisierte Ideen" und werden später priorisiert.
 Status: Implementierung abgeschlossen, Typecheck/Lint/Tests/Build grün. Familientest (Abschnitt 8
 der Spezifikation) am 2026-08-16 durchgeführt, Fragen 1-4 und 7 positiv, Fragen 5/6 zeigten einen
 echten Bug (Speichern hing auf dem installierten iPhone, Tagebuch liess sich nicht anzeigen).
-Ursache identifiziert und behoben (siehe DECISIONS.md, ADR-005) am 2026-08-23. **Noch offen:**
-erneuter Test von Michael und Elena mit dem Fix, insbesondere Fragen 5 und 6. Erst danach gilt
-Sprint 1 als erledigt und Sprint 2 wird freigegeben.
+Erster Fix-Versuch (2026-08-23) behob das Problem nicht; die Oberfläche zeigt seither den echten
+Fehlertext an, wodurch die tatsächliche Ursache gefunden wurde (`crypto.randomUUID` fehlt in
+Safari ohne sicheren Kontext/HTTPS) und behoben wurde (siehe DECISIONS.md, ADR-006). **Noch
+offen:** erneuter Test von Michael und Elena mit dem Fix, insbesondere Fragen 5 und 6. Erst danach
+gilt Sprint 1 als erledigt und Sprint 2 wird freigegeben.
 
 - [x] Projektstruktur, Qualitätswerkzeuge (TypeScript strict, ESLint, Prettier, Vitest)
 - [x] PWA-Grundlage (Manifest, Service Worker, Icons)
@@ -21,7 +23,8 @@ Sprint 1 als erledigt und Sprint 2 wird freigegeben.
 - [x] Missionsdetails, Schrittmodus, manueller Timer, Hilfe-Sprechblase
 - [x] Abschlussbewertung mit strukturierten Anpassungswünschen
 - [x] Lokaler Tagebucheintrag (IndexedDB), übersteht Neuladen
-- [x] Bugfix: hängendes IndexedDB-Öffnen beim ersten Start als installierte iPhone-App
+- [x] Bugfix: `crypto.randomUUID` fehlt in Safari ohne HTTPS/localhost (echte Ursache gefunden
+      und behoben)
 - [ ] Erneuter Familientest mit Fix, Fragen 5 und 6 (Abschnitt 8 der Spezifikation)
 
 ## Offene Sprints
