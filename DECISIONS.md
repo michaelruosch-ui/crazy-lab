@@ -194,3 +194,40 @@ Zurück/Weiter-Knöpfe).
 einen eigenen Link zu bauen, damit die Konvention (unten, sicherer Abstand, grosses Touch-Ziel)
 konsistent bleibt. Freies Springen zwischen Schritten per Klick auf einen Fortschrittspunkt ist
 damit nicht mehr möglich - war ohnehin keine spezifizierte Anforderung, nur ein Sprint-1-Extra.
+
+## ADR-011: Präferenzprofil wird immer frisch aus dem Tagebuch berechnet, nicht separat gespeichert
+
+**Status:** Angenommen (Sprint 3)
+
+**Kontext:** Die Spezifikation verlangt ein "transparentes Präferenzprofil je Profil" und
+"nachvollziehbare lokale Gewichtung". `BACKLOG.md` nennt dafür separat "robustes
+IndexedDB-Repository" und "Präferenzprofil" - liest sich zunächst nach einer eigenen
+Speicherstruktur für das Profil.
+
+**Entscheidung:** Kein eigener IndexedDB-Store fürs Präferenzprofil. Stattdessen baut
+`domain/preferenceProfile.buildPreferenceProfile` das Profil bei Bedarf rein aus den bereits
+gespeicherten `rating.adjustments` aller Tagebucheinträge (`diaryEntries`, seit Sprint 1). Das
+bestehende `DiaryRepository` mit seiner Timeout-/Retry-Logik beim Öffnen (ADR-005) erfüllt damit
+bereits die Anforderung "robustes IndexedDB-Repository" - es gibt keine zusätzliche
+Speicherquelle, die aus dem Takt geraten könnte.
+
+**Konsequenzen:** Bei sehr vielen Tagebucheinträgen (realistisch weit ausserhalb des
+MVP-Rahmens für ein einzelnes Kind) müsste die Berechnung ggf. memoisiert oder inkrementell
+gepflegt werden - für Sprint 3 unproblematisch. Vorteil: Das Profil kann nie von den Bewertungen
+abweichen, aus denen es entsteht, was die Anforderung "nachvollziehbar" direkt erfüllt.
+
+## ADR-012: Strukturierte Anpassungswünsche gewichten nur die Kategorie-Vorschläge, nicht die Tagesmission
+
+**Status:** Angenommen (Sprint 3)
+
+**Kontext:** `domain/suggestions.ts` enthält zwei Funktionen: `suggestionsForCategory` (Grundlage
+der Kategorie-Abschnitte auf der Startseite) und `pickDailyMission` (die einzelne Tagesmission).
+Beide könnten theoretisch das Präferenzprofil nutzen.
+
+**Entscheidung:** Nur `suggestionsForCategory` erhält das Präferenzprofil. `pickDailyMission`
+bleibt bei seiner tagesstabilen, datumsbasierten Zufallsauswahl unverändert.
+
+**Konsequenzen:** Die Tagesmission bleibt bewusst überraschend statt sich ausschliesslich auf
+bereits bekannte Vorlieben zu verengen - passt zur Spezifikationsidee einer "geheimnisvollen"
+Tagesmission. Eine präferenzbewusste Tagesmission könnte in Sprint 10
+("Filter und Vorschlagsmaschine") sinnvoll ergänzt werden, falls gewünscht.

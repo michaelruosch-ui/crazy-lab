@@ -59,6 +59,19 @@ keine Features.
 6. `features/diary/DiaryPage` liest beim Mount alle Einträge über denselben Repository und
    zeigt sie an - unabhängig von einem vorherigen Seiten-Reload.
 
+### Präferenzprofil (Sprint 3)
+
+1. `domain/preferenceProfile.buildPreferenceProfile(profileId, entries)` baut aus allen
+   Tagebucheinträgen eines Profils ein `PreferenceProfile` (Merkmals-Affinität pro
+   `MissionTraits`-Dimension). Reine Funktion, keine eigene Speicherung - der Tagebucheintrag
+   bleibt einzige Quelle der Wahrheit.
+2. `HomePage` lädt die Tagebucheinträge über den bestehenden `useDiaryEntries`-Hook und baut das
+   Profil bei jedem Rendern frisch.
+3. `domain/suggestions.suggestionsForCategory` sortiert Kandidaten bei vorhandenem Profil nach
+   `scoreMissionForProfile` (Skalarprodukt aus Missionsmerkmalen und Profil-Affinität) - ohne
+   Profil bzw. ohne Bewertungen bleibt die bisherige primär/sekundär-Reihenfolge unverändert
+   (stabile Sortierung).
+
 ## Speicherung
 
 IndexedDB, Datenbank `crazylab`, aktuell Version 2 mit drei Object Stores:

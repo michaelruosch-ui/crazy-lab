@@ -1,9 +1,15 @@
 import { Link } from 'react-router-dom'
 import { missions } from '../../data'
 import type { MissionCategory } from '../../domain'
-import { DEFAULT_PROFILE, pickDailyMission, suggestionsForCategory } from '../../domain'
+import {
+  DEFAULT_PROFILE,
+  buildPreferenceProfile,
+  pickDailyMission,
+  suggestionsForCategory,
+} from '../../domain'
 import { MissionCard } from '../../components'
 import { useSecretVault } from '../secret-vault'
+import { useDiaryEntries } from '../diary'
 import { useHiddenMissions } from './useHiddenMissions'
 import { MissionSection } from './MissionSection'
 import './HomePage.css'
@@ -19,6 +25,8 @@ const CATEGORY_SECTIONS: { category: MissionCategory; title: string }[] = [
 export function HomePage() {
   const { savedMissionIds, toggle: toggleSaved } = useSecretVault(DEFAULT_PROFILE.id)
   const { currentlyHiddenMissionIds, hide } = useHiddenMissions(DEFAULT_PROFILE.id)
+  const { entries: diaryEntries } = useDiaryEntries(DEFAULT_PROFILE.id)
+  const preferenceProfile = buildPreferenceProfile(DEFAULT_PROFILE.id, diaryEntries)
 
   const dailyMission = pickDailyMission(
     missions,
@@ -45,7 +53,12 @@ export function HomePage() {
         <MissionSection
           key={category}
           title={title}
-          missions={suggestionsForCategory(missions, category, currentlyHiddenMissionIds)}
+          missions={suggestionsForCategory(
+            missions,
+            category,
+            currentlyHiddenMissionIds,
+            preferenceProfile,
+          )}
           savedMissionIds={savedMissionIds}
           onToggleSave={toggleSaved}
           onHide={hide}

@@ -5,14 +5,30 @@ hier im Abschnitt "Unpriorisierte Ideen" und werden später priorisiert.
 
 ## Aktueller Sprint
 
+### Sprint 3 - Lokale Persistenz und Präferenzen
+
+Status: Implementierung abgeschlossen, Typecheck/Lint/Tests(56)/Build grün, manuell im Browser
+verifiziert (Bewertung mit "weniger gruselig" ändert sichtbar die Reihenfolge der
+Getränke-Vorschläge). Für Elena selbst nicht sichtbar - wirkt nur im Hintergrund auf die
+Vorschlagsreihenfolge. **Noch offen:** Rückmeldung von Michael, ob das reicht, bevor Sprint 4
+beginnt.
+
+- [x] `domain/preferenceProfile.ts`: Präferenzprofil wird aus strukturierten
+      Anpassungswünschen aller Tagebucheinträge eines Profils aufgebaut (keine separate
+      Speicherung, siehe DECISIONS.md ADR-011)
+- [x] `suggestionsForCategory` gewichtet Kategorie-Vorschläge nach Passung zum Präferenzprofil,
+      ohne Bewertungen unverändertes Verhalten wie in Sprint 2
+- [x] Nachvollziehbare, einfache Gewichtungsformel (Skalarprodukt Missionsmerkmale × Affinität,
+      keine Black-Box-Logik)
+- [x] 8 neue Tests (Profilaufbau, Score-Berechnung, Umsortierung) - insgesamt 56
+
+## Abgeschlossene Sprints
+
 ### Sprint 2 - Entdecken und Wiederfinden
 
-Status: Implementierung abgeschlossen, Typecheck/Lint/Tests/Build grün, manuell im Browser bei
-iPhone-Breite (390px) durchgespielt (Startseite, Kategorie-Vorschläge, Mission öffnen, Merken,
-Verstecken, Verlauf, Geheimfach). Erstes Familien-Feedback am 2026-08-23 eingearbeitet: Ausstieg
-aus dem Schritt-Modus, anklickbare Tagebucheinträge mit Detailansicht, "Nochmal machen"-Umschalter
-direkt im Tagebuch. **Noch offen:** finale Rückmeldung von Michael und Elena, bevor Sprint 3
-beginnt.
+Status: **Abgeschlossen (2026-08-23).** Familien-Feedback in zwei Runden eingearbeitet
+(Ausstieg aus dem Schritt-Modus, Tagebuch-Detailansicht mit "Nochmal machen"-Umschalter,
+Navigation ans untere Bildschirmende verschoben). Von Michael final bestätigt.
 
 - [x] Startseite (`/`) mit Tagesmission und fünf Kategorie-Abschnitten
 - [x] Bis zu fünf Vorschläge pro Kategorie (primäre und passende sekundäre Kategorie)
@@ -26,9 +42,7 @@ beginnt.
 - [x] "Zurück" bei Schritt 1 verlässt den Schritt-Modus statt inaktiv zu bleiben
 - [x] Tagebucheinträge sind anklickbar und öffnen eine Detailansicht (`/diary/:entryId`)
 - [x] "Nochmal machen" lässt sich direkt im Tagebuch umschalten und bleibt gespeichert
-- [ ] Rückmeldung von Michael und Elena zur neuen Startseite
-
-## Abgeschlossene Sprints
+- [x] Navigation konsequent am unteren Bildschirmrand statt oben
 
 ### Sprint 1 - Projektfundament und Vertical Slice
 

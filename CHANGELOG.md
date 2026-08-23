@@ -1,5 +1,29 @@
 # Changelog
 
+## Sprint 3 - Lokale Persistenz und Präferenzen (2026-08-23)
+
+### Hinzugefügt
+
+- `domain/preferenceProfile.ts`: `buildPreferenceProfile` aggregiert die strukturierten
+  Anpassungswünsche (`gruseliger`, `weniger_gruselig`, `farbiger`, `weniger_suess`, `einfacher`,
+  `schwieriger`) aus allen Tagebucheinträgen eines Profils zu einer Merkmals-Affinität je
+  `MissionTraits`-Dimension. Keine eigene Speicherung - immer frisch aus dem Tagebuch berechnet
+  (siehe DECISIONS.md ADR-011).
+- `scoreMissionForProfile` bewertet, wie gut eine Mission zum Profil passt (Skalarprodukt aus
+  Missionsmerkmalen und Affinität) - einfache, nachvollziehbare Formel statt Black-Box-Logik.
+- `suggestionsForCategory` sortiert Kategorie-Vorschläge auf der Startseite jetzt nach Passung
+  zum Präferenzprofil; ohne Bewertungen bleibt die Reihenfolge wie in Sprint 2.
+- 8 neue Tests (Profilaufbau, Score-Berechnung, Umsortierung) - insgesamt 56.
+
+### Bewusst nicht Teil von Sprint 3 (siehe DECISIONS.md ADR-012)
+
+- Die Tagesmission (`pickDailyMission`) bleibt bei ihrer tagesstabilen Zufallsauswahl,
+  unabhängig vom Präferenzprofil - bleibt bewusst überraschend.
+
+## Sprint 2 - abgeschlossen (2026-08-23)
+
+Von Michael final bestätigt nach zwei Feedback-Runden. Sprint 3 ist freigegeben.
+
 ## Sprint 2 - Navigation ans untere Bildschirmende verschoben (2026-08-23)
 
 ### Geändert
