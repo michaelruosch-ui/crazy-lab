@@ -1,10 +1,7 @@
-export type MascotVariant = 'geist' | 'vampir' | 'kobold'
-
-export const MASCOT_VARIANTS: readonly { id: MascotVariant; label: string; description: string }[] = [
-  { id: 'geist', label: 'Geist', description: 'Ruhig und geheimnisvoll türkis leuchtend.' },
-  { id: 'vampir', label: 'Vampir', description: 'Frech und pink-rot mit spitzen Zähnen.' },
-  { id: 'kobold', label: 'Kobold', description: 'Wild und giftgrün-chaotisch.' },
-]
+/** ID eines Eintrags im Maskottchen-Katalog (`components/mascotArt.ts`). Bewusst ein offener
+ * String-Typ statt einer Union in `domain`, damit der Katalog (33 Entwürfe, siehe Sprint-4-
+ * Familienfeedback) frei erweiterbar bleibt, ohne die Domänenschicht anzufassen. */
+export type MascotId = string
 
 export interface Birthday {
   id: string
@@ -17,7 +14,7 @@ export interface Birthday {
 export interface Profile {
   id: string
   researcherName: string
-  mascotVariant: MascotVariant
+  mascotVariant: MascotId
   birthdays: Birthday[]
   createdAt: string
   /** Fehlt, solange das Onboarding (Maskottchen + Forschername) noch nicht abgeschlossen ist. */
@@ -27,7 +24,7 @@ export interface Profile {
 export const DEFAULT_PROFILE: Profile = {
   id: 'elena',
   researcherName: 'Elena',
-  mascotVariant: 'geist',
+  mascotVariant: 'blutiger-kuschelbaer',
   birthdays: [],
   createdAt: '2026-08-16T00:00:00.000Z',
 }

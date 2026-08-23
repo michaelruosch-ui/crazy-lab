@@ -32,7 +32,7 @@ export function HomePage() {
   const preferenceProfile = buildPreferenceProfile(DEFAULT_PROFILE.id, diaryEntries)
 
   const researcherName = profile?.researcherName ?? DEFAULT_PROFILE.researcherName
-  const mascotVariant = profile?.mascotVariant ?? DEFAULT_PROFILE.mascotVariant
+  const mascotId = profile?.mascotVariant ?? DEFAULT_PROFILE.mascotVariant
   const today = new Date()
   const todaysBirthdays = (profile?.birthdays ?? []).filter((b) => isBirthdayToday(b, today))
 
@@ -46,7 +46,7 @@ export function HomePage() {
   return (
     <div className="home-page">
       <header className="home-page__header">
-        <Mascot variant={mascotVariant} size="small" />
+        <Mascot mascotId={mascotId} size="small" />
         <div>
           <h1>🔮 Crazy Lab</h1>
           <p>Willkommen zurück im Labor, {researcherName}!</p>

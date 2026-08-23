@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import type { Birthday, MascotVariant, Profile } from '../../domain'
+import type { Birthday, MascotId, Profile } from '../../domain'
 import { DEFAULT_PROFILE, generateId } from '../../domain'
 import { BackLink, Button, MascotPicker } from '../../components'
 import { useProfile } from './useProfile'
@@ -46,9 +46,9 @@ export function ProfilePage() {
     await save({ ...profile, researcherName: trimmed })
   }
 
-  async function changeMascot(variant: MascotVariant) {
+  async function changeMascot(mascotId: MascotId) {
     if (!profile) return
-    await save({ ...profile, mascotVariant: variant })
+    await save({ ...profile, mascotVariant: mascotId })
   }
 
   async function addBirthday() {

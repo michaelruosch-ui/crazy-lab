@@ -1,28 +1,43 @@
-import { MASCOT_VARIANTS, type MascotVariant } from '../domain'
+import type { MascotId } from '../domain'
+import { MASCOT_CATALOG, SPECIES_LABEL, type MascotSpecies } from './mascotArt'
 import { Mascot } from './Mascot'
 import './MascotPicker.css'
 
 interface MascotPickerProps {
-  value: MascotVariant
-  onChange: (variant: MascotVariant) => void
+  value: MascotId
+  onChange: (mascotId: MascotId) => void
 }
 
 export function MascotPicker({ value, onChange }: MascotPickerProps) {
+  const bySpecies = new Map<MascotSpecies, typeof MASCOT_CATALOG>()
+  for (const entry of MASCOT_CATALOG) {
+    const list = bySpecies.get(entry.species) ?? []
+    list.push(entry)
+    bySpecies.set(entry.species, list)
+  }
+
   return (
     <div className="mascot-picker" role="radiogroup" aria-label="Maskottchen auswählen">
-      {MASCOT_VARIANTS.map((option) => (
-        <button
-          type="button"
-          key={option.id}
-          role="radio"
-          aria-checked={value === option.id}
-          className={`mascot-picker__option ${value === option.id ? 'mascot-picker__option--selected' : ''}`}
-          onClick={() => onChange(option.id)}
-        >
-          <Mascot variant={option.id} size="large" />
-          <strong>{option.label}</strong>
-          <span>{option.description}</span>
-        </button>
+      <p className="mascot-picker__hint">Scroll durch alle {MASCOT_CATALOG.length} Entwürfe und tippe deinen Favoriten an.</p>
+      {[...bySpecies.entries()].map(([species, entries]) => (
+        <div key={species} className="mascot-picker__group">
+          <h3 className="mascot-picker__species">{SPECIES_LABEL[species]}</h3>
+          <div className="mascot-picker__grid">
+            {entries.map((entry) => (
+              <button
+                type="button"
+                key={entry.id}
+                role="radio"
+                aria-checked={value === entry.id}
+                className={`mascot-picker__tile ${value === entry.id ? 'mascot-picker__tile--selected' : ''}`}
+                onClick={() => onChange(entry.id)}
+              >
+                <Mascot mascotId={entry.id} size="medium" />
+                <span>{entry.name}</span>
+              </button>
+            ))}
+          </div>
+        </div>
       ))}
     </div>
   )

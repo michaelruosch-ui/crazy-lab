@@ -87,10 +87,11 @@ keine Features.
 3. `features/profile/ProfilePage` (`/profil`) liest und schreibt dasselbe Profil - Forschername
    (Textfeld, Speichern bei Blur), Maskottchen (`MascotPicker` erneut verwendet) und Geburtstage
    (Liste mit Hinzufügen/Entfernen) sind jederzeit änderbar.
-4. `components/Mascot` nimmt eine `variant`-Prop entgegen (`geist` | `vampir` | `kobold`, je
-   eigenes Farbschema über CSS-Custom-Properties) und wird sowohl im `HomePage`-Header als auch
-   in der Hilfe-Sprechblase (`StepRunner` → `SpeechBubble`) mit dem im Profil gespeicherten
-   Maskottchen dargestellt.
+4. `components/Mascot` nimmt eine `mascotId`-Prop entgegen (`MascotId` = `string`, siehe
+   `domain/profile.ts`) und rendert per Canvas eines von 33 Maskottchen-Entwürfen aus
+   `components/mascotArt.ts` (8 Tierarten × Farbwelt/Blutig-Variante, siehe DECISIONS.md
+   ADR-015). Wird im `HomePage`-Header und in der Hilfe-Sprechblase (`StepRunner` →
+   `SpeechBubble`) mit dem im Profil gespeicherten Maskottchen dargestellt.
 5. `domain/isBirthdayToday` vergleicht nur Monat und Tag (Jahr bewusst irrelevant). `HomePage`
    filtert die Geburtstage des Profils auf "heute" und zeigt bei Treffer die Tagesmission mit
    festlichem Rahmen als "Geburtstagsmission für {Name}" statt der normalen Tagesmission -

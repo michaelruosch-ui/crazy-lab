@@ -9,7 +9,7 @@ describe('OnboardingFlow', () => {
     const onComplete = vi.fn()
     render(<OnboardingFlow onComplete={onComplete} />)
 
-    await user.click(screen.getByRole('radio', { name: /Vampir/ }))
+    await user.click(screen.getByRole('radio', { name: /Der Heuler/ }))
     await user.click(screen.getByRole('button', { name: 'Weiter' }))
 
     const nameInput = screen.getByPlaceholderText('Dein Forschername')
@@ -19,7 +19,7 @@ describe('OnboardingFlow', () => {
 
     expect(onComplete).toHaveBeenCalledOnce()
     const profile = onComplete.mock.calls[0]![0]
-    expect(profile.mascotVariant).toBe('vampir')
+    expect(profile.mascotVariant).toBe('der-heuler')
     expect(profile.researcherName).toBe('Dr. Schrecklich')
     expect(profile.birthdays).toEqual([])
     expect(profile.onboardingCompletedAt).toBeTruthy()

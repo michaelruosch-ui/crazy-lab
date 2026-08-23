@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { MascotVariant, Mission } from '../../domain'
+import type { MascotId, Mission } from '../../domain'
 import { findStepHelpTip } from '../../domain'
 import { Button, SpeechBubble } from '../../components'
 import { Timer } from './Timer'
@@ -9,10 +9,10 @@ interface StepRunnerProps {
   mission: Mission
   onAllStepsDone: () => void
   onExit: () => void
-  mascotVariant?: MascotVariant
+  mascotId?: MascotId
 }
 
-export function StepRunner({ mission, onAllStepsDone, onExit, mascotVariant }: StepRunnerProps) {
+export function StepRunner({ mission, onAllStepsDone, onExit, mascotId }: StepRunnerProps) {
   const [checkedSteps, setCheckedSteps] = useState<Set<string>>(new Set())
   const [currentIndex, setCurrentIndex] = useState(0)
   const [helpVisible, setHelpVisible] = useState(false)
@@ -69,7 +69,7 @@ export function StepRunner({ mission, onAllStepsDone, onExit, mascotVariant }: S
         )}
 
         {helpVisible && (
-          <SpeechBubble text={findStepHelpTip(mission, currentStep.id)} mascotVariant={mascotVariant} />
+          <SpeechBubble text={findStepHelpTip(mission, currentStep.id)} mascotId={mascotId} />
         )}
       </div>
 

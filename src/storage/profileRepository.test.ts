@@ -15,7 +15,7 @@ describe('indexedDbProfileRepository', () => {
   })
 
   it('speichert und liest ein Profil', async () => {
-    const profile = { ...DEFAULT_PROFILE, researcherName: 'Dr. Elena', mascotVariant: 'vampir' as const }
+    const profile = { ...DEFAULT_PROFILE, researcherName: 'Dr. Elena', mascotVariant: 'der-heuler' }
     await indexedDbProfileRepository.save(profile)
 
     expect(await indexedDbProfileRepository.get(DEFAULT_PROFILE.id)).toEqual(profile)

@@ -6,8 +6,9 @@ Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse
 geheimnisvollen Labortagebuch festgehalten.
 
 Dieses Repository befindet sich in **Sprint 4** (Forschernamen, Maskottchen und Geburtstage). Der
-aktuelle Stand: Beim ersten Start wählt man ein Maskottchen (Geist, Vampir oder Kobold) und einen
-Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf Kategorien
+aktuelle Stand: Beim ersten Start wählt man eines von 33 Maskottchen (8 Tierarten in
+verschiedenen Farbwelten) und einen Forschernamen. Danach öffnet die App eine echte Startseite
+mit Tagesmission und fünf Kategorien
 (Getränke, Basteln, Experimente, Foto-Challenges, Schwestern-Missionen). Jede Mission kann
 vollständig durchgespielt, bewertet und lokal im Tagebuch gespeichert werden, dauerhaft im
 Geheimfach gemerkt oder für drei Tage versteckt werden (mit 14-Tage-Verlauf). Bewertungen

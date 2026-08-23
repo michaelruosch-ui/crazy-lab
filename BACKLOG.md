@@ -7,21 +7,25 @@ hier im Abschnitt "Unpriorisierte Ideen" und werden später priorisiert.
 
 ### Sprint 4 - Forschernamen, Maskottchen und Geburtstage
 
-Status: Implementierung abgeschlossen, Typecheck/Lint/Tests(67)/Build grün, manuell im Browser
-bei iPhone-Breite durchgespielt (Onboarding, Maskottchen-Wahl, Namenseingabe, Profil bearbeiten,
-Geburtstagsmission). **Noch offen:** Rückmeldung von Michael und Elena nach echtem Test auf dem
-iPhone, insbesondere weil bestehende Nutzer:innen das Onboarding jetzt einmalig durchlaufen.
+Status: Implementierung abgeschlossen, Typecheck/Lint/Tests(72)/Build grün, manuell im Browser
+bei iPhone-Breite durchgespielt (Onboarding, Maskottchen-Wahl aus 33 Entwürfen, Namenseingabe,
+Profil bearbeiten, Geburtstagsmission). Zwei Feedback-Runden der Familie eingearbeitet: iOS-
+Datumsfeld-Bug behoben, Maskottchen-Katalog von 3 CSS-Varianten auf 33 individuelle
+Canvas-Entwürfe (8 Tierarten) erweitert, "Blutiger Kuschelbär" (Elenas Favorit) verfeinert
+(grösseres Auge, sichtbare Zunge). **Noch offen:** finale Rückmeldung von Michael und Elena nach
+echtem Test auf dem iPhone.
 
 - [x] Onboarding (`/`, vor jeder anderen Route): Maskottchen wählen, Forschername vergeben
-- [x] Drei provisorische Maskottchen-Varianten (Geist, Vampir, Kobold) mit eigenem Farbschema
+- [x] 33 individuelle Maskottchen-Entwürfe (8 Tierarten × Farbwelt/Blutig-Variante) als
+      scrollbares, nach Tierart gruppiertes Auswahlraster (siehe DECISIONS.md ADR-015)
 - [x] Profil wird in IndexedDB persistiert (`profiles`-Store, DB-Version 3)
 - [x] Profilseite (`/profil`): Forschername und Maskottchen jederzeit änderbar
-- [x] Mehrere Geburtstage speicherbar, verwaltet auf der Profilseite
+- [x] Mehrere Geburtstage speicherbar, verwaltet auf der Profilseite (iOS-Datumsfeld-Bug behoben)
 - [x] Geburtstagsmissionen: an einem gespeicherten Geburtstag wird die Tagesmission festlich
       als "Geburtstagsmission für {Name}" hervorgehoben (siehe DECISIONS.md ADR-013)
 - [x] Gewähltes Maskottchen erscheint im Startseiten-Header und in der Hilfe-Sprechblase
-- [x] 11 neue Tests (Geburtstagslogik, Profil-Repository, Onboarding-Ablauf, Profilseite
-      inkl. eines gefundenen Doppel-Slice-Bugs beim Geburtsdatum) - insgesamt 67
+- [x] 16 neue Tests seit Sprint-4-Start (Geburtstagslogik, Profil-Repository, Onboarding-Ablauf,
+      Profilseite, Maskottchen-Katalog-Integrität) - insgesamt 72
 
 ## Abgeschlossene Sprints
 

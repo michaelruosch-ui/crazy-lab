@@ -97,7 +97,7 @@ export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
         mission={mission}
         onAllStepsDone={() => setPhase('rating')}
         onExit={() => setPhase('detail')}
-        mascotVariant={profile?.mascotVariant}
+        mascotId={profile?.mascotVariant}
       />
     )
   }

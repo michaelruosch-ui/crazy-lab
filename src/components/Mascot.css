@@ -1,124 +1,27 @@
 .mascot {
-  --mascot-body: var(--color-violet);
-  --mascot-horn: var(--color-pink);
-  --mascot-eye: var(--color-teal);
-  --mascot-eye-glow: var(--color-teal-glow);
-  position: relative;
-  width: 64px;
-  height: 64px;
+  display: block;
   flex-shrink: 0;
-}
-
-.mascot--vampir {
-  --mascot-body: #7a1030;
-  --mascot-horn: #ff4fa3;
-  --mascot-eye: #ff4f6a;
-  --mascot-eye-glow: rgba(255, 79, 106, 0.35);
-}
-
-.mascot--kobold {
-  --mascot-body: #2f5a1a;
-  --mascot-horn: #b6ff3c;
-  --mascot-eye: #b6ff3c;
-  --mascot-eye-glow: rgba(182, 255, 60, 0.35);
-}
-
-.mascot--small {
-  width: 40px;
-  height: 40px;
-}
-
-.mascot--large {
-  width: 96px;
-  height: 96px;
-}
-
-.mascot__body {
-  position: absolute;
-  inset: 8% 0 0 0;
-  height: 84%;
-  border-radius: 46% 46% 50% 50% / 55% 55% 45% 45%;
-  background: radial-gradient(circle at 35% 30%, var(--mascot-body), var(--color-bg-card) 70%);
-  box-shadow:
-    0 0 18px var(--mascot-eye-glow),
-    inset 0 0 12px rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.mascot__horn {
-  position: absolute;
-  top: -10%;
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 20px solid var(--mascot-horn);
-  filter: drop-shadow(0 0 6px var(--mascot-horn));
-}
-
-.mascot__horn--left {
-  left: 12%;
-  transform: rotate(-18deg);
-}
-
-.mascot__horn--right {
-  right: 12%;
-  transform: rotate(18deg);
-}
-
-.mascot__eye {
-  position: absolute;
-  top: 32%;
-  width: 22%;
-  height: 22%;
   border-radius: 50%;
-  background: var(--mascot-eye);
-  box-shadow: 0 0 10px 3px var(--mascot-eye-glow);
+  filter: drop-shadow(0 0 10px rgba(35, 230, 200, 0.25));
 }
 
-.mascot__eye--left {
-  left: 24%;
+.mascot--talking {
+  animation: mascot-wiggle 0.5s ease-in-out infinite;
+  transform-origin: 50% 100%;
 }
 
-.mascot__eye--right {
-  right: 24%;
-}
-
-.mascot__mouth {
-  position: absolute;
-  bottom: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 46%;
-  height: 18%;
-  background: var(--color-bg-deep);
-  border-radius: 6px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  overflow: hidden;
-}
-
-.mascot__tooth {
-  width: 0;
-  height: 0;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 6px solid var(--color-text);
-}
-
-.mascot--talking .mascot__mouth {
-  animation: mascot-talk 0.6s ease-in-out infinite;
-}
-
-@keyframes mascot-talk {
+@keyframes mascot-wiggle {
   0%,
   100% {
-    transform: translateX(-50%) scaleY(1);
+    transform: scale(1, 1);
   }
   50% {
-    transform: translateX(-50%) scaleY(1.4);
+    transform: scale(1.04, 0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mascot--talking {
+    animation: none;
   }
 }

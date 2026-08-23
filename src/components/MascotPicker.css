@@ -1,35 +1,58 @@
 .mascot-picker {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 20px;
 }
 
-.mascot-picker__option {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  text-align: left;
-  background: var(--color-bg-card);
-  border: 2px solid rgba(35, 230, 200, 0.2);
-  border-radius: var(--radius-lg);
-  padding: 14px;
-  color: var(--color-text);
-  cursor: pointer;
-}
-
-.mascot-picker__option--selected {
-  border-color: var(--color-teal);
-  box-shadow: 0 0 18px -4px var(--color-teal-glow);
-}
-
-.mascot-picker__option strong {
-  display: block;
-  font-size: 16px;
-}
-
-.mascot-picker__option span {
-  display: block;
+.mascot-picker__hint {
+  margin: 0;
   font-size: 13px;
+  color: var(--color-text-dim);
+}
+
+.mascot-picker__group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mascot-picker__species {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
   color: var(--color-text-muted);
-  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.mascot-picker__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+  gap: 8px;
+}
+
+.mascot-picker__tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: var(--color-bg-card);
+  border: 2px solid rgba(35, 230, 200, 0.16);
+  border-radius: var(--radius-md);
+  padding: 8px 4px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  min-height: var(--touch-target);
+}
+
+.mascot-picker__tile--selected {
+  border-color: var(--color-teal);
+  box-shadow: 0 0 14px -3px var(--color-teal-glow);
+  color: var(--color-text);
+}
+
+.mascot-picker__tile span {
+  font-size: 11px;
+  line-height: 1.2;
+  text-align: center;
 }

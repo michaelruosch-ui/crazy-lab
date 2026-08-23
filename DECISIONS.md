@@ -272,3 +272,32 @@ selbst erneut über `useProfile` (kein globaler Context) - konsistent mit dem be
 aus Sprint 1-3 (`useDiaryEntries`, `useSecretVault` funktionieren genauso). Für die aktuelle
 App-Grösse unproblematisch; bei spürbaren Performance-Problemen könnte ein gemeinsamer
 Profil-Context eingeführt werden, ist aber kein Sprint-4-Thema.
+
+## ADR-015: 33-Maskottchen-Katalog per Canvas statt drei CSS-Varianten
+
+**Status:** Angenommen (Sprint 4, zweite Feedback-Runde)
+
+**Kontext:** Die ursprünglichen drei CSS-Maskottchen (Geist/Vampir/Kobold, reine
+div-Formen) waren Elena zu wenig differenziert. Gewünscht: deutlich detailliertere,
+eigenständige Figuren (u. a. Fell, ein Auge im offenen Maul auf einer Zunge liegend, Blut) -
+und ausdrücklich **alle** Entwürfe sollen in der App wählbar sein, nicht nur drei Favoriten.
+Zur Ideenfindung wurde zunächst eine separate HTML/Canvas-Galerie mit 33 Entwürfen gebaut und
+Michael/Elena zur Auswahl gezeigt.
+
+**Entscheidung:** Die Zeichenlogik aus der Galerie wurde nach `components/mascotArt.ts`
+portiert (TypeScript, Canvas-2D-API) statt in SVG/JSX neu gebaut zu werden - identischer,
+bereits geprüfter visueller Output, kein Risiko einer Abweichung zwischen Vorschau und App.
+`Profile.mascotVariant` wechselt von einer geschlossenen Drei-Werte-Union (`MascotVariant`) zu
+einem offenen String-Typ (`MascotId`), der auf einen von 33 Katalogeinträgen verweist.
+`components/Mascot` rendert ein `<canvas>` (240×240 Koordinatensystem, per
+`devicePixelRatio` skaliert) statt verschachtelter `div`s. `MascotPicker` zeigt alle 33
+Entwürfe als scrollbares, nach Tierart gruppiertes Raster.
+
+**Konsequenzen:** Canvas ist imperativ (Neuzeichnen per `useEffect` bei ID-/Grössenwechsel)
+statt deklarativ wie die vorherige CSS-Lösung; die "Redet"-Animation pulsiert jetzt das ganze
+Canvas-Element statt nur den Mund zu bewegen (kein isoliertes DOM-Element für den Mund
+vorhanden). In Vitest/jsdom loggt `HTMLCanvasElement.getContext('2d')` eine harmlose
+"not implemented"-Warnung (kein `canvas`-npm-Paket installiert); die Komponente behandelt das
+über eine `null`-Prüfung, Tests bleiben grün. Der Katalog liegt bewusst in `components`, nicht
+in `domain` - `domain/profile.ts` kennt nur den `MascotId`-String, keine Zeichen- oder
+Farblogik.

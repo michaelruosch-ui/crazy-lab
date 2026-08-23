@@ -43,11 +43,11 @@ describe('ProfilePage', () => {
       </MemoryRouter>,
     )
 
-    await screen.findByRole('radio', { name: /Kobold/ })
-    await user.click(screen.getByRole('radio', { name: /Kobold/ }))
+    await screen.findByRole('radio', { name: /Giftbär/ })
+    await user.click(screen.getByRole('radio', { name: /Giftbär/ }))
 
     const persisted = await indexedDbProfileRepository.get(DEFAULT_PROFILE.id)
-    expect(persisted?.mascotVariant).toBe('kobold')
+    expect(persisted?.mascotVariant).toBe('giftbaer')
   })
 
   it('fügt einen Geburtstag hinzu und entfernt ihn wieder', async () => {

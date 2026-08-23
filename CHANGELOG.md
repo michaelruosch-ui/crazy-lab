@@ -1,5 +1,27 @@
 # Changelog
 
+## Sprint 4 - Maskottchen-Katalog erweitert (2026-08-23)
+
+### Behoben
+
+- Geburtsdatum-Auswahl auf iOS: Änderungen an Monat/Jahr im nativen Datumsrad wurden verworfen,
+  weil das Feld vollständig "controlled" war und bei jeder Zwischeneingabe neu rendert wurde.
+  Feld ist jetzt uncontrolled (Ref statt State), Wert wird erst beim Klick auf "Hinzufügen"
+  ausgelesen.
+
+### Geändert
+
+- Maskottchen-Auswahl von 3 CSS-Varianten (Geist/Vampir/Kobold) auf 33 individuelle
+  Canvas-Entwürfe erweitert - 8 Tierarten (Bär, Murmeltier, Waschbär, Wolf, Fledermaus, Eule,
+  Frosch, Spinnenwesen) in mehreren Farbwelten, teils mit blutigem Detail (Auge im offenen Maul
+  auf einer Zunge liegend, Zähne, Blutstropfen). Neue Datei `components/mascotArt.ts` kapselt
+  die Zeichenlogik; `MascotPicker` zeigt alle Entwürfe als scrollbares, nach Tierart
+  gruppiertes Raster (siehe DECISIONS.md ADR-015).
+- `Profile.mascotVariant` ist jetzt ein offener `MascotId`-String statt einer festen
+  Drei-Werte-Union; Standard-Maskottchen ist "Blutiger Kuschelbär" (Elenas Favorit aus der
+  Vorauswahl).
+- 5 neue Tests (Maskottchen-Katalog-Integrität) - insgesamt 72.
+
 ## Sprint 4 - Forschernamen, Maskottchen und Geburtstage (2026-08-23)
 
 ### Hinzugefügt

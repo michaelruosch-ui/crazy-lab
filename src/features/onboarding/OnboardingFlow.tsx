@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { MascotVariant, Profile } from '../../domain'
+import type { MascotId, Profile } from '../../domain'
 import { DEFAULT_PROFILE } from '../../domain'
 import { Button, Mascot, MascotPicker } from '../../components'
 import './OnboardingFlow.css'
@@ -12,7 +12,7 @@ interface OnboardingFlowProps {
 
 export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
   const [step, setStep] = useState<Step>('mascot')
-  const [mascotVariant, setMascotVariant] = useState<MascotVariant>(DEFAULT_PROFILE.mascotVariant)
+  const [mascotVariant, setMascotVariant] = useState<MascotId>(DEFAULT_PROFILE.mascotVariant)
   const [researcherName, setResearcherName] = useState(DEFAULT_PROFILE.researcherName)
 
   function finish() {
@@ -43,7 +43,7 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
   return (
     <div className="onboarding">
       <div className="onboarding__mascot-preview">
-        <Mascot variant={mascotVariant} size="large" />
+        <Mascot mascotId={mascotVariant} size="large" />
       </div>
       <h1>Wie sollen wir dich nennen?</h1>
       <p>Dein Forschername kann dein echter Name sein oder ein geheimer Codename - was du willst.</p>
