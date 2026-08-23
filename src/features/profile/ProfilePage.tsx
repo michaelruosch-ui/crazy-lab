@@ -176,21 +176,30 @@ export function ProfilePage() {
 
       <section>
         <h2>📦 Datensicherung</h2>
-        <p className="profile-page__hint">
-          Speichere ab und zu ein Backup - Maskottchen, Forschername, Geburtstage, Geheimfach und
-          das ganze Labortagebuch werden in einer Datei gesichert und lassen sich auf diesem oder
-          einem anderen Gerät wiederherstellen.
-        </p>
-        <div className="profile-page__backup-actions">
+
+        <div className="profile-page__backup-block">
+          <h3>1. Backup erstellen</h3>
+          <p className="profile-page__hint">
+            Speichert eine Datei mit dem aktuellen Stand - Maskottchen, Forschername,
+            Geburtstage, Geheimfach und das ganze Labortagebuch.
+          </p>
           <Button variant="secondary" onClick={downloadBackup} disabled={backupStatus === 'busy'}>
-            Backup herunterladen
+            Jetzt Backup-Datei speichern
           </Button>
+        </div>
+
+        <div className="profile-page__backup-block">
+          <h3>2. Backup einspielen</h3>
+          <p className="profile-page__hint">
+            Lädt eine zuvor gespeicherte Backup-Datei und ersetzt damit die aktuellen Daten - z. B.
+            nach einer Neuinstallation der App.
+          </p>
           <Button
             variant="ghost"
             onClick={() => backupFileInputRef.current?.click()}
             disabled={backupStatus === 'busy'}
           >
-            Backup wiederherstellen
+            Backup-Datei auswählen und einspielen
           </Button>
           <input
             ref={backupFileInputRef}
@@ -204,6 +213,7 @@ export function ProfilePage() {
             }}
           />
         </div>
+
         {backupStatus !== 'idle' && backupStatus !== 'busy' && (
           <p
             className={`profile-page__backup-message ${backupStatus === 'error' ? 'profile-page__backup-message--error' : ''}`}

@@ -83,7 +83,7 @@ describe('ProfilePage', () => {
       </MemoryRouter>,
     )
 
-    await user.click(await screen.findByRole('button', { name: 'Backup herunterladen' }))
+    await user.click(await screen.findByRole('button', { name: 'Jetzt Backup-Datei speichern' }))
 
     expect(await screen.findByText('Backup wurde heruntergeladen.')).toBeInTheDocument()
   })
@@ -111,7 +111,7 @@ describe('ProfilePage', () => {
       hiddenMissions: [],
     })
     const file = new File([backupContent], 'crazylab-backup.json', { type: 'application/json' })
-    await screen.findByRole('button', { name: 'Backup herunterladen' })
+    await screen.findByRole('button', { name: 'Jetzt Backup-Datei speichern' })
     const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement
 
     await user.upload(fileInput, file)
@@ -133,7 +133,7 @@ describe('ProfilePage', () => {
     const file = new File([JSON.stringify({ hello: 'world' })], 'irgendwas.json', {
       type: 'application/json',
     })
-    await screen.findByRole('button', { name: 'Backup herunterladen' })
+    await screen.findByRole('button', { name: 'Jetzt Backup-Datei speichern' })
     const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement
 
     await user.upload(fileInput, file)
