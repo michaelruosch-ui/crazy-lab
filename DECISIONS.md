@@ -231,3 +231,44 @@ bleibt bei seiner tagesstabilen, datumsbasierten Zufallsauswahl unverändert.
 bereits bekannte Vorlieben zu verengen - passt zur Spezifikationsidee einer "geheimnisvollen"
 Tagesmission. Eine präferenzbewusste Tagesmission könnte in Sprint 10
 ("Filter und Vorschlagsmaschine") sinnvoll ergänzt werden, falls gewünscht.
+
+## ADR-013: Geburtstagsmission wiederverwendet die Tagesmissions-Auswahl statt eigener Inhalte
+
+**Status:** Angenommen (Sprint 4)
+
+**Kontext:** Die Spezifikation verlangt: "Geburtstage mehrerer Personen werden speicherbar. Dazu
+können personalisierte Geburtstagsmissionen erscheinen, beispielsweise für Laura." Mit aktuell
+nur fünf Missionen gibt es keinen Spielraum, echte geburtstagsspezifische Inhalte zu kuratieren -
+das ist Inhaltsarbeit für Sprint 6+ (mehr Missionen pro Kategorie).
+
+**Entscheidung:** Trifft `HomePage` auf einen Geburtstag "heute" (`domain/isBirthdayToday`),
+ersetzt sie nur die Präsentation der ohnehin berechneten Tagesmission
+(`pickDailyMission`): festlicher Rahmen, Kuchen-Emoji, Titel "Geburtstagsmission für {Name}"
+statt "Tagesmission". Die zugrunde liegende Mission ist identisch mit der, die ohne Geburtstag
+gezeigt worden wäre.
+
+**Konsequenzen:** "Personalisiert" bezieht sich aktuell nur auf Namen und Rahmen, nicht auf den
+Missionsinhalt selbst. Sobald mehr Inhalte existieren, könnte die Auswahl gezielter werden (siehe
+ARCHITECTURE.md, Erweiterungspunkte) - das ist bewusst auf später verschoben, um Sprint 4 nicht
+mit Inhaltsarbeit zu vermischen, die eigentlich zu Sprint 6+ gehört.
+
+## ADR-014: Profil-Onboarding als globales Gate in `App.tsx`, kein eigener Router-Zweig
+
+**Status:** Angenommen (Sprint 4)
+
+**Kontext:** Vor Sprint 4 gab es kein persistiertes Profil - `DEFAULT_PROFILE` war eine
+Konstante, überall direkt verwendet. Jetzt muss die App unterscheiden: Profil noch nicht
+eingerichtet (Onboarding zeigen) vs. Profil vorhanden (normale Routen zeigen).
+
+**Entscheidung:** `App.tsx` lädt das Profil zentral über `useProfile` und rendert bei fehlendem
+oder unvollständigem Profil (`!profile.onboardingCompletedAt`) ausschliesslich
+`OnboardingFlow` - keine `Routes`, kein Zugriff auf `/diary`, `/geheimfach` etc. während des
+Onboardings. Bestehende Profile aus Sprint 1-3-Installationen (kein `profiles`-Store-Eintrag)
+durchlaufen das Onboarding beim ersten Start nach diesem Update einmalig; ihre übrigen Daten
+(Tagebuch, Geheimfach, Verlauf) bleiben unangetastet, da sie in separaten Object Stores liegen.
+
+**Konsequenzen:** Jede Seite, die Forschername oder Maskottchen anzeigen will, lädt das Profil
+selbst erneut über `useProfile` (kein globaler Context) - konsistent mit dem bestehenden Muster
+aus Sprint 1-3 (`useDiaryEntries`, `useSecretVault` funktionieren genauso). Für die aktuelle
+App-Grösse unproblematisch; bei spürbaren Performance-Problemen könnte ein gemeinsamer
+Profil-Context eingeführt werden, ist aber kein Sprint-4-Thema.

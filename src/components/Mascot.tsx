@@ -1,16 +1,24 @@
+import type { MascotVariant } from '../domain'
 import './Mascot.css'
 
 interface MascotProps {
+  variant?: MascotVariant
   size?: 'small' | 'medium' | 'large'
   talking?: boolean
 }
 
-export function Mascot({ size = 'medium', talking = false }: MascotProps) {
+const VARIANT_LABELS: Record<MascotVariant, string> = {
+  geist: 'Das Geist-Maskottchen',
+  vampir: 'Das Vampir-Maskottchen',
+  kobold: 'Das Kobold-Maskottchen',
+}
+
+export function Mascot({ variant = 'geist', size = 'medium', talking = false }: MascotProps) {
   return (
     <div
-      className={`mascot mascot--${size} ${talking ? 'mascot--talking' : ''}`}
+      className={`mascot mascot--${size} mascot--${variant} ${talking ? 'mascot--talking' : ''}`}
       role="img"
-      aria-label="Das Labor-Maskottchen"
+      aria-label={VARIANT_LABELS[variant]}
     >
       <div className="mascot__horn mascot__horn--left" />
       <div className="mascot__horn mascot__horn--right" />

@@ -12,7 +12,8 @@ src/
     ratings/         Abschlussbewertungs-Formular
     diary/           Labortagebuch-Ansicht + Lese-Hook
     secret-vault/    Geheimfach (dauerhaft gemerkte Missionen)
-    (profile/ - vorbereitet, ab Sprint 4 befüllt)
+    onboarding/      Ersteinrichtung: Maskottchen wählen, Forschername vergeben
+    profile/         Profilseite: Forschername/Maskottchen ändern, Geburtstage verwalten
   domain/         Reine TypeScript-Typen und Domänenlogik (keine UI, kein IO)
   data/           Statische, versionierte Missionsdaten
   storage/        IndexedDB-Repository-Schicht (einziger Ort mit direktem IndexedDB-Zugriff)
@@ -72,16 +73,41 @@ keine Features.
    Profil bzw. ohne Bewertungen bleibt die bisherige primär/sekundär-Reihenfolge unverändert
    (stabile Sortierung).
 
+### Onboarding, Profil und Geburtstage (Sprint 4)
+
+1. `App.tsx` lädt das Profil über `features/profile/useProfile(DEFAULT_PROFILE.id)`, bevor
+   irgendeine Route gerendert wird. Solange kein Profil existiert oder
+   `onboardingCompletedAt` fehlt, wird ausschliesslich `features/onboarding/OnboardingFlow`
+   gerendert - alle übrigen Routen sind dann nicht erreichbar. Bestehende Nutzer:innen (Sprint 1-3
+   ohne `profiles`-Store-Eintrag) durchlaufen das Onboarding beim nächsten Start einmalig, ihre
+   Tagebuch-/Geheimfach-/Verlaufsdaten bleiben unberührt (separate Object Stores).
+2. `OnboardingFlow` sammelt Maskottchen-Wahl (`components/MascotPicker`) und Forschername in
+   lokalem State und übergibt beim Abschluss ein vollständiges `Profile`-Objekt an
+   `onComplete` (= `useProfile`s `save`), das es in IndexedDB persistiert.
+3. `features/profile/ProfilePage` (`/profil`) liest und schreibt dasselbe Profil - Forschername
+   (Textfeld, Speichern bei Blur), Maskottchen (`MascotPicker` erneut verwendet) und Geburtstage
+   (Liste mit Hinzufügen/Entfernen) sind jederzeit änderbar.
+4. `components/Mascot` nimmt eine `variant`-Prop entgegen (`geist` | `vampir` | `kobold`, je
+   eigenes Farbschema über CSS-Custom-Properties) und wird sowohl im `HomePage`-Header als auch
+   in der Hilfe-Sprechblase (`StepRunner` → `SpeechBubble`) mit dem im Profil gespeicherten
+   Maskottchen dargestellt.
+5. `domain/isBirthdayToday` vergleicht nur Monat und Tag (Jahr bewusst irrelevant). `HomePage`
+   filtert die Geburtstage des Profils auf "heute" und zeigt bei Treffer die Tagesmission mit
+   festlichem Rahmen als "Geburtstagsmission für {Name}" statt der normalen Tagesmission -
+   dieselbe Auswahllogik, nur andere Präsentation (siehe DECISIONS.md ADR-013).
+
 ## Speicherung
 
-IndexedDB, Datenbank `crazylab`, aktuell Version 2 mit drei Object Stores:
+IndexedDB, Datenbank `crazylab`, aktuell Version 3 mit vier Object Stores:
 
 - `diaryEntries` (seit Sprint 1): Key `id`, Indizes `by-profile`, `by-completedAt`.
 - `secretVaultEntries` (seit Sprint 2): Key `id`, Indizes `by-profile`, `by-mission`.
 - `hiddenMissions` (seit Sprint 2): Key `id`, Indizes `by-profile`, `by-mission`.
+- `profiles` (seit Sprint 4): Key `id`, kein Index (aktuell genau ein Eintrag pro App).
 
 Zugriff ausschliesslich über je ein Repository-Interface (`DiaryRepository`,
-`SecretVaultRepository`, `HiddenMissionsRepository`) in `src/storage`, damit spätere
+`SecretVaultRepository`, `HiddenMissionsRepository`, `ProfileRepository`) in `src/storage`, damit
+spätere
 Erweiterungen (z. B. Cloud-Sync in Sprint 19) die UI nicht verändern müssen. `storage/db.ts`
 kapselt den `upgrade`-Callback so, dass neue Object Stores versionsweise ergänzt werden, ohne
 bestehende Stores zu berühren.
@@ -125,3 +151,10 @@ Einträge nicht verändern.
   Sprint 8 (Laborschrank) liefert die Inventardaten, die für einen echten
   Fehlt-mir-noch-Abgleich nötig sind; `MissionCard` kann dann um diese Information erweitert
   werden.
+- `Profile.birthdays` ist bereits eine Liste (mehrere Personen); Geburtstagsmissionen nutzen
+  bisher nur die bestehende Tagesmissions-Auswahl mit festlichem Rahmen, keine eigens kuratierten
+  Geburtstagsinhalte - sobald mehr Missionen existieren (Sprint 6+), könnte hier gezielter
+  ausgewählt werden (z. B. bevorzugt Schwestern-Missionen bei Geschwister-Geburtstagen).
+- Sprint 20 (Mehrere Profile) muss `App.tsx`s Onboarding-Gate erweitern: aktuell prüft sie nur
+  ein einziges Profil mit fester ID (`DEFAULT_PROFILE.id`), ein Profilwechsel bräuchte zusätzlich
+  eine Auswahl, welches Profil aktiv ist.

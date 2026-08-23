@@ -1,0 +1,25 @@
+.onboarding {
+  padding: 24px 16px calc(24px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 100svh;
+  justify-content: center;
+}
+
+.onboarding__mascot-preview {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.onboarding__input {
+  min-height: var(--touch-target);
+  background: var(--color-bg-card);
+  border: 1px solid rgba(35, 230, 200, 0.3);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  color: var(--color-text);
+  font-size: 18px;
+  font-family: inherit;
+}

@@ -7,6 +7,17 @@
 
 .home-page__header {
   padding: 20px 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.home-page__header h1 {
+  margin-bottom: 2px;
+}
+
+.home-page__header p {
+  margin: 0;
 }
 
 .home-page__daily {
@@ -15,6 +26,14 @@
 
 .home-page__daily h2 {
   margin-bottom: 10px;
+}
+
+.home-page__daily--birthday {
+  padding: 14px 16px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 79, 163, 0.1);
+  border: 1px solid rgba(255, 79, 163, 0.35);
+  margin: 0 16px;
 }
 
 .home-page__nav {

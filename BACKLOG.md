@@ -5,13 +5,30 @@ hier im Abschnitt "Unpriorisierte Ideen" und werden später priorisiert.
 
 ## Aktueller Sprint
 
+### Sprint 4 - Forschernamen, Maskottchen und Geburtstage
+
+Status: Implementierung abgeschlossen, Typecheck/Lint/Tests(67)/Build grün, manuell im Browser
+bei iPhone-Breite durchgespielt (Onboarding, Maskottchen-Wahl, Namenseingabe, Profil bearbeiten,
+Geburtstagsmission). **Noch offen:** Rückmeldung von Michael und Elena nach echtem Test auf dem
+iPhone, insbesondere weil bestehende Nutzer:innen das Onboarding jetzt einmalig durchlaufen.
+
+- [x] Onboarding (`/`, vor jeder anderen Route): Maskottchen wählen, Forschername vergeben
+- [x] Drei provisorische Maskottchen-Varianten (Geist, Vampir, Kobold) mit eigenem Farbschema
+- [x] Profil wird in IndexedDB persistiert (`profiles`-Store, DB-Version 3)
+- [x] Profilseite (`/profil`): Forschername und Maskottchen jederzeit änderbar
+- [x] Mehrere Geburtstage speicherbar, verwaltet auf der Profilseite
+- [x] Geburtstagsmissionen: an einem gespeicherten Geburtstag wird die Tagesmission festlich
+      als "Geburtstagsmission für {Name}" hervorgehoben (siehe DECISIONS.md ADR-013)
+- [x] Gewähltes Maskottchen erscheint im Startseiten-Header und in der Hilfe-Sprechblase
+- [x] 11 neue Tests (Geburtstagslogik, Profil-Repository, Onboarding-Ablauf, Profilseite
+      inkl. eines gefundenen Doppel-Slice-Bugs beim Geburtsdatum) - insgesamt 67
+
+## Abgeschlossene Sprints
+
 ### Sprint 3 - Lokale Persistenz und Präferenzen
 
-Status: Implementierung abgeschlossen, Typecheck/Lint/Tests(56)/Build grün, manuell im Browser
-verifiziert (Bewertung mit "weniger gruselig" ändert sichtbar die Reihenfolge der
-Getränke-Vorschläge). Für Elena selbst nicht sichtbar - wirkt nur im Hintergrund auf die
-Vorschlagsreihenfolge. **Noch offen:** Rückmeldung von Michael, ob das reicht, bevor Sprint 4
-beginnt.
+Status: **Abgeschlossen (2026-08-23).** Für Elena selbst nicht sichtbar - wirkt nur im
+Hintergrund auf die Vorschlagsreihenfolge. Von Michael bestätigt, direkt weiter mit Sprint 4.
 
 - [x] `domain/preferenceProfile.ts`: Präferenzprofil wird aus strukturierten
       Anpassungswünschen aller Tagebucheinträge eines Profils aufgebaut (keine separate
@@ -21,8 +38,6 @@ beginnt.
 - [x] Nachvollziehbare, einfache Gewichtungsformel (Skalarprodukt Missionsmerkmale × Affinität,
       keine Black-Box-Logik)
 - [x] 8 neue Tests (Profilaufbau, Score-Berechnung, Umsortierung) - insgesamt 56
-
-## Abgeschlossene Sprints
 
 ### Sprint 2 - Entdecken und Wiederfinden
 

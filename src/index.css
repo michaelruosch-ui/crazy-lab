@@ -92,6 +92,10 @@ button {
   font-family: inherit;
 }
 
+.app-loading {
+  padding: 24px 16px;
+}
+
 a {
   color: var(--color-teal);
 }

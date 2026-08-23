@@ -1,12 +1,13 @@
 import { openDB, type DBSchema, type IDBPDatabase } from 'idb'
-import type { DiaryEntry, HiddenMissionEntry, SecretVaultEntry } from '../domain'
+import type { DiaryEntry, HiddenMissionEntry, Profile, SecretVaultEntry } from '../domain'
 
 const DB_NAME = 'crazylab'
-const DB_VERSION = 2
+const DB_VERSION = 3
 
 export const DIARY_STORE = 'diaryEntries'
 export const SECRET_VAULT_STORE = 'secretVaultEntries'
 export const HIDDEN_MISSIONS_STORE = 'hiddenMissions'
+export const PROFILES_STORE = 'profiles'
 
 interface CrazyLabDB extends DBSchema {
   [DIARY_STORE]: {
@@ -23,6 +24,10 @@ interface CrazyLabDB extends DBSchema {
     key: string
     value: HiddenMissionEntry
     indexes: { 'by-profile': string; 'by-mission': string }
+  }
+  [PROFILES_STORE]: {
+    key: string
+    value: Profile
   }
 }
 
@@ -47,6 +52,9 @@ function openOnce(): Promise<IDBPDatabase<CrazyLabDB>> {
         const hiddenStore = db.createObjectStore(HIDDEN_MISSIONS_STORE, { keyPath: 'id' })
         hiddenStore.createIndex('by-profile', 'profileId')
         hiddenStore.createIndex('by-mission', 'missionId')
+      }
+      if (oldVersion < 3) {
+        db.createObjectStore(PROFILES_STORE, { keyPath: 'id' })
       }
     },
   })

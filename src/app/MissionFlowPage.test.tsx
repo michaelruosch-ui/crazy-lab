@@ -8,6 +8,7 @@ import { resetDbConnection } from '../storage/db'
 import { missions } from '../data/missions'
 import { DEFAULT_PROFILE } from '../domain'
 import { indexedDbDiaryRepository } from '../storage/diaryRepository'
+import { indexedDbProfileRepository } from '../storage/profileRepository'
 
 const mission = missions.find((m) => m.id === 'mission-blutroter-schatten-trank')!
 
@@ -18,6 +19,10 @@ describe('Vollständiger Missionsablauf', () => {
   })
 
   it('führt von Detail über Schritte und Bewertung zu einem persistierten Tagebucheintrag', async () => {
+    await indexedDbProfileRepository.save({
+      ...DEFAULT_PROFILE,
+      onboardingCompletedAt: '2026-08-23T00:00:00.000Z',
+    })
     const user = userEvent.setup()
     render(
       <MemoryRouter initialEntries={[`/mission/${mission.id}`]}>
@@ -25,7 +30,7 @@ describe('Vollständiger Missionsablauf', () => {
       </MemoryRouter>,
     )
 
-    await user.click(screen.getByRole('button', { name: 'Alles bereit für die Mission?' }))
+    await user.click(await screen.findByRole('button', { name: 'Alles bereit für die Mission?' }))
 
     for (let i = 0; i < mission.steps.length; i++) {
       await user.click(screen.getByRole('checkbox'))

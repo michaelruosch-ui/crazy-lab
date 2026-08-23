@@ -4,12 +4,14 @@ import type { MissionCategory } from '../../domain'
 import {
   DEFAULT_PROFILE,
   buildPreferenceProfile,
+  isBirthdayToday,
   pickDailyMission,
   suggestionsForCategory,
 } from '../../domain'
-import { MissionCard } from '../../components'
+import { Mascot, MissionCard } from '../../components'
 import { useSecretVault } from '../secret-vault'
 import { useDiaryEntries } from '../diary'
+import { useProfile } from '../profile'
 import { useHiddenMissions } from './useHiddenMissions'
 import { MissionSection } from './MissionSection'
 import './HomePage.css'
@@ -23,26 +25,43 @@ const CATEGORY_SECTIONS: { category: MissionCategory; title: string }[] = [
 ]
 
 export function HomePage() {
+  const { profile } = useProfile(DEFAULT_PROFILE.id)
   const { savedMissionIds, toggle: toggleSaved } = useSecretVault(DEFAULT_PROFILE.id)
   const { currentlyHiddenMissionIds, hide } = useHiddenMissions(DEFAULT_PROFILE.id)
   const { entries: diaryEntries } = useDiaryEntries(DEFAULT_PROFILE.id)
   const preferenceProfile = buildPreferenceProfile(DEFAULT_PROFILE.id, diaryEntries)
 
+  const researcherName = profile?.researcherName ?? DEFAULT_PROFILE.researcherName
+  const mascotVariant = profile?.mascotVariant ?? DEFAULT_PROFILE.mascotVariant
+  const today = new Date()
+  const todaysBirthdays = (profile?.birthdays ?? []).filter((b) => isBirthdayToday(b, today))
+
   const dailyMission = pickDailyMission(
     missions,
     currentlyHiddenMissionIds,
     DEFAULT_PROFILE.id,
-    new Date(),
+    today,
   )
 
   return (
     <div className="home-page">
       <header className="home-page__header">
-        <h1>🔮 Crazy Lab</h1>
-        <p>Willkommen zurück im Labor, {DEFAULT_PROFILE.researcherName}!</p>
+        <Mascot variant={mascotVariant} size="small" />
+        <div>
+          <h1>🔮 Crazy Lab</h1>
+          <p>Willkommen zurück im Labor, {researcherName}!</p>
+        </div>
       </header>
 
-      {dailyMission && (
+      {dailyMission && todaysBirthdays.length > 0 && (
+        <section className="home-page__daily home-page__daily--birthday">
+          <h2>🎂 Geburtstagsmission für {todaysBirthdays.map((b) => b.personName).join(' & ')}!</h2>
+          <p>Heute ist ein besonderer Tag - wie wäre es damit?</p>
+          <MissionCard mission={dailyMission} />
+        </section>
+      )}
+
+      {dailyMission && todaysBirthdays.length === 0 && (
         <section className="home-page__daily">
           <h2>✨ Tagesmission</h2>
           <MissionCard mission={dailyMission} />
@@ -74,6 +93,9 @@ export function HomePage() {
         </Link>
         <Link to="/diary" className="home-page__nav-link">
           📖 Geheimnisvolles Labortagebuch
+        </Link>
+        <Link to="/profil" className="home-page__nav-link">
+          👤 Profil
         </Link>
       </nav>
     </div>

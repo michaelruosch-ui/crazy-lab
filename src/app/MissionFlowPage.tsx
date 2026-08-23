@@ -6,6 +6,7 @@ import { MissionDetailView } from '../features/missions'
 import { StepRunner } from '../features/mission-run'
 import { CompletionForm } from '../features/ratings'
 import { useSecretVault } from '../features/secret-vault'
+import { useProfile } from '../features/profile'
 import { BackLink, Button } from '../components'
 import { indexedDbDiaryRepository } from '../storage/diaryRepository'
 import './MissionFlowPage.css'
@@ -52,6 +53,7 @@ export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
   const [errorDetails, setErrorDetails] = useState<string>('')
   const navigate = useNavigate()
   const { savedMissionIds, toggle: toggleSaved } = useSecretVault(DEFAULT_PROFILE.id)
+  const { profile } = useProfile(DEFAULT_PROFILE.id)
 
   if (!mission) {
     return (
@@ -95,6 +97,7 @@ export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
         mission={mission}
         onAllStepsDone={() => setPhase('rating')}
         onExit={() => setPhase('detail')}
+        mascotVariant={profile?.mascotVariant}
       />
     )
   }

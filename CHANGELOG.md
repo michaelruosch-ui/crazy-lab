@@ -1,5 +1,27 @@
 # Changelog
 
+## Sprint 4 - Forschernamen, Maskottchen und Geburtstage (2026-08-23)
+
+### Hinzugefügt
+
+- Onboarding (`features/onboarding/OnboardingFlow`): Maskottchen wählen, Forschername vergeben.
+  Läuft vor jeder anderen Route, solange kein abgeschlossenes Profil existiert
+  (`App.tsx`-Gate, siehe DECISIONS.md ADR-014).
+- Drei Maskottchen-Varianten (Geist, Vampir, Kobold) mit eigenem Farbschema über CSS-Custom-
+  Properties (`components/Mascot.tsx`, `components/MascotPicker.tsx`).
+- Profil wird erstmals persistiert: neuer IndexedDB-Store `profiles` (DB-Version 3),
+  `storage/profileRepository.ts`, `features/profile/useProfile.ts`.
+- Profilseite (`/profil`): Forschername und Maskottchen jederzeit änderbar, mehrere Geburtstage
+  hinzufügbar/entfernbar.
+- Geburtstagsmissionen: An einem gespeicherten Geburtstag wird die Tagesmission auf der
+  Startseite festlich als "Geburtstagsmission für {Name}" hervorgehoben, statt neuer Inhalte zu
+  erfinden (siehe DECISIONS.md ADR-013).
+- Das gewählte Maskottchen erscheint jetzt im Startseiten-Header und in der Hilfe-Sprechblase
+  während einer Mission.
+- 11 neue Tests (Geburtstagslogik, Profil-Repository, Onboarding-Ablauf, Profilseite) -
+  insgesamt 67. Ein Testfall deckte einen echten Doppel-Slice-Bug beim Speichern des
+  Geburtsdatums auf (`ProfilePage.addBirthday`), der vor dem Commit behoben wurde.
+
 ## Sprint 3 - Lokale Persistenz und Präferenzen (2026-08-23)
 
 ### Hinzugefügt

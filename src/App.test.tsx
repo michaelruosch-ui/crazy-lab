@@ -4,7 +4,16 @@ import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { IDBFactory } from 'fake-indexeddb'
 import { App } from './App'
+import { DEFAULT_PROFILE } from './domain'
 import { resetDbConnection } from './storage/db'
+import { indexedDbProfileRepository } from './storage/profileRepository'
+
+async function seedCompletedProfile() {
+  await indexedDbProfileRepository.save({
+    ...DEFAULT_PROFILE,
+    onboardingCompletedAt: '2026-08-23T00:00:00.000Z',
+  })
+}
 
 describe('App', () => {
   beforeEach(() => {
@@ -12,20 +21,32 @@ describe('App', () => {
     resetDbConnection()
   })
 
-  it('zeigt beim Start die Startseite mit Kategorien und der Tagesmission (Render-Smoke-Test)', () => {
+  it('zeigt das Onboarding, solange noch kein Profil abgeschlossen wurde', async () => {
     render(
       <MemoryRouter initialEntries={['/']}>
         <App />
       </MemoryRouter>,
     )
 
-    expect(screen.getByRole('heading', { name: '🔮 Crazy Lab' })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: /Willkommen im Crazy Lab/ })).toBeInTheDocument()
+  })
+
+  it('zeigt nach abgeschlossenem Onboarding die Startseite mit Kategorien und der Tagesmission', async () => {
+    await seedCompletedProfile()
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <App />
+      </MemoryRouter>,
+    )
+
+    expect(await screen.findByRole('heading', { name: '🔮 Crazy Lab' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: '✨ Tagesmission' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: '🧃 Getränke' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: '🗝️ Geheimfach' })).toBeInTheDocument()
   })
 
   it('öffnet eine Mission über die Startseite und zeigt die Missionsdetails', async () => {
+    await seedCompletedProfile()
     const user = userEvent.setup()
     render(
       <MemoryRouter initialEntries={['/']}>
@@ -33,7 +54,7 @@ describe('App', () => {
       </MemoryRouter>,
     )
 
-    await user.click(screen.getByRole('heading', { name: 'Der blutrote Schatten-Trank' }))
+    await user.click(await screen.findByRole('heading', { name: 'Der blutrote Schatten-Trank' }))
 
     expect(screen.getByRole('button', { name: 'Alles bereit für die Mission?' })).toBeInTheDocument()
   })

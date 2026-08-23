@@ -5,13 +5,16 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich in **Sprint 3** (Lokale Persistenz und Präferenzen). Der aktuelle
-Stand: Die App öffnet eine echte Startseite mit Tagesmission und fünf Kategorien (Getränke,
-Basteln, Experimente, Foto-Challenges, Schwestern-Missionen). Jede Mission kann vollständig
-durchgespielt, bewertet und lokal im Tagebuch gespeichert werden, dauerhaft im Geheimfach gemerkt
-oder für drei Tage versteckt werden (mit 14-Tage-Verlauf). Bewertungen fliessen zusätzlich in ein
-lokales Präferenzprofil ein, das die Kategorie-Vorschläge künftig passender sortiert - komplett
-offline, ohne Login und ohne Backend.
+Dieses Repository befindet sich in **Sprint 4** (Forschernamen, Maskottchen und Geburtstage). Der
+aktuelle Stand: Beim ersten Start wählt man ein Maskottchen (Geist, Vampir oder Kobold) und einen
+Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf Kategorien
+(Getränke, Basteln, Experimente, Foto-Challenges, Schwestern-Missionen). Jede Mission kann
+vollständig durchgespielt, bewertet und lokal im Tagebuch gespeichert werden, dauerhaft im
+Geheimfach gemerkt oder für drei Tage versteckt werden (mit 14-Tage-Verlauf). Bewertungen
+fliessen zusätzlich in ein lokales Präferenzprofil ein, das die Kategorie-Vorschläge künftig
+passender sortiert. Auf der Profilseite lassen sich Forschername, Maskottchen und Geburtstage
+jederzeit ändern; an gespeicherten Geburtstagen erscheint eine besondere Geburtstagsmission -
+komplett offline, ohne Login und ohne Backend.
 
 ## Voraussetzungen
 
