@@ -9,6 +9,7 @@ import type { FormEvent } from 'react'
 interface CompletionFormProps {
   mission: Mission
   onSubmit: (rating: CompletionRating) => void
+  submitting?: boolean
 }
 
 const DIFFICULTY_OPTIONS: { value: DifficultyFeedback; label: string }[] = [
@@ -17,7 +18,7 @@ const DIFFICULTY_OPTIONS: { value: DifficultyFeedback; label: string }[] = [
   { value: 'zu_schwierig', label: 'Zu schwierig' },
 ]
 
-export function CompletionForm({ mission, onSubmit }: CompletionFormProps) {
+export function CompletionForm({ mission, onSubmit, submitting = false }: CompletionFormProps) {
   const isDrink = mission.primaryCategory === 'getraenk' || mission.secondaryCategories.includes('getraenk')
 
   const [result, setResult] = useState<1 | 2 | 3 | 4 | 5>(5)
@@ -162,8 +163,8 @@ export function CompletionForm({ mission, onSubmit }: CompletionFormProps) {
         </div>
       </fieldset>
 
-      <Button type="submit" variant="primary">
-        Im Labortagebuch speichern
+      <Button type="submit" variant="primary" disabled={submitting}>
+        {submitting ? 'Wird gespeichert...' : 'Im Labortagebuch speichern'}
       </Button>
     </form>
   )

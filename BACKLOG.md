@@ -7,10 +7,12 @@ hier im Abschnitt "Unpriorisierte Ideen" und werden später priorisiert.
 
 ### Sprint 1 - Projektfundament und Vertical Slice
 
-Status: Implementierung abgeschlossen, Typecheck/Lint/Tests/Build grün, Vertical Slice manuell im
-Browser bei iPhone-Breite (390px) durchgespielt (Detail → Schritte → Bewertung → Tagebuch,
-inkl. echtem Reload). **Noch offen:** gemeinsamer Test von Michael und Elena gemäss Abschnitt 8
-der Projektspezifikation. Erst danach gilt Sprint 1 als erledigt und Sprint 2 wird freigegeben.
+Status: Implementierung abgeschlossen, Typecheck/Lint/Tests/Build grün. Familientest (Abschnitt 8
+der Spezifikation) am 2026-08-16 durchgeführt, Fragen 1-4 und 7 positiv, Fragen 5/6 zeigten einen
+echten Bug (Speichern hing auf dem installierten iPhone, Tagebuch liess sich nicht anzeigen).
+Ursache identifiziert und behoben (siehe DECISIONS.md, ADR-005) am 2026-08-23. **Noch offen:**
+erneuter Test von Michael und Elena mit dem Fix, insbesondere Fragen 5 und 6. Erst danach gilt
+Sprint 1 als erledigt und Sprint 2 wird freigegeben.
 
 - [x] Projektstruktur, Qualitätswerkzeuge (TypeScript strict, ESLint, Prettier, Vitest)
 - [x] PWA-Grundlage (Manifest, Service Worker, Icons)
@@ -19,7 +21,8 @@ der Projektspezifikation. Erst danach gilt Sprint 1 als erledigt und Sprint 2 wi
 - [x] Missionsdetails, Schrittmodus, manueller Timer, Hilfe-Sprechblase
 - [x] Abschlussbewertung mit strukturierten Anpassungswünschen
 - [x] Lokaler Tagebucheintrag (IndexedDB), übersteht Neuladen
-- [ ] Gemeinsamer Test mit Michael und Elena (Abschnitt 8 der Spezifikation)
+- [x] Bugfix: hängendes IndexedDB-Öffnen beim ersten Start als installierte iPhone-App
+- [ ] Erneuter Familientest mit Fix, Fragen 5 und 6 (Abschnitt 8 der Spezifikation)
 
 ## Offene Sprints
 
@@ -84,4 +87,6 @@ der Projektspezifikation. Erst danach gilt Sprint 1 als erledigt und Sprint 2 wi
 
 ## Unpriorisierte Ideen
 
-_(noch leer)_
+- Elena gefällt das aktuelle App-Icon (Homescreen-Symbol) nicht besonders gut - bei Gelegenheit
+  ein ansprechenderes Icon gestalten. Thematisch passt das gut zu Sprint 4 (Maskottchen-Auswahl),
+  ist aber technisch unabhängig davon (`public/favicon.svg`, `public/icons/*.png`).

@@ -61,3 +61,25 @@ Projektspezifikation explizit gefordert.
 **Konsequenzen:** Etwas langsamere Lint-Läufe als mit oxlint, dafür ausgereiftere
 React-Hooks-Regeln (u. a. `react-hooks/set-state-in-effect`, das in Sprint 1 zwei echte
 Effect-Antipatterns in `useTimer` und `useDiaryEntries` aufgedeckt hat).
+
+## ADR-005: Timeout + Wiederholungsversuch beim Öffnen der IndexedDB
+
+**Status:** Angenommen (Sprint 1, Bugfix nach Familientest)
+
+**Kontext:** Beim Test auf Elenas iPhone als installierte "Zum Home-Bildschirm"-App blieb das
+Speichern eines Tagebucheintrags hängen; das Tagebuch liess sich nicht anzeigen. Ursache ist ein
+bekannter WebKit-Bug: Der allererste `indexedDB.open()`-Aufruf einer neu installierten
+Standalone-PWA kann auf iOS nie auflösen und nie ablehnen. Da die Verbindung modulweit als
+Promise gecacht wurde, blieb diese hängende Promise für die gesamte Sitzung bestehen.
+
+**Entscheidung:** `getDb()` in `src/storage/db.ts` bricht den Öffnen-Versuch nach 4 Sekunden ab
+und versucht es bis zu dreimal erneut; ein fehlgeschlagener Versuch wird nicht dauerhaft gecacht,
+damit ein erneuter Aufruf (z. B. über den "Nochmals versuchen"-Knopf) wirklich neu startet. Die
+Abschlussbewertung zeigt zusätzlich einen sichtbaren Speichern-/Fehlerzustand statt stillem
+Nichtstun.
+
+**Konsequenzen:** In seltenen Fällen kann der verworfene erste Öffnen-Versuch im Hintergrund
+später doch noch auflösen und eine ungenutzte zusätzliche Verbindung erzeugen; das ist für eine
+lokale Single-User-App unproblematisch. Dieses Verhalten ist auf echten iOS-Geräten nur manuell
+reproduzierbar (nicht zuverlässig automatisiert testbar) und wurde daher durch Familientest statt
+durch einen Unit-Test verifiziert.

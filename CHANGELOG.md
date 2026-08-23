@@ -1,5 +1,18 @@
 # Changelog
 
+## Sprint 1 - Bugfix nach Familientest (2026-08-23)
+
+### Behoben
+
+- IndexedDB-Öffnen konnte auf dem iPhone bei der allerersten Nutzung der installierten
+  "Zum Home-Bildschirm"-App unendlich hängen bleiben (bekannter Safari-Bug bei Standalone-PWAs).
+  Der Abschluss-Speichervorgang wirkte dadurch eingefroren, und das Labortagebuch liess sich
+  nicht anzeigen. Behoben durch Timeout + automatischen Wiederholungsversuch beim Öffnen der
+  Datenbank (`src/storage/db.ts`).
+- Die Oberfläche zeigt jetzt sichtbar "Wird gespeichert..." während des Speicherns und bei einem
+  Fehler eine Meldung mit "Nochmals versuchen"-Knopf, statt scheinbar untätig zu bleiben
+  (`src/app/MissionFlowPage.tsx`, `src/features/ratings/CompletionForm.tsx`).
+
 ## Sprint 1 - Projektfundament und Vertical Slice (2026-08-16)
 
 ### Hinzugefügt
