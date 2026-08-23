@@ -112,3 +112,61 @@ gilt für alle künftigen Sprints: sicherer-Kontext-abhängige Browser-APIs (`cr
 Service-Worker-Registrierung, u. a.) verhalten sich auf `http://<LAN-IP>` anders als auf
 `https://` oder `localhost`. Solange ohne HTTPS auf dem iPhone getestet wird, sollte neuer Code
 auf solche APIs geprüft werden, bevor er beim Familientest scheitert.
+
+## ADR-007: Startseite ersetzt "Beispielmission zuerst" als Sprint-1-Übergangslösung
+
+**Status:** Angenommen (Sprint 2)
+
+**Kontext:** Die Spezifikation verlangt unter "Verbindliche Produktregeln": "Erster
+App-Eindruck: eine echte Beispielmission, danach Startseite." Sprint 1 hatte noch keine
+Startseite, weshalb `/` direkt die Beispielmission zeigte. Sprint 2 baut die echte Startseite;
+Michael und Elena bestätigten beim Sprint-1-Test explizit, dass sie ab jetzt eine Startseite mit
+Kategorie-Auswahl erwarten.
+
+**Entscheidung:** `/` zeigt ab Sprint 2 die echte Startseite (`features/missions/HomePage`), nicht
+mehr direkt eine Mission. Die "Mission zuerst"-Regel wird als Sprint-1-spezifische
+Bootstrapping-Lösung interpretiert, nicht als dauerhaftes Verhalten - ein echter "Wow-Moment beim
+allerersten App-Start" gehört inhaltlich zum Onboarding (Sprint 4), das noch nicht existiert.
+
+**Konsequenzen:** Falls Sprint 4 (Onboarding) einen expliziten "erste Mission zuerst"-Moment für
+komplett neue Profile vorsehen soll, muss das dort als eigener Onboarding-Schritt ergänzt werden,
+nicht als Dauerverhalten der Startseite.
+
+## ADR-008: Kein Laborschrank-Abgleich, keine Buttons für noch nicht gebaute Bereiche
+
+**Status:** Angenommen (Sprint 2)
+
+**Kontext:** Die Produktregeln verlangen Missionskarten mit "fehlenden Materialien" sowie
+Startseiten-Knöpfe für Laborschrank, laufende Missionen und eigene Mission. Diese Funktionen
+existieren technisch erst ab Sprint 8 (Laborschrank), Sprint 12 (laufende Missionen) bzw.
+Sprint 15 (eigene Missionen). Der konkrete Sprint-2-Auftrag in `BACKLOG.md` listet sie nicht.
+
+**Entscheidung:** Sprint 2 zeigt auf Missionskarten die Anzahl benötigter Zutaten statt
+"fehlender" Materialien (kein Inventar zum Abgleichen vorhanden) und verzichtet auf
+Startseiten-Knöpfe für Laborschrank, laufende Missionen und eigene Mission, statt Knöpfe zu
+Platzhalter-/Stub-Seiten zu bauen.
+
+**Konsequenzen:** Diese drei Knöpfe müssen in den jeweiligen späteren Sprints (8, 12, 15) zur
+Startseite ergänzt werden. Die Regel "keine Backlog-Funktion wird versehentlich halb
+implementiert" wird höher gewichtet als eine wortwörtliche, aber zum aktuellen Zeitpunkt
+inhaltsleere Umsetzung der Produktregel.
+
+## ADR-009: "3 Tage verstecken" und "14-Tage-Verlauf" als ein gemeinsamer Mechanismus
+
+**Status:** Angenommen (Sprint 2)
+
+**Kontext:** Die Produktregeln nennen zwei separate Sätze: "`3 Tage verstecken` blendet eine
+Mission temporär aus" und "ersetzte Vorschläge bleiben 14 Tage im Verlauf". Letzteres klingt nach
+einem automatischen Vorschlags-Rotationsmechanismus (die Vorschlagsmaschine ersetzt einen
+Vorschlag durch einen anderen). Mit aktuell nur fünf Missionen (eine pro Kategorie) gibt es
+faktisch nichts, das automatisch "ersetzt" werden könnte - eine echte Vorschlagsrotation ergibt
+erst ab Sprint 6+ (mehr Inhalte) und Sprint 10 (Vorschlagsmaschine) Sinn.
+
+**Entscheidung:** Jede "3 Tage verstecken"-Aktion (`domain/missionVisibility.ts`,
+`createHiddenMissionEntry`) erzeugt einen einzigen Eintrag, der die Mission 3 Tage aus aktiven
+Vorschlägen ausblendet und gleichzeitig 14 Tage lang im `/verlauf` auffindbar bleibt (auch nach
+Ablauf der 3 Tage, solange die 14 Tage nicht überschritten sind).
+
+**Konsequenzen:** Sobald Sprint 6+/10 eine echte Vorschlagsrotation einführt, sollte geprüft
+werden, ob algorithmisch "ersetzte" Vorschläge ebenfalls über denselben `HiddenMissionEntry`-
+Mechanismus laufen sollen oder einen eigenen Eintragstyp brauchen.

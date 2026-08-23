@@ -20,7 +20,7 @@ describe('Vollständiger Missionsablauf', () => {
   it('führt von Detail über Schritte und Bewertung zu einem persistierten Tagebucheintrag', async () => {
     const user = userEvent.setup()
     render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={[`/mission/${mission.id}`]}>
         <App />
       </MemoryRouter>,
     )

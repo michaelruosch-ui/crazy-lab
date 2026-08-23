@@ -1,0 +1,18 @@
+.mission-section {
+  padding: 0 16px;
+}
+
+.mission-section h2 {
+  margin-bottom: 10px;
+}
+
+.mission-section__empty {
+  color: var(--color-text-dim);
+  font-size: 14px;
+}
+
+.mission-section__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

@@ -1,5 +1,36 @@
 # Changelog
 
+## Sprint 2 - Entdecken und Wiederfinden (2026-08-23)
+
+### Hinzugefügt
+
+- Echte Startseite (`/`, `features/missions/HomePage`) mit Tagesmission und fünf
+  Kategorie-Abschnitten (Getränke, Basteln, Experimente, Foto-Challenges,
+  Schwestern-Missionen), je bis zu fünf Vorschlägen.
+- `MissionCard`-Komponente für kompakte Missionsübersichten (Bild, Name, Dauer, Schwierigkeit,
+  Kosten, Zutatenanzahl).
+- Geheimfach (`/geheimfach`): Missionen dauerhaft merken/entfernen, eigene IndexedDB-Tabelle
+  `secretVaultEntries`.
+- "3 Tage verstecken" blendet eine Mission aus den Vorschlägen aus; 14-Tage-Verlauf (`/verlauf`)
+  zeigt alle Verstecken-Vorgänge der letzten 14 Tage mit Status, eigene IndexedDB-Tabelle
+  `hiddenMissions`.
+- Tagesstabile Tagesmission-Auswahl (`domain/suggestions.pickDailyMission`), noch ohne gelernte
+  Vorlieben (folgt Sprint 3).
+- Missionsablauf (`app/MissionFlowPage`) funktioniert jetzt für jede Mission über
+  `/mission/:missionId` statt nur für eine fest verdrahtete Beispielmission.
+- IndexedDB-Schema auf Version 2 erweitert (neue Object Stores, bestehende `diaryEntries`
+  unangetastet).
+- 18 neue automatisierte Tests (Vorschlagslogik, Verstecken/Verlauf-Zeitfenster,
+  Geheimfach-Repository, Verlauf-Repository, Startseiten-Navigation) - insgesamt 42.
+
+### Bewusst nicht Teil von Sprint 2 (siehe DECISIONS.md ADR-007 bis ADR-009)
+
+- Kein Onboarding-"Mission zuerst"-Moment mehr auf `/` - das gehört inhaltlich zu Sprint 4.
+- Keine "fehlenden Materialien" auf Missionskarten (braucht Laborschrank, Sprint 8) - stattdessen
+  Zutatenanzahl.
+- Keine Startseiten-Knöpfe für Laborschrank, laufende Missionen, eigene Mission (Sprints 8, 12,
+  15) - keine Stub-Seiten für noch nicht existierende Bereiche.
+
 ## Sprint 1 - abgeschlossen (2026-08-23)
 
 Erneuter Familientest auf Elenas iPhone nach dem `crypto.randomUUID`-Fix erfolgreich: kompletter

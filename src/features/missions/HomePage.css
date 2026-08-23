@@ -1,0 +1,37 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 24px;
+}
+
+.home-page__header {
+  padding: 20px 16px 0;
+}
+
+.home-page__daily {
+  padding: 0 16px;
+}
+
+.home-page__daily h2 {
+  margin-bottom: 10px;
+}
+
+.home-page__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 16px;
+}
+
+.home-page__nav-link {
+  display: block;
+  background: var(--color-bg-card);
+  border: 1px solid rgba(35, 230, 200, 0.25);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 700;
+  text-align: center;
+}

@@ -1,16 +1,28 @@
 import { openDB, type DBSchema, type IDBPDatabase } from 'idb'
-import type { DiaryEntry } from '../domain'
+import type { DiaryEntry, HiddenMissionEntry, SecretVaultEntry } from '../domain'
 
 const DB_NAME = 'crazylab'
-const DB_VERSION = 1
+const DB_VERSION = 2
 
 export const DIARY_STORE = 'diaryEntries'
+export const SECRET_VAULT_STORE = 'secretVaultEntries'
+export const HIDDEN_MISSIONS_STORE = 'hiddenMissions'
 
 interface CrazyLabDB extends DBSchema {
   [DIARY_STORE]: {
     key: string
     value: DiaryEntry
     indexes: { 'by-profile': string; 'by-completedAt': string }
+  }
+  [SECRET_VAULT_STORE]: {
+    key: string
+    value: SecretVaultEntry
+    indexes: { 'by-profile': string; 'by-mission': string }
+  }
+  [HIDDEN_MISSIONS_STORE]: {
+    key: string
+    value: HiddenMissionEntry
+    indexes: { 'by-profile': string; 'by-mission': string }
   }
 }
 
@@ -21,10 +33,21 @@ const MAX_ATTEMPTS = 3
 
 function openOnce(): Promise<IDBPDatabase<CrazyLabDB>> {
   return openDB<CrazyLabDB>(DB_NAME, DB_VERSION, {
-    upgrade(db) {
-      const store = db.createObjectStore(DIARY_STORE, { keyPath: 'id' })
-      store.createIndex('by-profile', 'profileId')
-      store.createIndex('by-completedAt', 'completedAt')
+    upgrade(db, oldVersion) {
+      if (oldVersion < 1) {
+        const diaryStore = db.createObjectStore(DIARY_STORE, { keyPath: 'id' })
+        diaryStore.createIndex('by-profile', 'profileId')
+        diaryStore.createIndex('by-completedAt', 'completedAt')
+      }
+      if (oldVersion < 2) {
+        const vaultStore = db.createObjectStore(SECRET_VAULT_STORE, { keyPath: 'id' })
+        vaultStore.createIndex('by-profile', 'profileId')
+        vaultStore.createIndex('by-mission', 'missionId')
+
+        const hiddenStore = db.createObjectStore(HIDDEN_MISSIONS_STORE, { keyPath: 'id' })
+        hiddenStore.createIndex('by-profile', 'profileId')
+        hiddenStore.createIndex('by-mission', 'missionId')
+      }
     },
   })
 }

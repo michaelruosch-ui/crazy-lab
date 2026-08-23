@@ -7,8 +7,21 @@ hier im Abschnitt "Unpriorisierte Ideen" und werden später priorisiert.
 
 ### Sprint 2 - Entdecken und Wiederfinden
 
-Status: In Arbeit. Startseite mit Kategorie-Kacheln, fünf Vorschlagskarten je Kategorie,
-Geheimfach, "3 Tage verstecken", 14-Tage-Verlauf, Tagesmission.
+Status: Implementierung abgeschlossen, Typecheck/Lint/Tests/Build grün, manuell im Browser bei
+iPhone-Breite (390px) durchgespielt (Startseite, Kategorie-Vorschläge, Mission öffnen, Merken,
+Verstecken, Verlauf, Geheimfach). **Noch offen:** Rückmeldung von Michael und Elena, ob sich die
+neue Startseite gut anfühlt und verständlich ist, bevor Sprint 3 beginnt.
+
+- [x] Startseite (`/`) mit Tagesmission und fünf Kategorie-Abschnitten
+- [x] Bis zu fünf Vorschläge pro Kategorie (primäre und passende sekundäre Kategorie)
+- [x] Missionskarten mit Bild, Name, Dauer, Schwierigkeit, Kosten, Zutatenanzahl
+- [x] Geheimfach: Missionen dauerhaft merken/entfernen, eigene Seite `/geheimfach`
+- [x] "3 Tage verstecken" blendet eine Mission aus Vorschlägen aus
+- [x] 14-Tage-Verlauf (`/verlauf`) zeigt versteckte Missionen mit Status
+- [x] Tagesmission: tagesstabile Auswahl über alle sichtbaren Missionen
+- [x] Missionsablauf (Detail/Schritte/Bewertung) funktioniert jetzt für jede Mission über
+      `/mission/:missionId`, nicht mehr nur für eine fest verdrahtete Beispielmission
+- [ ] Rückmeldung von Michael und Elena zur neuen Startseite
 
 ## Abgeschlossene Sprints
 

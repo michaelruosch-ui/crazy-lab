@@ -1,0 +1,18 @@
+.history-page {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.history-page__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.history-page__back {
+  align-self: flex-start;
+  color: var(--color-teal);
+  font-weight: 700;
+}

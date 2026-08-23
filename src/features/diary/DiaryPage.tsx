@@ -45,7 +45,7 @@ export function DiaryPage() {
       </ul>
 
       <Link to="/" className="diary-page__back">
-        Zurück zur Mission
+        Zurück zur Startseite
       </Link>
     </div>
   )

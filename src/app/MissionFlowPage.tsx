@@ -1,13 +1,18 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { getMissionById, STARTER_MISSION_ID } from '../data'
+import { Link, useNavigate } from 'react-router-dom'
+import { getMissionById } from '../data'
 import { DEFAULT_PROFILE, generateId, type CompletionRating, type DiaryEntry } from '../domain'
 import { MissionDetailView } from '../features/missions'
 import { StepRunner } from '../features/mission-run'
 import { CompletionForm } from '../features/ratings'
+import { useSecretVault } from '../features/secret-vault'
 import { Button } from '../components'
 import { indexedDbDiaryRepository } from '../storage/diaryRepository'
 import './MissionFlowPage.css'
+
+interface MissionFlowPageProps {
+  missionId: string
+}
 
 type Phase = 'detail' | 'run' | 'rating'
 type SaveStatus = 'idle' | 'saving' | 'error'
@@ -39,16 +44,22 @@ function describeError(error: unknown): string {
   return String(error)
 }
 
-export function MissionFlowPage() {
-  const mission = getMissionById(STARTER_MISSION_ID)
+export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
+  const mission = getMissionById(missionId)
   const [phase, setPhase] = useState<Phase>('detail')
   const [saveStatus, setSaveStatus] = useState<SaveStatus>('idle')
   const [pendingRating, setPendingRating] = useState<CompletionRating | null>(null)
   const [errorDetails, setErrorDetails] = useState<string>('')
   const navigate = useNavigate()
+  const { savedMissionIds, toggle: toggleSaved } = useSecretVault(DEFAULT_PROFILE.id)
 
   if (!mission) {
-    return <p>Diese Mission konnte nicht gefunden werden.</p>
+    return (
+      <div className="mission-flow__not-found">
+        <p>Diese Mission konnte nicht gefunden werden.</p>
+        <Link to="/">Zurück zur Startseite</Link>
+      </div>
+    )
   }
 
   const trySave = async (rating: CompletionRating) => {
@@ -65,7 +76,19 @@ export function MissionFlowPage() {
   }
 
   if (phase === 'detail') {
-    return <MissionDetailView mission={mission} onStart={() => setPhase('run')} />
+    return (
+      <div className="mission-flow">
+        <div className="mission-flow__toolbar">
+          <Link to="/" className="mission-flow__back">
+            ← Startseite
+          </Link>
+          <Button variant="ghost" onClick={() => toggleSaved(mission.id)}>
+            {savedMissionIds.has(mission.id) ? '🗝️ Gemerkt' : '🗝️ Merken'}
+          </Button>
+        </div>
+        <MissionDetailView mission={mission} onStart={() => setPhase('run')} />
+      </div>
+    )
   }
 
   if (phase === 'run') {

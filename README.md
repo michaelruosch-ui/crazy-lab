@@ -5,10 +5,11 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich in **Sprint 1** (Projektfundament und Vertical Slice). Der
-aktuelle Stand: Die App öffnet direkt eine echte Beispielmission (`Der blutrote Schatten-Trank`),
-die vollständig durchgespielt, bewertet und lokal im Tagebuch gespeichert werden kann - komplett
-offline, ohne Login und ohne Backend.
+Dieses Repository befindet sich in **Sprint 2** (Entdecken und Wiederfinden). Der aktuelle Stand:
+Die App öffnet eine echte Startseite mit Tagesmission und fünf Kategorien (Getränke, Basteln,
+Experimente, Foto-Challenges, Schwestern-Missionen). Jede Mission kann vollständig durchgespielt,
+bewertet und lokal im Tagebuch gespeichert werden, dauerhaft im Geheimfach gemerkt oder für drei
+Tage versteckt werden (mit 14-Tage-Verlauf) - komplett offline, ohne Login und ohne Backend.
 
 ## Voraussetzungen
 
