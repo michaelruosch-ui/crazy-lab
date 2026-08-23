@@ -19,8 +19,6 @@
   border-radius: 50%;
   border: 2px solid rgba(35, 230, 200, 0.35);
   background: transparent;
-  padding: 0;
-  cursor: pointer;
 }
 
 .step-runner__dot--done {

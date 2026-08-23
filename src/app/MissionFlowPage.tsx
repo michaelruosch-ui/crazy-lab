@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { getMissionById } from '../data'
 import { DEFAULT_PROFILE, generateId, type CompletionRating, type DiaryEntry } from '../domain'
 import { MissionDetailView } from '../features/missions'
 import { StepRunner } from '../features/mission-run'
 import { CompletionForm } from '../features/ratings'
 import { useSecretVault } from '../features/secret-vault'
-import { Button } from '../components'
+import { BackLink, Button } from '../components'
 import { indexedDbDiaryRepository } from '../storage/diaryRepository'
 import './MissionFlowPage.css'
 
@@ -57,7 +57,7 @@ export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
     return (
       <div className="mission-flow__not-found">
         <p>Diese Mission konnte nicht gefunden werden.</p>
-        <Link to="/">Zurück zur Startseite</Link>
+        <BackLink to="/">← Zurück zur Startseite</BackLink>
       </div>
     )
   }
@@ -78,15 +78,13 @@ export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
   if (phase === 'detail') {
     return (
       <div className="mission-flow">
-        <div className="mission-flow__toolbar">
-          <Link to="/" className="mission-flow__back">
-            ← Startseite
-          </Link>
+        <MissionDetailView mission={mission} onStart={() => setPhase('run')} />
+        <div className="mission-flow__secondary-actions">
           <Button variant="ghost" onClick={() => toggleSaved(mission.id)}>
             {savedMissionIds.has(mission.id) ? '🗝️ Gemerkt' : '🗝️ Merken'}
           </Button>
         </div>
-        <MissionDetailView mission={mission} onStart={() => setPhase('run')} />
+        <BackLink to="/">← Zurück zur Startseite</BackLink>
       </div>
     )
   }

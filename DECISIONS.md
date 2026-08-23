@@ -170,3 +170,27 @@ Ablauf der 3 Tage, solange die 14 Tage nicht überschritten sind).
 **Konsequenzen:** Sobald Sprint 6+/10 eine echte Vorschlagsrotation einführt, sollte geprüft
 werden, ob algorithmisch "ersetzte" Vorschläge ebenfalls über denselben `HiddenMissionEntry`-
 Mechanismus laufen sollen oder einen eigenen Eintragstyp brauchen.
+
+## ADR-010: Navigation grundsätzlich am unteren Bildschirmrand, nicht oben
+
+**Status:** Angenommen (Sprint 2, zweite Feedback-Runde)
+
+**Kontext:** Michael testete auf dem echten iPhone und stellte fest, dass "Zurück"-Links am
+oberen Bildschirmrand (z. B. "← Tagebuch" auf der Tagebuch-Detailseite) mit einer Hand kaum
+erreichbar sind - zu nah an Kerbe/Statusleiste. Explizite Rückmeldung: grundsätzlich keine
+antippbaren Elemente ganz oben am Display, stattdessen alle Navigation unten, mit genug Abstand
+zum unteren Rand für bequemes Antippen.
+
+**Entscheidung:** Neue Komponente `components/BackLink.tsx` kapselt Zurück-Navigation als
+grosszügig grosses, unten platziertes Element mit `env(safe-area-inset-bottom)`-Abstand zur
+Home-Indicator-Zone. Eingesetzt in `MissionFlowPage`, `DiaryEntryDetailPage`, `DiaryPage`,
+`SecretVaultPage`, `HistoryPage` - überall, wo vorher ein Zurück-Link existierte. Die
+Fortschritts-Punkte im Schritt-Modus (`StepRunner`) waren als anklickbare "Springe zu Schritt
+N"-Buttons ganz oben implementiert; sie wurden zu rein visuellen, nicht interaktiven Indikatoren
+gemacht (Navigation läuft ausschliesslich über die bereits unten platzierten
+Zurück/Weiter-Knöpfe).
+
+**Konsequenzen:** Jede neue Seite mit einer Zurück-Aktion sollte künftig `BackLink` verwenden statt
+einen eigenen Link zu bauen, damit die Konvention (unten, sicherer Abstand, grosses Touch-Ziel)
+konsistent bleibt. Freies Springen zwischen Schritten per Klick auf einen Fortschrittspunkt ist
+damit nicht mehr möglich - war ohnehin keine spezifizierte Anforderung, nur ein Sprint-1-Extra.

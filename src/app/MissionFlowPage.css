@@ -1,19 +1,10 @@
-.mission-flow__toolbar {
+.mission-flow__secondary-actions {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 12px 16px 0;
+  padding: 0 16px;
 }
 
-.mission-flow__toolbar .btn {
+.mission-flow__secondary-actions .btn {
   width: auto;
-}
-
-.mission-flow__back {
-  color: var(--color-teal);
-  font-weight: 700;
-  text-decoration: none;
 }
 
 .mission-flow__not-found {

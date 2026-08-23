@@ -1,5 +1,17 @@
 # Changelog
 
+## Sprint 2 - Navigation ans untere Bildschirmende verschoben (2026-08-23)
+
+### Geändert
+
+- Alle Zurück-Links (Missionsdetail → Startseite, Tagebuch-Detail → Tagebuch, Geheimfach →
+  Startseite, Verlauf → Startseite) wandern vom oberen an den unteren Bildschirmrand - dort mit
+  einer Hand am iPhone kaum erreichbar, siehe DECISIONS.md ADR-010.
+- Neue wiederverwendbare Komponente `components/BackLink.tsx`: grosszügiges Touch-Ziel,
+  Sicherheitsabstand zum unteren Rand via `env(safe-area-inset-bottom)`.
+- Die Fortschritts-Punkte im Schritt-Modus sind nicht mehr anklickbar (kein "zu Schritt springen"
+  mehr ganz oben am Bildschirm), sondern rein visuelle Anzeige des Fortschritts.
+
 ## Sprint 2 - Familien-Feedback eingearbeitet (2026-08-23)
 
 ### Behoben/Hinzugefügt

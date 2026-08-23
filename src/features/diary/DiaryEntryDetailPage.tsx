@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { ADJUSTMENT_LABELS, STAMPS } from '../../domain'
 import type { DiaryEntry } from '../../domain'
-import { Badge, Button, MissionImage } from '../../components'
+import { BackLink, Badge, Button, MissionImage } from '../../components'
 import { indexedDbDiaryRepository } from '../../storage/diaryRepository'
 import './DiaryEntryDetailPage.css'
 
@@ -56,7 +56,7 @@ export function DiaryEntryDetailPage() {
     return (
       <div className="diary-entry-detail">
         <p>Dieser Tagebucheintrag wurde nicht gefunden.</p>
-        <Link to="/diary">Zurück zum Tagebuch</Link>
+        <BackLink to="/diary">← Zurück zum Tagebuch</BackLink>
       </div>
     )
   }
@@ -65,10 +65,6 @@ export function DiaryEntryDetailPage() {
 
   return (
     <div className="diary-entry-detail">
-      <Link to="/diary" className="diary-entry-detail__back">
-        ← Tagebuch
-      </Link>
-
       <MissionImage
         placeholder={entry.missionSnapshot.imagePlaceholder}
         title={entry.missionSnapshot.title}
@@ -134,6 +130,8 @@ export function DiaryEntryDetailPage() {
       <Button variant={entry.rating.wouldRepeat ? 'primary' : 'secondary'} onClick={toggleWouldRepeat}>
         {entry.rating.wouldRepeat ? '✅ Will ich nochmal machen' : '🔁 Nochmal machen?'}
       </Button>
+
+      <BackLink to="/diary">← Zurück zum Tagebuch</BackLink>
     </div>
   )
 }

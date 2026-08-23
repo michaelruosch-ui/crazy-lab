@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom'
 import { DEFAULT_PROFILE, isCurrentlyHidden } from '../../domain'
 import { missions } from '../../data'
-import { MissionCard, Badge } from '../../components'
+import { BackLink, MissionCard, Badge } from '../../components'
 import { useHiddenMissions } from './useHiddenMissions'
 import './HistoryPage.css'
 
@@ -40,9 +39,7 @@ export function HistoryPage() {
         })}
       </div>
 
-      <Link to="/" className="history-page__back">
-        Zurück zur Startseite
-      </Link>
+      <BackLink to="/">← Zurück zur Startseite</BackLink>
     </div>
   )
 }

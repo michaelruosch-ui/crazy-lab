@@ -40,17 +40,13 @@ export function StepRunner({ mission, onAllStepsDone, onExit }: StepRunnerProps)
     <div className="step-runner">
       <ol className="step-runner__progress" aria-label="Fortschritt">
         {steps.map((step, index) => (
-          <li key={step.id}>
-            <button
-              type="button"
-              className={`step-runner__dot ${checkedSteps.has(step.id) ? 'step-runner__dot--done' : ''} ${
-                index === currentIndex ? 'step-runner__dot--active' : ''
-              }`}
-              onClick={() => goToStep(index)}
-              aria-label={`Zu Schritt ${index + 1} springen`}
-              aria-current={index === currentIndex}
-            />
-          </li>
+          <li
+            key={step.id}
+            className={`step-runner__dot ${checkedSteps.has(step.id) ? 'step-runner__dot--done' : ''} ${
+              index === currentIndex ? 'step-runner__dot--active' : ''
+            }`}
+            aria-current={index === currentIndex}
+          />
         ))}
       </ol>
 

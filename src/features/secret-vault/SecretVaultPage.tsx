@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom'
 import { DEFAULT_PROFILE } from '../../domain'
 import { missions } from '../../data'
-import { MissionCard } from '../../components'
+import { BackLink, MissionCard } from '../../components'
 import { useSecretVault } from './useSecretVault'
 import './SecretVaultPage.css'
 
@@ -29,9 +28,7 @@ export function SecretVaultPage() {
         ))}
       </div>
 
-      <Link to="/" className="secret-vault-page__back">
-        Zurück zur Startseite
-      </Link>
+      <BackLink to="/">← Zurück zur Startseite</BackLink>
     </div>
   )
 }

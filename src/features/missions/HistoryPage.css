@@ -11,8 +11,3 @@
   gap: 12px;
 }
 
-.history-page__back {
-  align-self: flex-start;
-  color: var(--color-teal);
-  font-weight: 700;
-}

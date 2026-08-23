@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { DEFAULT_PROFILE, STAMPS } from '../../domain'
+import { BackLink } from '../../components'
 import { useDiaryEntries } from './useDiaryEntries'
 import './DiaryPage.css'
 
@@ -47,9 +48,7 @@ export function DiaryPage() {
         })}
       </ul>
 
-      <Link to="/" className="diary-page__back">
-        Zurück zur Startseite
-      </Link>
+      <BackLink to="/">← Zurück zur Startseite</BackLink>
     </div>
   )
 }

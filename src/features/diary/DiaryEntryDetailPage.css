@@ -9,13 +9,6 @@
   padding: 24px 16px;
 }
 
-.diary-entry-detail__back {
-  color: var(--color-teal);
-  font-weight: 700;
-  text-decoration: none;
-  align-self: flex-start;
-}
-
 .diary-entry-detail__invention {
   margin-top: -8px;
   font-style: italic;
