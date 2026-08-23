@@ -29,11 +29,22 @@ function buildEntry(missionId: string, rating: CompletionRating, mission: NonNul
   }
 }
 
+function describeError(error: unknown): string {
+  if (typeof window !== 'undefined' && !window.indexedDB) {
+    return 'IndexedDbNichtVerfuegbar: Dieser Browser stellt in diesem Kontext kein indexedDB bereit.'
+  }
+  if (error instanceof Error) {
+    return `${error.name}: ${error.message}`
+  }
+  return String(error)
+}
+
 export function MissionFlowPage() {
   const mission = getMissionById(STARTER_MISSION_ID)
   const [phase, setPhase] = useState<Phase>('detail')
   const [saveStatus, setSaveStatus] = useState<SaveStatus>('idle')
   const [pendingRating, setPendingRating] = useState<CompletionRating | null>(null)
+  const [errorDetails, setErrorDetails] = useState<string>('')
   const navigate = useNavigate()
 
   if (!mission) {
@@ -46,8 +57,9 @@ export function MissionFlowPage() {
       const entry = buildEntry(mission.id, rating, mission)
       await indexedDbDiaryRepository.saveEntry(entry)
       navigate('/diary')
-    } catch {
+    } catch (error) {
       setPendingRating(rating)
+      setErrorDetails(describeError(error))
       setSaveStatus('error')
     }
   }
@@ -66,13 +78,11 @@ export function MissionFlowPage() {
       {saveStatus === 'error' && (
         <div className="mission-flow__save-error" role="alert">
           <p>
-            Speichern hat nicht geklappt. Das kann bei der allerersten Nutzung als installierte
-            App manchmal vorkommen - bitte nochmals versuchen.
+            Speichern hat nicht geklappt. Bitte den Text unten Michael zeigen oder abfotografieren
+            - das hilft bei der Fehlersuche.
           </p>
-          <Button
-            variant="primary"
-            onClick={() => pendingRating && trySave(pendingRating)}
-          >
+          <p className="mission-flow__save-error-details">{errorDetails}</p>
+          <Button variant="primary" onClick={() => pendingRating && trySave(pendingRating)}>
             Nochmals versuchen
           </Button>
         </div>
