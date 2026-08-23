@@ -7,10 +7,26 @@ hier im Abschnitt "Unpriorisierte Ideen" und werden später priorisiert.
 
 ### Sprint 5 - PWA auf Elenas iPhone
 
-Status: In Arbeit. Offline-Prüfung, Icons/Manifest, Installationsanleitung, Update-Hinweis,
-Safari/iPhone-QA. Rein technischer Sprint ohne neue sichtbare Funktionen - Ziel ist eine
+Status: In Arbeit. Rein technischer Sprint ohne neue sichtbare Funktionen - Ziel ist eine
 zuverlässige, "richtige" Installation statt der bisherigen Behelfslösung über die lokale
 Netzwerk-IP.
+
+- [x] Lokales HTTPS via mkcert (`server`/`preview` in `vite.config.ts`), Zertifikat auf Elenas
+      iPhone als Profil installiert und vertraut - bestätigt ohne Zertifikatswarnung
+      (siehe DECISIONS.md ADR-017)
+- [x] Offline-Prüfung: App funktioniert im Flugmodus vom Home-Bildschirm aus - von der Familie
+      bestätigt
+- [x] Backup/Restore: alle lokalen Daten (Profil, Tagebuch, Geheimfach, Verlauf) lassen sich auf
+      der Profilseite als Datei herunterladen und wieder einspielen - Sicherheitsnetz nach einem
+      Datenverlust-Vorfall beim Origin-Wechsel http→https (siehe DECISIONS.md ADR-018), 6 neue
+      Tests (3 Modul-, 3 Komponententests) - insgesamt 84
+- [ ] Icons/Manifest-Feinschliff
+- [ ] Vollständige, geprüfte Installationsanleitung inkl. Update-Hinweis-UI
+- [ ] Safari/iPhone-QA-Checkliste
+
+Nächster Schritt: Familie testet Backup herunterladen → App neu installieren → Backup
+wiederherstellen als echten Beweis, dass Daten jetzt überleben. Danach weiter mit den
+verbleibenden Punkten oben.
 
 ## Abgeschlossene Sprints
 

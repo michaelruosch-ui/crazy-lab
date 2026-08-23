@@ -59,3 +59,23 @@
   flex-direction: column;
   gap: 10px;
 }
+
+.profile-page__backup-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-page__file-input {
+  display: none;
+}
+
+.profile-page__backup-message {
+  font-size: 14px;
+  color: var(--color-safe);
+  margin: 0;
+}
+
+.profile-page__backup-message--error {
+  color: var(--color-danger);
+}

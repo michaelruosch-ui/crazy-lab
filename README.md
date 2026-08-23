@@ -15,7 +15,8 @@ fliessen zusätzlich in ein lokales Präferenzprofil ein, das die Kategorie-Vors
 passender sortiert. Beim Abschluss stempelt eine zum Maskottchen passende Pranke sichtbar den
 gewählten Stempel ins Tagebuch. Auf der Profilseite lassen sich Forschername, Maskottchen und
 Geburtstage jederzeit ändern; an gespeicherten Geburtstagen erscheint eine besondere
-Geburtstagsmission - komplett offline, ohne Login und ohne Backend.
+Geburtstagsmission. Ausserdem lässt sich dort jederzeit ein Backup aller lokalen Daten
+herunterladen und wieder einspielen - komplett offline, ohne Login und ohne Backend.
 
 ## Voraussetzungen
 
@@ -65,15 +66,38 @@ Erstellt einen produktiven Build inkl. PWA-Manifest und Service Worker in `dist/
 npm run preview
 ```
 
-## Installation auf dem iPhone (Sprint 1: manuell im lokalen Netzwerk)
+## Installation auf dem iPhone (lokales HTTPS, Sprint 5)
 
-1. `npm run build && npm run preview -- --host` auf dem Mac ausführen.
-2. Die angezeigte Netzwerk-URL (z. B. `http://192.168.x.x:4173`) im Safari auf dem iPhone öffnen
-   (Mac und iPhone müssen im gleichen WLAN sein).
-3. Teilen-Symbol antippen → "Zum Home-Bildschirm".
-4. Die App startet danach offline vom Home-Bildschirm aus.
+Für einen sicheren Kontext (Voraussetzung für Service Worker und Offline-Betrieb, siehe
+DECISIONS.md ADR-006/ADR-017) läuft die App lokal über HTTPS mit einem selbstsignierten
+mkcert-Zertifikat:
 
-Eine vollständige, geprüfte iPhone-Installationsanleitung inkl. Update-Hinweis folgt in Sprint 5.
+1. Einmalig: `mkcert` installieren (`brew install mkcert nss`) und ein Zertifikat für die eigene
+   lokale IP-Adresse erzeugen, z. B.
+   `mkcert -cert-file certs/crazylab-cert.pem -key-file certs/crazylab-key.pem 192.168.x.x localhost 127.0.0.1`.
+   `certs/` ist gitignored - der private Schlüssel gehört nie ins Repository.
+2. Die CA-Root-Datei (`~/Library/Application Support/mkcert/rootCA.pem`, unkritisch) per AirDrop
+   ans iPhone senden und als Konfigurationsprofil installieren (Einstellungen → Profil
+   heruntergeladen → installieren).
+3. **Wichtig, wird leicht übersehen:** Einstellungen → Allgemein → Info →
+   Zertifikatsvertrauenseinstellungen → das mkcert-Zertifikat manuell auf "An" stellen. Ohne
+   diesen Schritt bleibt die Zertifikatswarnung bestehen, obwohl das Profil installiert ist.
+4. `npm run build && npm run preview -- --port 4173` auf dem Mac ausführen.
+5. Die angezeigte Netzwerk-URL (z. B. `https://192.168.x.x:4173`) im Safari auf dem iPhone öffnen
+   (Mac und iPhone im gleichen WLAN).
+6. Teilen-Symbol antippen → "Zum Home-Bildschirm".
+7. Die App startet danach offline vom Home-Bildschirm aus (geprüft per Flugmodus).
+
+Falls die lokale IP-Adresse wechselt (z. B. neues WLAN), muss Schritt 1 mit der neuen IP
+wiederholt werden.
+
+### Backup und Wiederherstellung
+
+Auf der Profilseite (`/profil`, Abschnitt "📦 Datensicherung") lässt sich jederzeit eine
+Backup-Datei mit allen lokalen Daten herunterladen und auf demselben oder einem anderen Gerät
+wieder einspielen (siehe DECISIONS.md ADR-018). Empfehlung: nach grösseren Änderungen (neue
+Tagebucheinträge, geänderte Geburtstage) ab und zu ein Backup herunterladen, insbesondere vor
+einer Neuinstallation der App.
 
 ## Architektur
 

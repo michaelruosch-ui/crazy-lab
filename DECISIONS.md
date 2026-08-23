@@ -327,3 +327,67 @@ weil die Pranke eine andere Perspektive/Pose ist als die Maskottchen-Porträts u
 Canvas-Umbau keinen echten Vorteil gebracht, aber Wiederholungsaufwand verursacht hätte. Bei
 einer künftigen grösseren Überarbeitung der Maskottchen-Grafik sollten beide Stellen gemeinsam
 betrachtet werden.
+
+## ADR-017: Lokale HTTPS via mkcert statt öffentlichem Hosting
+
+**Status:** Angenommen (Sprint 5)
+
+**Kontext:** Service-Worker-Registrierung und `crypto.randomUUID()` benötigen einen sicheren
+Kontext (siehe ADR-006); die bisherige Behelfslösung über `http://<lokale-IP>` verhinderte damit
+eine echte Offline-Prüfung. Zwei Wege standen zur Wahl: (a) lokal bleiben und ein selbstsigniertes
+Zertifikat per mkcert auf Elenas iPhone als Profil installieren, oder (b) den Produktions-Build
+auf einem öffentlichen kostenlosen Host (z. B. Cloudflare Pages) mit echter HTTPS-URL
+veröffentlichen. Michael hat sich explizit für Option (a) entschieden ("Lokal bleiben, Zertifikat
+installieren").
+
+**Entscheidung:** `mkcert` erzeugt eine lokale CA sowie ein Blatt-Zertifikat für
+`192.168.1.106`/`localhost`/`127.0.0.1` unter `certs/` (gitignored, siehe unten).
+`vite.config.ts` lädt Zertifikat/Key bedingt über `existsSync` und aktiviert HTTPS für `server`
+und `preview` mit `host: true`. Die CA-Root-Datei (`rootCA.pem`, unkritisch) wurde per AirDrop an
+Elenas iPhone übertragen und dort als Konfigurationsprofil installiert UND zusätzlich unter
+Einstellungen → Allgemein → Info → Zertifikatsvertrauenseinstellungen manuell auf "voll
+vertrauenswürdig" gestellt (zwei getrennte Schritte, der zweite wird leicht übersehen).
+
+**Konsequenzen:** Kein externes Hosting, keine öffentlich erreichbare URL, keine Abhängigkeit von
+einem Drittanbieter - passend zum MVP-Grundsatz "kein Backend". Nachteil: das Zertifikat
+(`certs/crazylab-key.pem`) ist ein privater Schlüssel und darf nie ins Repository gelangen -
+`.gitignore` wurde entsprechend ergänzt. Jede neue IP-Adresse (z. B. neues WLAN) erfordert ein
+neu ausgestelltes Zertifikat. Das Browser-Automatisierungs-Pane dieses Projekts kann
+selbstsignierte Zertifikatswarnungen nicht wegklicken - lokale Vorschau-Verifizierung mit
+aktiven Zertifikaten läuft daher über `curl -sk` bzw. wird auf das reale iPhone verlagert; für
+UI-Interaktionstests werden die Zertifikate vorübergehend beiseitegelegt (dev-Server fällt dann
+automatisch auf HTTP zurück).
+
+## ADR-018: Backup/Restore als manueller Datei-Export statt automatischer Cloud-Sync
+
+**Status:** Angenommen (Sprint 5, Datenverlust-Vorfall)
+
+**Kontext:** Nach dem Umstieg von `http://` auf `https://` (ADR-017) verlor die Familie beim
+Neuinstallieren alle lokalen Daten (Maskottchen, Geburtstage, erledigte Missionen) - IndexedDB ist
+Origin-gebunden, ein Protokollwechsel zählt als neuer Origin. Zwar ist das ein einmaliger Vorgang,
+der bei künftigen Neuinstallationen auf demselben `https://`-Origin nicht mehr auftreten sollte,
+doch die Familie erwartet unabhängig von der genauen Ursache einen echten Schutz vor Datenverlust,
+bevor der nächste Sprint startet. Eine vollständige Cloud-Synchronisation ist explizit erst für
+Sprint 19 vorgesehen (Backend-Auswahl, Auth, Konfliktlösung) und für dieses MVP-Stadium zu
+aufwändig.
+
+**Entscheidung:** `storage/backup.ts` bündelt Profil, Tagebuch, Geheimfach und Verlauf eines
+Profils in ein versioniertes JSON-Envelope (`format: 'crazylab-backup'`, `version: 1`) mit
+Typ-Guard `isBackupData`. Export läuft rein clientseitig über `Blob` + `<a download>`, Import über
+`<input type="file">` + `FileReader`. Auf der Profilseite (`/profil`) gibt es dafür einen neuen
+Abschnitt "📦 Datensicherung" mit den Aktionen "Backup herunterladen"/"Backup wiederherstellen".
+`restoreBackup` schreibt Profil und Tagebucheinträge mit ihren ursprünglichen IDs/Zeitstempeln
+zurück (`save`/`saveEntry`), nutzt für Geheimfach und Verlauf aber bewusst die bestehenden
+High-Level-Repository-Methoden (`save`, `hide`) statt roher `db.put`-Aufrufe - das
+Verstecken-Datum wird dabei korrekt aus dem Backup übernommen, IDs für Geheimfach-Einträge werden
+neu vergeben (unkritisch, da sie nur intern referenziert werden).
+
+**Konsequenzen:** Kein automatischer Schutz (die Familie muss aktiv ein Backup herunterladen),
+aber sofort verfügbar, ohne Backend, ohne Konto, ohne Netzwerk - passend zum MVP-Grundsatz. Die
+Backup-Datei ist unverschlüsselt lesbares JSON; für diese private Familien-App bewusst in Kauf
+genommen. Das native Herunterladen/Hochladen einer Datei löst im Browser einen echten
+OS-Dialog aus, den das Browser-Automatisierungs-Pane dieses Projekts nicht bedienen kann -
+verifiziert wurde die Geschäftslogik daher über 3 Modul-Tests (`backup.test.ts`, inkl.
+vollständigem Restore-Rundlauf nach simuliertem IndexedDB-Reset) und 3 Komponenten-Tests
+(`ProfilePage.test.tsx`), die reale Dateidialog-Interaktion bleibt der Familientest auf dem
+iPhone vorbehalten.

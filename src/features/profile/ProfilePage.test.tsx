@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { IDBFactory } from 'fake-indexeddb'
 import { DEFAULT_PROFILE } from '../../domain'
 import { ProfilePage } from './ProfilePage'
@@ -73,5 +73,73 @@ describe('ProfilePage', () => {
 
     persisted = await indexedDbProfileRepository.get(DEFAULT_PROFILE.id)
     expect(persisted?.birthdays).toHaveLength(0)
+  })
+
+  it('lädt ein Backup herunterladen', async () => {
+    const user = userEvent.setup()
+    render(
+      <MemoryRouter>
+        <ProfilePage />
+      </MemoryRouter>,
+    )
+
+    await user.click(await screen.findByRole('button', { name: 'Backup herunterladen' }))
+
+    expect(await screen.findByText('Backup wurde heruntergeladen.')).toBeInTheDocument()
+  })
+
+  it('stellt ein hochgeladenes Backup wieder her', async () => {
+    vi.stubGlobal('location', { ...window.location, reload: vi.fn() })
+    const user = userEvent.setup()
+    render(
+      <MemoryRouter>
+        <ProfilePage />
+      </MemoryRouter>,
+    )
+
+    const backupContent = JSON.stringify({
+      format: 'crazylab-backup',
+      version: 1,
+      exportedAt: '2026-08-23T00:00:00.000Z',
+      profile: {
+        ...DEFAULT_PROFILE,
+        researcherName: 'Wiederhergestellte Elena',
+        onboardingCompletedAt: '2026-08-16T00:00:00.000Z',
+      },
+      diaryEntries: [],
+      secretVaultEntries: [],
+      hiddenMissions: [],
+    })
+    const file = new File([backupContent], 'crazylab-backup.json', { type: 'application/json' })
+    await screen.findByRole('button', { name: 'Backup herunterladen' })
+    const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement
+
+    await user.upload(fileInput, file)
+
+    expect(await screen.findByText(/Backup wiederhergestellt/)).toBeInTheDocument()
+    const persisted = await indexedDbProfileRepository.get(DEFAULT_PROFILE.id)
+    expect(persisted?.researcherName).toBe('Wiederhergestellte Elena')
+    vi.unstubAllGlobals()
+  })
+
+  it('lehnt eine fremde Datei beim Wiederherstellen ab', async () => {
+    const user = userEvent.setup()
+    render(
+      <MemoryRouter>
+        <ProfilePage />
+      </MemoryRouter>,
+    )
+
+    const file = new File([JSON.stringify({ hello: 'world' })], 'irgendwas.json', {
+      type: 'application/json',
+    })
+    await screen.findByRole('button', { name: 'Backup herunterladen' })
+    const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement
+
+    await user.upload(fileInput, file)
+
+    expect(
+      await screen.findByText('Diese Datei sieht nicht nach einem Crazy-Lab-Backup aus.'),
+    ).toBeInTheDocument()
   })
 })

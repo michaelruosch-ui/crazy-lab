@@ -114,6 +114,21 @@ keine Features.
    Formular bleibt darunter unverändert nutzbar - die Animation ist ein zusätzliches Overlay,
    kein Bestandteil des Speichervorgangs.
 
+### Datensicherung: Backup/Restore (Sprint 5)
+
+1. `storage/backup.ts` ist reine Storage-Logik ohne UI-Abhängigkeit: `createBackup(profileId)`
+   liest Profil, Tagebuch, Geheimfach und Verlauf parallel über die bestehenden Repositories und
+   bündelt sie in ein versioniertes `BackupData`-Objekt; `isBackupData` prüft eine unbekannte
+   JSON-Struktur per Type-Guard; `restoreBackup` schreibt alle Daten zurück (siehe DECISIONS.md
+   ADR-018 für die Details zur ID-Behandlung von Geheimfach/Verlauf).
+2. `features/profile/ProfilePage` bindet das im neuen Abschnitt "📦 Datensicherung" an: "Backup
+   herunterladen" erzeugt einen `Blob` und löst über einen unsichtbaren `<a download>` den
+   nativen Browser-Speichern-Dialog aus; "Backup wiederherstellen" öffnet über ein verstecktes
+   `<input type="file">` den nativen Dateiauswahl-Dialog, liest die Datei per `FileReader`, prüft
+   sie mit `isBackupData` und lädt die Seite nach erfolgreichem Restore neu.
+3. Kein eigener Object Store und keine neue DB-Version nötig - das Feature liest/schreibt
+   ausschliesslich über die vier bestehenden Repositories.
+
 ## Speicherung
 
 IndexedDB, Datenbank `crazylab`, aktuell Version 3 mit vier Object Stores:
@@ -142,12 +157,12 @@ Einträge nicht verändern.
 - App-Icons liegen als PNG in `public/icons/` (192, 512, maskable 512), Favicon als eigenes SVG.
 - Es besteht keine Abhängigkeit von externen Netzwerk-Ressourcen (keine CDN-Fonts, keine
   externen Bilder).
-- **Bekannte Einschränkung:** Sowohl die Service-Worker-Registrierung als auch
-  `crypto.randomUUID()` (siehe `domain/id.ts`) erfordern einen sicheren Kontext (HTTPS oder
-  `localhost`). Beim Testen über die lokale Netzwerk-IP per HTTP funktioniert daher die
-  Service-Worker-Registrierung in Safari vermutlich nicht, auch wenn die App selbst normal
-  funktioniert. Echte Offline-Verifizierung ist erst mit einer HTTPS-fähigen Testumgebung
-  möglich (geplant für Sprint 5).
+- Sowohl die Service-Worker-Registrierung als auch `crypto.randomUUID()` (siehe `domain/id.ts`)
+  erfordern einen sicheren Kontext (HTTPS oder `localhost`). Seit Sprint 5 stellt `vite.config.ts`
+  bei vorhandenen lokalen mkcert-Zertifikaten (`certs/`, gitignored) HTTPS auch für `server` und
+  `preview` bereit (siehe DECISIONS.md ADR-017), damit die App auch über die lokale Netzwerk-IP
+  in einem sicheren Kontext läuft und offline-fähig ist - bestätigt per Flugmodus-Test auf Elenas
+  iPhone.
 
 ## Erweiterungspunkte für spätere Sprints
 
@@ -157,7 +172,9 @@ Einträge nicht verändern.
 - `MissionSnapshot.contentVersion` erlaubt spätere Inhalts-Updates ohne bestehende
   Tagebucheinträge zu verändern.
 - `storage/*Repository.ts`-Dateien sind Interfaces; Cloud-Repository-Implementierungen
-  (Sprint 19) können dieselbe Schnittstelle bedienen.
+  (Sprint 19) können dieselbe Schnittstelle bedienen. Der manuelle Backup/Restore aus Sprint 5
+  (`storage/backup.ts`) deckt bis dahin den wichtigsten Fall (Datenverlust bei Neuinstallation)
+  ab, ersetzt aber keine echte Geräte-Synchronisation.
 - `MissionStep.timerSeconds` und `helpTip` sind bereits pro Schritt modelliert.
 - Gesamtansicht (alle Schritte gleichzeitig statt Schritt-für-Schritt) ist datenseitig möglich
   (`mission.steps`-Array), aber UI-seitig noch nicht exponiert.

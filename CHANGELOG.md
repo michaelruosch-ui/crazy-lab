@@ -1,5 +1,24 @@
 # Changelog
 
+## Sprint 5 - Lokales HTTPS und Backup/Restore (2026-08-23)
+
+### Hinzugefügt
+
+- Lokales HTTPS über mkcert-Zertifikate: `vite.config.ts` aktiviert HTTPS für `server` und
+  `preview`, sobald `certs/crazylab-{cert,key}.pem` vorhanden sind (gitignored). Ermöglicht einen
+  sicheren Kontext auch über die lokale Netzwerk-IP, damit Service Worker und Offline-Betrieb
+  zuverlässig funktionieren (siehe DECISIONS.md ADR-017). Zertifikat auf Elenas iPhone installiert
+  und vertraut, Offline-Betrieb per Flugmodus bestätigt.
+- Neuer Abschnitt "📦 Datensicherung" auf der Profilseite (`/profil`): "Backup herunterladen"
+  exportiert Profil, Tagebuch, Geheimfach und Verlauf als JSON-Datei; "Backup wiederherstellen"
+  liest eine solche Datei wieder ein und lädt die App danach neu. Neues Modul
+  `storage/backup.ts` (`createBackup`, `isBackupData`, `restoreBackup`). Ausgelöst durch einen
+  Datenverlust-Vorfall beim Origin-Wechsel von http auf https (IndexedDB ist Origin-gebunden) -
+  unabhängig von der genauen Ursache als dauerhaftes Sicherheitsnetz gebaut (siehe DECISIONS.md
+  ADR-018).
+- 6 neue Tests (3 Modul-Tests für Export/Validierung/Restore-Rundlauf, 3 Komponententests für die
+  Profilseiten-Integration) - insgesamt 84.
+
 ## Sprint 4 - abgeschlossen (2026-08-23)
 
 Von Michael und Elena final bestätigt nach drei Feedback-Runden. Sprint 5 ist freigegeben.

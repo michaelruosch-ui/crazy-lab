@@ -14,6 +14,9 @@ dev-dist
 coverage
 *.local
 
+# Lokale mkcert-Zertifikate (privater Schlüssel, gehört nie ins Repo, siehe README.md)
+certs/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
