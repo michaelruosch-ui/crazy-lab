@@ -5,16 +5,21 @@ hier im Abschnitt "Unpriorisierte Ideen" und werden später priorisiert.
 
 ## Aktueller Sprint
 
+### Sprint 2 - Entdecken und Wiederfinden
+
+Status: In Arbeit. Startseite mit Kategorie-Kacheln, fünf Vorschlagskarten je Kategorie,
+Geheimfach, "3 Tage verstecken", 14-Tage-Verlauf, Tagesmission.
+
+## Abgeschlossene Sprints
+
 ### Sprint 1 - Projektfundament und Vertical Slice
 
-Status: Implementierung abgeschlossen, Typecheck/Lint/Tests/Build grün. Familientest (Abschnitt 8
-der Spezifikation) am 2026-08-16 durchgeführt, Fragen 1-4 und 7 positiv, Fragen 5/6 zeigten einen
-echten Bug (Speichern hing auf dem installierten iPhone, Tagebuch liess sich nicht anzeigen).
-Erster Fix-Versuch (2026-08-23) behob das Problem nicht; die Oberfläche zeigt seither den echten
-Fehlertext an, wodurch die tatsächliche Ursache gefunden wurde (`crypto.randomUUID` fehlt in
-Safari ohne sicheren Kontext/HTTPS) und behoben wurde (siehe DECISIONS.md, ADR-006). **Noch
-offen:** erneuter Test von Michael und Elena mit dem Fix, insbesondere Fragen 5 und 6. Erst danach
-gilt Sprint 1 als erledigt und Sprint 2 wird freigegeben.
+Status: **Abgeschlossen (2026-08-23).** Familientest (Abschnitt 8 der Spezifikation) am
+2026-08-16 durchgeführt, Fragen 1-4 und 7 positiv, Fragen 5/6 zeigten einen echten Bug (Speichern
+hing auf dem installierten iPhone, Tagebuch liess sich nicht anzeigen). Ursache gefunden und
+behoben (`crypto.randomUUID` fehlt in Safari ohne sicheren Kontext/HTTPS, siehe DECISIONS.md
+ADR-006). Erneuter Familientest am 2026-08-23 erfolgreich - alle sieben Fragen aus Abschnitt 8
+positiv beantwortet.
 
 - [x] Projektstruktur, Qualitätswerkzeuge (TypeScript strict, ESLint, Prettier, Vitest)
 - [x] PWA-Grundlage (Manifest, Service Worker, Icons)
@@ -25,14 +30,12 @@ gilt Sprint 1 als erledigt und Sprint 2 wird freigegeben.
 - [x] Lokaler Tagebucheintrag (IndexedDB), übersteht Neuladen
 - [x] Bugfix: `crypto.randomUUID` fehlt in Safari ohne HTTPS/localhost (echte Ursache gefunden
       und behoben)
-- [ ] Erneuter Familientest mit Fix, Fragen 5 und 6 (Abschnitt 8 der Spezifikation)
+- [x] Familientest mit Fix erfolgreich (Abschnitt 8 der Spezifikation, alle 7 Fragen positiv)
 
 ## Offene Sprints
 
 ### P0 - Sichtbarer Prototyp
 
-- **Sprint 2 - Entdecken und Wiederfinden:** Startseite, fünf Karten untereinander, fünf andere
-  Vorschläge, Geheimfach, 3 Tage verstecken, 14-Tage-Verlauf, Tagesmission.
 - **Sprint 3 - Lokale Persistenz und Präferenzen:** robustes IndexedDB-Repository, strukturierte
   Bewertungen, Präferenzprofil, nachvollziehbare lokale Gewichtung und Tests.
 - **Sprint 4 - Forschernamen, Maskottchen und Geburtstage:** Onboarding, drei provisorische

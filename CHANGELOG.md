@@ -1,5 +1,13 @@
 # Changelog
 
+## Sprint 1 - abgeschlossen (2026-08-23)
+
+Erneuter Familientest auf Elenas iPhone nach dem `crypto.randomUUID`-Fix erfolgreich: kompletter
+Ablauf von der Beispielmission über Schritte, Timer, Hilfe, Abschlussbewertung bis zum
+persistierten Tagebucheintrag funktioniert auf dem echten Gerät, inklusive Neustart der
+installierten App. Alle sieben Prüffragen aus Abschnitt 8 der Spezifikation positiv beantwortet.
+Sprint 1 ist damit fertig; Sprint 2 ist freigegeben.
+
 ## Sprint 1 - Bugfix nach Familientest (2026-08-23)
 
 ### Behoben
