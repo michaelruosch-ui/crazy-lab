@@ -129,6 +129,29 @@ keine Features.
 3. Kein eigener Object Store und keine neue DB-Version nötig - das Feature liest/schreibt
    ausschliesslich über die vier bestehenden Repositories.
 
+### Automatisches Cloud-Backup (Sprint 5)
+
+1. `storage/cloudSync.ts` kapselt zwei Funktionen: `uploadBackupToCloud(profileId)` (baut über
+   `createBackup` den aktuellen Stand und sendet ihn per `PUT` an den konfigurierten Worker) und
+   `downloadBackupFromCloud()` (per `GET`, validiert die Antwort mit `isBackupData`). Beide sind
+   ohne `VITE_CLOUD_SYNC_URL`/`VITE_CLOUD_SYNC_KEY` (siehe `.env.local.example`) reine No-Ops -
+   kein Fetch-Aufruf, kein Fehler. Netzwerkfehler werden verschluckt, nie an die aufrufende Stelle
+   durchgereicht (siehe DECISIONS.md ADR-019).
+2. Fünf Aufrufstellen lösen nach einer erfolgreichen lokalen Änderung `scheduleCloudBackup`
+   "fire and forget" aus: `features/profile/useProfile` (`save`),
+   `features/missions/useHiddenMissions` (`hide`), `features/secret-vault/useSecretVault`
+   (`toggle`), `app/MissionFlowPage` und `features/diary/DiaryEntryDetailPage` (jeweils nach
+   `saveEntry`). Bewusst auf Ebene der Feature-Hooks/-Seiten statt in den Repositories selbst, um
+   einen Zirkelimport zu vermeiden (`backup.ts` importiert alle vier Repositories).
+3. `App.tsx` versucht beim Start `downloadBackupFromCloud()` genau dann, wenn lokal noch kein
+   abgeschlossenes Profil existiert - existiert bereits eines, wird die Cloud nicht angefragt
+   ("lokal schlägt Cloud"-Regel, siehe ADR-019). Ein gefundener Stand wird über `restoreBackup`
+   eingespielt, bevor `OnboardingFlow` gerendert würde.
+4. `cloud-worker/` ist ein separates Deployable (eigenes `package.json`, kein Teil des
+   Vite-Builds): ein minimaler Cloudflare Worker mit KV-Speicher, der genau `PUT /:key` und
+   `GET /:key` beantwortet. Der lange, zufällige `key` ist zugleich der einzige Zugriffsschutz -
+   Deployment-Anleitung in `cloud-worker/README.md`.
+
 ## Speicherung
 
 IndexedDB, Datenbank `crazylab`, aktuell Version 3 mit vier Object Stores:

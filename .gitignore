@@ -17,6 +17,10 @@ coverage
 # Lokale mkcert-Zertifikate (privater Schlüssel, gehört nie ins Repo, siehe README.md)
 certs/
 
+# Cloud-Sync-Worker: lokale Wrangler-Caches/Secrets, siehe cloud-worker/README.md
+.wrangler/
+.dev.vars
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

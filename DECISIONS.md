@@ -391,3 +391,64 @@ verifiziert wurde die Geschäftslogik daher über 3 Modul-Tests (`backup.test.ts
 vollständigem Restore-Rundlauf nach simuliertem IndexedDB-Reset) und 3 Komponenten-Tests
 (`ProfilePage.test.tsx`), die reale Dateidialog-Interaktion bleibt der Familientest auf dem
 iPhone vorbehalten.
+
+## ADR-019: Automatisches Cloud-Backup (vorgezogener, abgespeckter Sprint 19)
+
+**Status:** Angenommen (Sprint 5, auf expliziten Wunsch nach ADR-018)
+
+**Kontext:** Der manuelle Datei-Export (ADR-018) hat Michael nicht überzeugt - er möchte, dass die
+App den Stand automatisch sichert, ohne dass jemand aktiv einen Knopf drücken muss:
+"automatisch... alle zehn Minuten... in die Cloud... jedes Mal, wenn ich die App neu öffne und
+Internet habe, wird automatisch der neueste Stand geladen... wenn kein Internet, bleibt der letzte
+lokale Stand... bei Konflikt zählt lokal." Eine vollständige Mehrgeräte-Synchronisation mit Login,
+Konfliktauflösung usw. ist bewusst erst für Sprint 19 vorgesehen - das würde diese Anforderung
+massiv überdimensionieren, weil Elena die App aktuell nur auf einem einzigen Gerät nutzt. Michael
+wurde genau dieser Unterschied erklärt und hat einer abgespeckten Vorziehung explizit zugestimmt
+("Ja, das ist okay... nicht erst bis Sprint neunzehn... wenn wir das dann in Sprint neunzehn
+nochmals überarbeiten, ist das okay").
+
+**Entscheidung:** Kein echtes Sync-Protokoll, sondern "automatisches Backup + automatisches
+Wiedereinspielen bei leerem Gerät":
+
+- Neuer Cloudflare Worker (`cloud-worker/`, separates Deployment, siehe dortige README.md) mit
+  einer KV-Datenbank, erreichbar über genau zwei Endpunkte: `PUT /:key` (Stand speichern) und
+  `GET /:key` (Stand laden). Kein Login - der lange, zufällige `key` selbst ist das einzige
+  Geheimnis (gleiche Risikoklasse wie die unverschlüsselte lokale Backup-Datei aus ADR-018).
+- `storage/cloudSync.ts` liest Worker-URL und Schlüssel aus Vite-Umgebungsvariablen
+  (`VITE_CLOUD_SYNC_URL`/`VITE_CLOUD_SYNC_KEY`, siehe `.env.local.example`). Fehlen sie, ist
+  Cloud-Sync komplett deaktiviert (kein Fetch-Aufruf, kein Fehler) - die App funktioniert dann
+  genau wie vor diesem ADR.
+- Nach jeder erfolgreichen Änderung (Profil speichern, Tagebucheintrag anlegen/ändern, Geheimfach
+  umschalten, Mission verstecken - fünf Aufrufstellen in `features/*`/`app/MissionFlowPage.tsx`)
+  wird `scheduleCloudBackup(profileId)` aufgerufen: baut über `createBackup` (ADR-018) den
+  kompletten aktuellen Stand und lädt ihn "fire and forget" hoch. Netzwerkfehler werden bewusst
+  verschluckt - ein fehlgeschlagener Cloud-Upload darf die App nie stören, IndexedDB bleibt die
+  alleinige Quelle der Wahrheit auf dem Gerät.
+- Beim App-Start (`App.tsx`) wird - nur solange lokal **kein** abgeschlossenes Profil existiert -
+  einmalig `downloadBackupFromCloud()` versucht; findet sich ein gültiger Stand, wird er über
+  `restoreBackup` (ADR-018) eingespielt, bevor das Onboarding gezeigt würde. Existiert lokal
+  bereits ein Profil, wird die Cloud gar nicht erst angefragt - das ist die "bei Konflikt zählt
+  lokal"-Regel aus der Anforderung, hier als bewusst denkbar einfachste Umsetzung: kein
+  Merge, kein Zeitstempel-Vergleich, einfach "leeres Gerät gewinnt nie gegen echte lokale Daten".
+
+**Konsequenzen:** Das ist **keine** echte Mehrgeräte-Synchronisation - Änderungen auf einem
+zweiten Gerät würden nie automatisch auf ein Gerät mit bereits vorhandenen lokalen Daten
+übertragen (das deckt Sprint 19 später ab, mit echter Konfliktauflösung). Für den aktuellen
+Ein-Gerät-Alltag ist das aber genau richtig und deutlich einfacher als echtes Sync: kein Login,
+keine Konfliktauflösungs-UI, kein Zeitstempel-Vergleich nötig. Neuer, bewusster Bruch mit dem
+bisherigen "kein Backend, keine Internet-Abhängigkeit"-Grundsatz: Elenas Daten verlassen jetzt
+automatisch das Gerät (an einen privaten, nur Michael gehörenden Cloudflare-Account) - Michael hat
+das explizit bestätigt. Die App bleibt aber voll funktionsfähig, wenn der Worker nicht erreichbar
+oder nicht konfiguriert ist (z. B. frischer Checkout ohne `.env.local`). Getestet über 6 Modul-
+Tests (`cloudSync.test.ts`, Upload/Download/Fehlerfälle/deaktivierter Zustand) und 2
+Integrationstests (`App.test.tsx`, Cloud-Restore bei leerem Profil bzw. wenn auch die Cloud nichts
+liefert); der Worker selbst (`cloud-worker/`) braucht ein echtes Cloudflare-Konto zum Deployen,
+das nur Michael selbst anlegen kann (siehe `cloud-worker/README.md`) - das reale Ende-zu-Ende-
+Verhalten wird daher erst nach seinem Deployment auf dem echten iPhone bestätigt.
+
+Beim Testen dieser Änderung fiel ausserdem eine unabhängige, vorbestehende Lücke auf: schlägt das
+Öffnen der lokalen Datenbank nach den Wiederholungsversuchen aus ADR-005 endgültig fehl, blieb
+`useProfile` für immer bei "loading" hängen (unbehandelte Promise-Ablehnung). Da genau dieser
+Zustand jetzt auch das neue Cloud-Restore-Gate blockieren würde, wurde das im selben Zug behoben:
+ein endgültig fehlgeschlagenes Öffnen wird wie "kein Profil vorhanden" behandelt, damit die App
+zumindest das Onboarding erreicht statt für immer zu hängen.

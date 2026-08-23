@@ -1,5 +1,27 @@
 # Changelog
 
+## Sprint 5 - Automatisches Cloud-Backup (2026-08-23)
+
+### Hinzugefügt
+
+- Automatisches Cloud-Backup: nach jeder Änderung (Mission abgeschlossen, Geburtstag geändert,
+  Maskottchen gewechselt, Geheimfach/Verlauf geändert) sichert die App den aktuellen Stand im
+  Hintergrund in eine private Cloud. Öffnet man die App ohne lokales Profil (z. B. nach einer
+  Neuinstallation), wird dieser Stand automatisch geladen, bevor das Onboarding gezeigt würde -
+  auf ausdrücklichen Wunsch von Michael als vorgezogene, bewusst abgespeckte Version von
+  Sprint 19 (echte Mehrgeräte-Synchronisation mit Konfliktauflösung bleibt dort). Neues Modul
+  `storage/cloudSync.ts`, neuer separater Cloudflare-Worker (`cloud-worker/`, eigenes Deployment,
+  Anleitung in dessen README). Ohne `.env.local`-Konfiguration bleibt die App unverändert rein
+  lokal (siehe DECISIONS.md ADR-019).
+- 8 neue Tests (6 für `cloudSync.ts`: Upload, Download, Fehlerfälle, deaktivierter Zustand; 2
+  Integrationstests in `App.test.tsx` für den Cloud-Restore-Ablauf) - insgesamt 94.
+
+### Behoben
+
+- `useProfile` blieb für immer bei "Lade..." hängen, wenn das Öffnen der lokalen Datenbank nach
+  den Wiederholungsversuchen aus ADR-005 endgültig fehlschlug (unbehandelte Promise-Ablehnung).
+  Wird jetzt wie ein fehlendes Profil behandelt, damit zumindest das Onboarding erreichbar bleibt.
+
 ## Sprint 5 - Lokales HTTPS und Backup/Restore (2026-08-23)
 
 ### Hinzugefügt

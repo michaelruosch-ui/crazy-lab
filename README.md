@@ -91,13 +91,30 @@ mkcert-Zertifikat:
 Falls die lokale IP-Adresse wechselt (z. B. neues WLAN), muss Schritt 1 mit der neuen IP
 wiederholt werden.
 
-### Backup und Wiederherstellung
+### Backup und Wiederherstellung (manuell)
 
 Auf der Profilseite (`/profil`, Abschnitt "📦 Datensicherung") lässt sich jederzeit eine
 Backup-Datei mit allen lokalen Daten herunterladen und auf demselben oder einem anderen Gerät
-wieder einspielen (siehe DECISIONS.md ADR-018). Empfehlung: nach grösseren Änderungen (neue
-Tagebucheinträge, geänderte Geburtstage) ab und zu ein Backup herunterladen, insbesondere vor
-einer Neuinstallation der App.
+wieder einspielen (siehe DECISIONS.md ADR-018). Sinnvoll als zusätzliches, manuelles Sicherheits-
+netz - für den Alltag sorgt aber das automatische Cloud-Backup unten dafür, dass i. d. R. gar
+nichts manuell gemacht werden muss.
+
+### Automatisches Cloud-Backup
+
+Nach jeder Änderung (neue Mission erledigt, Geburtstag hinzugefügt, Maskottchen gewechselt, ...)
+sichert die App den aktuellen Stand automatisch im Hintergrund in eine private Cloud - beim
+nächsten Öffnen der App wird er bei Bedarf automatisch wieder eingespielt, ganz ohne Zutun (siehe
+DECISIONS.md ADR-019). Damit das funktioniert, braucht es einmalig einen eigenen, kostenlosen
+Cloudflare-Worker:
+
+1. Anleitung in [cloud-worker/README.md](./cloud-worker/README.md) befolgen (kostenloses
+   Cloudflare-Konto anlegen, Worker deployen).
+2. `.env.local.example` zu `.env.local` kopieren und mit der Worker-URL und einem zufälligen
+   Schlüssel befüllen.
+3. App neu bauen bzw. Dev-/Preview-Server neu starten.
+
+Ohne diese Einrichtung läuft die App unverändert komplett lokal weiter - das automatische
+Cloud-Backup ist rein additiv und niemals Voraussetzung für die Nutzung.
 
 ## Architektur
 

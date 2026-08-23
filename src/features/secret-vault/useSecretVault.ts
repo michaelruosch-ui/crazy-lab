@@ -4,6 +4,7 @@ import {
   indexedDbSecretVaultRepository,
   type SecretVaultRepository,
 } from '../../storage/secretVaultRepository'
+import { scheduleCloudBackup } from '../../storage/cloudSync'
 
 export function useSecretVault(
   profileId: string,
@@ -41,6 +42,7 @@ export function useSecretVault(
         await repository.save(profileId, missionId)
       }
       await reload()
+      scheduleCloudBackup(profileId)
     },
     [profileId, repository, reload, savedMissionIds],
   )

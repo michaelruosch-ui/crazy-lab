@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Routes, Route, useParams } from 'react-router-dom'
 import { MissionFlowPage } from './app/MissionFlowPage'
 import { HomePage, HistoryPage } from './features/missions'
@@ -6,6 +7,8 @@ import { SecretVaultPage } from './features/secret-vault'
 import { OnboardingFlow } from './features/onboarding'
 import { ProfilePage, useProfile } from './features/profile'
 import { DEFAULT_PROFILE } from './domain'
+import { downloadBackupFromCloud } from './storage/cloudSync'
+import { restoreBackup } from './storage/backup'
 
 function MissionRoute() {
   const { missionId } = useParams<{ missionId: string }>()
@@ -14,9 +17,34 @@ function MissionRoute() {
 }
 
 export function App() {
-  const { profile, loading, save } = useProfile(DEFAULT_PROFILE.id)
+  const { profile, loading, save, reload } = useProfile(DEFAULT_PROFILE.id)
+  const [cloudCheckDone, setCloudCheckDone] = useState(false)
+  const profileReady = Boolean(profile && profile.onboardingCompletedAt)
 
-  if (loading) {
+  useEffect(() => {
+    if (loading || profileReady || cloudCheckDone) return
+    // Kein lokales Profil (z. B. frische Installation) - einmalig prüfen, ob in der Cloud
+    // bereits ein Stand für diese Familie liegt, bevor Elena das Onboarding nochmal durchlaufen
+    // müsste (siehe DECISIONS.md ADR-019). Ohne Internet oder ohne Cloud-Setup bleibt das
+    // Verhalten unverändert wie zuvor.
+    let cancelled = false
+    downloadBackupFromCloud()
+      .then(async (backup) => {
+        if (cancelled) return
+        if (backup) {
+          await restoreBackup(backup)
+          await reload()
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setCloudCheckDone(true)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [loading, profileReady, cloudCheckDone, reload])
+
+  if (loading || (!profileReady && !cloudCheckDone)) {
     return <p className="app-loading">Lade...</p>
   }
 

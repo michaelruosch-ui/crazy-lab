@@ -16,17 +16,24 @@ Netzwerk-IP.
       (siehe DECISIONS.md ADR-017)
 - [x] Offline-Prüfung: App funktioniert im Flugmodus vom Home-Bildschirm aus - von der Familie
       bestätigt
-- [x] Backup/Restore: alle lokalen Daten (Profil, Tagebuch, Geheimfach, Verlauf) lassen sich auf
-      der Profilseite als Datei herunterladen und wieder einspielen - Sicherheitsnetz nach einem
-      Datenverlust-Vorfall beim Origin-Wechsel http→https (siehe DECISIONS.md ADR-018), 6 neue
-      Tests (3 Modul-, 3 Komponententests) - insgesamt 84
+- [x] Backup/Restore (manuell): alle lokalen Daten (Profil, Tagebuch, Geheimfach, Verlauf) lassen
+      sich auf der Profilseite als Datei herunterladen und wieder einspielen - Sicherheitsnetz nach
+      einem Datenverlust-Vorfall beim Origin-Wechsel http→https (siehe DECISIONS.md ADR-018)
+- [x] Automatisches Cloud-Backup: nach jeder Änderung wird der Stand automatisch in eine private
+      Cloud gesichert; beim Öffnen ohne lokales Profil wird er automatisch wieder eingespielt -
+      vorgezogene, abgespeckte Version von Sprint 19, auf expliziten Wunsch von Michael (siehe
+      DECISIONS.md ADR-019). Braucht einmalig ein Cloudflare-Konto von Michael selbst (Anleitung
+      in `cloud-worker/README.md`) - App funktioniert bis dahin unverändert rein lokal weiter.
+      8 neue Tests (6 Modul-, 2 Integrationstests) - insgesamt 94
+- [x] Nebenbei behoben: `useProfile` blieb bei endgültig gescheitertem Datenbank-Öffnen für immer
+      bei "Lade..." hängen (unbehandelte Promise-Ablehnung) - fällt jetzt auf "kein Profil" zurück
 - [ ] Icons/Manifest-Feinschliff
 - [ ] Vollständige, geprüfte Installationsanleitung inkl. Update-Hinweis-UI
 - [ ] Safari/iPhone-QA-Checkliste
 
-Nächster Schritt: Familie testet Backup herunterladen → App neu installieren → Backup
-wiederherstellen als echten Beweis, dass Daten jetzt überleben. Danach weiter mit den
-verbleibenden Punkten oben.
+Nächster Schritt: Michael richtet den Cloudflare-Worker ein (`cloud-worker/README.md`), danach
+`.env.local` befüllen, neu bauen und auf dem echten iPhone bestätigen, dass eine Neuinstallation
+den letzten Stand automatisch zurückholt. Danach weiter mit den verbleibenden Punkten oben.
 
 ## Abgeschlossene Sprints
 

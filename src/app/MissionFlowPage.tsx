@@ -9,6 +9,7 @@ import { useSecretVault } from '../features/secret-vault'
 import { useProfile } from '../features/profile'
 import { BackLink, Button } from '../components'
 import { indexedDbDiaryRepository } from '../storage/diaryRepository'
+import { scheduleCloudBackup } from '../storage/cloudSync'
 import './MissionFlowPage.css'
 
 interface MissionFlowPageProps {
@@ -69,6 +70,7 @@ export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
     try {
       const entry = buildEntry(mission.id, rating, mission)
       await indexedDbDiaryRepository.saveEntry(entry)
+      scheduleCloudBackup(entry.profileId)
       navigate('/diary')
     } catch (error) {
       setPendingRating(rating)
