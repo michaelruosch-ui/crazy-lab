@@ -1,5 +1,18 @@
 # Changelog
 
+## Sprint 2 - Familien-Feedback eingearbeitet (2026-08-23)
+
+### Behoben/Hinzugefügt
+
+- "Zurück" im Schritt-Modus verlässt bei Schritt 1 die Mission (zurück zur Missionsdetail-
+  Ansicht) statt deaktiviert zu bleiben; `StepRunner` erhält dafür eine `onExit`-Callback-Prop.
+- Tagebucheinträge sind jetzt anklickbar und öffnen eine Detailansicht (`/diary/:entryId`,
+  `features/diary/DiaryEntryDetailPage`) mit allen erfassten Bewertungsdetails.
+- "Nochmal machen" lässt sich direkt aus der Tagebuch-Detailansicht umschalten und wird
+  dauerhaft gespeichert (bestehender `DiaryRepository.saveEntry` als Upsert wiederverwendet).
+- 6 neue automatisierte Tests (Zurück/Exit-Verhalten, Tagebuch-Navigation, Detailansicht,
+  Persistenz des Umschaltens) - insgesamt 48.
+
 ## Sprint 2 - Entdecken und Wiederfinden (2026-08-23)
 
 ### Hinzugefügt

@@ -1,0 +1,57 @@
+.diary-entry-detail {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.diary-entry-detail__loading {
+  padding: 24px 16px;
+}
+
+.diary-entry-detail__back {
+  color: var(--color-teal);
+  font-weight: 700;
+  text-decoration: none;
+  align-self: flex-start;
+}
+
+.diary-entry-detail__invention {
+  margin-top: -8px;
+  font-style: italic;
+}
+
+.diary-entry-detail__badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.diary-entry-detail__facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 0;
+  background: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  padding: 14px;
+}
+
+.diary-entry-detail__facts dt {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-dim);
+}
+
+.diary-entry-detail__facts dd {
+  margin: 2px 0 0;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.diary-entry-detail__pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}

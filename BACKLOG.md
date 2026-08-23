@@ -9,8 +9,10 @@ hier im Abschnitt "Unpriorisierte Ideen" und werden später priorisiert.
 
 Status: Implementierung abgeschlossen, Typecheck/Lint/Tests/Build grün, manuell im Browser bei
 iPhone-Breite (390px) durchgespielt (Startseite, Kategorie-Vorschläge, Mission öffnen, Merken,
-Verstecken, Verlauf, Geheimfach). **Noch offen:** Rückmeldung von Michael und Elena, ob sich die
-neue Startseite gut anfühlt und verständlich ist, bevor Sprint 3 beginnt.
+Verstecken, Verlauf, Geheimfach). Erstes Familien-Feedback am 2026-08-23 eingearbeitet: Ausstieg
+aus dem Schritt-Modus, anklickbare Tagebucheinträge mit Detailansicht, "Nochmal machen"-Umschalter
+direkt im Tagebuch. **Noch offen:** finale Rückmeldung von Michael und Elena, bevor Sprint 3
+beginnt.
 
 - [x] Startseite (`/`) mit Tagesmission und fünf Kategorie-Abschnitten
 - [x] Bis zu fünf Vorschläge pro Kategorie (primäre und passende sekundäre Kategorie)
@@ -21,6 +23,9 @@ neue Startseite gut anfühlt und verständlich ist, bevor Sprint 3 beginnt.
 - [x] Tagesmission: tagesstabile Auswahl über alle sichtbaren Missionen
 - [x] Missionsablauf (Detail/Schritte/Bewertung) funktioniert jetzt für jede Mission über
       `/mission/:missionId`, nicht mehr nur für eine fest verdrahtete Beispielmission
+- [x] "Zurück" bei Schritt 1 verlässt den Schritt-Modus statt inaktiv zu bleiben
+- [x] Tagebucheinträge sind anklickbar und öffnen eine Detailansicht (`/diary/:entryId`)
+- [x] "Nochmal machen" lässt sich direkt im Tagebuch umschalten und bleibt gespeichert
 - [ ] Rückmeldung von Michael und Elena zur neuen Startseite
 
 ## Abgeschlossene Sprints

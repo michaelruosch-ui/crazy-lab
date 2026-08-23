@@ -27,18 +27,21 @@ export function DiaryPage() {
         {entries.map((entry) => {
           const stamp = STAMPS.find((s) => s.id === entry.rating.stamp)
           return (
-            <li key={entry.id} className="diary-page__entry">
-              <span className="diary-page__stamp">{stamp?.emoji}</span>
-              <div className="diary-page__entry-body">
-                <h2>{entry.missionSnapshot.title}</h2>
-                <p>
-                  {STATUS_LABELS[entry.status]} · Ergebnis {entry.rating.result}/5
-                  {entry.rating.inventionName ? ` · "${entry.rating.inventionName}"` : ''}
-                </p>
-                <p className="diary-page__timestamp">
-                  {new Date(entry.completedAt).toLocaleString('de-CH')}
-                </p>
-              </div>
+            <li key={entry.id}>
+              <Link to={`/diary/${entry.id}`} className="diary-page__entry">
+                <span className="diary-page__stamp">{stamp?.emoji}</span>
+                <div className="diary-page__entry-body">
+                  <h2>{entry.missionSnapshot.title}</h2>
+                  <p>
+                    {STATUS_LABELS[entry.status]} · Ergebnis {entry.rating.result}/5
+                    {entry.rating.inventionName ? ` · "${entry.rating.inventionName}"` : ''}
+                    {entry.rating.wouldRepeat ? ' · 🔁 nochmal machen' : ''}
+                  </p>
+                  <p className="diary-page__timestamp">
+                    {new Date(entry.completedAt).toLocaleString('de-CH')}
+                  </p>
+                </div>
+              </Link>
             </li>
           )
         })}

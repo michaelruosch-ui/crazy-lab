@@ -8,9 +8,10 @@ import './StepRunner.css'
 interface StepRunnerProps {
   mission: Mission
   onAllStepsDone: () => void
+  onExit: () => void
 }
 
-export function StepRunner({ mission, onAllStepsDone }: StepRunnerProps) {
+export function StepRunner({ mission, onAllStepsDone, onExit }: StepRunnerProps) {
   const [checkedSteps, setCheckedSteps] = useState<Set<string>>(new Set())
   const [currentIndex, setCurrentIndex] = useState(0)
   const [helpVisible, setHelpVisible] = useState(false)
@@ -78,7 +79,10 @@ export function StepRunner({ mission, onAllStepsDone }: StepRunnerProps) {
           {helpVisible ? 'Hilfe schliessen' : 'Hilfe!'}
         </Button>
         <div className="step-runner__nav">
-          <Button variant="secondary" onClick={() => goToStep(currentIndex - 1)} disabled={currentIndex === 0}>
+          <Button
+            variant="secondary"
+            onClick={() => (currentIndex === 0 ? onExit() : goToStep(currentIndex - 1))}
+          >
             Zurück
           </Button>
           {currentIndex < steps.length - 1 ? (

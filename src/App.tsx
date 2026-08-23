@@ -1,7 +1,7 @@
 import { Routes, Route, useParams } from 'react-router-dom'
 import { MissionFlowPage } from './app/MissionFlowPage'
 import { HomePage, HistoryPage } from './features/missions'
-import { DiaryPage } from './features/diary'
+import { DiaryPage, DiaryEntryDetailPage } from './features/diary'
 import { SecretVaultPage } from './features/secret-vault'
 
 function MissionRoute() {
@@ -18,6 +18,7 @@ export function App() {
       <Route path="/geheimfach" element={<SecretVaultPage />} />
       <Route path="/verlauf" element={<HistoryPage />} />
       <Route path="/diary" element={<DiaryPage />} />
+      <Route path="/diary/:entryId" element={<DiaryEntryDetailPage />} />
     </Routes>
   )
 }

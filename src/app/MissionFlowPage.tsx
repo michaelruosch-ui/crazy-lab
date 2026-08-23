@@ -92,7 +92,13 @@ export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
   }
 
   if (phase === 'run') {
-    return <StepRunner mission={mission} onAllStepsDone={() => setPhase('rating')} />
+    return (
+      <StepRunner
+        mission={mission}
+        onAllStepsDone={() => setPhase('rating')}
+        onExit={() => setPhase('detail')}
+      />
+    )
   }
 
   return (
