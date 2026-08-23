@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import type { Birthday, MascotVariant, Profile } from '../../domain'
 import { DEFAULT_PROFILE, generateId } from '../../domain'
 import { BackLink, Button, MascotPicker } from '../../components'
@@ -19,7 +19,7 @@ export function ProfilePage() {
   const [name, setName] = useState('')
   const [nameSyncedWith, setNameSyncedWith] = useState<Profile | null>(null)
   const [newBirthdayName, setNewBirthdayName] = useState('')
-  const [newBirthdayDate, setNewBirthdayDate] = useState('')
+  const dateInputRef = useRef<HTMLInputElement>(null)
 
   if (profile && profile !== nameSyncedWith) {
     setNameSyncedWith(profile)
@@ -52,15 +52,16 @@ export function ProfilePage() {
   }
 
   async function addBirthday() {
-    if (!profile || !newBirthdayName.trim() || !newBirthdayDate) return
+    const fullDate = dateInputRef.current?.value ?? ''
+    if (!profile || !newBirthdayName.trim() || !fullDate) return
     const birthday: Birthday = {
       id: generateId(),
       personName: newBirthdayName.trim(),
-      monthDay: newBirthdayDate,
+      monthDay: fullDate.slice(5),
     }
     await save({ ...profile, birthdays: [...profile.birthdays, birthday] })
     setNewBirthdayName('')
-    setNewBirthdayDate('')
+    if (dateInputRef.current) dateInputRef.current.value = ''
   }
 
   async function removeBirthday(id: string) {
@@ -119,8 +120,8 @@ export function ProfilePage() {
           <input
             className="profile-page__input"
             type="date"
-            value={newBirthdayDate ? `2000-${newBirthdayDate}` : ''}
-            onChange={(e) => setNewBirthdayDate(e.target.value.slice(5))}
+            ref={dateInputRef}
+            defaultValue=""
           />
           <Button variant="secondary" onClick={addBirthday}>
             Geburtstag hinzufügen
