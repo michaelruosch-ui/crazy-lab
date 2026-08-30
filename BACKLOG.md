@@ -64,6 +64,9 @@ Status: **Technisch umgesetzt (2026-08-30), Familienabnahme offen.**
 - [x] Beste bekannte Variante als „Für dich empfohlen“ markieren
 - [x] Ohne Bewertungen stabile ursprüngliche Reihenfolge, keine zufällige Bevorzugung
 - [x] 2 neue Ranking-Tests und erweiterte Formular-Tests; insgesamt 96 Tests
+- [x] Familienfeedback: Tagesmission bleibt exklusiv; abgeschlossene Missionen machen Platz für
+      neue Vorschläge und bleiben bei „Merken“ unter „Gemerkte Missionen“ wiederholbar
+- [x] Zusätzlicher Vorschlags-Test; insgesamt 97 Tests
 - [ ] Elena bewertet Varianten auf dem echten iPhone und gibt Rückmeldung zur Bedienung
 
 ## Abgeschlossene Sprints

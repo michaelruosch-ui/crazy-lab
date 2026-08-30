@@ -59,6 +59,22 @@ describe('suggestionsForCategory', () => {
     expect(result).toEqual([])
   })
 
+  it('ersetzt abgeschlossene Missionen durch den nächsten noch offenen Vorschlag', () => {
+    const initial = suggestionsForCategory(missions, 'getraenk', new Set())
+    const completedId = initial[0]!.id
+    const result = suggestionsForCategory(
+      missions,
+      'getraenk',
+      new Set(),
+      undefined,
+      new Set([completedId]),
+    )
+
+    expect(result).toHaveLength(5)
+    expect(result.some((mission) => mission.id === completedId)).toBe(false)
+    expect(result.map((mission) => mission.id)).not.toEqual(initial.map((mission) => mission.id))
+  })
+
   it('zeigt maximal fünf Vorschläge', () => {
     const result = suggestionsForCategory(missions, 'getraenk', new Set())
     expect(result.length).toBeLessThanOrEqual(5)

@@ -15,12 +15,15 @@ export function suggestionsForCategory(
   category: MissionCategory,
   hiddenMissionIds: ReadonlySet<string>,
   profile?: PreferenceProfile,
+  completedMissionIds: ReadonlySet<string> = new Set(),
 ): Mission[] {
   const primary = missions.filter((m) => m.primaryCategory === category)
   const secondary = missions.filter(
     (m) => m.primaryCategory !== category && m.secondaryCategories.includes(category),
   )
-  const candidates = [...primary, ...secondary].filter((m) => !hiddenMissionIds.has(m.id))
+  const candidates = [...primary, ...secondary].filter(
+    (m) => !hiddenMissionIds.has(m.id) && !completedMissionIds.has(m.id),
+  )
 
   if (profile && profile.ratedMissionCount > 0) {
     candidates.sort(

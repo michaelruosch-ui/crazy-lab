@@ -504,3 +504,17 @@ Durchschnitt dieser Werte berechnet. Die beste bereits bewertete Variante steht 
 **Konsequenzen:** Keine Black-Box-KI und kein zusätzlicher IndexedDB-Store. Alte Einträge bleiben
 gültig, weil alle neuen Felder optional sind. Die Empfehlung lernt nur aus Elenas tatsächlich
 abgeschlossenen Varianten und lässt sich jederzeit aus den Tagebucheinträgen erklären.
+
+## ADR-023: Abgeschlossene Missionen machen Platz, gemerkte bleiben wiederholbar
+
+**Status:** Angenommen (Sprint 7, Familienfeedback 2026-08-30)
+
+**Entscheidung:** Die Startseite schlägt abgeschlossene Missionen nicht erneut vor. Dadurch rückt
+je Kategorie automatisch die nächste noch offene Mission nach. Die Tagesmission ist zusätzlich
+immer von den Kategorie-Listen ausgeschlossen. Hat Elena eine Mission gemerkt, bleibt sie auch
+nach dem Abschluss im Bereich „Gemerkte Missionen“ und kann dort über „Nochmals machen“ erneut
+gestartet werden. Alle abgeschlossenen Missionen bleiben ausserdem im Tagebuch sichtbar.
+
+**Konsequenzen:** Vorschläge wirken frisch, ohne Elenas Favoriten zu verlieren. Kategorien mit
+noch kleinem Katalog können nach Abschluss vorübergehend leer werden; neue Inhalte kommen in den
+bereits geplanten Inhaltssprints und werden nicht als ungeplanter Zwischensprint eingeschoben.

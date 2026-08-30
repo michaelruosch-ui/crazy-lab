@@ -178,6 +178,12 @@ Mission und Variante den Mittelwert der vorhandenen Einzelbewertungen (ersatzwei
 Gesamtergebnis) und sortiert bekannte Varianten absteigend. Unbewertete Varianten folgen in der
 redaktionellen Katalogreihenfolge. Es gibt kein separates Lernprofil und keine zweite
 Speicherquelle: Die Tagebucheinträge bleiben die nachvollziehbare Wahrheit.
+
+Die Startseite leitet aus denselben Tagebucheinträgen zusätzlich die Menge abgeschlossener
+Missions-IDs ab. `suggestionsForCategory` blendet diese aus, sodass noch offene Katalogeinträge
+nachrücken. Die Tagesmission erhält sowohl die aktuell sichtbaren Kategorie-IDs als auch die
+abgeschlossenen IDs als Ausschlussmenge. Im Geheimfach gespeicherte Missionen werden davon nicht
+gelöscht und bleiben unabhängig von ihrem Abschlussstatus wiederholbar.
 `suggestionsForCategory` bleibt auf fünf Ergebnisse begrenzt und nutzt weiterhin das lokale
 Präferenzprofil aus Sprint 3. Die Startseite berechnet zuerst alle Kategorie-Vorschläge und
 übergibt deren IDs als Ausschlussmenge an `pickDailyMission`; die Tagesmission ist damit immer

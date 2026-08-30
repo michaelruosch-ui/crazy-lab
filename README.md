@@ -22,6 +22,8 @@ Getränke-Labor umfasst inzwischen 15 sichere Missionen mit strukturierten Gesch
 Optikmerkmalen sowie mindestens zwei direkt sichtbaren Varianten pro Getränk. Elena kann eine
 Variante auswählen und Geschmack, Optik, Gruseligkeit und Dekoration getrennt bewerten; beim
 nächsten Versuch empfiehlt Crazy Lab die bisher am besten bewertete Variante zuerst.
+Abgeschlossene Missionen machen auf der Startseite Platz für neue Vorschläge; gemerkte Missionen
+bleiben unter „Gemerkte Missionen“ zum erneuten Starten erhalten.
 
 ## Voraussetzungen
 

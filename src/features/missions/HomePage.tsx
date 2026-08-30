@@ -30,6 +30,7 @@ export function HomePage() {
   const { currentlyHiddenMissionIds, hide } = useHiddenMissions(DEFAULT_PROFILE.id)
   const { entries: diaryEntries } = useDiaryEntries(DEFAULT_PROFILE.id)
   const preferenceProfile = buildPreferenceProfile(DEFAULT_PROFILE.id, diaryEntries)
+  const completedMissionIds = new Set(diaryEntries.map((entry) => entry.missionSnapshot.missionId))
 
   const researcherName = profile?.researcherName ?? DEFAULT_PROFILE.researcherName
   const mascotId = profile?.mascotVariant ?? DEFAULT_PROFILE.mascotVariant
@@ -39,7 +40,13 @@ export function HomePage() {
   const categorySuggestions = new Map(
     CATEGORY_SECTIONS.map(({ category }) => [
       category,
-      suggestionsForCategory(missions, category, currentlyHiddenMissionIds, preferenceProfile),
+      suggestionsForCategory(
+        missions,
+        category,
+        currentlyHiddenMissionIds,
+        preferenceProfile,
+        completedMissionIds,
+      ),
     ]),
   )
   const categoryMissionIds = new Set(
@@ -51,7 +58,7 @@ export function HomePage() {
     currentlyHiddenMissionIds,
     DEFAULT_PROFILE.id,
     today,
-    categoryMissionIds,
+    new Set([...categoryMissionIds, ...completedMissionIds]),
   )
 
   return (
@@ -92,7 +99,7 @@ export function HomePage() {
 
       <nav className="home-page__nav">
         <Link to="/geheimfach" className="home-page__nav-link">
-          🗝️ Geheimfach
+          🗝️ Gemerkte Missionen
         </Link>
         <Link to="/verlauf" className="home-page__nav-link">
           📜 Verlauf

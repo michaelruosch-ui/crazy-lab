@@ -8,7 +8,11 @@
 - Crazy Lab sortiert Varianten beim nächsten Versuch nach dem Durchschnitt von Elenas eigenen
   Bewertungen und markiert die beste bekannte Variante als persönliche Empfehlung.
 - Ohne vorhandene Bewertung bleibt die redaktionelle Katalogreihenfolge erhalten.
-- 96 Tests erfolgreich; Familienabnahme auf Elenas iPhone offen.
+- Familienfeedback: Abgeschlossene Missionen verschwinden aus den normalen Vorschlägen, die
+  nächste offene Mission rückt nach. Gemerkte Missionen bleiben im verständlicher benannten
+  Bereich „Gemerkte Missionen“ mit „Nochmals machen“ erreichbar. Die Tagesmission bleibt von den
+  Kategorie-Vorschlägen ausgeschlossen.
+- 97 Tests erfolgreich; Familienabnahme auf Elenas iPhone offen.
 
 ## Sprint 5 - Online-Betrieb und lokale Mac-Sicherung (2026-08-30)
 

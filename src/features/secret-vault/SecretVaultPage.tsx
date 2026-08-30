@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { DEFAULT_PROFILE } from '../../domain'
 import { missions } from '../../data'
 import { BackLink, MissionCard } from '../../components'
@@ -13,18 +14,23 @@ export function SecretVaultPage() {
 
   return (
     <div className="secret-vault-page">
-      <h1>🗝️ Geheimfach</h1>
-      <p>Hier liegen alle Missionen, die du dir aufgehoben hast.</p>
+      <h1>🗝️ Gemerkte Missionen</h1>
+      <p>Hier liegen alle Missionen, die du dir aufgehoben hast – auch nach dem Abschluss.</p>
 
       {loading && <p>Lade...</p>}
 
       {!loading && savedMissions.length === 0 && (
-        <p>Noch nichts im Geheimfach. Speichere Missionen, die du dir merken willst!</p>
+        <p>Noch nichts gemerkt. Tippe bei einer Mission auf „Merken“, um sie hier abzulegen.</p>
       )}
 
       <div className="secret-vault-page__list">
         {savedMissions.map((mission) => (
-          <MissionCard key={mission.id} mission={mission} />
+          <div key={mission.id} className="secret-vault-page__mission">
+            <MissionCard mission={mission} />
+            <Link to={`/mission/${mission.id}`} className="secret-vault-page__repeat">
+              🔁 Nochmals machen
+            </Link>
+          </div>
         ))}
       </div>
 
