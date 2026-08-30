@@ -102,6 +102,36 @@ export function DiaryEntryDetailPage() {
             </dd>
           </div>
         )}
+        {entry.rating.appearance !== undefined && (
+          <div>
+            <dt>Optik</dt>
+            <dd>
+              <Stars value={entry.rating.appearance} />
+            </dd>
+          </div>
+        )}
+        {entry.rating.scariness !== undefined && (
+          <div>
+            <dt>Gruseligkeit</dt>
+            <dd>
+              <Stars value={entry.rating.scariness} />
+            </dd>
+          </div>
+        )}
+        {entry.rating.decoration !== undefined && (
+          <div>
+            <dt>Dekoration</dt>
+            <dd>
+              <Stars value={entry.rating.decoration} />
+            </dd>
+          </div>
+        )}
+        {entry.rating.drinkVariant && (
+          <div>
+            <dt>Variante</dt>
+            <dd>{entry.rating.drinkVariant}</dd>
+          </div>
+        )}
         <div>
           <dt>Weiterempfehlen</dt>
           <dd>{entry.rating.wouldRecommend ? 'Ja' : 'Nein'}</dd>

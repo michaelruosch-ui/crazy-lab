@@ -168,6 +168,16 @@ benötigte Geräte und mindestens zwei Varianten. Vierzehn neue Getränke liegen
 `src/data/drinkMissions.ts`; zusammen mit der ersten Beispielmission ergeben sich genau 15.
 
 Die Merkmale versorgen die Missionsdetailseite und bilden eine Grundlage für Sprint 7.
+
+## Getränke-Bewertung und Variantenlernen (Sprint 7)
+
+`CompletionRating` speichert für Getränke optional `taste`, `appearance`, `scariness`,
+`decoration` und den Namen der tatsächlich gewählten `drinkVariant`. Alte Tagebucheinträge ohne
+diese Felder bleiben vollständig kompatibel. `domain/drinkVariantRanking.ts` berechnet je
+Mission und Variante den Mittelwert der vorhandenen Einzelbewertungen (ersatzweise das
+Gesamtergebnis) und sortiert bekannte Varianten absteigend. Unbewertete Varianten folgen in der
+redaktionellen Katalogreihenfolge. Es gibt kein separates Lernprofil und keine zweite
+Speicherquelle: Die Tagebucheinträge bleiben die nachvollziehbare Wahrheit.
 `suggestionsForCategory` bleibt auf fünf Ergebnisse begrenzt und nutzt weiterhin das lokale
 Präferenzprofil aus Sprint 3. Die Startseite berechnet zuerst alle Kategorie-Vorschläge und
 übergibt deren IDs als Ausschlussmenge an `pickDailyMission`; die Tagesmission ist damit immer

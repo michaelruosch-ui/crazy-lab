@@ -35,6 +35,10 @@ export const STAMPS: readonly { id: StampId; emoji: string; label: string }[] = 
 export interface CompletionRating {
   result: 1 | 2 | 3 | 4 | 5
   taste?: 1 | 2 | 3 | 4 | 5
+  appearance?: 1 | 2 | 3 | 4 | 5
+  scariness?: 1 | 2 | 3 | 4 | 5
+  decoration?: 1 | 2 | 3 | 4 | 5
+  drinkVariant?: string
   difficultyFeedback: DifficultyFeedback
   wouldRepeat: boolean
   wouldRecommend: boolean

@@ -487,3 +487,20 @@ bereitgestellt werden, enthält aber keine persönlichen Daten.
 gelegentlich bewusst eine Backup-Datei herunter; ohne Time Machine ist diese Mac-Kopie nicht
 nochmals abgesichert. Die öffentliche Bereitstellung benötigt ein kostenloses Hostingkonto, erhält
 aber keine persönlichen Daten und keine geheimen Zugriffsschlüssel.
+
+## ADR-022: Variantenlernen direkt aus Tagebuchbewertungen
+
+**Status:** Angenommen (Sprint 7, 2026-08-30)
+
+**Kontext:** Sprint 7 soll Getränke nach Geschmack, Optik, Gruseligkeit und Dekoration bewerten
+und daraus lernende Variantenempfehlungen ableiten. Für ein zehnjähriges Kind muss sichtbar
+bleiben, warum eine Variante empfohlen wird.
+
+**Entscheidung:** Jede Bewertung speichert die konkret gewählte Variante und vier Sternwerte im
+bestehenden Tagebucheintrag. Beim nächsten Öffnen derselben Mission wird pro Variante der einfache
+Durchschnitt dieser Werte berechnet. Die beste bereits bewertete Variante steht zuerst und erhält
+„Für dich empfohlen“. Ohne Bewertungen gilt unverändert die redaktionelle Reihenfolge.
+
+**Konsequenzen:** Keine Black-Box-KI und kein zusätzlicher IndexedDB-Store. Alte Einträge bleiben
+gültig, weil alle neuen Felder optional sind. Die Empfehlung lernt nur aus Elenas tatsächlich
+abgeschlossenen Varianten und lässt sich jederzeit aus den Tagebucheinträgen erklären.

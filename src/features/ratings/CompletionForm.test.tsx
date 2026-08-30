@@ -10,7 +10,9 @@ describe('CompletionForm', () => {
   it('speichert strukturierte Anpassungswünsche korrekt', async () => {
     const user = userEvent.setup()
     const onSubmit = vi.fn()
-    render(<CompletionForm mission={drinkMission} onSubmit={onSubmit} />)
+    render(
+      <CompletionForm mission={drinkMission} onSubmit={onSubmit} drinkVariant="Blutmond-Version" />,
+    )
 
     await user.click(screen.getByRole('button', { name: 'Gruseliger' }))
     await user.click(screen.getByRole('button', { name: 'Weniger süss' }))
@@ -23,6 +25,10 @@ describe('CompletionForm', () => {
     expect(rating.inventionName).toBe('Elenas Trank')
     expect(rating.result).toBe(5)
     expect(rating.taste).toBe(5)
+    expect(rating.appearance).toBe(5)
+    expect(rating.scariness).toBe(5)
+    expect(rating.decoration).toBe(5)
+    expect(rating.drinkVariant).toBe('Blutmond-Version')
     expect(rating.difficultyFeedback).toBe('genau_richtig')
     expect(rating.wouldRepeat).toBe(true)
     expect(rating.wouldRecommend).toBe(true)
@@ -32,6 +38,9 @@ describe('CompletionForm', () => {
   it('erfasst Geschmack nur bei Getränke-Missionen', () => {
     render(<CompletionForm mission={drinkMission} onSubmit={vi.fn()} />)
     expect(screen.getByText('Geschmack')).toBeInTheDocument()
+    expect(screen.getByText('Optik')).toBeInTheDocument()
+    expect(screen.getByText('Gruseligkeit')).toBeInTheDocument()
+    expect(screen.getByText('Dekoration')).toBeInTheDocument()
   })
 
   it('zeigt beim Wählen eines Stempels die Stempel-Animation mit dem passenden Maskottchen', async () => {

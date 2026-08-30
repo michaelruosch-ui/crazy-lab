@@ -5,8 +5,8 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich in **Sprint 5** (PWA auf Elenas iPhone); **Sprint 6 ist technisch
-umgesetzt und wartet auf Elenas Familienabnahme**. Der aktuelle Stand: Beim
+Dieses Repository befindet sich in **Sprint 7** (Getränke-Bewertung und lernende Varianten);
+die Sprints 1–6 sind abgeschlossen. Der aktuelle Stand: Beim
 ersten Start wählt man eines von 33 Maskottchen (8 Tierarten in verschiedenen Farbwelten) und
 einen Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf
 Kategorien (Getränke, Basteln, Experimente, Foto-Challenges, Schwestern-Missionen). Jede Mission
@@ -19,7 +19,9 @@ Geburtstage jederzeit ändern; an gespeicherten Geburtstagen erscheint eine beso
 Geburtstagsmission. Ausserdem lässt sich dort jederzeit ein Backup aller lokalen Daten
 herunterladen und wieder einspielen - komplett offline, ohne Login und ohne Backend. Das
 Getränke-Labor umfasst inzwischen 15 sichere Missionen mit strukturierten Geschmacks- und
-Optikmerkmalen sowie mindestens zwei direkt sichtbaren Varianten pro Getränk.
+Optikmerkmalen sowie mindestens zwei direkt sichtbaren Varianten pro Getränk. Elena kann eine
+Variante auswählen und Geschmack, Optik, Gruseligkeit und Dekoration getrennt bewerten; beim
+nächsten Versuch empfiehlt Crazy Lab die bisher am besten bewertete Variante zuerst.
 
 ## Voraussetzungen
 

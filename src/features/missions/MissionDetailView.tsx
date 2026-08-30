@@ -1,4 +1,4 @@
-import type { Mission } from '../../domain'
+import type { Mission, RankedDrinkVariant } from '../../domain'
 import { Badge, Button, MissionImage } from '../../components'
 import './MissionDetailView.css'
 
@@ -28,10 +28,20 @@ const TASTE_LABELS = {
 interface MissionDetailViewProps {
   mission: Mission
   onStart: () => void
+  rankedVariants?: RankedDrinkVariant[]
+  selectedVariant?: string
+  onSelectVariant?: (name: string) => void
 }
 
-export function MissionDetailView({ mission, onStart }: MissionDetailViewProps) {
+export function MissionDetailView({
+  mission,
+  onStart,
+  rankedVariants,
+  selectedVariant,
+  onSelectVariant,
+}: MissionDetailViewProps) {
   const safety = SAFETY_LABELS[mission.safetyLevel]
+  const variants = rankedVariants ?? mission.drinkProfile?.variants ?? []
 
   return (
     <div className="mission-detail">
@@ -85,11 +95,28 @@ export function MissionDetailView({ mission, onStart }: MissionDetailViewProps) 
               </Badge>
             ))}
           </div>
-          <h3>Varianten aus dem Geheimfach</h3>
+          <h3>Wähle deine Variante</h3>
           <ul className="mission-detail__variants">
-            {mission.drinkProfile.variants.map((variant) => (
+            {variants.map((variant, index) => (
               <li key={variant.name}>
-                <strong>{variant.name}:</strong> {variant.description}
+                <label>
+                  {onSelectVariant && (
+                    <input
+                      type="radio"
+                      name="drink-variant"
+                      checked={selectedVariant === variant.name}
+                      onChange={() => onSelectVariant(variant.name)}
+                    />
+                  )}
+                  <span>
+                    <strong>{variant.name}</strong>
+                    {index === 0 && rankedVariants?.[0]?.ratingCount
+                      ? ' · ⭐ Für dich empfohlen'
+                      : ''}
+                    <br />
+                    {variant.description}
+                  </span>
+                </label>
               </li>
             ))}
           </ul>

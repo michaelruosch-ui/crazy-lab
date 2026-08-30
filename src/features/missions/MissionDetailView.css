@@ -78,3 +78,18 @@
 .mission-detail__variants li + li {
   margin-top: 8px;
 }
+
+.mission-detail__variants label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: var(--touch-target);
+  cursor: pointer;
+}
+
+.mission-detail__variants input {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  accent-color: var(--color-teal);
+}

@@ -1,12 +1,19 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getMissionById } from '../data'
-import { DEFAULT_PROFILE, generateId, type CompletionRating, type DiaryEntry } from '../domain'
+import {
+  DEFAULT_PROFILE,
+  generateId,
+  rankDrinkVariants,
+  type CompletionRating,
+  type DiaryEntry,
+} from '../domain'
 import { MissionDetailView } from '../features/missions'
 import { StepRunner } from '../features/mission-run'
 import { CompletionForm } from '../features/ratings'
 import { useSecretVault } from '../features/secret-vault'
 import { useProfile } from '../features/profile'
+import { useDiaryEntries } from '../features/diary'
 import { BackLink, Button } from '../components'
 import { indexedDbDiaryRepository } from '../storage/diaryRepository'
 import './MissionFlowPage.css'
@@ -58,6 +65,11 @@ export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
   const navigate = useNavigate()
   const { savedMissionIds, toggle: toggleSaved } = useSecretVault(DEFAULT_PROFILE.id)
   const { profile } = useProfile(DEFAULT_PROFILE.id)
+  const { entries } = useDiaryEntries(DEFAULT_PROFILE.id)
+  const rankedVariants = mission ? rankDrinkVariants(mission, entries) : []
+  const [selectedVariant, setSelectedVariant] = useState<string | undefined>(undefined)
+  const effectiveVariant =
+    selectedVariant ?? rankedVariants[0]?.name ?? mission?.drinkProfile?.variants[0]?.name
 
   if (!mission) {
     return (
@@ -84,7 +96,13 @@ export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
   if (phase === 'detail') {
     return (
       <div className="mission-flow">
-        <MissionDetailView mission={mission} onStart={() => setPhase('run')} />
+        <MissionDetailView
+          mission={mission}
+          onStart={() => setPhase('run')}
+          rankedVariants={rankedVariants}
+          selectedVariant={effectiveVariant}
+          onSelectVariant={setSelectedVariant}
+        />
         <div className="mission-flow__secondary-actions">
           <Button variant="ghost" onClick={() => toggleSaved(mission.id)}>
             {savedMissionIds.has(mission.id) ? '🗝️ Gemerkt' : '🗝️ Merken'}
@@ -113,6 +131,7 @@ export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
         onSubmit={trySave}
         submitting={saveStatus === 'saving'}
         mascotId={profile?.mascotVariant}
+        drinkVariant={effectiveVariant}
       />
       {saveStatus === 'error' && (
         <div className="mission-flow__save-error" role="alert">

@@ -7,7 +7,7 @@ hier im Abschnitt "Unpriorisierte Ideen" und werden später priorisiert.
 
 ### Sprint 5 - PWA auf Elenas iPhone
 
-Status: In Arbeit. Rein technischer Sprint ohne neue sichtbare Funktionen - Ziel ist eine
+Status: **Abgeschlossen (2026-08-30).** Rein technischer Sprint ohne neue sichtbare Funktionen - Ziel ist eine
 zuverlässige, "richtige" Installation statt der bisherigen Behelfslösung über die lokale
 Netzwerk-IP.
 
@@ -32,14 +32,13 @@ Netzwerk-IP.
 - [x] iPhone-Backup öffnet den sichtbaren Teilen-Dialog für „In Dateien sichern“; keine falsche
       Erfolgsmeldung mehr nach einem bloss gestarteten Download
 - [x] Direktes Neuladen von Profil und anderen Unterseiten funktioniert auf GitHub Pages ohne 404
-- [ ] Safari/iPhone-QA-Checkliste
+- [x] Safari/iPhone-QA inklusive sichtbarem Datei-Export, erfolgreichem Restore und 404-Reparatur
 
-Nächster Schritt: abschliessende iPhone-QA inklusive manuellem Backup-Rückweg. Vor dem Entfernen
-der alten lokalen Installation muss dort zwingend ein Backup heruntergeladen werden.
+Familienabnahme durch Michael nach erfolgreichem Backup-und-Wiederherstellungs-Rundlauf.
 
 ### Parallel umgesetzt: Sprint 6 - Getränke-Labor
 
-Status: **Technisch umgesetzt (2026-08-30), Familienabnahme mit Elena offen.** Michael hat Sprint 6
+Status: **Abgeschlossen (2026-08-30).** Michael hat Sprint 6
 ausdrücklich vorgezogen, weil die offenen Punkte aus Sprint 5 Elenas Input benötigen. Sprint 5
 bleibt deshalb in Arbeit; Sprint 7 beginnt erst nach der Familienabnahme von Sprint 6.
 
@@ -51,7 +50,21 @@ bleibt deshalb in Arbeit; Sprint 7 beginnt erst nach der Familienabnahme von Spr
 - [x] Inhaltsregeln geprüft: nicht bitter, nicht scharf, kein Pfeffer und kein Kardamom
 - [x] Tagesmission ist exklusiv und erscheint nicht nochmals in einer Kategorie
 - [x] Automatische Daten- und UI-Tests ergänzt; nach Entfernung der Cloud-Tests insgesamt 94 Tests
-- [ ] Elena probiert und bewertet Auswahl, Geschmack, Namen und Varianten
+- [x] Von Michael und Elena für den Start von Sprint 7 freigegeben; weiteres Geschmacksfeedback
+      fliesst als normales Familienfeedback ein
+
+### Sprint 7 - Getränke-Bewertung und Varianten
+
+Status: **Technisch umgesetzt (2026-08-30), Familienabnahme offen.**
+
+- [x] Getränke getrennt nach Geschmack, Optik, Gruseligkeit und Dekoration bewerten
+- [x] Vor dem Start eine konkrete Getränkevariante auswählen
+- [x] Gewählte Variante und Einzelbewertungen im Tagebuch speichern und anzeigen
+- [x] Varianten anhand von Elenas bisherigen Bewertungen nachvollziehbar sortieren
+- [x] Beste bekannte Variante als „Für dich empfohlen“ markieren
+- [x] Ohne Bewertungen stabile ursprüngliche Reihenfolge, keine zufällige Bevorzugung
+- [x] 2 neue Ranking-Tests und erweiterte Formular-Tests; insgesamt 96 Tests
+- [ ] Elena bewertet Varianten auf dem echten iPhone und gibt Rückmeldung zur Bedienung
 
 ## Abgeschlossene Sprints
 
@@ -137,8 +150,6 @@ positiv beantwortet.
 
 ### P1 - Getränke zuerst vollständig ausbauen
 
-- **Sprint 7 - Getränke-Bewertung und Varianten:** Geschmack, Optik, Gruseligkeit, Dekoration
-  und lernende Variantenauswahl.
 - **Sprint 8 - Laborschrank Basis:** vorbereitete Materialliste, Bereiche, allgemeine und genaue
   Materialien, Mengenstatus, Bastelkisten und optionale Fotos.
 - **Sprint 9 - Einkaufsliste Basis:** missionsbezogene Liste, Coop bevorzugt, danach

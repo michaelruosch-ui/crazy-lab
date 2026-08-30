@@ -21,6 +21,19 @@
   padding: 0;
 }
 
+.completion-form__drink-rating {
+  display: grid;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  border-radius: var(--radius-md);
+  background: rgba(139, 92, 246, 0.08);
+}
+
+.completion-form__drink-rating p {
+  margin: 0;
+}
+
 .completion-form input[type='text'],
 .completion-form textarea {
   background: var(--color-bg-card);

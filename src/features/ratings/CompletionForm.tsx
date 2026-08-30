@@ -17,6 +17,7 @@ interface CompletionFormProps {
   onSubmit: (rating: CompletionRating) => void
   submitting?: boolean
   mascotId?: MascotId
+  drinkVariant?: string
 }
 
 const DIFFICULTY_OPTIONS: { value: DifficultyFeedback; label: string }[] = [
@@ -30,12 +31,16 @@ export function CompletionForm({
   onSubmit,
   submitting = false,
   mascotId = DEFAULT_PROFILE.mascotVariant,
+  drinkVariant,
 }: CompletionFormProps) {
   const isDrink =
     mission.primaryCategory === 'getraenk' || mission.secondaryCategories.includes('getraenk')
 
   const [result, setResult] = useState<1 | 2 | 3 | 4 | 5>(5)
   const [taste, setTaste] = useState<1 | 2 | 3 | 4 | 5>(5)
+  const [appearance, setAppearance] = useState<1 | 2 | 3 | 4 | 5>(5)
+  const [scariness, setScariness] = useState<1 | 2 | 3 | 4 | 5>(5)
+  const [decoration, setDecoration] = useState<1 | 2 | 3 | 4 | 5>(5)
   const [difficultyFeedback, setDifficultyFeedback] = useState<DifficultyFeedback>('genau_richtig')
   const [wouldRepeat, setWouldRepeat] = useState(true)
   const [wouldRecommend, setWouldRecommend] = useState(true)
@@ -59,6 +64,10 @@ export function CompletionForm({
     onSubmit({
       result,
       taste: isDrink ? taste : undefined,
+      appearance: isDrink ? appearance : undefined,
+      scariness: isDrink ? scariness : undefined,
+      decoration: isDrink ? decoration : undefined,
+      drinkVariant: isDrink ? drinkVariant : undefined,
       difficultyFeedback,
       wouldRepeat,
       wouldRecommend,
@@ -81,10 +90,29 @@ export function CompletionForm({
         </fieldset>
 
         {isDrink && (
-          <fieldset>
-            <legend>Geschmack</legend>
-            <StarPicker value={taste} onChange={setTaste} name="taste" />
-          </fieldset>
+          <div className="completion-form__drink-rating">
+            {drinkVariant && (
+              <p>
+                Bewertete Variante: <strong>{drinkVariant}</strong>
+              </p>
+            )}
+            <fieldset>
+              <legend>Geschmack</legend>
+              <StarPicker value={taste} onChange={setTaste} name="Geschmack" />
+            </fieldset>
+            <fieldset>
+              <legend>Optik</legend>
+              <StarPicker value={appearance} onChange={setAppearance} name="Optik" />
+            </fieldset>
+            <fieldset>
+              <legend>Gruseligkeit</legend>
+              <StarPicker value={scariness} onChange={setScariness} name="Gruseligkeit" />
+            </fieldset>
+            <fieldset>
+              <legend>Dekoration</legend>
+              <StarPicker value={decoration} onChange={setDecoration} name="Dekoration" />
+            </fieldset>
+          </div>
         )}
 
         <fieldset>

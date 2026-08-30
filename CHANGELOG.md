@@ -1,5 +1,15 @@
 # Changelog
 
+## Sprint 7 - Getränke-Bewertung und lernende Varianten (2026-08-30)
+
+- Vor Missionsstart lässt sich eine konkrete Getränkevariante auswählen.
+- Getränke werden getrennt nach Geschmack, Optik, Gruseligkeit und Dekoration bewertet.
+- Tagebucheinträge speichern und zeigen die gewählte Variante und alle vier Einzelbewertungen.
+- Crazy Lab sortiert Varianten beim nächsten Versuch nach dem Durchschnitt von Elenas eigenen
+  Bewertungen und markiert die beste bekannte Variante als persönliche Empfehlung.
+- Ohne vorhandene Bewertung bleibt die redaktionelle Katalogreihenfolge erhalten.
+- 96 Tests erfolgreich; Familienabnahme auf Elenas iPhone offen.
+
 ## Sprint 5 - Online-Betrieb und lokale Mac-Sicherung (2026-08-30)
 
 - Cloudflare-Client, Worker-Gerüst und zugehörige Abhängigkeiten vollständig entfernt.
@@ -17,7 +27,8 @@
   gespeichert.
 - Navigation auf GitHub Pages auf Hash-Routen umgestellt: Nach einer Wiederherstellung oder dem
   Neuladen einer Unterseite erscheint dadurch kein `404 File not found` mehr.
-- 94 Tests erfolgreich; öffentlicher Build technisch geprüft, echter iPhone-Abschlusstest offen.
+- Öffentlicher Build sowie vollständiger Backup-/Restore-Rundlauf auf dem iPhone erfolgreich;
+  Sprint 5 abgeschlossen.
 
 ## Sprint 6 - Getränke-Labor, Familienabnahme offen (2026-08-30)
 
