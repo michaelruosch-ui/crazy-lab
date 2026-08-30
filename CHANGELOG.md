@@ -12,6 +12,9 @@
 - Neues, von Michael ausgewähltes Schleimmonster-App-Symbol und statisches Web-App-Manifest.
 - Reiner Programmcode kostenlos und verschlüsselt über GitHub Pages veröffentlicht; der Mac muss
   für die Nutzung nicht laufen und persönliche Daten werden nicht hochgeladen.
+- iPhone-Backup korrigiert: Statt eines unzuverlässigen stillen Downloads öffnet Crazy Lab den
+  iOS-Teilen-Dialog für „In Dateien sichern“ und behauptet nicht mehr ungeprüft, die Datei sei
+  gespeichert.
 - 94 Tests erfolgreich; öffentlicher Build technisch geprüft, echter iPhone-Abschlusstest offen.
 
 ## Sprint 6 - Getränke-Labor, Familienabnahme offen (2026-08-30)

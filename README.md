@@ -94,6 +94,9 @@ netz. Hauptspeicher ist IndexedDB auf dem iPhone; WebKit wird beim Start zusätz
 Speicher gebeten. Für eine zweite Kopie wird gelegentlich über die Profilseite eine Backup-Datei
 heruntergeladen und auf dem Mac aufbewahrt. Eine automatische Mac-Verbindung wurde verworfen,
 weil ihr Zugriffsschlüssel in einem öffentlichen Web-Build nicht geheim bliebe (ADR-021).
+Auf dem iPhone öffnet die Backup-Schaltfläche den Teilen-Dialog; dort muss ausdrücklich
+„In Dateien sichern“ gewählt und die erzeugte `crazylab-backup-….json` danach sichtbar geprüft
+werden.
 
 ## Architektur
 

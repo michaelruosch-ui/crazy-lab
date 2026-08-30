@@ -29,6 +29,8 @@ Netzwerk-IP.
 - [x] Automatische Aktualisierung ohne Update-Knopf durch Online-Laden beim erneuten Öffnen
 - [x] Reiner Programmcode kostenlos und verschlüsselt über GitHub Pages veröffentlicht:
       `https://michaelruosch-ui.github.io/crazy-lab/`
+- [x] iPhone-Backup öffnet den sichtbaren Teilen-Dialog für „In Dateien sichern“; keine falsche
+      Erfolgsmeldung mehr nach einem bloss gestarteten Download
 - [ ] Safari/iPhone-QA-Checkliste
 
 Nächster Schritt: abschliessende iPhone-QA inklusive manuellem Backup-Rückweg. Vor dem Entfernen

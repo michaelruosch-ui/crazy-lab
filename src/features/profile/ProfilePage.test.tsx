@@ -85,7 +85,11 @@ describe('ProfilePage', () => {
 
     await user.click(await screen.findByRole('button', { name: 'Jetzt Backup-Datei speichern' }))
 
-    expect(await screen.findByText('Backup wurde heruntergeladen.')).toBeInTheDocument()
+    expect(
+      await screen.findByText(
+        'Download gestartet. Prüfe jetzt, ob die Datei im Download-Ordner liegt.',
+      ),
+    ).toBeInTheDocument()
   })
 
   it('stellt ein hochgeladenes Backup wieder her', async () => {

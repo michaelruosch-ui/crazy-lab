@@ -79,15 +79,30 @@ export function ProfilePage() {
     setBackupStatus('busy')
     try {
       const backup = await createBackup(DEFAULT_PROFILE.id)
-      const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' })
+      const contents = JSON.stringify(backup, null, 2)
+      const fileName = backupFileName()
+      const file = new File([contents], fileName, { type: 'application/json' })
+
+      if (navigator.share && navigator.canShare?.({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: 'Crazy-Lab-Backup',
+          text: 'Bitte „In Dateien sichern“ wählen und den Speicherort merken.',
+        })
+        setBackupStatus('success')
+        setBackupMessage('Sicherungsdialog abgeschlossen. Prüfe die Datei jetzt in „Dateien“.')
+        return
+      }
+
+      const blob = new Blob([contents], { type: 'application/json' })
       const url = URL.createObjectURL(blob)
       const link = document.createElement('a')
       link.href = url
-      link.download = backupFileName()
+      link.download = fileName
       link.click()
       URL.revokeObjectURL(url)
       setBackupStatus('success')
-      setBackupMessage('Backup wurde heruntergeladen.')
+      setBackupMessage('Download gestartet. Prüfe jetzt, ob die Datei im Download-Ordner liegt.')
     } catch {
       setBackupStatus('error')
       setBackupMessage('Backup konnte nicht erstellt werden. Bitte nochmals versuchen.')
