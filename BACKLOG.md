@@ -27,10 +27,12 @@ Netzwerk-IP.
       bei "Lade..." hängen (unbehandelte Promise-Ablehnung) - fällt jetzt auf "kein Profil" zurück
 - [x] Neues Schleimmonster-App-Symbol in 192/512/maskable und Manifest-Feinschliff
 - [x] Automatische Aktualisierung ohne Update-Knopf durch Online-Laden beim erneuten Öffnen
+- [x] Reiner Programmcode kostenlos und verschlüsselt über GitHub Pages veröffentlicht:
+      `https://michaelruosch-ui.github.io/crazy-lab/`
 - [ ] Safari/iPhone-QA-Checkliste
 
-Nächster Schritt: kostenlose öffentliche Bereitstellung des reinen Programmcodes; danach
-abschliessende iPhone-QA inklusive manuellem Backup-Rückweg.
+Nächster Schritt: abschliessende iPhone-QA inklusive manuellem Backup-Rückweg. Vor dem Entfernen
+der alten lokalen Installation muss dort zwingend ein Backup heruntergeladen werden.
 
 ### Parallel umgesetzt: Sprint 6 - Getränke-Labor
 

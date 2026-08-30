@@ -70,30 +70,20 @@ bewusst nicht erzeugt: Die Familie hat sich gegen Offline-Betrieb entschieden.
 npm run preview
 ```
 
-## Installation auf dem iPhone (lokales HTTPS, Sprint 5)
+## Installation auf dem iPhone (Sprint 5)
 
-Für einen sicheren Kontext (Voraussetzung für Service Worker und Offline-Betrieb, siehe
-DECISIONS.md ADR-006/ADR-017) läuft die App lokal über HTTPS mit einem selbstsignierten
-mkcert-Zertifikat:
+Die aktuelle App läuft kostenlos und verschlüsselt unter
+<https://michaelruosch-ui.github.io/crazy-lab/>. Der Mac muss dafür nicht eingeschaltet sein.
 
-1. Einmalig: `mkcert` installieren (`brew install mkcert nss`) und ein Zertifikat für die eigene
-   lokale IP-Adresse erzeugen, z. B.
-   `mkcert -cert-file certs/crazylab-cert.pem -key-file certs/crazylab-key.pem 192.168.x.x localhost 127.0.0.1`.
-   `certs/` ist gitignored - der private Schlüssel gehört nie ins Repository.
-2. Die CA-Root-Datei (`~/Library/Application Support/mkcert/rootCA.pem`, unkritisch) per AirDrop
-   ans iPhone senden und als Konfigurationsprofil installieren (Einstellungen → Profil
-   heruntergeladen → installieren).
-3. **Wichtig, wird leicht übersehen:** Einstellungen → Allgemein → Info →
-   Zertifikatsvertrauenseinstellungen → das mkcert-Zertifikat manuell auf "An" stellen. Ohne
-   diesen Schritt bleibt die Zertifikatswarnung bestehen, obwohl das Profil installiert ist.
-4. `npm run build && npm run preview -- --port 4173` auf dem Mac ausführen.
-5. Die angezeigte Netzwerk-URL (z. B. `https://192.168.x.x:4173`) im Safari auf dem iPhone öffnen
-   (Mac und iPhone im gleichen WLAN).
-6. Teilen-Symbol antippen → "Zum Home-Bildschirm".
-7. Die App startet danach vom Home-Bildschirm und benötigt eine Internetverbindung.
+1. Die Adresse in Safari auf dem iPhone öffnen.
+2. Teilen-Symbol antippen → "Zum Home-Bildschirm".
+3. Crazy Lab künftig über das neue Schleimmonster-Symbol starten. Beim Schliessen und erneuten
+   Öffnen wird automatisch die neueste Version geladen; eine Internetverbindung ist erforderlich.
 
-Falls die lokale IP-Adresse wechselt (z. B. neues WLAN), muss Schritt 1 mit der neuen IP
-wiederholt werden.
+Beim Wechsel von einer früheren Installation über die lokale Netzwerk-IP gilt zwingend: zuerst
+in der alten App unter Profil ein Backup herunterladen, erst danach die alte Home-Bildschirm-App
+entfernen, die öffentliche Version installieren und dort das Backup wieder einspielen. Browser
+trennen die Datenspeicher der beiden Adressen voneinander.
 
 ### Backup und Wiederherstellung (manuell)
 

@@ -10,7 +10,9 @@
 - Offline-Service-Worker auf Familienentscheid entfernt; Aktualisierungen kommen beim erneuten
   Online-Öffnen automatisch.
 - Neues, von Michael ausgewähltes Schleimmonster-App-Symbol und statisches Web-App-Manifest.
-- 94 Tests erfolgreich; öffentliche Gratis-Bereitstellung und echter iPhone-Abschlusstest offen.
+- Reiner Programmcode kostenlos und verschlüsselt über GitHub Pages veröffentlicht; der Mac muss
+  für die Nutzung nicht laufen und persönliche Daten werden nicht hochgeladen.
+- 94 Tests erfolgreich; öffentlicher Build technisch geprüft, echter iPhone-Abschlusstest offen.
 
 ## Sprint 6 - Getränke-Labor, Familienabnahme offen (2026-08-30)
 
