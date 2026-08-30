@@ -72,7 +72,8 @@ iPhone-Praxistest mit Elena folgt als normales Feedback und blockiert Sprint 8 n
 
 ### Sprint 8 - Laborschrank Basis
 
-Status: **Technisch umgesetzt (2026-08-30), Familienabnahme offen.**
+Status: **Abgeschlossen (2026-08-30).** Michael hat die Basis für den Start von Sprint 9
+freigegeben; späteres Praxisfeedback bleibt willkommen.
 
 - [x] Vorbereitete, durchsuchbare Materialliste aus allen vorhandenen Missionen
 - [x] Vorhandene Materialien in den persönlichen Laborschrank übernehmen und entfernen
@@ -84,7 +85,24 @@ Status: **Technisch umgesetzt (2026-08-30), Familienabnahme offen.**
 - [x] Eigener IndexedDB-Store (Datenbankversion 4), vollständig lokal auf dem iPhone
 - [x] Laborschrank wird im bestehenden manuellen Backup exportiert und wiederhergestellt
 - [x] Repository-, UI- und Navigationstests; insgesamt 99 Tests
-- [ ] Michael und Elena prüfen Bedienung und Begriffe auf dem echten iPhone
+- [x] Für Sprint 9 freigegeben; späteres iPhone-Feedback bleibt willkommen
+
+### Sprint 9 - Einkaufsliste Basis
+
+Status: **Technisch umgesetzt (2026-08-30), Familienabnahme offen.**
+
+- [x] Alle fehlenden Materialien direkt aus einer Mission übernehmen
+- [x] Bereits ausreichend vorhandene Laborschrank-Materialien und bestehende Listeneinträge nicht
+      doppelt hinzufügen
+- [x] Coop als Standard für Lebensmittel, Jumbo für typische Bastelmaterialien; Migros und alle
+      drei Läden manuell wählbar
+- [x] Einfache nachvollziehbare Richtpreise pro Material und offene Gesamtsumme
+- [x] Artikel abhaken und wieder öffnen
+- [x] Zuständigkeit Gemeinsam, Michael oder Elena
+- [x] Abgehakte Einkäufe direkt in den Laborschrank übernehmen
+- [x] Eigener IndexedDB-Store (Datenbankversion 5), im manuellen Backup enthalten
+- [x] Planungs-, Repository- und Navigationstests; insgesamt 103 Tests
+- [ ] Michael und Elena prüfen Einkauf und Laborschrank-Übernahme auf dem echten iPhone
 
 ## Abgeschlossene Sprints
 
@@ -170,8 +188,6 @@ positiv beantwortet.
 
 ### P1 - Getränke zuerst vollständig ausbauen
 
-- **Sprint 9 - Einkaufsliste Basis:** missionsbezogene Liste, Coop bevorzugt, danach
-  Migros/Jumbo, grobe Preise, Gesamtsumme, Abhaken, Zuständigkeit und Übernahme in den Schrank.
 - **Sprint 10 - Filter und Vorschlagsmaschine:** Zeit, Budget, Ort, Unordnung, erwachsene Hilfe,
   Personenanzahl und Diversitätsregeln.
 

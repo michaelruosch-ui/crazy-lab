@@ -5,6 +5,7 @@ import {
   DEFAULT_PROFILE,
   generateId,
   rankDrinkVariants,
+  shoppingItemsForMission,
   type CompletionRating,
   type DiaryEntry,
 } from '../domain'
@@ -16,6 +17,8 @@ import { useProfile } from '../features/profile'
 import { useDiaryEntries } from '../features/diary'
 import { BackLink, Button } from '../components'
 import { indexedDbDiaryRepository } from '../storage/diaryRepository'
+import { indexedDbShoppingListRepository } from '../storage/shoppingListRepository'
+import { indexedDbLabCabinetRepository } from '../storage/labCabinetRepository'
 import './MissionFlowPage.css'
 
 interface MissionFlowPageProps {
@@ -62,6 +65,7 @@ export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
   const [saveStatus, setSaveStatus] = useState<SaveStatus>('idle')
   const [pendingRating, setPendingRating] = useState<CompletionRating | null>(null)
   const [errorDetails, setErrorDetails] = useState<string>('')
+  const [shoppingMessage, setShoppingMessage] = useState('')
   const navigate = useNavigate()
   const { savedMissionIds, toggle: toggleSaved } = useSecretVault(DEFAULT_PROFILE.id)
   const { profile } = useProfile(DEFAULT_PROFILE.id)
@@ -93,6 +97,28 @@ export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
     }
   }
 
+  const addToShoppingList = async () => {
+    const [existingShoppingItems, cabinetItems] = await Promise.all([
+      indexedDbShoppingListRepository.getAll(DEFAULT_PROFILE.id),
+      indexedDbLabCabinetRepository.getAll(DEFAULT_PROFILE.id),
+    ])
+    const unavailableNames = new Set([
+      ...existingShoppingItems.map((item) => item.materialName),
+      ...cabinetItems
+        .filter((item) => item.quantityStatus === 'genug' || item.quantityStatus === 'viel')
+        .map((item) => item.materialName),
+    ])
+    const additions = shoppingItemsForMission(mission, DEFAULT_PROFILE.id).filter(
+      (item) => !unavailableNames.has(item.materialName),
+    )
+    await Promise.all(additions.map((item) => indexedDbShoppingListRepository.save(item)))
+    setShoppingMessage(
+      additions.length > 0
+        ? `${additions.length} Material${additions.length === 1 ? '' : 'ien'} hinzugefügt.`
+        : 'Alles ist bereits vorhanden oder auf der Einkaufsliste.',
+    )
+  }
+
   if (phase === 'detail') {
     return (
       <div className="mission-flow">
@@ -102,6 +128,8 @@ export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
           rankedVariants={rankedVariants}
           selectedVariant={effectiveVariant}
           onSelectVariant={setSelectedVariant}
+          onAddToShoppingList={addToShoppingList}
+          shoppingMessage={shoppingMessage}
         />
         <div className="mission-flow__secondary-actions">
           <Button variant="ghost" onClick={() => toggleSaved(mission.id)}>

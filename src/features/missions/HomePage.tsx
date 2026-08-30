@@ -98,6 +98,9 @@ export function HomePage() {
       ))}
 
       <nav className="home-page__nav">
+        <Link to="/einkaufsliste" className="home-page__nav-link">
+          🛒 Einkaufsliste
+        </Link>
         <Link to="/laborschrank" className="home-page__nav-link">
           🧰 Laborschrank
         </Link>

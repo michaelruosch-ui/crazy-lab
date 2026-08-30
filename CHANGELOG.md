@@ -1,5 +1,17 @@
 # Changelog
 
+## Sprint 9 - Einkaufsliste Basis (2026-08-30)
+
+- Missionen können ihre noch fehlenden Materialien mit einem Knopfdruck auf die Einkaufsliste
+  legen; ausreichend vorhandene Laborschrank-Materialien und bestehende Listeneinträge werden
+  nicht dupliziert.
+- Coop ist Standard für Lebensmittel, Jumbo für typische Bastelmaterialien; Migros bleibt als
+  auswählbare Alternative verfügbar.
+- Richtpreise, offene Gesamtsumme, Abhaken und Zuständigkeit für Michael, Elena oder beide.
+- Abgehakte Einkäufe lassen sich direkt als „Genug“ in den Laborschrank übernehmen.
+- Neuer IndexedDB-Store `shoppingListItems` in Datenbankversion 5 und Backup-Integration.
+- 103 Tests erfolgreich; Familienabnahme auf Elenas iPhone offen.
+
 ## Sprint 8 - Laborschrank Basis (2026-08-30)
 
 - Neuer Bereich „Laborschrank“ auf der Startseite.

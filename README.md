@@ -5,8 +5,8 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich in **Sprint 8** (Laborschrank);
-die Sprints 1–7 sind abgeschlossen. Der aktuelle Stand: Beim
+Dieses Repository befindet sich in **Sprint 9** (Einkaufsliste);
+die Sprints 1–8 sind abgeschlossen. Der aktuelle Stand: Beim
 ersten Start wählt man eines von 33 Maskottchen (8 Tierarten in verschiedenen Farbwelten) und
 einen Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf
 Kategorien (Getränke, Basteln, Experimente, Foto-Challenges, Schwestern-Missionen). Jede Mission
@@ -27,6 +27,9 @@ bleiben unter „Gemerkte Missionen“ zum erneuten Starten erhalten.
 Im Laborschrank lassen sich vorhandene Missionsmaterialien mit Bereich, genauer Bezeichnung,
 Mengenstatus, Bastelkiste und freiwilligem Foto verwalten; sie werden im manuellen Backup
 mitgesichert.
+Aus jeder Mission lassen sich fehlende Materialien auf eine Einkaufsliste übernehmen. Sie zeigt
+Coop/Migros/Jumbo, grobe Preise, Zuständigkeit und Gesamtsumme; abgehakte Einkäufe können direkt
+in den Laborschrank übernommen werden.
 
 ## Voraussetzungen
 

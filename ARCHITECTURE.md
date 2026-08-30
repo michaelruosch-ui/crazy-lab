@@ -195,6 +195,18 @@ freiwilligem Foto. Die vorbereitete Vorschlagsliste wird zur Laufzeit aus allen
 Profil und Material). Fotos werden clientseitig auf maximal 800 Pixel verkleinert und als
 JPEG-Data-URL zusammen mit dem Eintrag gespeichert. `BackupData.labCabinetItems` ist optional,
 damit bestehende Backups der Version 1 weiterhin eingelesen werden können.
+
+## Einkaufsliste (Sprint 9)
+
+`shoppingListPlanning.ts` wandelt Missionsmaterialien in profilbezogene `ShoppingListItem`s um.
+Eine kleine, explizite Wortliste wählt für typische Bastelmaterialien Jumbo, ansonsten Coop;
+Migros und alle Läden bleiben in der UI änderbar. Richtpreise sind bewusst grobe lokale Regeln,
+keine extern abgerufenen Produktpreise. `MissionFlowPage` überspringt Materialnamen, die bereits
+auf der Liste stehen oder im Laborschrank den Status „Genug“/„Viel“ haben. Der Store
+`shoppingListItems` (DB-Version 5) hält Laden, Preis, Zuständigkeit und Abhakstatus. Beim Übernehmen
+wird ein vorhandener Laborschrank-Eintrag auf „Genug“ gesetzt oder ein neuer Eintrag in Küche
+(Jumbo: Bastelkiste) angelegt und die Einkaufsposition entfernt. Auch dieses Backup-Feld ist
+optional für Rückwärtskompatibilität.
 `suggestionsForCategory` bleibt auf fünf Ergebnisse begrenzt und nutzt weiterhin das lokale
 Präferenzprofil aus Sprint 3. Die Startseite berechnet zuerst alle Kategorie-Vorschläge und
 übergibt deren IDs als Ausschlussmenge an `pickDailyMission`; die Tagesmission ist damit immer

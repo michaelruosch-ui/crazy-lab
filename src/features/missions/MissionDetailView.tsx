@@ -31,6 +31,8 @@ interface MissionDetailViewProps {
   rankedVariants?: RankedDrinkVariant[]
   selectedVariant?: string
   onSelectVariant?: (name: string) => void
+  onAddToShoppingList?: () => void
+  shoppingMessage?: string
 }
 
 export function MissionDetailView({
@@ -39,6 +41,8 @@ export function MissionDetailView({
   rankedVariants,
   selectedVariant,
   onSelectVariant,
+  onAddToShoppingList,
+  shoppingMessage,
 }: MissionDetailViewProps) {
   const safety = SAFETY_LABELS[mission.safetyLevel]
   const variants = rankedVariants ?? mission.drinkProfile?.variants ?? []
@@ -126,6 +130,12 @@ export function MissionDetailView({
       <Button variant="primary" onClick={onStart}>
         Alles bereit für die Mission?
       </Button>
+      {onAddToShoppingList && (
+        <Button variant="secondary" onClick={onAddToShoppingList}>
+          🛒 Materialien auf Einkaufsliste
+        </Button>
+      )}
+      {shoppingMessage && <p role="status">{shoppingMessage}</p>}
     </div>
   )
 }

@@ -533,3 +533,16 @@ des manuellen Backups; das neue Feld bleibt optional, sodass alte Backups kompat
 **Konsequenzen:** Kein doppelter statischer Materialkatalog und keine Cloud. Grobe Mengenstufen
 sind für Elena leichter als exakte Inventurzahlen und genügen als Grundlage für Sprint 9. Fotos
 verbrauchen lokalen Speicher, werden durch die Verkleinerung aber begrenzt.
+
+## ADR-025: Richtpreise und Ladenwahl lokal statt Produktdaten-Schnittstelle
+
+**Status:** Angenommen (Sprint 9, 2026-08-30)
+
+**Entscheidung:** Die Einkaufsliste verwendet einfache lokale Richtpreise und eine transparente
+Ladenregel: Coop für normale Lebensmittel, Jumbo für typische Bastelmaterialien, Migros als
+wählbare Alternative. Elena oder Michael können Laden und Preis jederzeit korrigieren. Es werden
+keine aktuellen Produktkataloge, Konten oder externen Schnittstellen angebunden.
+
+**Konsequenzen:** Preise sind ausdrücklich Schätzungen und nicht tagesaktuell, dafür bleibt die
+App schnell, privat und kostenlos. Die Datenstruktur kann später genauere Produktdaten aufnehmen,
+ohne Sprint 9 von einem Händlerkonto abhängig zu machen.

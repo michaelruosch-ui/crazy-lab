@@ -4,12 +4,14 @@ import type {
   LabCabinetItem,
   Profile,
   SecretVaultEntry,
+  ShoppingListItem,
 } from '../domain'
 import { indexedDbDiaryRepository } from './diaryRepository'
 import { indexedDbHiddenMissionsRepository } from './hiddenMissionsRepository'
 import { indexedDbProfileRepository } from './profileRepository'
 import { indexedDbSecretVaultRepository } from './secretVaultRepository'
 import { indexedDbLabCabinetRepository } from './labCabinetRepository'
+import { indexedDbShoppingListRepository } from './shoppingListRepository'
 
 const BACKUP_FORMAT = 'crazylab-backup'
 const BACKUP_VERSION = 1
@@ -23,18 +25,26 @@ export interface BackupData {
   secretVaultEntries: SecretVaultEntry[]
   hiddenMissions: HiddenMissionEntry[]
   labCabinetItems?: LabCabinetItem[]
+  shoppingListItems?: ShoppingListItem[]
 }
 
 /** Liest alle lokalen Daten eines Profils zusammen, um sie als Datei sichern zu können. */
 export async function createBackup(profileId: string): Promise<BackupData> {
-  const [profile, diaryEntries, secretVaultEntries, hiddenMissions, labCabinetItems] =
-    await Promise.all([
-      indexedDbProfileRepository.get(profileId),
-      indexedDbDiaryRepository.getAllEntries(profileId),
-      indexedDbSecretVaultRepository.getAll(profileId),
-      indexedDbHiddenMissionsRepository.getHistory(profileId),
-      indexedDbLabCabinetRepository.getAll(profileId),
-    ])
+  const [
+    profile,
+    diaryEntries,
+    secretVaultEntries,
+    hiddenMissions,
+    labCabinetItems,
+    shoppingListItems,
+  ] = await Promise.all([
+    indexedDbProfileRepository.get(profileId),
+    indexedDbDiaryRepository.getAllEntries(profileId),
+    indexedDbSecretVaultRepository.getAll(profileId),
+    indexedDbHiddenMissionsRepository.getHistory(profileId),
+    indexedDbLabCabinetRepository.getAll(profileId),
+    indexedDbShoppingListRepository.getAll(profileId),
+  ])
 
   return {
     format: BACKUP_FORMAT,
@@ -45,6 +55,7 @@ export async function createBackup(profileId: string): Promise<BackupData> {
     secretVaultEntries,
     hiddenMissions,
     labCabinetItems,
+    shoppingListItems,
   }
 }
 
@@ -90,6 +101,10 @@ export async function restoreBackup(data: BackupData): Promise<void> {
 
   for (const item of data.labCabinetItems ?? []) {
     await indexedDbLabCabinetRepository.save(item)
+  }
+
+  for (const item of data.shoppingListItems ?? []) {
+    await indexedDbShoppingListRepository.save(item)
   }
 }
 
