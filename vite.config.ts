@@ -3,7 +3,6 @@ import { existsSync, readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { VitePWA } from 'vite-plugin-pwa'
 
 const certDir = fileURLToPath(new URL('./certs', import.meta.url))
 const certFile = `${certDir}/crazylab-cert.pem`
@@ -24,50 +23,7 @@ const https =
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    VitePWA({
-      registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', 'icons/*.png'],
-      manifest: {
-        id: '/',
-        name: 'Crazy Lab',
-        short_name: 'Crazy Lab',
-        description:
-          'Geheimnisvolles Labor für Getränke, Basteleien, Experimente und Foto-Challenges.',
-        lang: 'de',
-        start_url: '/',
-        scope: '/',
-        display: 'standalone',
-        orientation: 'portrait',
-        background_color: '#071018',
-        theme_color: '#071018',
-        icons: [
-          {
-            src: '/icons/icon-192.png',
-            sizes: '192x192',
-            type: 'image/png',
-            purpose: 'any',
-          },
-          {
-            src: '/icons/icon-512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'any',
-          },
-          {
-            src: '/icons/icon-maskable-512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'maskable',
-          },
-        ],
-      },
-      workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,png,ico,webmanifest}'],
-      },
-    }),
-  ],
+  plugins: [react()],
   server: {
     https,
     host: true,

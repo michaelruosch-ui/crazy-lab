@@ -14,26 +14,23 @@ Netzwerk-IP.
 - [x] Lokales HTTPS via mkcert (`server`/`preview` in `vite.config.ts`), Zertifikat auf Elenas
       iPhone als Profil installiert und vertraut - bestätigt ohne Zertifikatswarnung
       (siehe DECISIONS.md ADR-017)
-- [x] Offline-Prüfung: App funktioniert im Flugmodus vom Home-Bildschirm aus - von der Familie
-      bestätigt
+- [x] Frühere Offline-Prüfung erfolgreich; Offline-Betrieb am 2026-08-30 auf Familienentscheid
+      bewusst entfernt
 - [x] Backup/Restore (manuell): alle lokalen Daten (Profil, Tagebuch, Geheimfach, Verlauf) lassen
       sich auf der Profilseite als Datei herunterladen und wieder einspielen - Sicherheitsnetz nach
       einem Datenverlust-Vorfall beim Origin-Wechsel http→https (siehe DECISIONS.md ADR-018)
-- [x] Automatisches Cloud-Backup: nach jeder Änderung wird der Stand automatisch in eine private
-      Cloud gesichert; beim Öffnen ohne lokales Profil wird er automatisch wieder eingespielt -
-      vorgezogene, abgespeckte Version von Sprint 19, auf expliziten Wunsch von Michael (siehe
-      DECISIONS.md ADR-019). Braucht einmalig ein Cloudflare-Konto von Michael selbst (Anleitung
-      in `cloud-worker/README.md`) - App funktioniert bis dahin unverändert rein lokal weiter.
-      8 neue Tests (6 Modul-, 2 Integrationstests) - insgesamt 94
+- [x] Cloudflare-Client und Worker vollständig entfernt; keine persönlichen Daten in einer Cloud
+- [x] Dauerhafter iPhone-Speicher wird über die WebKit Storage API angefragt
+- [x] Automatische, ausfallsichere Mac-Sicherung technisch umgesetzt; lokaler Dienst speichert
+      `latest.json` plus datierte Stände und stellt bei leerem iPhone automatisch wieder her
 - [x] Nebenbei behoben: `useProfile` blieb bei endgültig gescheitertem Datenbank-Öffnen für immer
       bei "Lade..." hängen (unbehandelte Promise-Ablehnung) - fällt jetzt auf "kein Profil" zurück
-- [ ] Icons/Manifest-Feinschliff
-- [ ] Vollständige, geprüfte Installationsanleitung inkl. Update-Hinweis-UI
+- [x] Neues Schleimmonster-App-Symbol in 192/512/maskable und Manifest-Feinschliff
+- [x] Automatische Aktualisierung ohne Update-Knopf durch Online-Laden beim erneuten Öffnen
 - [ ] Safari/iPhone-QA-Checkliste
 
-Nächster Schritt: Michael richtet den Cloudflare-Worker ein (`cloud-worker/README.md`), danach
-`.env.local` befüllen, neu bauen und auf dem echten iPhone bestätigen, dass eine Neuinstallation
-den letzten Stand automatisch zurückholt. Danach weiter mit den verbleibenden Punkten oben.
+Nächster Schritt: kostenlose öffentliche Bereitstellung des reinen Programmcodes sowie sichere
+Aktivierung des lokalen Mac-Dienstes; danach abschliessende iPhone-QA inklusive Backup-Rückweg.
 
 ### Parallel umgesetzt: Sprint 6 - Getränke-Labor
 

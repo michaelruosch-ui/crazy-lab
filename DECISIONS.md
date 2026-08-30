@@ -470,3 +470,20 @@ und Präferenzprofil werden weiterverwendet.
 **Konsequenzen:** Sprint 6 ist technisch testbar, aber erst nach Elenas Praxistest abgeschlossen.
 Sprint 5 bleibt in Arbeit, Sprint 7 ist nicht automatisch freigegeben. Es wurde keine Cloud-Lösung
 bereitgestellt und kein Konto oder Abo abgeschlossen.
+
+## ADR-021: iPhone als Hauptspeicher, lokale Mac-Sicherung statt Cloud und Offline
+
+**Status:** Angenommen (Sprint 5, 2026-08-30; ersetzt ADR-019)
+
+**Entscheidung:** Persönliche Daten bleiben primär in IndexedDB auf Elenas iPhone. Die App fragt
+WebKit nach persistentem Speicher. Wenn Michaels Mac im Heimnetz erreichbar ist, wird nach jeder
+Änderung zusätzlich ein vollständiges Backup an einen zugriffsgeschützten lokalen HTTPS-Dienst
+gesendet und dort atomar sowie mit datierten Versionen gespeichert. Bei leerem iPhone-Speicher
+versucht die App vor dem Onboarding die Wiederherstellung. Cloudflare wird vollständig entfernt.
+Die Familie verzichtet bewusst auf Offline-Betrieb; der Programmcode soll kostenlos öffentlich
+bereitgestellt werden, enthält aber keine persönlichen Daten.
+
+**Konsequenzen:** Ohne Mac funktioniert die App online und speichert auf dem iPhone; Mac-Backups
+werden später nachgeholt. Ohne Time Machine ist die Mac-Kopie nicht nochmals abgesichert. Die
+öffentliche Bereitstellung benötigt einmalig ein kostenloses Hostingkonto. Der lokale Hintergrund-
+dienst benötigt aus Sicherheitsgründen Zugriffsschlüssel und eine fest erlaubte App-Adresse.

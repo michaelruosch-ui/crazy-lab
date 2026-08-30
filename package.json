@@ -12,7 +12,8 @@
     "typecheck": "tsc -b --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "backup-server": "node local-backup-server/server.mjs"
   },
   "dependencies": {
     "idb": "^8.0.3",
@@ -40,7 +41,6 @@
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.67.0",
     "vite": "^8.2.0",
-    "vite-plugin-pwa": "^1.3.0",
     "vitest": "^4.1.10"
   }
 }

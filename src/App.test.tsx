@@ -7,7 +7,7 @@ import { App } from './App'
 import { DEFAULT_PROFILE } from './domain'
 import { resetDbConnection } from './storage/db'
 import { indexedDbProfileRepository } from './storage/profileRepository'
-import * as cloudSync from './storage/cloudSync'
+import * as localBackup from './storage/localBackup'
 
 async function seedCompletedProfile() {
   await indexedDbProfileRepository.save({
@@ -48,14 +48,14 @@ describe('App', () => {
     expect(screen.getByRole('link', { name: '🗝️ Geheimfach' })).toBeInTheDocument()
   })
 
-  it('lädt bei fehlendem lokalen Profil automatisch den Stand aus der Cloud, statt das Onboarding zu zeigen', async () => {
-    vi.spyOn(cloudSync, 'downloadBackupFromCloud').mockResolvedValue({
+  it('lädt bei fehlendem lokalen Profil automatisch den Stand vom Mac, statt das Onboarding zu zeigen', async () => {
+    vi.spyOn(localBackup, 'downloadBackupFromMac').mockResolvedValue({
       format: 'crazylab-backup',
       version: 1,
       exportedAt: '2026-08-23T00:00:00.000Z',
       profile: {
         ...DEFAULT_PROFILE,
-        researcherName: 'Aus der Cloud wiederhergestellt',
+        researcherName: 'Vom Mac wiederhergestellt',
         onboardingCompletedAt: '2026-08-16T00:00:00.000Z',
       },
       diaryEntries: [],
@@ -76,8 +76,8 @@ describe('App', () => {
     vi.restoreAllMocks()
   })
 
-  it('zeigt trotzdem das Onboarding, wenn auch die Cloud nichts liefert', async () => {
-    vi.spyOn(cloudSync, 'downloadBackupFromCloud').mockResolvedValue(null)
+  it('zeigt trotzdem das Onboarding, wenn auch der Mac nichts liefert', async () => {
+    vi.spyOn(localBackup, 'downloadBackupFromMac').mockResolvedValue(null)
 
     render(
       <MemoryRouter initialEntries={['/']}>
