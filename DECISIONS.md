@@ -518,3 +518,18 @@ gestartet werden. Alle abgeschlossenen Missionen bleiben ausserdem im Tagebuch s
 **Konsequenzen:** Vorschläge wirken frisch, ohne Elenas Favoriten zu verlieren. Kategorien mit
 noch kleinem Katalog können nach Abschluss vorübergehend leer werden; neue Inhalte kommen in den
 bereits geplanten Inhaltssprints und werden nicht als ungeplanter Zwischensprint eingeschoben.
+
+## ADR-024: Laborschrank als profilbezogener Materialbestand mit komprimierten Fotos
+
+**Status:** Angenommen (Sprint 8, 2026-08-30)
+
+**Entscheidung:** Die vorbereitete Materialliste wird aus den vorhandenen Missionskatalogen
+erzeugt. Nur Materialien, die Elena ausdrücklich übernimmt, werden profilbezogen in einem neuen
+IndexedDB-Store gespeichert. Jeder Eintrag behält die allgemeine Katalogbezeichnung und kann eine
+genaue Sorte/Marke, einen Bereich, einen Bastelkistennamen, einen groben Mengenstatus und ein Foto
+erhalten. Fotos werden auf höchstens 800 Pixel verkleinert. Laborschrank-Einträge sind Bestandteil
+des manuellen Backups; das neue Feld bleibt optional, sodass alte Backups kompatibel sind.
+
+**Konsequenzen:** Kein doppelter statischer Materialkatalog und keine Cloud. Grobe Mengenstufen
+sind für Elena leichter als exakte Inventurzahlen und genügen als Grundlage für Sprint 9. Fotos
+verbrauchen lokalen Speicher, werden durch die Verkleinerung aber begrenzt.

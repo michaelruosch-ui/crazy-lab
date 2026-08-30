@@ -98,6 +98,9 @@ export function HomePage() {
       ))}
 
       <nav className="home-page__nav">
+        <Link to="/laborschrank" className="home-page__nav-link">
+          🧰 Laborschrank
+        </Link>
         <Link to="/geheimfach" className="home-page__nav-link">
           🗝️ Gemerkte Missionen
         </Link>

@@ -1,8 +1,15 @@
-import type { DiaryEntry, HiddenMissionEntry, Profile, SecretVaultEntry } from '../domain'
+import type {
+  DiaryEntry,
+  HiddenMissionEntry,
+  LabCabinetItem,
+  Profile,
+  SecretVaultEntry,
+} from '../domain'
 import { indexedDbDiaryRepository } from './diaryRepository'
 import { indexedDbHiddenMissionsRepository } from './hiddenMissionsRepository'
 import { indexedDbProfileRepository } from './profileRepository'
 import { indexedDbSecretVaultRepository } from './secretVaultRepository'
+import { indexedDbLabCabinetRepository } from './labCabinetRepository'
 
 const BACKUP_FORMAT = 'crazylab-backup'
 const BACKUP_VERSION = 1
@@ -15,16 +22,19 @@ export interface BackupData {
   diaryEntries: DiaryEntry[]
   secretVaultEntries: SecretVaultEntry[]
   hiddenMissions: HiddenMissionEntry[]
+  labCabinetItems?: LabCabinetItem[]
 }
 
 /** Liest alle lokalen Daten eines Profils zusammen, um sie als Datei sichern zu können. */
 export async function createBackup(profileId: string): Promise<BackupData> {
-  const [profile, diaryEntries, secretVaultEntries, hiddenMissions] = await Promise.all([
-    indexedDbProfileRepository.get(profileId),
-    indexedDbDiaryRepository.getAllEntries(profileId),
-    indexedDbSecretVaultRepository.getAll(profileId),
-    indexedDbHiddenMissionsRepository.getHistory(profileId),
-  ])
+  const [profile, diaryEntries, secretVaultEntries, hiddenMissions, labCabinetItems] =
+    await Promise.all([
+      indexedDbProfileRepository.get(profileId),
+      indexedDbDiaryRepository.getAllEntries(profileId),
+      indexedDbSecretVaultRepository.getAll(profileId),
+      indexedDbHiddenMissionsRepository.getHistory(profileId),
+      indexedDbLabCabinetRepository.getAll(profileId),
+    ])
 
   return {
     format: BACKUP_FORMAT,
@@ -34,6 +44,7 @@ export async function createBackup(profileId: string): Promise<BackupData> {
     diaryEntries,
     secretVaultEntries,
     hiddenMissions,
+    labCabinetItems,
   }
 }
 
@@ -75,6 +86,10 @@ export async function restoreBackup(data: BackupData): Promise<void> {
       entry.missionId,
       new Date(entry.hiddenAt),
     )
+  }
+
+  for (const item of data.labCabinetItems ?? []) {
+    await indexedDbLabCabinetRepository.save(item)
   }
 }
 

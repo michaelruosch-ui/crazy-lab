@@ -184,6 +184,17 @@ Missions-IDs ab. `suggestionsForCategory` blendet diese aus, sodass noch offene 
 nachrücken. Die Tagesmission erhält sowohl die aktuell sichtbaren Kategorie-IDs als auch die
 abgeschlossenen IDs als Ausschlussmenge. Im Geheimfach gespeicherte Missionen werden davon nicht
 gelöscht und bleiben unabhängig von ihrem Abschlussstatus wiederholbar.
+
+## Laborschrank (Sprint 8)
+
+`LabCabinetItem` verbindet die allgemeine Materialbezeichnung aus dem statischen Missionskatalog
+mit Elenas lokaler genauer Bezeichnung, Bereich, optionaler Bastelkiste, Mengenstatus und
+freiwilligem Foto. Die vorbereitete Vorschlagsliste wird zur Laufzeit aus allen
+`Mission.materials` dedupliziert; sie ist keine zweite Datenbanktabelle. Nur tatsächlich
+übernommene Materialien liegen im IndexedDB-Store `labCabinetItems` (DB-Version 4, Indexe nach
+Profil und Material). Fotos werden clientseitig auf maximal 800 Pixel verkleinert und als
+JPEG-Data-URL zusammen mit dem Eintrag gespeichert. `BackupData.labCabinetItems` ist optional,
+damit bestehende Backups der Version 1 weiterhin eingelesen werden können.
 `suggestionsForCategory` bleibt auf fünf Ergebnisse begrenzt und nutzt weiterhin das lokale
 Präferenzprofil aus Sprint 3. Die Startseite berechnet zuerst alle Kategorie-Vorschläge und
 übergibt deren IDs als Ausschlussmenge an `pickDailyMission`; die Tagesmission ist damit immer

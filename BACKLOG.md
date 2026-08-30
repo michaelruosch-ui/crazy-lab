@@ -55,7 +55,8 @@ bleibt deshalb in Arbeit; Sprint 7 beginnt erst nach der Familienabnahme von Spr
 
 ### Sprint 7 - Getränke-Bewertung und Varianten
 
-Status: **Technisch umgesetzt (2026-08-30), Familienabnahme offen.**
+Status: **Abgeschlossen (2026-08-30).** Michael hat die Umsetzung bestätigt; der ausführliche
+iPhone-Praxistest mit Elena folgt als normales Feedback und blockiert Sprint 8 nicht.
 
 - [x] Getränke getrennt nach Geschmack, Optik, Gruseligkeit und Dekoration bewerten
 - [x] Vor dem Start eine konkrete Getränkevariante auswählen
@@ -67,7 +68,23 @@ Status: **Technisch umgesetzt (2026-08-30), Familienabnahme offen.**
 - [x] Familienfeedback: Tagesmission bleibt exklusiv; abgeschlossene Missionen machen Platz für
       neue Vorschläge und bleiben bei „Merken“ unter „Gemerkte Missionen“ wiederholbar
 - [x] Zusätzlicher Vorschlags-Test; insgesamt 97 Tests
-- [ ] Elena bewertet Varianten auf dem echten iPhone und gibt Rückmeldung zur Bedienung
+- [x] Für Sprint 8 freigegeben; späteres iPhone-Feedback bleibt willkommen
+
+### Sprint 8 - Laborschrank Basis
+
+Status: **Technisch umgesetzt (2026-08-30), Familienabnahme offen.**
+
+- [x] Vorbereitete, durchsuchbare Materialliste aus allen vorhandenen Missionen
+- [x] Vorhandene Materialien in den persönlichen Laborschrank übernehmen und entfernen
+- [x] Bereiche Küche, Bastelkiste, Zimmer, Bad, Keller und Anderswo
+- [x] Allgemeine Materialbezeichnung plus freiwillige genaue Sorte oder Marke
+- [x] Mengenstatus Leer, Wenig, Genug oder Viel
+- [x] Benannte Bastelkisten
+- [x] Freiwillige Materialfotos, vor dem Speichern auf höchstens 800 Pixel verkleinert
+- [x] Eigener IndexedDB-Store (Datenbankversion 4), vollständig lokal auf dem iPhone
+- [x] Laborschrank wird im bestehenden manuellen Backup exportiert und wiederhergestellt
+- [x] Repository-, UI- und Navigationstests; insgesamt 99 Tests
+- [ ] Michael und Elena prüfen Bedienung und Begriffe auf dem echten iPhone
 
 ## Abgeschlossene Sprints
 
@@ -153,8 +170,6 @@ positiv beantwortet.
 
 ### P1 - Getränke zuerst vollständig ausbauen
 
-- **Sprint 8 - Laborschrank Basis:** vorbereitete Materialliste, Bereiche, allgemeine und genaue
-  Materialien, Mengenstatus, Bastelkisten und optionale Fotos.
 - **Sprint 9 - Einkaufsliste Basis:** missionsbezogene Liste, Coop bevorzugt, danach
   Migros/Jumbo, grobe Preise, Gesamtsumme, Abhaken, Zuständigkeit und Übernahme in den Schrank.
 - **Sprint 10 - Filter und Vorschlagsmaschine:** Zeit, Budget, Ort, Unordnung, erwachsene Hilfe,

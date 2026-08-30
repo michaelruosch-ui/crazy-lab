@@ -1,0 +1,115 @@
+.lab-cabinet-page {
+  padding: 16px;
+  display: grid;
+  gap: 20px;
+}
+
+.lab-cabinet-page section,
+.lab-cabinet-page__items {
+  display: grid;
+  gap: 12px;
+}
+
+.cabinet-item {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid rgba(35, 230, 200, 0.28);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-card);
+}
+
+.cabinet-item h3 {
+  margin: 0 0 6px;
+}
+.cabinet-item label {
+  display: grid;
+  gap: 5px;
+  color: var(--color-text-muted);
+}
+.cabinet-item input,
+.cabinet-item select,
+.lab-cabinet-page__suggestions input {
+  min-height: var(--touch-target);
+  padding: 10px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(35, 230, 200, 0.3);
+  background: var(--color-bg-card);
+  color: var(--color-text);
+  font-size: 16px;
+}
+
+.cabinet-item__title {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.cabinet-item__title > div {
+  flex: 1;
+}
+.cabinet-item__title img {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+.cabinet-item fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.cabinet-item legend {
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+.cabinet-item__quantity {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+.cabinet-item__quantity button,
+.lab-cabinet-page__suggestions button {
+  min-height: var(--touch-target);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(35, 230, 200, 0.3);
+  background: rgba(35, 230, 200, 0.08);
+  color: var(--color-text);
+}
+.cabinet-item__quantity button.active {
+  background: var(--color-teal);
+  color: #051012;
+  font-weight: 800;
+}
+.cabinet-item__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cabinet-item__photo {
+  min-height: var(--touch-target);
+  padding: 10px;
+  border-radius: var(--radius-md);
+  background: rgba(139, 92, 246, 0.16);
+  cursor: pointer;
+}
+.cabinet-item__photo input {
+  display: none;
+}
+.lab-cabinet-page__suggestions > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.lab-cabinet-page__suggestions button {
+  padding: 8px 12px;
+  text-align: left;
+}
+.lab-cabinet-page__error {
+  color: var(--color-pink);
+}
+
+@media (max-width: 390px) {
+  .cabinet-item__quantity {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

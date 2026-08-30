@@ -1,5 +1,16 @@
 # Changelog
 
+## Sprint 8 - Laborschrank Basis (2026-08-30)
+
+- Neuer Bereich „Laborschrank“ auf der Startseite.
+- Durchsuchbare, vorbereitete Materialliste wird direkt aus allen Missionsmaterialien erzeugt.
+- Materialien lassen sich mit genauer Sorte/Marke, Bereich, Mengenstatus und benannter
+  Bastelkiste lokal verwalten.
+- Freiwillige Fotos werden vor dem Speichern auf maximal 800 Pixel verkleinert.
+- Neuer IndexedDB-Store `labCabinetItems` in Datenbankversion 4.
+- Manuelles Backup enthält jetzt auch den Laborschrank; alte Backup-Dateien bleiben kompatibel.
+- 99 Tests erfolgreich; Familienabnahme auf Elenas iPhone offen.
+
 ## Sprint 7 - Getränke-Bewertung und lernende Varianten (2026-08-30)
 
 - Vor Missionsstart lässt sich eine konkrete Getränkevariante auswählen.

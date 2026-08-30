@@ -5,8 +5,8 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich in **Sprint 7** (Getränke-Bewertung und lernende Varianten);
-die Sprints 1–6 sind abgeschlossen. Der aktuelle Stand: Beim
+Dieses Repository befindet sich in **Sprint 8** (Laborschrank);
+die Sprints 1–7 sind abgeschlossen. Der aktuelle Stand: Beim
 ersten Start wählt man eines von 33 Maskottchen (8 Tierarten in verschiedenen Farbwelten) und
 einen Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf
 Kategorien (Getränke, Basteln, Experimente, Foto-Challenges, Schwestern-Missionen). Jede Mission
@@ -24,6 +24,9 @@ Variante auswählen und Geschmack, Optik, Gruseligkeit und Dekoration getrennt b
 nächsten Versuch empfiehlt Crazy Lab die bisher am besten bewertete Variante zuerst.
 Abgeschlossene Missionen machen auf der Startseite Platz für neue Vorschläge; gemerkte Missionen
 bleiben unter „Gemerkte Missionen“ zum erneuten Starten erhalten.
+Im Laborschrank lassen sich vorhandene Missionsmaterialien mit Bereich, genauer Bezeichnung,
+Mengenstatus, Bastelkiste und freiwilligem Foto verwalten; sie werden im manuellen Backup
+mitgesichert.
 
 ## Voraussetzungen
 

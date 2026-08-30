@@ -45,6 +45,7 @@ describe('App', () => {
     expect(screen.getByRole('heading', { name: '✨ Tagesmission' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: '🧃 Getränke' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: '🗝️ Gemerkte Missionen' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: '🧰 Laborschrank' })).toBeInTheDocument()
   })
 
   it('öffnet eine Mission über die Startseite und zeigt die Missionsdetails', async () => {

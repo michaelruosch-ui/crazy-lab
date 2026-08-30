@@ -1,13 +1,20 @@
 import { openDB, type DBSchema, type IDBPDatabase } from 'idb'
-import type { DiaryEntry, HiddenMissionEntry, Profile, SecretVaultEntry } from '../domain'
+import type {
+  DiaryEntry,
+  HiddenMissionEntry,
+  LabCabinetItem,
+  Profile,
+  SecretVaultEntry,
+} from '../domain'
 
 const DB_NAME = 'crazylab'
-const DB_VERSION = 3
+const DB_VERSION = 4
 
 export const DIARY_STORE = 'diaryEntries'
 export const SECRET_VAULT_STORE = 'secretVaultEntries'
 export const HIDDEN_MISSIONS_STORE = 'hiddenMissions'
 export const PROFILES_STORE = 'profiles'
+export const LAB_CABINET_STORE = 'labCabinetItems'
 
 interface CrazyLabDB extends DBSchema {
   [DIARY_STORE]: {
@@ -28,6 +35,11 @@ interface CrazyLabDB extends DBSchema {
   [PROFILES_STORE]: {
     key: string
     value: Profile
+  }
+  [LAB_CABINET_STORE]: {
+    key: string
+    value: LabCabinetItem
+    indexes: { 'by-profile': string; 'by-material': string }
   }
 }
 
@@ -55,6 +67,11 @@ function openOnce(): Promise<IDBPDatabase<CrazyLabDB>> {
       }
       if (oldVersion < 3) {
         db.createObjectStore(PROFILES_STORE, { keyPath: 'id' })
+      }
+      if (oldVersion < 4) {
+        const cabinetStore = db.createObjectStore(LAB_CABINET_STORE, { keyPath: 'id' })
+        cabinetStore.createIndex('by-profile', 'profileId')
+        cabinetStore.createIndex('by-material', 'materialName')
       }
     },
   })

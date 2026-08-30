@@ -6,6 +6,7 @@ import { DiaryPage, DiaryEntryDetailPage } from './features/diary'
 import { SecretVaultPage } from './features/secret-vault'
 import { OnboardingFlow } from './features/onboarding'
 import { ProfilePage, useProfile } from './features/profile'
+import { LabCabinetPage } from './features/lab-cabinet'
 import { DEFAULT_PROFILE } from './domain'
 import { requestPersistentStorage } from './storage/persistentStorage'
 
@@ -38,6 +39,7 @@ export function App() {
       <Route path="/diary" element={<DiaryPage />} />
       <Route path="/diary/:entryId" element={<DiaryEntryDetailPage />} />
       <Route path="/profil" element={<ProfilePage />} />
+      <Route path="/laborschrank" element={<LabCabinetPage />} />
     </Routes>
   )
 }
