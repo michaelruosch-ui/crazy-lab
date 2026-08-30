@@ -70,7 +70,11 @@ export async function restoreBackup(data: BackupData): Promise<void> {
   }
 
   for (const entry of data.hiddenMissions) {
-    await indexedDbHiddenMissionsRepository.hide(entry.profileId, entry.missionId, new Date(entry.hiddenAt))
+    await indexedDbHiddenMissionsRepository.hide(
+      entry.profileId,
+      entry.missionId,
+      new Date(entry.hiddenAt),
+    )
   }
 }
 

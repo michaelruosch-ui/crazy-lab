@@ -1,5 +1,22 @@
 # Changelog
 
+## Sprint 6 - Getränke-Labor, Familienabnahme offen (2026-08-30)
+
+### Hinzugefügt
+
+- Getränke-Katalog auf genau 15 vollständige, trinkbare und kindgerecht beschriebene Missionen
+  mit Materialien, Schritten, Sicherheitsstufe und Hilfen erweitert.
+- Strukturiertes `drinkProfile` mit Geschmack, Temperatur, Optik, Geräten und mindestens zwei
+  Varianten je Getränkemission; die Detailansicht zeigt Merkmale und Varianten direkt an.
+- Inhaltskatalog in `src/data/drinkMissions.ts` ausgelagert.
+
+### Qualität
+
+- Inhaltsvalidierung, Anzahl, Vielfalt, Vorschlagslimit und Detailansicht automatisch geprüft -
+  insgesamt 99 erfolgreiche Tests.
+- Sprint 5 bleibt in Arbeit; Sprint 6 ist bis zu Elenas Praxistest noch nicht familienseitig
+  abgeschlossen.
+
 ## Sprint 5 - Automatisches Cloud-Backup (2026-08-23)
 
 ### Hinzugefügt
@@ -180,8 +197,7 @@ Von Michael final bestätigt nach zwei Feedback-Runden. Sprint 3 ist freigegeben
 - Kein Onboarding-"Mission zuerst"-Moment mehr auf `/` - das gehört inhaltlich zu Sprint 4.
 - Keine "fehlenden Materialien" auf Missionskarten (braucht Laborschrank, Sprint 8) - stattdessen
   Zutatenanzahl.
-- Keine Startseiten-Knöpfe für Laborschrank, laufende Missionen, eigene Mission (Sprints 8, 12,
-  15) - keine Stub-Seiten für noch nicht existierende Bereiche.
+- Keine Startseiten-Knöpfe für Laborschrank, laufende Missionen, eigene Mission (Sprints 8, 12, 15) - keine Stub-Seiten für noch nicht existierende Bereiche.
 
 ## Sprint 1 - abgeschlossen (2026-08-23)
 
@@ -199,7 +215,7 @@ Sprint 1 ist damit fertig; Sprint 2 ist freigegeben.
   Kontext (HTTPS oder localhost). Beim Testen über die lokale Netzwerk-IP per HTTP
   (`http://<Mac-IP>:4173`, nötig um auf Elenas iPhone zu installieren) ist die Funktion in Safari
   nicht vorhanden, wodurch jeder Speicherversuch mit `TypeError: crypto.randomUUID is not a
-  function` fehlschlug - reproduzierbar und nicht durch Wiederholen behebbar. Neue Hilfsfunktion
+function` fehlschlug - reproduzierbar und nicht durch Wiederholen behebbar. Neue Hilfsfunktion
   `generateId()` (`src/domain/id.ts`) fällt auf `crypto.getRandomValues()` und zuletzt auf
   `Math.random()` zurück, wenn `crypto.randomUUID` fehlt.
 - Ein erster Fix-Versuch (Timeout + Wiederholungsversuch beim Öffnen der IndexedDB,

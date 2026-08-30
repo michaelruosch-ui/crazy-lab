@@ -62,6 +62,19 @@ export function validateMission(mission: Mission): MissionValidationError[] {
     }
   }
 
+  if (mission.primaryCategory === 'getraenk') {
+    if (!mission.drinkProfile) {
+      fail('drinkProfile ist für Getränke-Missionen erforderlich')
+    } else {
+      if (mission.drinkProfile.tastes.length === 0)
+        fail('mindestens ein Geschmacksmerkmal erforderlich')
+      if (mission.drinkProfile.appearance.length === 0)
+        fail('mindestens ein Optikmerkmal erforderlich')
+      if (mission.drinkProfile.variants.length < 2)
+        fail('mindestens zwei Getränkevarianten erforderlich')
+    }
+  }
+
   return errors
 }
 

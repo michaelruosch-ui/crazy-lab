@@ -3,8 +3,8 @@ import { missions } from './missions'
 import { FORBIDDEN_DRINK_TERMS, validateMissions } from '../domain'
 
 describe('Missionsdaten', () => {
-  it('enthält genau fünf Missionen', () => {
-    expect(missions).toHaveLength(5)
+  it('enthält fünf Grundmissionen plus vierzehn neue Getränke-Missionen', () => {
+    expect(missions).toHaveLength(19)
   })
 
   it('alle Missionen sind valide', () => {
@@ -29,5 +29,26 @@ describe('Missionsdaten', () => {
         expect(haystack).not.toContain(term)
       }
     }
+  })
+
+  it('enthält genau 15 primäre Getränke-Missionen mit Merkmalen und Varianten', () => {
+    const drinkMissions = missions.filter((m) => m.primaryCategory === 'getraenk')
+    expect(drinkMissions).toHaveLength(15)
+
+    for (const mission of drinkMissions) {
+      expect(mission.drinkProfile).toBeDefined()
+      expect(mission.drinkProfile?.tastes.length).toBeGreaterThan(0)
+      expect(mission.drinkProfile?.appearance.length).toBeGreaterThan(0)
+      expect(mission.drinkProfile?.variants).toHaveLength(2)
+    }
+  })
+
+  it('deckt verschiedene Getränke-Arten und Sicherheitsstufen ab', () => {
+    const drinkMissions = missions.filter((m) => m.primaryCategory === 'getraenk')
+    const tastes = new Set(drinkMissions.flatMap((m) => m.drinkProfile?.tastes ?? []))
+    const safetyLevels = new Set(drinkMissions.map((m) => m.safetyLevel))
+
+    expect(tastes).toEqual(new Set(['suess', 'sauer', 'fruchtig', 'cremig', 'prickelnd']))
+    expect(safetyLevels).toEqual(new Set(['gruen', 'gelb', 'rot']))
   })
 })

@@ -10,14 +10,15 @@ type TraitKey = keyof MissionTraits
  * Tabelle statt eines trainierten Modells - jede Änderung lässt sich direkt auf eine konkrete
  * Bewertung zurückführen.
  */
-const ADJUSTMENT_TRAIT_EFFECTS: Partial<Record<AdjustmentTag, Partial<Record<TraitKey, number>>>> = {
-  gruseliger: { gruselig: 1 },
-  weniger_gruselig: { gruselig: -1 },
-  farbiger: { farbig: 1 },
-  weniger_suess: { suess: -1 },
-  einfacher: { aufwand: -1 },
-  schwieriger: { aufwand: 1 },
-}
+const ADJUSTMENT_TRAIT_EFFECTS: Partial<Record<AdjustmentTag, Partial<Record<TraitKey, number>>>> =
+  {
+    gruseliger: { gruselig: 1 },
+    weniger_gruselig: { gruselig: -1 },
+    farbiger: { farbig: 1 },
+    weniger_suess: { suess: -1 },
+    einfacher: { aufwand: -1 },
+    schwieriger: { aufwand: 1 },
+  }
 
 const ZERO_TRAITS: MissionTraits = {
   gruselig: 0,
@@ -42,7 +43,10 @@ export interface PreferenceProfile {
  * Quelle der Wahrheit, damit das Profil nie von den tatsächlichen Bewertungen abweichen kann.
  * `entries` muss bereits auf ein Profil gefiltert sein (z. B. via `DiaryRepository.getAllEntries(profileId)`).
  */
-export function buildPreferenceProfile(profileId: string, entries: DiaryEntry[]): PreferenceProfile {
+export function buildPreferenceProfile(
+  profileId: string,
+  entries: DiaryEntry[],
+): PreferenceProfile {
   const traitAffinity: MissionTraits = { ...ZERO_TRAITS }
 
   for (const entry of entries) {

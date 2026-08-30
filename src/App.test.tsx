@@ -29,7 +29,9 @@ describe('App', () => {
       </MemoryRouter>,
     )
 
-    expect(await screen.findByRole('heading', { name: /Willkommen im Crazy Lab/ })).toBeInTheDocument()
+    expect(
+      await screen.findByRole('heading', { name: /Willkommen im Crazy Lab/ }),
+    ).toBeInTheDocument()
   })
 
   it('zeigt nach abgeschlossenem Onboarding die Startseite mit Kategorien und der Tagesmission', async () => {
@@ -68,7 +70,9 @@ describe('App', () => {
     )
 
     expect(await screen.findByRole('heading', { name: '🔮 Crazy Lab' })).toBeInTheDocument()
-    expect(screen.queryByRole('heading', { name: /Willkommen im Crazy Lab/ })).not.toBeInTheDocument()
+    expect(
+      screen.queryByRole('heading', { name: /Willkommen im Crazy Lab/ }),
+    ).not.toBeInTheDocument()
     vi.restoreAllMocks()
   })
 
@@ -81,7 +85,9 @@ describe('App', () => {
       </MemoryRouter>,
     )
 
-    expect(await screen.findByRole('heading', { name: /Willkommen im Crazy Lab/ })).toBeInTheDocument()
+    expect(
+      await screen.findByRole('heading', { name: /Willkommen im Crazy Lab/ }),
+    ).toBeInTheDocument()
     vi.restoreAllMocks()
   })
 
@@ -96,6 +102,8 @@ describe('App', () => {
 
     await user.click(await screen.findByRole('heading', { name: 'Der blutrote Schatten-Trank' }))
 
-    expect(screen.getByRole('button', { name: 'Alles bereit für die Mission?' })).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: 'Alles bereit für die Mission?' }),
+    ).toBeInTheDocument()
   })
 })

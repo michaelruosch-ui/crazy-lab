@@ -45,10 +45,7 @@ describe('cloudSync', () => {
   })
 
   it('wirft keinen Fehler, wenn der Upload fehlschlägt (kein Internet)', async () => {
-    vi.stubGlobal(
-      'fetch',
-      vi.fn().mockRejectedValue(new Error('network error')),
-    )
+    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('network error')))
 
     await expect(uploadBackupToCloud(DEFAULT_PROFILE.id, config)).resolves.toBeUndefined()
   })

@@ -4,7 +4,8 @@ import type { MascotId } from '../domain'
  * ausser der Canvas-API, damit sie sowohl im `Mascot`-Komponente-Ref-Callback als auch
  * unabhängig getestet werden kann. */
 
-export type MascotSpecies = 'bear' | 'marmot' | 'raccoon' | 'wolf' | 'bat' | 'owl' | 'frog' | 'spider'
+export type MascotSpecies =
+  'bear' | 'marmot' | 'raccoon' | 'wolf' | 'bat' | 'owl' | 'frog' | 'spider'
 
 export type MascotPaletteKey = 'violet' | 'teal' | 'pink' | 'acid' | 'blood' | 'amber'
 
@@ -17,12 +18,36 @@ interface Palette {
 }
 
 export const PALETTES: Record<MascotPaletteKey, Palette> = {
-  violet: { body: '#7c4dcc', dark: '#4a2b7a', light: '#9d75e0', accent: '#a463f2', label: 'Violett' },
+  violet: {
+    body: '#7c4dcc',
+    dark: '#4a2b7a',
+    light: '#9d75e0',
+    accent: '#a463f2',
+    label: 'Violett',
+  },
   teal: { body: '#0f8a78', dark: '#075049', light: '#3fc9b0', accent: '#23e6c8', label: 'Türkis' },
   pink: { body: '#c2447a', dark: '#75204a', light: '#e07aa8', accent: '#ff4fa3', label: 'Pink' },
-  acid: { body: '#7a9f2a', dark: '#445916', light: '#a8d456', accent: '#b6ff3c', label: 'Giftgrün' },
-  blood: { body: '#8a1f3a', dark: '#4a0f1f', light: '#b8446a', accent: '#ff4f6a', label: 'Blutrot' },
-  amber: { body: '#b8752a', dark: '#6b3f12', light: '#e0a860', accent: '#ffb84f', label: 'Bernstein' },
+  acid: {
+    body: '#7a9f2a',
+    dark: '#445916',
+    light: '#a8d456',
+    accent: '#b6ff3c',
+    label: 'Giftgrün',
+  },
+  blood: {
+    body: '#8a1f3a',
+    dark: '#4a0f1f',
+    light: '#b8446a',
+    accent: '#ff4f6a',
+    label: 'Blutrot',
+  },
+  amber: {
+    body: '#b8752a',
+    dark: '#6b3f12',
+    light: '#e0a860',
+    accent: '#ffb84f',
+    label: 'Bernstein',
+  },
 }
 
 export const SPECIES_LABEL: Record<MascotSpecies, string> = {
@@ -45,18 +70,42 @@ export interface MascotCatalogEntry {
 }
 
 export const MASCOT_CATALOG: MascotCatalogEntry[] = [
-  { id: 'blutiger-kuschelbaer', species: 'bear', palette: 'violet', gore: true, name: 'Blutiger Kuschelbär' },
+  {
+    id: 'blutiger-kuschelbaer',
+    species: 'bear',
+    palette: 'violet',
+    gore: true,
+    name: 'Blutiger Kuschelbär',
+  },
   { id: 'nachtbaer', species: 'bear', palette: 'violet', gore: false, name: 'Nachtbär' },
   { id: 'der-schlingbaer', species: 'bear', palette: 'blood', gore: true, name: 'Der Schlingbär' },
   { id: 'frostbaer', species: 'bear', palette: 'teal', gore: false, name: 'Frostbär' },
   { id: 'giftbaer', species: 'bear', palette: 'acid', gore: false, name: 'Giftbär' },
   { id: 'zappelmurmel', species: 'marmot', palette: 'amber', gore: false, name: 'Zappelmurmel' },
   { id: 'hoehlenmurmel', species: 'marmot', palette: 'teal', gore: false, name: 'Höhlenmurmel' },
-  { id: 'der-nagerschreck', species: 'marmot', palette: 'pink', gore: true, name: 'Der Nagerschreck' },
+  {
+    id: 'der-nagerschreck',
+    species: 'marmot',
+    palette: 'pink',
+    gore: true,
+    name: 'Der Nagerschreck',
+  },
   { id: 'mondmurmel', species: 'marmot', palette: 'violet', gore: false, name: 'Mondmurmel' },
-  { id: 'schattenwaschbaer', species: 'raccoon', palette: 'teal', gore: false, name: 'Schattenwaschbär' },
+  {
+    id: 'schattenwaschbaer',
+    species: 'raccoon',
+    palette: 'teal',
+    gore: false,
+    name: 'Schattenwaschbär',
+  },
   { id: 'nebelbandit', species: 'raccoon', palette: 'violet', gore: false, name: 'Nebelbandit' },
-  { id: 'der-muelltaucher', species: 'raccoon', palette: 'acid', gore: true, name: 'Der Mülltaucher' },
+  {
+    id: 'der-muelltaucher',
+    species: 'raccoon',
+    palette: 'acid',
+    gore: true,
+    name: 'Der Mülltaucher',
+  },
   { id: 'glitzerbandit', species: 'raccoon', palette: 'pink', gore: false, name: 'Glitzerbandit' },
   { id: 'der-heuler', species: 'wolf', palette: 'blood', gore: true, name: 'Der Heuler' },
   { id: 'mondwolf', species: 'wolf', palette: 'violet', gore: false, name: 'Mondwolf' },
@@ -65,18 +114,48 @@ export const MASCOT_CATALOG: MascotCatalogEntry[] = [
   { id: 'nachtflatterer', species: 'bat', palette: 'violet', gore: false, name: 'Nachtflatterer' },
   { id: 'der-blutsauger', species: 'bat', palette: 'pink', gore: true, name: 'Der Blutsauger' },
   { id: 'hoehlenfluegel', species: 'bat', palette: 'teal', gore: false, name: 'Höhlenflügel' },
-  { id: 'daemmerflatterer', species: 'bat', palette: 'amber', gore: false, name: 'Dämmerflatterer' },
+  {
+    id: 'daemmerflatterer',
+    species: 'bat',
+    palette: 'amber',
+    gore: false,
+    name: 'Dämmerflatterer',
+  },
   { id: 'nachtwache', species: 'owl', palette: 'teal', gore: false, name: 'Nachtwache' },
   { id: 'mondauge', species: 'owl', palette: 'violet', gore: false, name: 'Mondauge' },
   { id: 'giftfeder', species: 'owl', palette: 'acid', gore: false, name: 'Giftfeder' },
   { id: 'der-beutegreifer', species: 'owl', palette: 'pink', gore: true, name: 'Der Beutegreifer' },
   { id: 'sumpfhuepfer', species: 'frog', palette: 'acid', gore: false, name: 'Sumpfhüpfer' },
-  { id: 'froschkoenig-der-nacht', species: 'frog', palette: 'teal', gore: false, name: 'Froschkönig der Nacht' },
-  { id: 'der-schlundfrosch', species: 'frog', palette: 'violet', gore: true, name: 'Der Schlundfrosch' },
+  {
+    id: 'froschkoenig-der-nacht',
+    species: 'frog',
+    palette: 'teal',
+    gore: false,
+    name: 'Froschkönig der Nacht',
+  },
+  {
+    id: 'der-schlundfrosch',
+    species: 'frog',
+    palette: 'violet',
+    gore: true,
+    name: 'Der Schlundfrosch',
+  },
   { id: 'glibberkroete', species: 'frog', palette: 'pink', gore: false, name: 'Glibberkröte' },
   { id: 'netzwaechter', species: 'spider', palette: 'violet', gore: false, name: 'Netzwächter' },
-  { id: 'der-achtbeinige-schrecken', species: 'spider', palette: 'blood', gore: true, name: 'Der Achtbeinige Schrecken' },
-  { id: 'spinnenschatten', species: 'spider', palette: 'teal', gore: false, name: 'Spinnenschatten' },
+  {
+    id: 'der-achtbeinige-schrecken',
+    species: 'spider',
+    palette: 'blood',
+    gore: true,
+    name: 'Der Achtbeinige Schrecken',
+  },
+  {
+    id: 'spinnenschatten',
+    species: 'spider',
+    palette: 'teal',
+    gore: false,
+    name: 'Spinnenschatten',
+  },
   { id: 'giftspinne', species: 'spider', palette: 'acid', gore: false, name: 'Giftspinne' },
 ]
 
@@ -86,7 +165,16 @@ export function getMascotEntry(id: MascotId): MascotCatalogEntry {
   return MASCOT_CATALOG.find((e) => e.id === id) ?? MASCOT_CATALOG[0]!
 }
 
-function furTufts(ctx: CanvasRenderingContext2D, cx: number, cy: number, rx: number, ry: number, count: number, color: string, len: number) {
+function furTufts(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  rx: number,
+  ry: number,
+  count: number,
+  color: string,
+  len: number,
+) {
   ctx.fillStyle = color
   for (let i = 0; i < count; i++) {
     const a = (i / count) * Math.PI * 2
@@ -105,7 +193,14 @@ function furTufts(ctx: CanvasRenderingContext2D, cx: number, cy: number, rx: num
   }
 }
 
-function bristles(ctx: CanvasRenderingContext2D, cx: number, cy: number, r: number, count: number, color: string) {
+function bristles(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  r: number,
+  count: number,
+  color: string,
+) {
   ctx.strokeStyle = color
   ctx.lineWidth = 2
   ctx.lineCap = 'round'
@@ -122,7 +217,15 @@ function bristles(ctx: CanvasRenderingContext2D, cx: number, cy: number, r: numb
   }
 }
 
-function teethRow(ctx: CanvasRenderingContext2D, cx: number, y: number, width: number, count: number, h: number, up: boolean) {
+function teethRow(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  y: number,
+  width: number,
+  count: number,
+  h: number,
+  up: boolean,
+) {
   const step = width / count
   ctx.fillStyle = '#eafffb'
   for (let i = 0; i < count; i++) {
@@ -157,7 +260,14 @@ function glowEye(ctx: CanvasRenderingContext2D, x: number, y: number, r: number,
   ctx.fill()
 }
 
-function eatenEye(ctx: CanvasRenderingContext2D, x: number, y: number, r: number, iris: string, seed: number) {
+function eatenEye(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  r: number,
+  iris: string,
+  seed: number,
+) {
   ctx.beginPath()
   ctx.arc(x, y, r, 0, Math.PI * 2)
   ctx.fillStyle = '#f5f0e8'
@@ -181,7 +291,14 @@ function eatenEye(ctx: CanvasRenderingContext2D, x: number, y: number, r: number
   ctx.fill()
 }
 
-function bloodDrip(ctx: CanvasRenderingContext2D, x: number, y: number, len: number, color: string, seed: number) {
+function bloodDrip(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  len: number,
+  color: string,
+  seed: number,
+) {
   ctx.strokeStyle = color
   ctx.lineWidth = 3.5
   ctx.lineCap = 'round'
@@ -210,7 +327,15 @@ function tongue(ctx: CanvasRenderingContext2D, cx: number, cy: number, w: number
   ctx.stroke()
 }
 
-function goreMouth(ctx: CanvasRenderingContext2D, cx: number, cy: number, w: number, h: number, pal: Palette, seed: number) {
+function goreMouth(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  w: number,
+  h: number,
+  pal: Palette,
+  seed: number,
+) {
   ctx.beginPath()
   ctx.ellipse(cx, cy, w / 2, h / 2, 0, 0, Math.PI * 2)
   ctx.fillStyle = '#1a0508'

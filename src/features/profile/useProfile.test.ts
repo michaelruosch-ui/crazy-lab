@@ -19,7 +19,10 @@ describe('useProfile', () => {
   })
 
   it('lädt ein vorhandenes Profil normal', async () => {
-    const profile: Profile = { ...DEFAULT_PROFILE, onboardingCompletedAt: '2026-08-16T00:00:00.000Z' }
+    const profile: Profile = {
+      ...DEFAULT_PROFILE,
+      onboardingCompletedAt: '2026-08-16T00:00:00.000Z',
+    }
     const repository: ProfileRepository = {
       get: () => Promise.resolve(profile),
       save: () => Promise.resolve(),

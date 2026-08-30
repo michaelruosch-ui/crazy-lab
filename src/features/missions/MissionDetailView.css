@@ -46,3 +46,35 @@
   color: var(--color-text-dim);
   font-size: 14px;
 }
+
+.mission-detail__drink-profile {
+  padding: 14px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 45%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-bg-card) 88%, var(--color-primary));
+}
+
+.mission-detail__drink-profile h2,
+.mission-detail__drink-profile h3 {
+  margin-top: 0;
+}
+
+.mission-detail__drink-profile h3 {
+  margin-top: 16px;
+  font-size: 16px;
+}
+
+.mission-detail__taste-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.mission-detail__variants {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.mission-detail__variants li + li {
+  margin-top: 8px;
+}

@@ -88,15 +88,20 @@ describe('backup', () => {
 
     const restoredProfile = await indexedDbProfileRepository.get(DEFAULT_PROFILE.id)
     expect(restoredProfile?.researcherName).toBe('Forscherin Elena')
-    expect(restoredProfile?.birthdays).toEqual([{ id: 'b1', personName: 'Laura', monthDay: '08-23' }])
+    expect(restoredProfile?.birthdays).toEqual([
+      { id: 'b1', personName: 'Laura', monthDay: '08-23' },
+    ])
 
     const restoredDiary = await indexedDbDiaryRepository.getAllEntries(DEFAULT_PROFILE.id)
     expect(restoredDiary).toHaveLength(1)
     expect(restoredDiary[0]!.id).toBe('entry-1')
 
-    expect(await indexedDbSecretVaultRepository.isSaved(DEFAULT_PROFILE.id, 'mission-playmobil-geisterbett')).toBe(
-      true,
-    )
+    expect(
+      await indexedDbSecretVaultRepository.isSaved(
+        DEFAULT_PROFILE.id,
+        'mission-playmobil-geisterbett',
+      ),
+    ).toBe(true)
 
     const restoredHistory = await indexedDbHiddenMissionsRepository.getHistory(
       DEFAULT_PROFILE.id,

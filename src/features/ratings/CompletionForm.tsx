@@ -1,6 +1,12 @@
 import { useState } from 'react'
 import type { Mission } from '../../domain'
-import type { AdjustmentTag, CompletionRating, DifficultyFeedback, MascotId, StampId } from '../../domain'
+import type {
+  AdjustmentTag,
+  CompletionRating,
+  DifficultyFeedback,
+  MascotId,
+  StampId,
+} from '../../domain'
 import { ADJUSTMENT_LABELS, ADJUSTMENT_TAGS, DEFAULT_PROFILE, STAMPS } from '../../domain'
 import { Button, StampAnimation } from '../../components'
 import './CompletionForm.css'
@@ -25,7 +31,8 @@ export function CompletionForm({
   submitting = false,
   mascotId = DEFAULT_PROFILE.mascotVariant,
 }: CompletionFormProps) {
-  const isDrink = mission.primaryCategory === 'getraenk' || mission.secondaryCategories.includes('getraenk')
+  const isDrink =
+    mission.primaryCategory === 'getraenk' || mission.secondaryCategories.includes('getraenk')
 
   const [result, setResult] = useState<1 | 2 | 3 | 4 | 5>(5)
   const [taste, setTaste] = useState<1 | 2 | 3 | 4 | 5>(5)
@@ -98,7 +105,11 @@ export function CompletionForm({
 
         <fieldset className="completion-form__toggles">
           <label className="completion-form__checkbox">
-            <input type="checkbox" checked={wouldRepeat} onChange={(e) => setWouldRepeat(e.target.checked)} />
+            <input
+              type="checkbox"
+              checked={wouldRepeat}
+              onChange={(e) => setWouldRepeat(e.target.checked)}
+            />
             Nochmal machen
           </label>
           <label className="completion-form__checkbox">

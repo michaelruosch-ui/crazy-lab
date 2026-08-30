@@ -44,7 +44,9 @@ describe('Vollständiger Missionsablauf', () => {
 
     await user.click(screen.getByRole('button', { name: 'Im Labortagebuch speichern' }))
 
-    expect(await screen.findByRole('heading', { name: 'Geheimnisvolles Labortagebuch' })).toBeInTheDocument()
+    expect(
+      await screen.findByRole('heading', { name: 'Geheimnisvolles Labortagebuch' }),
+    ).toBeInTheDocument()
     expect(await screen.findByText(mission.title)).toBeInTheDocument()
 
     const persisted = await indexedDbDiaryRepository.getAllEntries(DEFAULT_PROFILE.id)

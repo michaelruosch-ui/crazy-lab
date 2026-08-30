@@ -35,6 +35,21 @@ Nächster Schritt: Michael richtet den Cloudflare-Worker ein (`cloud-worker/READ
 `.env.local` befüllen, neu bauen und auf dem echten iPhone bestätigen, dass eine Neuinstallation
 den letzten Stand automatisch zurückholt. Danach weiter mit den verbleibenden Punkten oben.
 
+### Parallel umgesetzt: Sprint 6 - Getränke-Labor
+
+Status: **Technisch umgesetzt (2026-08-30), Familienabnahme mit Elena offen.** Michael hat Sprint 6
+ausdrücklich vorgezogen, weil die offenen Punkte aus Sprint 5 Elenas Input benötigen. Sprint 5
+bleibt deshalb in Arbeit; Sprint 7 beginnt erst nach der Familienabnahme von Sprint 6.
+
+- [x] 15 geprüfte, trinkbare Getränkemissionen mit Materialien, Schritten und Sicherheitshinweisen
+- [x] Genau fünf Vorschläge pro Kategorie trotz erweitertem Katalog
+- [x] Strukturierte Geschmacks-, Temperatur-, Optik- und Gerätemerkmale
+- [x] Mindestens zwei sichtbare Varianten pro Getränkemission
+- [x] Vorlieben aus Sprint 3 sortieren auch den erweiterten Getränkekatalog
+- [x] Inhaltsregeln geprüft: nicht bitter, nicht scharf, kein Pfeffer und kein Kardamom
+- [x] Automatische Daten- und UI-Tests ergänzt - insgesamt 99 Tests
+- [ ] Elena probiert und bewertet Auswahl, Geschmack, Namen und Varianten
+
 ## Abgeschlossene Sprints
 
 ### Sprint 4 - Forschernamen, Maskottchen und Geburtstage
@@ -119,9 +134,6 @@ positiv beantwortet.
 
 ### P1 - Getränke zuerst vollständig ausbauen
 
-- **Sprint 6 - Getränke-Labor:** 15 geprüfte Getränkemissionen, fünf Vorschläge,
-  Zutatenmerkmale, Varianten und Vorlieben; nicht bitter, nicht scharf, kein Pfeffer oder
-  Kardamom.
 - **Sprint 7 - Getränke-Bewertung und Varianten:** Geschmack, Optik, Gruseligkeit, Dekoration
   und lernende Variantenauswahl.
 - **Sprint 8 - Laborschrank Basis:** vorbereitete Materialliste, Bereiche, allgemeine und genaue

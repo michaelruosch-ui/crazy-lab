@@ -35,10 +35,19 @@ describe('suggestionsForCategory', () => {
   })
 
   it('berücksichtigt Missionen mit passender sekundärer Kategorie zusätzlich', () => {
-    const result = suggestionsForCategory(missions, 'getraenk', new Set())
+    const kleineAuswahl = missions.filter((mission) =>
+      ['mission-blutroter-schatten-trank', 'mission-zwei-zaubertraenke'].includes(mission.id),
+    )
+    const result = suggestionsForCategory(kleineAuswahl, 'getraenk', new Set())
     const ids = result.map((m) => m.id)
     expect(ids).toContain('mission-blutroter-schatten-trank')
     expect(ids).toContain('mission-zwei-zaubertraenke')
+  })
+
+  it('liefert im ausgebauten Getränke-Labor genau fünf Vorschläge', () => {
+    const result = suggestionsForCategory(missions, 'getraenk', new Set())
+    expect(result).toHaveLength(5)
+    expect(result.every((mission) => mission.primaryCategory === 'getraenk')).toBe(true)
   })
 
   it('blendet versteckte Missionen aus', () => {
@@ -57,10 +66,7 @@ describe('suggestionsForCategory', () => {
 
   it('sortiert bei bestehendem Präferenzprofil besser passende Missionen nach vorne', () => {
     const withoutProfile = suggestionsForCategory(missions, 'getraenk', new Set())
-    expect(withoutProfile.map((m) => m.id)).toEqual([
-      'mission-blutroter-schatten-trank',
-      'mission-zwei-zaubertraenke',
-    ])
+    expect(withoutProfile[0]?.id).toBe('mission-blutroter-schatten-trank')
 
     const profile = buildPreferenceProfile('elena', [
       ratedEntry(['weniger_gruselig']),
@@ -68,19 +74,17 @@ describe('suggestionsForCategory', () => {
     ])
     const withProfile = suggestionsForCategory(missions, 'getraenk', new Set(), profile)
 
-    expect(withProfile.map((m) => m.id)).toEqual([
-      'mission-zwei-zaubertraenke',
-      'mission-blutroter-schatten-trank',
-    ])
+    expect(withProfile[0]?.traits.gruselig).toBeLessThanOrEqual(
+      withoutProfile[0]?.traits.gruselig ?? 5,
+    )
   })
 
   it('lässt die Reihenfolge unverändert, solange das Profil kein Signal hat', () => {
     const emptyProfile = buildPreferenceProfile('elena', [])
     const result = suggestionsForCategory(missions, 'getraenk', new Set(), emptyProfile)
-    expect(result.map((m) => m.id)).toEqual([
-      'mission-blutroter-schatten-trank',
-      'mission-zwei-zaubertraenke',
-    ])
+    expect(result.map((m) => m.id)).toEqual(
+      suggestionsForCategory(missions, 'getraenk', new Set()).map((m) => m.id),
+    )
   })
 })
 

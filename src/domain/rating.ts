@@ -2,12 +2,7 @@ export type DifficultyFeedback = 'zu_einfach' | 'genau_richtig' | 'zu_schwierig'
 
 /** Strukturierte Anpassungswünsche aus der Abschlussbewertung. */
 export type AdjustmentTag =
-  | 'gruseliger'
-  | 'weniger_gruselig'
-  | 'farbiger'
-  | 'weniger_suess'
-  | 'einfacher'
-  | 'schwieriger'
+  'gruseliger' | 'weniger_gruselig' | 'farbiger' | 'weniger_suess' | 'einfacher' | 'schwieriger'
 
 export const ADJUSTMENT_TAGS: readonly AdjustmentTag[] = [
   'gruseliger',

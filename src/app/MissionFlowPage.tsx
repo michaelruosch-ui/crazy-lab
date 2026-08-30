@@ -19,7 +19,11 @@ interface MissionFlowPageProps {
 type Phase = 'detail' | 'run' | 'rating'
 type SaveStatus = 'idle' | 'saving' | 'error'
 
-function buildEntry(missionId: string, rating: CompletionRating, mission: NonNullable<ReturnType<typeof getMissionById>>): DiaryEntry {
+function buildEntry(
+  missionId: string,
+  rating: CompletionRating,
+  mission: NonNullable<ReturnType<typeof getMissionById>>,
+): DiaryEntry {
   return {
     id: generateId(),
     profileId: DEFAULT_PROFILE.id,
@@ -115,8 +119,8 @@ export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
       {saveStatus === 'error' && (
         <div className="mission-flow__save-error" role="alert">
           <p>
-            Speichern hat nicht geklappt. Bitte den Text unten Michael zeigen oder abfotografieren
-            - das hilft bei der Fehlersuche.
+            Speichern hat nicht geklappt. Bitte den Text unten Michael zeigen oder abfotografieren -
+            das hilft bei der Fehlersuche.
           </p>
           <p className="mission-flow__save-error-details">{errorDetails}</p>
           <Button variant="primary" onClick={() => pendingRating && trySave(pendingRating)}>

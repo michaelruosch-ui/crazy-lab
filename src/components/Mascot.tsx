@@ -15,7 +15,11 @@ const SIZE_PX: Record<NonNullable<MascotProps['size']>, number> = {
   large: 96,
 }
 
-export function Mascot({ mascotId = DEFAULT_MASCOT_ID, size = 'medium', talking = false }: MascotProps) {
+export function Mascot({
+  mascotId = DEFAULT_MASCOT_ID,
+  size = 'medium',
+  talking = false,
+}: MascotProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {

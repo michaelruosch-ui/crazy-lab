@@ -2,7 +2,10 @@ import { useCallback, useEffect, useState } from 'react'
 import type { DiaryEntry } from '../../domain'
 import { indexedDbDiaryRepository, type DiaryRepository } from '../../storage/diaryRepository'
 
-export function useDiaryEntries(profileId: string, repository: DiaryRepository = indexedDbDiaryRepository) {
+export function useDiaryEntries(
+  profileId: string,
+  repository: DiaryRepository = indexedDbDiaryRepository,
+) {
   const [entries, setEntries] = useState<DiaryEntry[]>([])
   const [loading, setLoading] = useState(true)
 

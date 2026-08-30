@@ -5,7 +5,8 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich in **Sprint 5** (PWA auf Elenas iPhone). Der aktuelle Stand: Beim
+Dieses Repository befindet sich in **Sprint 5** (PWA auf Elenas iPhone); **Sprint 6 ist technisch
+umgesetzt und wartet auf Elenas Familienabnahme**. Der aktuelle Stand: Beim
 ersten Start wählt man eines von 33 Maskottchen (8 Tierarten in verschiedenen Farbwelten) und
 einen Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf
 Kategorien (Getränke, Basteln, Experimente, Foto-Challenges, Schwestern-Missionen). Jede Mission
@@ -16,7 +17,9 @@ passender sortiert. Beim Abschluss stempelt eine zum Maskottchen passende Pranke
 gewählten Stempel ins Tagebuch. Auf der Profilseite lassen sich Forschername, Maskottchen und
 Geburtstage jederzeit ändern; an gespeicherten Geburtstagen erscheint eine besondere
 Geburtstagsmission. Ausserdem lässt sich dort jederzeit ein Backup aller lokalen Daten
-herunterladen und wieder einspielen - komplett offline, ohne Login und ohne Backend.
+herunterladen und wieder einspielen - komplett offline, ohne Login und ohne Backend. Das
+Getränke-Labor umfasst inzwischen 15 sichere Missionen mit strukturierten Geschmacks- und
+Optikmerkmalen sowie mindestens zwei direkt sichtbaren Varianten pro Getränk.
 
 ## Voraussetzungen
 

@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
 import './Badge.css'
 
-type BadgeTone = 'teal' | 'violet' | 'pink' | 'acid' | 'safety-green' | 'safety-yellow' | 'safety-red'
+type BadgeTone =
+  'teal' | 'violet' | 'pink' | 'acid' | 'safety-green' | 'safety-yellow' | 'safety-red'
 
 interface BadgeProps {
   tone?: BadgeTone

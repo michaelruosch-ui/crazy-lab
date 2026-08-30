@@ -152,6 +152,17 @@ keine Features.
    `GET /:key` beantwortet. Der lange, zufällige `key` ist zugleich der einzige Zugriffsschutz -
    Deployment-Anleitung in `cloud-worker/README.md`.
 
+## Getränke-Katalog (Sprint 6)
+
+Getränkemissionen verwenden das optionale, für die Primärkategorie `getraenk` aber validierte
+`Mission.drinkProfile`. Es enthält Geschmack, Serviertemperatur, sichtbare Eigenschaften,
+benötigte Geräte und mindestens zwei Varianten. Vierzehn neue Getränke liegen getrennt in
+`src/data/drinkMissions.ts`; zusammen mit der ersten Beispielmission ergeben sich genau 15.
+
+Die Merkmale versorgen die Missionsdetailseite und bilden eine Grundlage für Sprint 7.
+`suggestionsForCategory` bleibt auf fünf Ergebnisse begrenzt und nutzt weiterhin das lokale
+Präferenzprofil aus Sprint 3.
+
 ## Speicherung
 
 IndexedDB, Datenbank `crazylab`, aktuell Version 3 mit vier Object Stores:

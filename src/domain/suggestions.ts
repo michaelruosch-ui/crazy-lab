@@ -23,7 +23,9 @@ export function suggestionsForCategory(
   const candidates = [...primary, ...secondary].filter((m) => !hiddenMissionIds.has(m.id))
 
   if (profile && profile.ratedMissionCount > 0) {
-    candidates.sort((a, b) => scoreMissionForProfile(b, profile) - scoreMissionForProfile(a, profile))
+    candidates.sort(
+      (a, b) => scoreMissionForProfile(b, profile) - scoreMissionForProfile(a, profile),
+    )
   }
 
   return candidates.slice(0, MAX_SUGGESTIONS_PER_CATEGORY)

@@ -1,9 +1,4 @@
-export type MissionCategory =
-  | 'getraenk'
-  | 'basteln'
-  | 'experiment'
-  | 'foto'
-  | 'schwestern'
+export type MissionCategory = 'getraenk' | 'basteln' | 'experiment' | 'foto' | 'schwestern'
 
 export type Difficulty = 'leicht' | 'mittel' | 'schwer'
 
@@ -37,6 +32,25 @@ export interface MissionTraits {
   aufwand: number
 }
 
+export type DrinkTaste = 'suess' | 'sauer' | 'fruchtig' | 'cremig' | 'prickelnd'
+
+export interface DrinkVariant {
+  name: string
+  description: string
+}
+
+/**
+ * Strukturierte Getränkemerkmale aus Sprint 6. Sie machen den Katalog filter- und lernfähig,
+ * ohne die differenzierte Getränke-Bewertung aus Sprint 7 vorwegzunehmen.
+ */
+export interface DrinkProfile {
+  tastes: DrinkTaste[]
+  servingTemperature: 'kalt' | 'warm'
+  appearance: string[]
+  equipment: string[]
+  variants: DrinkVariant[]
+}
+
 export interface Mission {
   id: string
   contentVersion: number
@@ -52,6 +66,7 @@ export interface Mission {
   safetyNotes: string[]
   location: MissionLocation
   traits: MissionTraits
+  drinkProfile?: DrinkProfile
   steps: MissionStep[]
   generalHelpTip: string
   completionQuestion: string

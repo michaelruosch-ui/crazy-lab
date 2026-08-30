@@ -110,7 +110,9 @@ export function ProfilePage() {
       setTimeout(() => window.location.reload(), 1200)
     } catch {
       setBackupStatus('error')
-      setBackupMessage('Backup konnte nicht gelesen werden. Ist es wirklich eine Crazy-Lab-Backup-Datei?')
+      setBackupMessage(
+        'Backup konnte nicht gelesen werden. Ist es wirklich eine Crazy-Lab-Backup-Datei?',
+      )
     }
   }
 
@@ -162,12 +164,7 @@ export function ProfilePage() {
             value={newBirthdayName}
             onChange={(e) => setNewBirthdayName(e.target.value)}
           />
-          <input
-            className="profile-page__input"
-            type="date"
-            ref={dateInputRef}
-            defaultValue=""
-          />
+          <input className="profile-page__input" type="date" ref={dateInputRef} defaultValue="" />
           <Button variant="secondary" onClick={addBirthday}>
             Geburtstag hinzufügen
           </Button>
@@ -180,8 +177,8 @@ export function ProfilePage() {
         <div className="profile-page__backup-block">
           <h3>1. Backup erstellen</h3>
           <p className="profile-page__hint">
-            Speichert eine Datei mit dem aktuellen Stand - Maskottchen, Forschername,
-            Geburtstage, Geheimfach und das ganze Labortagebuch.
+            Speichert eine Datei mit dem aktuellen Stand - Maskottchen, Forschername, Geburtstage,
+            Geheimfach und das ganze Labortagebuch.
           </p>
           <Button variant="secondary" onClick={downloadBackup} disabled={backupStatus === 'busy'}>
             Jetzt Backup-Datei speichern

@@ -52,7 +52,9 @@ describe('DiaryEntryDetailPage', () => {
   it('zeigt die Details eines Tagebucheintrags', async () => {
     renderDetail('entry-1')
 
-    expect(await screen.findByRole('heading', { name: /Der blutrote Schatten-Trank/ })).toBeInTheDocument()
+    expect(
+      await screen.findByRole('heading', { name: /Der blutrote Schatten-Trank/ }),
+    ).toBeInTheDocument()
     expect(screen.getByText('"Elenas Trank"')).toBeInTheDocument()
     expect(screen.getByText('Gruseliger')).toBeInTheDocument()
   })
@@ -60,7 +62,9 @@ describe('DiaryEntryDetailPage', () => {
   it('zeigt eine Meldung, wenn der Eintrag nicht existiert', async () => {
     renderDetail('unbekannt')
 
-    expect(await screen.findByText('Dieser Tagebucheintrag wurde nicht gefunden.')).toBeInTheDocument()
+    expect(
+      await screen.findByText('Dieser Tagebucheintrag wurde nicht gefunden.'),
+    ).toBeInTheDocument()
   })
 
   it('schaltet "nochmal machen" um und speichert es dauerhaft', async () => {
@@ -70,7 +74,9 @@ describe('DiaryEntryDetailPage', () => {
     const toggle = await screen.findByRole('button', { name: '🔁 Nochmal machen?' })
     await user.click(toggle)
 
-    expect(await screen.findByRole('button', { name: '✅ Will ich nochmal machen' })).toBeInTheDocument()
+    expect(
+      await screen.findByRole('button', { name: '✅ Will ich nochmal machen' }),
+    ).toBeInTheDocument()
 
     const persisted = await indexedDbDiaryRepository.getEntry('entry-1')
     expect(persisted?.rating.wouldRepeat).toBe(true)

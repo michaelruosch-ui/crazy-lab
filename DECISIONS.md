@@ -452,3 +452,21 @@ Beim Testen dieser Änderung fiel ausserdem eine unabhängige, vorbestehende Lü
 Zustand jetzt auch das neue Cloud-Restore-Gate blockieren würde, wurde das im selben Zug behoben:
 ein endgültig fehlgeschlagenes Öffnen wird wie "kein Profil vorhanden" behandelt, damit die App
 zumindest das Onboarding erreicht statt für immer zu hängen.
+
+## ADR-020: Strukturierter Getränkekatalog vor Familienabnahme
+
+**Status:** Angenommen (Sprint 6, 2026-08-30)
+
+**Kontext:** Die letzten Punkte von Sprint 5 benötigen Elena. Michael hat deshalb ausdrücklich
+freigegeben, Sprint 6 parallel technisch umzusetzen. Der Katalog soll 15 sichere Getränke, fünf
+Vorschläge, Zutatenmerkmale, Varianten und vorhandene Vorlieben unterstützen; Bitteres, Scharfes,
+Pfeffer und Kardamom sind ausgeschlossen.
+
+**Entscheidung:** Die bestehende Beispielmission und vierzehn neue Missionen bilden den
+Getränkekatalog. Ein validiertes `drinkProfile` beschreibt Geschmack, Temperatur, Optik, Geräte
+und mindestens zwei Varianten. Die Varianten sind in der Detailansicht sichtbar; Vorschlagslogik
+und Präferenzprofil werden weiterverwendet.
+
+**Konsequenzen:** Sprint 6 ist technisch testbar, aber erst nach Elenas Praxistest abgeschlossen.
+Sprint 5 bleibt in Arbeit, Sprint 7 ist nicht automatisch freigegeben. Es wurde keine Cloud-Lösung
+bereitgestellt und kein Konto oder Abo abgeschlossen.

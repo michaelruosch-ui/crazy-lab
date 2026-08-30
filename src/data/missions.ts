@@ -1,4 +1,5 @@
 import type { Mission } from '../domain'
+import { additionalDrinkMissions } from './drinkMissions'
 
 /**
  * Statische, versionierte Missionsdaten für Sprint 1.
@@ -43,6 +44,19 @@ export const missions: Mission[] = [
     safetyNotes: [],
     location: 'kueche',
     traits: { gruselig: 4, farbig: 5, suess: 3, kreativ: 3, unordentlich: 1, aufwand: 1 },
+    drinkProfile: {
+      tastes: ['suess', 'fruchtig', 'prickelnd'],
+      servingTemperature: 'kalt',
+      appearance: ['blutrot', 'geschichtet', 'glitzernd'],
+      equipment: [],
+      variants: [
+        { name: 'Beerenschatten', description: 'Cranberrysaft durch dunklen Beerensaft ersetzen.' },
+        {
+          name: 'Extra-Nebel',
+          description: 'Mehr Eis verwenden und den Sirup besonders langsam einlaufen lassen.',
+        },
+      ],
+    },
     steps: [
       {
         id: 'step-1',
@@ -123,8 +137,7 @@ export const missions: Mission[] = [
         order: 2,
         text: 'Bemale das Bettgestell schwarz-violett und lass es kurz trocknen.',
         timerSeconds: 300,
-        helpTip:
-          'Wenn die Farbe noch klebt: einfach noch etwas länger warten, nicht anfassen.',
+        helpTip: 'Wenn die Farbe noch klebt: einfach noch etwas länger warten, nicht anfassen.',
       },
       {
         id: 'step-3',
@@ -233,8 +246,18 @@ export const missions: Mission[] = [
     estimatedCostChf: 0,
     materials: [
       { id: 'm1', name: 'Smartphone oder Kamera', optional: false, consumable: false },
-      { id: 'm2', name: 'Ein leichter Gegenstand (z. B. Buch, Kuscheltier)', optional: false, consumable: false },
-      { id: 'm3', name: 'Zweite Person zum Werfen oder Halten', optional: false, consumable: false },
+      {
+        id: 'm2',
+        name: 'Ein leichter Gegenstand (z. B. Buch, Kuscheltier)',
+        optional: false,
+        consumable: false,
+      },
+      {
+        id: 'm3',
+        name: 'Zweite Person zum Werfen oder Halten',
+        optional: false,
+        consumable: false,
+      },
     ],
     safetyLevel: 'gruen',
     safetyNotes: [],
@@ -338,4 +361,5 @@ export const missions: Mission[] = [
       'Welche geheime Zutat hat jede von euch gewählt, und welcher Trank hat gewonnen?',
     imagePlaceholder: 'potion-sisters',
   },
+  ...additionalDrinkMissions,
 ]

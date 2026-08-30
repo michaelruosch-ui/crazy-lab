@@ -18,6 +18,16 @@ function baseMission(overrides: Partial<Mission> = {}): Mission {
     safetyNotes: [],
     location: 'kueche',
     traits: { gruselig: 1, farbig: 1, suess: 1, kreativ: 1, unordentlich: 1, aufwand: 1 },
+    drinkProfile: {
+      tastes: ['fruchtig'],
+      servingTemperature: 'kalt',
+      appearance: ['rot'],
+      equipment: [],
+      variants: [
+        { name: 'Variante 1', description: 'Anderer Saft.' },
+        { name: 'Variante 2', description: 'Mehr Eis.' },
+      ],
+    },
     steps: [{ id: 'step-1', order: 1, text: 'Tu etwas.' }],
     generalHelpTip: 'Hilfe-Tipp',
     completionQuestion: 'Wie war es?',
@@ -46,5 +56,23 @@ describe('validateMission', () => {
   it('verlangt Sicherheitshinweise bei gelber/roter Stufe', () => {
     const errors = validateMission(baseMission({ safetyLevel: 'rot', safetyNotes: [] }))
     expect(errors.some((e) => e.message.includes('safetyNotes'))).toBe(true)
+  })
+
+  it('verlangt strukturierte Getränkemerkmale und mindestens zwei Varianten', () => {
+    const withoutProfile = validateMission(baseMission({ drinkProfile: undefined }))
+    expect(withoutProfile.some((e) => e.message.includes('drinkProfile'))).toBe(true)
+
+    const withoutVariants = validateMission(
+      baseMission({
+        drinkProfile: {
+          tastes: ['suess'],
+          servingTemperature: 'kalt',
+          appearance: ['rot'],
+          equipment: [],
+          variants: [],
+        },
+      }),
+    )
+    expect(withoutVariants.some((e) => e.message.includes('varianten'))).toBe(true)
   })
 })

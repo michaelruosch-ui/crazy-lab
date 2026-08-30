@@ -21,7 +21,12 @@ const STATUS_LABELS = {
 }
 
 function Stars({ value }: { value: number }) {
-  return <span aria-label={`${value} von 5 Sternen`}>{'★'.repeat(value)}{'☆'.repeat(5 - value)}</span>
+  return (
+    <span aria-label={`${value} von 5 Sternen`}>
+      {'★'.repeat(value)}
+      {'☆'.repeat(5 - value)}
+    </span>
+  )
 }
 
 export function DiaryEntryDetailPage() {
@@ -129,7 +134,10 @@ export function DiaryEntryDetailPage() {
         </section>
       )}
 
-      <Button variant={entry.rating.wouldRepeat ? 'primary' : 'secondary'} onClick={toggleWouldRepeat}>
+      <Button
+        variant={entry.rating.wouldRepeat ? 'primary' : 'secondary'}
+        onClick={toggleWouldRepeat}
+      >
         {entry.rating.wouldRepeat ? '✅ Will ich nochmal machen' : '🔁 Nochmal machen?'}
       </Button>
 

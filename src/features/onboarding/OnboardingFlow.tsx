@@ -31,7 +31,9 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
     return (
       <div className="onboarding">
         <h1>🔮 Willkommen im Crazy Lab!</h1>
-        <p>Bevor es losgeht: Wähle dein Labor-Maskottchen aus. Du kannst es später jederzeit ändern.</p>
+        <p>
+          Bevor es losgeht: Wähle dein Labor-Maskottchen aus. Du kannst es später jederzeit ändern.
+        </p>
         <MascotPicker value={mascotVariant} onChange={setMascotVariant} />
         <Button variant="primary" onClick={() => setStep('name')}>
           Weiter
@@ -46,7 +48,9 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
         <Mascot mascotId={mascotVariant} size="large" />
       </div>
       <h1>Wie sollen wir dich nennen?</h1>
-      <p>Dein Forschername kann dein echter Name sein oder ein geheimer Codename - was du willst.</p>
+      <p>
+        Dein Forschername kann dein echter Name sein oder ein geheimer Codename - was du willst.
+      </p>
       <input
         className="onboarding__input"
         value={researcherName}

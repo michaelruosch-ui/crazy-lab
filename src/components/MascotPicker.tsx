@@ -18,7 +18,9 @@ export function MascotPicker({ value, onChange }: MascotPickerProps) {
 
   return (
     <div className="mascot-picker" role="radiogroup" aria-label="Maskottchen auswählen">
-      <p className="mascot-picker__hint">Scroll durch alle {MASCOT_CATALOG.length} Entwürfe und tippe deinen Favoriten an.</p>
+      <p className="mascot-picker__hint">
+        Scroll durch alle {MASCOT_CATALOG.length} Entwürfe und tippe deinen Favoriten an.
+      </p>
       {[...bySpecies.entries()].map(([species, entries]) => (
         <div key={species} className="mascot-picker__group">
           <h3 className="mascot-picker__species">{SPECIES_LABEL[species]}</h3>
