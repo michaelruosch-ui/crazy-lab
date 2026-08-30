@@ -5,7 +5,6 @@ import {
   indexedDbHiddenMissionsRepository,
   type HiddenMissionsRepository,
 } from '../../storage/hiddenMissionsRepository'
-import { scheduleLocalBackup } from '../../storage/localBackup'
 
 export function useHiddenMissions(
   profileId: string,
@@ -42,7 +41,6 @@ export function useHiddenMissions(
     async (missionId: string) => {
       await repository.hide(profileId, missionId)
       await reload()
-      scheduleLocalBackup(profileId)
     },
     [profileId, repository, reload],
   )

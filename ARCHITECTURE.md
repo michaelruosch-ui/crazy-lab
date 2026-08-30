@@ -129,15 +129,13 @@ keine Features.
 3. Kein eigener Object Store und keine neue DB-Version nötig - das Feature liest/schreibt
    ausschliesslich über die vier bestehenden Repositories.
 
-### Lokale Mac-Sicherung (Sprint 5, ersetzt Cloud-Backup)
+### Dauerhafter iPhone-Speicher und manuelles Backup (Sprint 5)
 
-`storage/localBackup.ts` erstellt nach lokalen Änderungen ein vollständiges Backup und sendet es
-best-effort an den HTTPS-Dienst im Heimnetz. Das iPhone bleibt Quelle der Wahrheit. Der Dienst
-prüft Zugriffsschlüssel und erlaubten Origin und schreibt atomar in `local-backups/`. Bei leerem
-iPhone-Speicher versucht `App.tsx` einmalig die Wiederherstellung vom Mac. `persistentStorage.ts`
-fordert zusätzlich WebKits persistenten Speichermodus an. Der frühere Cloudflare-Client und Worker
-sind entfernt; ADR-019 bleibt nur als historische Entscheidung erhalten und wird von ADR-021
-abgelöst.
+IndexedDB auf dem iPhone bleibt Quelle der Wahrheit. `persistentStorage.ts` fordert zusätzlich
+WebKits persistenten Speichermodus an. `storage/backup.ts` exportiert/importiert bei Bedarf eine
+zweite, manuell auf dem Mac aufbewahrte Kopie. Eine automatische lokale Mac-Verbindung wurde nach
+Sicherheitsprüfung verworfen; Cloudflare-Client und Worker sind entfernt. ADR-019 bleibt nur als
+historische Entscheidung erhalten und wird von ADR-021 abgelöst.
 
 ### Historisch: Automatisches Cloud-Backup (Sprint 5)
 

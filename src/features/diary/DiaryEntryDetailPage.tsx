@@ -4,7 +4,6 @@ import { ADJUSTMENT_LABELS, STAMPS } from '../../domain'
 import type { DiaryEntry } from '../../domain'
 import { BackLink, Badge, Button, MissionImage } from '../../components'
 import { indexedDbDiaryRepository } from '../../storage/diaryRepository'
-import { scheduleLocalBackup } from '../../storage/localBackup'
 import './DiaryEntryDetailPage.css'
 
 const DIFFICULTY_LABELS = {
@@ -52,7 +51,6 @@ export function DiaryEntryDetailPage() {
     }
     setEntry(updated)
     await indexedDbDiaryRepository.saveEntry(updated)
-    scheduleLocalBackup(updated.profileId)
   }
 
   if (entry === undefined) {

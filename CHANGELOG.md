@@ -4,13 +4,13 @@
 
 - Cloudflare-Client, Worker-Gerüst und zugehörige Abhängigkeiten vollständig entfernt.
 - IndexedDB bleibt Hauptspeicher; die App beantragt beim Start dauerhaften WebKit-Speicher.
-- Optionaler lokaler HTTPS-Sicherungsdienst auf Michaels Mac mit Zugriffsschlüssel,
-  Origin-Prüfung, atomarem `latest.json` und datierten Sicherungsständen ergänzt.
-- Automatische Wiederherstellung vom Mac bei leerem iPhone-Speicher.
+- Nach Sicherheitsprüfung die automatische Mac-Verbindung verworfen: Ein im öffentlichen
+  Web-Build enthaltener Zugriffsschlüssel wäre kein Geheimnis. Zweite Kopie bleibt das bewährte
+  manuelle Backup auf der Profilseite.
 - Offline-Service-Worker auf Familienentscheid entfernt; Aktualisierungen kommen beim erneuten
   Online-Öffnen automatisch.
 - Neues, von Michael ausgewähltes Schleimmonster-App-Symbol und statisches Web-App-Manifest.
-- 99 Tests erfolgreich; öffentliche Gratis-Bereitstellung und echter iPhone-Abschlusstest offen.
+- 94 Tests erfolgreich; öffentliche Gratis-Bereitstellung und echter iPhone-Abschlusstest offen.
 
 ## Sprint 6 - Getränke-Labor, Familienabnahme offen (2026-08-30)
 

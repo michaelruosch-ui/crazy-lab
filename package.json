@@ -12,8 +12,7 @@
     "typecheck": "tsc -b --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "preview": "vite preview",
-    "backup-server": "node local-backup-server/server.mjs"
+    "preview": "vite preview"
   },
   "dependencies": {
     "idb": "^8.0.3",

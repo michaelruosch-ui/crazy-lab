@@ -100,18 +100,10 @@ wiederholt werden.
 Auf der Profilseite (`/profil`, Abschnitt "📦 Datensicherung") lässt sich jederzeit eine
 Backup-Datei mit allen lokalen Daten herunterladen und auf demselben oder einem anderen Gerät
 wieder einspielen (siehe DECISIONS.md ADR-018). Sinnvoll als zusätzliches, manuelles Sicherheits-
-netz - für den Alltag sorgt aber die automatische lokale Mac-Sicherung unten dafür, dass i. d. R. gar
-nichts manuell gemacht werden muss.
-
-### Automatische lokale Mac-Sicherung
-
-Nach jeder Änderung (neue Mission erledigt, Geburtstag hinzugefügt, Maskottchen gewechselt, ...)
-sichert die App primär in IndexedDB auf dem iPhone. WebKit wird beim Start zusätzlich um
-dauerhaften Speicher gebeten. Ist Michaels Mac im Heimnetz erreichbar, sendet die App ausserdem
-eine geschützte Sicherung an `local-backup-server/server.mjs`; dort bleiben `latest.json` und
-datierte ältere Stände im gitignorierten Ordner `local-backups/`. Ist der Mac aus, läuft die App
-weiter und holt die Sicherung bei einer späteren Änderung nach. Bei leerem iPhone-Speicher wird
-vor dem Onboarding automatisch eine Wiederherstellung vom Mac versucht (ADR-021).
+netz. Hauptspeicher ist IndexedDB auf dem iPhone; WebKit wird beim Start zusätzlich um dauerhaften
+Speicher gebeten. Für eine zweite Kopie wird gelegentlich über die Profilseite eine Backup-Datei
+heruntergeladen und auf dem Mac aufbewahrt. Eine automatische Mac-Verbindung wurde verworfen,
+weil ihr Zugriffsschlüssel in einem öffentlichen Web-Build nicht geheim bliebe (ADR-021).
 
 ## Architektur
 

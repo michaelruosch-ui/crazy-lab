@@ -23,6 +23,7 @@ const https =
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: process.env.GITHUB_ACTIONS ? '/crazy-lab/' : '/',
   plugins: [react()],
   server: {
     https,

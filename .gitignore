@@ -16,8 +16,6 @@ coverage
 
 # Lokale mkcert-Zertifikate (privater Schlüssel, gehört nie ins Repo, siehe README.md)
 certs/
-local-backups/
-local-backup-server/.env
 
 # Editor directories and files
 .vscode/*

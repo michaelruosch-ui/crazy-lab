@@ -21,16 +21,16 @@ Netzwerk-IP.
       einem Datenverlust-Vorfall beim Origin-Wechsel http→https (siehe DECISIONS.md ADR-018)
 - [x] Cloudflare-Client und Worker vollständig entfernt; keine persönlichen Daten in einer Cloud
 - [x] Dauerhafter iPhone-Speicher wird über die WebKit Storage API angefragt
-- [x] Automatische, ausfallsichere Mac-Sicherung technisch umgesetzt; lokaler Dienst speichert
-      `latest.json` plus datierte Stände und stellt bei leerem iPhone automatisch wieder her
+- [x] Sichere Variante 1 festgelegt: iPhone-Hauptspeicher plus manuelles Backup auf den Mac;
+      automatische Mac-Verbindung wegen öffentlich einsehbarem Zugriffsschlüssel verworfen
 - [x] Nebenbei behoben: `useProfile` blieb bei endgültig gescheitertem Datenbank-Öffnen für immer
       bei "Lade..." hängen (unbehandelte Promise-Ablehnung) - fällt jetzt auf "kein Profil" zurück
 - [x] Neues Schleimmonster-App-Symbol in 192/512/maskable und Manifest-Feinschliff
 - [x] Automatische Aktualisierung ohne Update-Knopf durch Online-Laden beim erneuten Öffnen
 - [ ] Safari/iPhone-QA-Checkliste
 
-Nächster Schritt: kostenlose öffentliche Bereitstellung des reinen Programmcodes sowie sichere
-Aktivierung des lokalen Mac-Dienstes; danach abschliessende iPhone-QA inklusive Backup-Rückweg.
+Nächster Schritt: kostenlose öffentliche Bereitstellung des reinen Programmcodes; danach
+abschliessende iPhone-QA inklusive manuellem Backup-Rückweg.
 
 ### Parallel umgesetzt: Sprint 6 - Getränke-Labor
 
@@ -45,7 +45,7 @@ bleibt deshalb in Arbeit; Sprint 7 beginnt erst nach der Familienabnahme von Spr
 - [x] Vorlieben aus Sprint 3 sortieren auch den erweiterten Getränkekatalog
 - [x] Inhaltsregeln geprüft: nicht bitter, nicht scharf, kein Pfeffer und kein Kardamom
 - [x] Tagesmission ist exklusiv und erscheint nicht nochmals in einer Kategorie
-- [x] Automatische Daten- und UI-Tests ergänzt - insgesamt 100 Tests
+- [x] Automatische Daten- und UI-Tests ergänzt; nach Entfernung der Cloud-Tests insgesamt 94 Tests
 - [ ] Elena probiert und bewertet Auswahl, Geschmack, Namen und Varianten
 
 ## Abgeschlossene Sprints

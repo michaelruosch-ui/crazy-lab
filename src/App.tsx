@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Routes, Route, useParams } from 'react-router-dom'
 import { MissionFlowPage } from './app/MissionFlowPage'
 import { HomePage, HistoryPage } from './features/missions'
@@ -7,8 +7,6 @@ import { SecretVaultPage } from './features/secret-vault'
 import { OnboardingFlow } from './features/onboarding'
 import { ProfilePage, useProfile } from './features/profile'
 import { DEFAULT_PROFILE } from './domain'
-import { downloadBackupFromMac } from './storage/localBackup'
-import { restoreBackup } from './storage/backup'
 import { requestPersistentStorage } from './storage/persistentStorage'
 
 function MissionRoute() {
@@ -18,35 +16,12 @@ function MissionRoute() {
 }
 
 export function App() {
-  const { profile, loading, save, reload } = useProfile(DEFAULT_PROFILE.id)
-  const [backupCheckDone, setBackupCheckDone] = useState(false)
-  const profileReady = Boolean(profile && profile.onboardingCompletedAt)
-
+  const { profile, loading, save } = useProfile(DEFAULT_PROFILE.id)
   useEffect(() => {
     void requestPersistentStorage()
   }, [])
 
-  useEffect(() => {
-    if (loading || profileReady || backupCheckDone) return
-    // Bei leerem iPhone-Speicher versucht die App einmalig, Michaels lokalen Mac zu erreichen.
-    let cancelled = false
-    downloadBackupFromMac()
-      .then(async (backup) => {
-        if (cancelled) return
-        if (backup) {
-          await restoreBackup(backup)
-          await reload()
-        }
-      })
-      .finally(() => {
-        if (!cancelled) setBackupCheckDone(true)
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [loading, profileReady, backupCheckDone, reload])
-
-  if (loading || (!profileReady && !backupCheckDone)) {
+  if (loading) {
     return <p className="app-loading">Lade...</p>
   }
 

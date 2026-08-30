@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import type { Profile } from '../../domain'
 import { indexedDbProfileRepository, type ProfileRepository } from '../../storage/profileRepository'
-import { scheduleLocalBackup } from '../../storage/localBackup'
 
 export function useProfile(
   profileId: string,
@@ -36,7 +35,6 @@ export function useProfile(
     async (updated: Profile) => {
       await repository.save(updated)
       setProfile(updated)
-      scheduleLocalBackup(updated.id)
     },
     [repository],
   )

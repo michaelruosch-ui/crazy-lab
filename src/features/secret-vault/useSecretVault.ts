@@ -4,7 +4,6 @@ import {
   indexedDbSecretVaultRepository,
   type SecretVaultRepository,
 } from '../../storage/secretVaultRepository'
-import { scheduleLocalBackup } from '../../storage/localBackup'
 
 export function useSecretVault(
   profileId: string,
@@ -42,7 +41,6 @@ export function useSecretVault(
         await repository.save(profileId, missionId)
       }
       await reload()
-      scheduleLocalBackup(profileId)
     },
     [profileId, repository, reload, savedMissionIds],
   )
