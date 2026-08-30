@@ -47,7 +47,8 @@ bleibt deshalb in Arbeit; Sprint 7 beginnt erst nach der Familienabnahme von Spr
 - [x] Mindestens zwei sichtbare Varianten pro Getränkemission
 - [x] Vorlieben aus Sprint 3 sortieren auch den erweiterten Getränkekatalog
 - [x] Inhaltsregeln geprüft: nicht bitter, nicht scharf, kein Pfeffer und kein Kardamom
-- [x] Automatische Daten- und UI-Tests ergänzt - insgesamt 99 Tests
+- [x] Tagesmission ist exklusiv und erscheint nicht nochmals in einer Kategorie
+- [x] Automatische Daten- und UI-Tests ergänzt - insgesamt 100 Tests
 - [ ] Elena probiert und bewertet Auswahl, Geschmack, Namen und Varianten
 
 ## Abgeschlossene Sprints

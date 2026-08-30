@@ -161,7 +161,9 @@ benötigte Geräte und mindestens zwei Varianten. Vierzehn neue Getränke liegen
 
 Die Merkmale versorgen die Missionsdetailseite und bilden eine Grundlage für Sprint 7.
 `suggestionsForCategory` bleibt auf fünf Ergebnisse begrenzt und nutzt weiterhin das lokale
-Präferenzprofil aus Sprint 3.
+Präferenzprofil aus Sprint 3. Die Startseite berechnet zuerst alle Kategorie-Vorschläge und
+übergibt deren IDs als Ausschlussmenge an `pickDailyMission`; die Tagesmission ist damit immer
+eine zusätzliche, unten nicht nochmals sichtbare Mission.
 
 ## Speicherung
 

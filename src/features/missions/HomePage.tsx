@@ -36,11 +36,22 @@ export function HomePage() {
   const today = new Date()
   const todaysBirthdays = (profile?.birthdays ?? []).filter((b) => isBirthdayToday(b, today))
 
+  const categorySuggestions = new Map(
+    CATEGORY_SECTIONS.map(({ category }) => [
+      category,
+      suggestionsForCategory(missions, category, currentlyHiddenMissionIds, preferenceProfile),
+    ]),
+  )
+  const categoryMissionIds = new Set(
+    [...categorySuggestions.values()].flat().map((mission) => mission.id),
+  )
+
   const dailyMission = pickDailyMission(
     missions,
     currentlyHiddenMissionIds,
     DEFAULT_PROFILE.id,
     today,
+    categoryMissionIds,
   )
 
   return (
@@ -72,12 +83,7 @@ export function HomePage() {
         <MissionSection
           key={category}
           title={title}
-          missions={suggestionsForCategory(
-            missions,
-            category,
-            currentlyHiddenMissionIds,
-            preferenceProfile,
-          )}
+          missions={categorySuggestions.get(category) ?? []}
           savedMissionIds={savedMissionIds}
           onToggleSave={toggleSaved}
           onHide={hide}

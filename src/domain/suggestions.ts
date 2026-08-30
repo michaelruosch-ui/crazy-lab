@@ -50,8 +50,11 @@ export function pickDailyMission(
   hiddenMissionIds: ReadonlySet<string>,
   profileId: string,
   today: Date,
+  excludedMissionIds: ReadonlySet<string> = new Set(),
 ): Mission | undefined {
-  const available = missions.filter((m) => !hiddenMissionIds.has(m.id))
+  const available = missions.filter(
+    (m) => !hiddenMissionIds.has(m.id) && !excludedMissionIds.has(m.id),
+  )
   if (available.length === 0) return undefined
 
   const dateKey = today.toISOString().slice(0, 10)

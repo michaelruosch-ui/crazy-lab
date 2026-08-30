@@ -13,7 +13,10 @@
 ### Qualität
 
 - Inhaltsvalidierung, Anzahl, Vielfalt, Vorschlagslimit und Detailansicht automatisch geprüft -
-  insgesamt 99 erfolgreiche Tests.
+  insgesamt 100 erfolgreiche Tests.
+- Familienfeedback umgesetzt: Die Tagesmission wird nur aus Missionen gewählt, die nicht bereits
+  unten in einer Kategorie angezeigt werden. Die fünf Kategorie-Vorschläge bleiben dadurch
+  unverändert vollständig.
 - Sprint 5 bleibt in Arbeit; Sprint 6 ist bis zu Elenas Praxistest noch nicht familienseitig
   abgeschlossen.
 

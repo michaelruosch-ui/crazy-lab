@@ -89,6 +89,23 @@ describe('suggestionsForCategory', () => {
 })
 
 describe('pickDailyMission', () => {
+  it('schliesst bereits in den Kategorien gezeigte Missionen von der Tagesmission aus', () => {
+    const excludedMissionIds = new Set(
+      suggestionsForCategory(missions, 'getraenk', new Set()).map((mission) => mission.id),
+    )
+
+    const result = pickDailyMission(
+      missions,
+      new Set(),
+      'elena',
+      new Date('2026-08-30T10:00:00.000Z'),
+      excludedMissionIds,
+    )
+
+    expect(result).toBeDefined()
+    expect(excludedMissionIds.has(result?.id ?? '')).toBe(false)
+  })
+
   it('wählt dieselbe Mission für denselben Tag und dasselbe Profil', () => {
     const today = new Date('2026-08-23T10:00:00.000Z')
     const a = pickDailyMission(missions, new Set(), 'elena', today)
