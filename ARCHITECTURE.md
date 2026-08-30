@@ -195,18 +195,14 @@ Einträge nicht verändern.
 
 ## PWA
 
-- `vite-plugin-pwa` mit Strategie `generateSW` erzeugt Manifest und Service Worker automatisch
-  beim Build (`registerType: 'autoUpdate'`, Registrierung wird von Vite ins gebaute `index.html`
-  injiziert).
+- Ein statisches Web-App-Manifest macht die Online-App auf dem iPhone installierbar. Ein Service
+  Worker wird auf Familienentscheid nicht mehr erzeugt; beim erneuten Öffnen wird die aktuelle
+  Online-Version geladen.
 - App-Icons liegen als PNG in `public/icons/` (192, 512, maskable 512), Favicon als eigenes SVG.
-- Es besteht keine Abhängigkeit von externen Netzwerk-Ressourcen (keine CDN-Fonts, keine
-  externen Bilder).
-- Sowohl die Service-Worker-Registrierung als auch `crypto.randomUUID()` (siehe `domain/id.ts`)
-  erfordern einen sicheren Kontext (HTTPS oder `localhost`). Seit Sprint 5 stellt `vite.config.ts`
-  bei vorhandenen lokalen mkcert-Zertifikaten (`certs/`, gitignored) HTTPS auch für `server` und
-  `preview` bereit (siehe DECISIONS.md ADR-017), damit die App auch über die lokale Netzwerk-IP
-  in einem sicheren Kontext läuft und offline-fähig ist - bestätigt per Flugmodus-Test auf Elenas
-  iPhone.
+- Die Produktionsversion liegt unter `https://michaelruosch-ui.github.io/crazy-lab/`; persönliche
+  Daten verlassen IndexedDB auf dem iPhone nur beim ausdrücklich ausgelösten manuellen Backup.
+- `HashRouter` hält alle Unterseiten hinter `#`. Dadurch beantwortet GitHub Pages auch ein
+  Neuladen nach Backup/Restore immer mit der App statt mit seiner statischen 404-Seite.
 
 ## Erweiterungspunkte für spätere Sprints
 

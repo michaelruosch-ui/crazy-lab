@@ -31,6 +31,7 @@ Netzwerk-IP.
       `https://michaelruosch-ui.github.io/crazy-lab/`
 - [x] iPhone-Backup öffnet den sichtbaren Teilen-Dialog für „In Dateien sichern“; keine falsche
       Erfolgsmeldung mehr nach einem bloss gestarteten Download
+- [x] Direktes Neuladen von Profil und anderen Unterseiten funktioniert auf GitHub Pages ohne 404
 - [ ] Safari/iPhone-QA-Checkliste
 
 Nächster Schritt: abschliessende iPhone-QA inklusive manuellem Backup-Rückweg. Vor dem Entfernen

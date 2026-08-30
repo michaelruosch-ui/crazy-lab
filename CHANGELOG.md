@@ -15,6 +15,8 @@
 - iPhone-Backup korrigiert: Statt eines unzuverlässigen stillen Downloads öffnet Crazy Lab den
   iOS-Teilen-Dialog für „In Dateien sichern“ und behauptet nicht mehr ungeprüft, die Datei sei
   gespeichert.
+- Navigation auf GitHub Pages auf Hash-Routen umgestellt: Nach einer Wiederherstellung oder dem
+  Neuladen einer Unterseite erscheint dadurch kein `404 File not found` mehr.
 - 94 Tests erfolgreich; öffentlicher Build technisch geprüft, echter iPhone-Abschlusstest offen.
 
 ## Sprint 6 - Getränke-Labor, Familienabnahme offen (2026-08-30)
