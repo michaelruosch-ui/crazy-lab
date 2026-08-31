@@ -1,8 +1,13 @@
-import { useRef, useState } from 'react'
-import type { Birthday, MascotId, Profile } from '../../domain'
+import { useEffect, useRef, useState } from 'react'
+import type { Birthday, LocalBackupSnapshot, MascotId, Profile } from '../../domain'
 import { DEFAULT_PROFILE, generateId } from '../../domain'
 import { BackLink, Button, MascotPicker } from '../../components'
 import { backupFileName, createBackup, isBackupData, restoreBackup } from '../../storage/backup'
+import {
+  getLocalSnapshots,
+  restoreLocalSnapshot,
+  saveLocalSnapshot,
+} from '../../storage/localBackupRepository'
 import { useProfile } from './useProfile'
 import './ProfilePage.css'
 
@@ -26,6 +31,11 @@ export function ProfilePage() {
   const backupFileInputRef = useRef<HTMLInputElement>(null)
   const [backupStatus, setBackupStatus] = useState<BackupStatus>('idle')
   const [backupMessage, setBackupMessage] = useState('')
+  const [snapshots, setSnapshots] = useState<LocalBackupSnapshot[]>([])
+
+  useEffect(() => {
+    void getLocalSnapshots(DEFAULT_PROFILE.id).then(setSnapshots)
+  }, [])
 
   if (profile && profile !== nameSyncedWith) {
     setNameSyncedWith(profile)
@@ -109,6 +119,43 @@ export function ProfilePage() {
     }
   }
 
+  async function saveSnapshotNow() {
+    setBackupStatus('busy')
+    try {
+      await saveLocalSnapshot(DEFAULT_PROFILE.id)
+      setSnapshots(await getLocalSnapshots(DEFAULT_PROFILE.id))
+      setBackupStatus('success')
+      setBackupMessage('Alles ist gesichert. Du musst keine Datei öffnen oder verschieben.')
+    } catch {
+      setBackupStatus('error')
+      setBackupMessage('Sichern hat nicht geklappt. Bitte nochmals versuchen.')
+    }
+  }
+
+  async function restoreSnapshot(snapshot: LocalBackupSnapshot) {
+    if (!window.confirm('Diesen Sicherungsstand wirklich wiederherstellen?')) return
+    setBackupStatus('busy')
+    try {
+      await restoreLocalSnapshot(snapshot)
+      setBackupStatus('success')
+      setBackupMessage('Sicherungsstand wiederhergestellt! Die App lädt jetzt neu...')
+      setTimeout(() => window.location.reload(), 1200)
+    } catch {
+      setBackupStatus('error')
+      setBackupMessage('Dieser Sicherungsstand konnte nicht geladen werden.')
+    }
+  }
+
+  function formatSnapshotDate(isoDate: string): string {
+    return new Date(isoDate).toLocaleString('de-CH', {
+      weekday: 'short',
+      day: '2-digit',
+      month: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+    })
+  }
+
   async function restoreFromFile(file: File) {
     setBackupStatus('busy')
     try {
@@ -190,28 +237,56 @@ export function ProfilePage() {
         <h2>📦 Datensicherung</h2>
 
         <div className="profile-page__backup-block">
-          <h3>1. Backup erstellen</h3>
+          <h3>Automatisch gesichert</h3>
           <p className="profile-page__hint">
-            Speichert eine Datei mit dem aktuellen Stand - Maskottchen, Forschername, Geburtstage,
-            Geheimfach und das ganze Labortagebuch.
+            Crazy Lab sichert Änderungen im Hintergrund. Hier kannst du zusätzlich sofort einen
+            Sicherungsstand erstellen – ohne technische Datei.
           </p>
-          <Button variant="secondary" onClick={downloadBackup} disabled={backupStatus === 'busy'}>
-            Jetzt Backup-Datei speichern
+          <Button variant="secondary" onClick={saveSnapshotNow} disabled={backupStatus === 'busy'}>
+            Jetzt sichern
           </Button>
         </div>
 
         <div className="profile-page__backup-block">
-          <h3>2. Backup einspielen</h3>
+          <h3>Früheren Stand laden</h3>
           <p className="profile-page__hint">
-            Lädt eine zuvor gespeicherte Backup-Datei und ersetzt damit die aktuellen Daten - z. B.
-            nach einer Neuinstallation der App.
+            Wähle einfach den gewünschten Zeitpunkt. Crazy Lab bewahrt höchstens zehn Stände auf.
           </p>
+          {snapshots.length === 0 && <p>Noch kein Sicherungsstand vorhanden.</p>}
+          <ul className="profile-page__snapshot-list">
+            {snapshots.map((snapshot, index) => (
+              <li key={snapshot.id}>
+                <span>
+                  <strong>{index === 0 ? 'Neuester Stand' : 'Sicherungsstand'}</strong>
+                  <small>{formatSnapshotDate(snapshot.createdAt)}</small>
+                </span>
+                <Button
+                  variant="ghost"
+                  onClick={() => restoreSnapshot(snapshot)}
+                  disabled={backupStatus === 'busy'}
+                >
+                  Laden
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <details className="profile-page__emergency-backup">
+          <summary>Notfallkopie ausserhalb der App</summary>
+          <p className="profile-page__hint">
+            Nur nötig, falls die App komplett gelöscht wird oder das iPhone kaputtgeht. Dabei wird
+            eine Datei in „Dateien“ oder auf dem Mac abgelegt.
+          </p>
+          <Button variant="ghost" onClick={downloadBackup} disabled={backupStatus === 'busy'}>
+            Notfallkopie in „Dateien“ sichern
+          </Button>
           <Button
             variant="ghost"
             onClick={() => backupFileInputRef.current?.click()}
             disabled={backupStatus === 'busy'}
           >
-            Backup-Datei auswählen und einspielen
+            Notfallkopie auswählen
           </Button>
           <input
             ref={backupFileInputRef}
@@ -224,7 +299,7 @@ export function ProfilePage() {
               e.target.value = ''
             }}
           />
-        </div>
+        </details>
 
         {backupStatus !== 'idle' && backupStatus !== 'busy' && (
           <p

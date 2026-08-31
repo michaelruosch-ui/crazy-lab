@@ -10,6 +10,7 @@ import { LabCabinetPage } from './features/lab-cabinet'
 import { ShoppingListPage } from './features/shopping-list'
 import { DEFAULT_PROFILE } from './domain'
 import { requestPersistentStorage } from './storage/persistentStorage'
+import { useAutomaticSnapshots } from './storage/useAutomaticSnapshots'
 
 function MissionRoute() {
   const { missionId } = useParams<{ missionId: string }>()
@@ -19,6 +20,7 @@ function MissionRoute() {
 
 export function App() {
   const { profile, loading, save } = useProfile(DEFAULT_PROFILE.id)
+  useAutomaticSnapshots(profile?.onboardingCompletedAt ? profile.id : undefined)
   useEffect(() => {
     void requestPersistentStorage()
   }, [])

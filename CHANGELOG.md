@@ -1,5 +1,17 @@
 # Changelog
 
+## Sprint 11 - Bastel-Labor und Bedienungsverbesserungen (2026-08-31)
+
+- Bastelkatalog auf 15 sichere Missionen ausgebaut: Playmobil-Szenen, Miniaturen, Geheimfächer,
+  Kulissen sowie ungefährliche Licht- und Nebeleffekte.
+- Automatische lokale Sicherungsstände beim Start, im Fünf-Minuten-Takt und beim App-Wechsel;
+  unveränderte Daten werden nicht doppelt gespeichert, maximal zehn Stände bleiben erhalten.
+- Profilseite zeigt „Jetzt sichern“ und eine verständliche datierte Wiederherstellungsliste; die
+  technische Datei ist nur noch in der aufgeklappten Notfallkopie sichtbar.
+- Eigene Materialien können im Laborschrank frei eingegeben werden. Eine lokale, nachvollziehbare
+  Regelmaschine ordnet beispielsweise Wattestäbchen als Bastelmaterial ein.
+- IndexedDB auf Version 6 erweitert; 113 Tests erfolgreich, Familienabnahme offen.
+
 ## Sprint 10 - Filter und Vorschlagsmaschine (2026-08-31)
 
 - Neuer aufklappbarer Missionsfilter auf der Startseite für Zeit, Budget, Ort, Unordnung,

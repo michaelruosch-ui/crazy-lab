@@ -223,9 +223,30 @@ Präferenzprofil aus Sprint 3. Die Startseite berechnet zuerst alle Kategorie-Vo
 übergibt deren IDs als Ausschlussmenge an `pickDailyMission`; die Tagesmission ist damit immer
 eine zusätzliche, unten nicht nochmals sichtbare Mission.
 
+## Bastelkatalog und eigene Materialien (Sprint 11)
+
+`craftMissions.ts` ergänzt vierzehn Bastelmissionen; zusammen mit dem bestehenden Geisterbett
+liegen genau 15 primäre Bastelmissionen im gemeinsamen statischen Katalog. Sie verwenden dasselbe
+Missionsmodell, dieselben Filter und dieselben Einkaufs-/Laborschrank-Pfade wie Getränke.
+`materialClassification.ts` normalisiert frei eingegebene Materialnamen und ordnet sie über
+sichtbare Wortregeln einem `MaterialType` und Startbereich zu. Der gespeicherte
+`LabCabinetItem.source` unterscheidet Katalog- und eigene Einträge; Elena kann Bereich und genaue
+Bezeichnung danach wie gewohnt ändern.
+
+## Lokale Sicherungsstände (Sprint 11)
+
+`localBackupSnapshots` (DB-Version 6) speichert höchstens zehn vollständige, intern serialisierte
+`BackupData`-Stände pro Profil. `useAutomaticSnapshots` versucht einen Stand beim App-Start, alle
+fünf Minuten und beim Wechsel in den Hintergrund zu erzeugen. Ein Fingerabdruck ohne den variablen
+Exportzeitpunkt verhindert Dubletten. Die Profilseite listet die Stände mit Datum; Wiederherstellen
+entfernt zuerst die aktuellen profilbezogenen Nutzdaten und spielt dann den gewählten Stand über
+`restoreBackup` ein. Diese Stände liegen bewusst auf demselben iPhone und sind
+daher Komfortschutz, kein Schutz vor kompletter App-/Browserdaten-Löschung. Der externe
+Datei-Export aus Sprint 5 bleibt deshalb in einem separaten Notfallbereich erhalten.
+
 ## Speicherung
 
-IndexedDB, Datenbank `crazylab`, aktuell Version 5 mit sechs Object Stores:
+IndexedDB, Datenbank `crazylab`, aktuell Version 6 mit sieben Object Stores:
 
 - `diaryEntries` (seit Sprint 1): Key `id`, Indizes `by-profile`, `by-completedAt`.
 - `secretVaultEntries` (seit Sprint 2): Key `id`, Indizes `by-profile`, `by-mission`.
@@ -233,6 +254,7 @@ IndexedDB, Datenbank `crazylab`, aktuell Version 5 mit sechs Object Stores:
 - `profiles` (seit Sprint 4): Key `id`, kein Index (aktuell genau ein Eintrag pro App).
 - `labCabinetItems` (seit Sprint 8): Key `id`, Indizes `by-profile`, `by-material`.
 - `shoppingListItems` (seit Sprint 9): Key `id`, Indizes `by-profile`, `by-material`.
+- `localBackupSnapshots` (seit Sprint 11): Key `id`, Indizes `by-profile`, `by-createdAt`.
 
 Zugriff ausschliesslich über je ein Repository-Interface (`DiaryRepository`,
 `SecretVaultRepository`, `HiddenMissionsRepository`, `ProfileRepository`,

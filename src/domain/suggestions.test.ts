@@ -31,7 +31,8 @@ function ratedEntry(adjustments: DiaryEntry['rating']['adjustments']): DiaryEntr
 describe('suggestionsForCategory', () => {
   it('liefert Missionen der primären Kategorie', () => {
     const result = suggestionsForCategory(missions, 'basteln', new Set())
-    expect(result.map((m) => m.id)).toEqual(['mission-playmobil-geisterbett'])
+    expect(result).toHaveLength(5)
+    expect(result.every((mission) => mission.primaryCategory === 'basteln')).toBe(true)
   })
 
   it('berücksichtigt Missionen mit passender sekundärer Kategorie zusätzlich', () => {
@@ -56,7 +57,7 @@ describe('suggestionsForCategory', () => {
       'basteln',
       new Set(['mission-playmobil-geisterbett']),
     )
-    expect(result).toEqual([])
+    expect(result.some((mission) => mission.id === 'mission-playmobil-geisterbett')).toBe(false)
   })
 
   it('ersetzt abgeschlossene Missionen durch den nächsten noch offenen Vorschlag', () => {

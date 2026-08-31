@@ -5,8 +5,8 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich in **Sprint 10** (Filter und Vorschlagsmaschine);
-die Sprints 1–9 sind abgeschlossen. Der aktuelle Stand: Beim
+Dieses Repository befindet sich in **Sprint 11** (Bastel-Labor und lokale Sicherungsstände);
+die Sprints 1–10 sind abgeschlossen. Der aktuelle Stand: Beim
 ersten Start wählt man eines von 33 Maskottchen (8 Tierarten in verschiedenen Farbwelten) und
 einen Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf
 Kategorien (Getränke, Basteln, Experimente, Foto-Challenges, Schwestern-Missionen). Jede Mission
@@ -33,6 +33,10 @@ in den Laborschrank übernommen werden.
 Auf der Startseite lassen sich Missionen nach verfügbarer Zeit, Budget, Ort, erlaubter
 Unordnung, Erwachsenenhilfe und Personenanzahl filtern. Die Vorschlagsmaschine verbindet diese
 Vorgaben mit Elenas bisherigen Vorlieben und achtet innerhalb einer Kategorie auf Abwechslung.
+Das Bastel-Labor enthält 15 sichere Missionen mit Playmobil-Szenen, realistischen Miniaturen und
+ungefährlichen Spezialeffekten. Im Laborschrank können zusätzlich eigene Materialien per Freitext
+erfasst werden; eine lokale Regelmaschine ordnet sie ohne Cloud in verständliche Materialtypen
+und Bereiche ein.
 
 ## Voraussetzungen
 
@@ -100,13 +104,14 @@ trennen die Datenspeicher der beiden Adressen voneinander.
 
 ### Backup und Wiederherstellung (manuell)
 
-Auf der Profilseite (`/profil`, Abschnitt "📦 Datensicherung") lässt sich jederzeit eine
-Backup-Datei mit allen lokalen Daten herunterladen und auf demselben oder einem anderen Gerät
-wieder einspielen (siehe DECISIONS.md ADR-018). Sinnvoll als zusätzliches, manuelles Sicherheits-
-netz. Hauptspeicher ist IndexedDB auf dem iPhone; WebKit wird beim Start zusätzlich um dauerhaften
-Speicher gebeten. Für eine zweite Kopie wird gelegentlich über die Profilseite eine Backup-Datei
-heruntergeladen und auf dem Mac aufbewahrt. Eine automatische Mac-Verbindung wurde verworfen,
-weil ihr Zugriffsschlüssel in einem öffentlichen Web-Build nicht geheim bliebe (ADR-021).
+Auf der Profilseite (`/profil`, Abschnitt "📦 Datensicherung") erstellt Crazy Lab automatisch
+lokale Sicherungsstände und zeigt die letzten zehn in einer einfachen Liste mit Datum und
+„Laden“-Knopf (ADR-027). Ein zusätzlicher „Jetzt sichern“-Knopf erzeugt sofort einen Stand, ohne
+eine technische Datei zu öffnen. Hauptspeicher und diese bequemen Sicherungsstände liegen in
+IndexedDB auf dem iPhone; WebKit wird beim Start zusätzlich um dauerhaften Speicher gebeten.
+Für den Sonderfall einer vollständig gelöschten App bleibt unter „Notfallkopie ausserhalb der App“
+der Datei-Export erhalten. Eine automatische Mac-Verbindung wurde verworfen, weil ihr
+Zugriffsschlüssel in einem öffentlichen Web-Build nicht geheim bliebe (ADR-021).
 Auf dem iPhone öffnet die Backup-Schaltfläche den Teilen-Dialog; dort muss ausdrücklich
 „In Dateien sichern“ gewählt und die erzeugte `crazylab-backup-….json` danach sichtbar geprüft
 werden.

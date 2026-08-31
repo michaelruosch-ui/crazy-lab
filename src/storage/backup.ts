@@ -12,6 +12,7 @@ import { indexedDbProfileRepository } from './profileRepository'
 import { indexedDbSecretVaultRepository } from './secretVaultRepository'
 import { indexedDbLabCabinetRepository } from './labCabinetRepository'
 import { indexedDbShoppingListRepository } from './shoppingListRepository'
+import { clearProfileData } from './db'
 
 const BACKUP_FORMAT = 'crazylab-backup'
 const BACKUP_VERSION = 1
@@ -79,6 +80,9 @@ export function isBackupData(value: unknown): value is BackupData {
  * verstecken" bzw. der 14-Tage-Verlauf korrekt weiterlaufen.
  */
 export async function restoreBackup(data: BackupData): Promise<void> {
+  const profileId = data.profile?.id ?? data.diaryEntries[0]?.profileId
+  if (profileId) await clearProfileData(profileId)
+
   if (data.profile) {
     await indexedDbProfileRepository.save(data.profile)
   }

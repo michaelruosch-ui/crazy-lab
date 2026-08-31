@@ -75,7 +75,7 @@ describe('ProfilePage', () => {
     expect(persisted?.birthdays).toHaveLength(0)
   })
 
-  it('lädt ein Backup herunterladen', async () => {
+  it('erstellt einen verständlichen lokalen Sicherungsstand', async () => {
     const user = userEvent.setup()
     render(
       <MemoryRouter>
@@ -83,13 +83,12 @@ describe('ProfilePage', () => {
       </MemoryRouter>,
     )
 
-    await user.click(await screen.findByRole('button', { name: 'Jetzt Backup-Datei speichern' }))
+    await user.click(await screen.findByRole('button', { name: 'Jetzt sichern' }))
 
     expect(
-      await screen.findByText(
-        'Download gestartet. Prüfe jetzt, ob die Datei im Download-Ordner liegt.',
-      ),
+      await screen.findByText('Alles ist gesichert. Du musst keine Datei öffnen oder verschieben.'),
     ).toBeInTheDocument()
+    expect(await screen.findByText('Neuester Stand')).toBeInTheDocument()
   })
 
   it('stellt ein hochgeladenes Backup wieder her', async () => {
@@ -115,7 +114,7 @@ describe('ProfilePage', () => {
       hiddenMissions: [],
     })
     const file = new File([backupContent], 'crazylab-backup.json', { type: 'application/json' })
-    await screen.findByRole('button', { name: 'Jetzt Backup-Datei speichern' })
+    await screen.findByRole('button', { name: 'Jetzt sichern' })
     const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement
 
     await user.upload(fileInput, file)
@@ -137,7 +136,7 @@ describe('ProfilePage', () => {
     const file = new File([JSON.stringify({ hello: 'world' })], 'irgendwas.json', {
       type: 'application/json',
     })
-    await screen.findByRole('button', { name: 'Jetzt Backup-Datei speichern' })
+    await screen.findByRole('button', { name: 'Jetzt sichern' })
     const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement
 
     await user.upload(fileInput, file)

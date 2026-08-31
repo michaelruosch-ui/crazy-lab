@@ -3,13 +3,14 @@ import type {
   DiaryEntry,
   HiddenMissionEntry,
   LabCabinetItem,
+  LocalBackupSnapshot,
   Profile,
   SecretVaultEntry,
   ShoppingListItem,
 } from '../domain'
 
 const DB_NAME = 'crazylab'
-const DB_VERSION = 5
+const DB_VERSION = 6
 
 export const DIARY_STORE = 'diaryEntries'
 export const SECRET_VAULT_STORE = 'secretVaultEntries'
@@ -17,6 +18,7 @@ export const HIDDEN_MISSIONS_STORE = 'hiddenMissions'
 export const PROFILES_STORE = 'profiles'
 export const LAB_CABINET_STORE = 'labCabinetItems'
 export const SHOPPING_LIST_STORE = 'shoppingListItems'
+export const LOCAL_BACKUPS_STORE = 'localBackupSnapshots'
 
 interface CrazyLabDB extends DBSchema {
   [DIARY_STORE]: {
@@ -47,6 +49,11 @@ interface CrazyLabDB extends DBSchema {
     key: string
     value: ShoppingListItem
     indexes: { 'by-profile': string; 'by-material': string }
+  }
+  [LOCAL_BACKUPS_STORE]: {
+    key: string
+    value: LocalBackupSnapshot
+    indexes: { 'by-profile': string; 'by-createdAt': string }
   }
 }
 
@@ -84,6 +91,11 @@ function openOnce(): Promise<IDBPDatabase<CrazyLabDB>> {
         const shoppingStore = db.createObjectStore(SHOPPING_LIST_STORE, { keyPath: 'id' })
         shoppingStore.createIndex('by-profile', 'profileId')
         shoppingStore.createIndex('by-material', 'materialName')
+      }
+      if (oldVersion < 6) {
+        const backupStore = db.createObjectStore(LOCAL_BACKUPS_STORE, { keyPath: 'id' })
+        backupStore.createIndex('by-profile', 'profileId')
+        backupStore.createIndex('by-createdAt', 'createdAt')
       }
     },
   })
@@ -127,6 +139,35 @@ export function getDb(): Promise<IDBPDatabase<CrazyLabDB>> {
     })
   }
   return dbPromise
+}
+
+/** Entfernt vor einer Wiederherstellung alle profilbezogenen Nutzdaten, nicht die Sicherungen. */
+export async function clearProfileData(profileId: string): Promise<void> {
+  const db = await getDb()
+  const tx = db.transaction(
+    [
+      DIARY_STORE,
+      SECRET_VAULT_STORE,
+      HIDDEN_MISSIONS_STORE,
+      LAB_CABINET_STORE,
+      SHOPPING_LIST_STORE,
+    ],
+    'readwrite',
+  )
+
+  const diary = tx.objectStore(DIARY_STORE)
+  for (const key of await diary.index('by-profile').getAllKeys(profileId)) await diary.delete(key)
+  const vault = tx.objectStore(SECRET_VAULT_STORE)
+  for (const key of await vault.index('by-profile').getAllKeys(profileId)) await vault.delete(key)
+  const hidden = tx.objectStore(HIDDEN_MISSIONS_STORE)
+  for (const key of await hidden.index('by-profile').getAllKeys(profileId)) await hidden.delete(key)
+  const cabinet = tx.objectStore(LAB_CABINET_STORE)
+  for (const key of await cabinet.index('by-profile').getAllKeys(profileId))
+    await cabinet.delete(key)
+  const shopping = tx.objectStore(SHOPPING_LIST_STORE)
+  for (const key of await shopping.index('by-profile').getAllKeys(profileId))
+    await shopping.delete(key)
+  await tx.done
 }
 
 /** Nur für Tests: erzwingt eine frische Verbindung nach dem Zurücksetzen der Fake-IndexedDB. */

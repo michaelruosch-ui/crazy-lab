@@ -100,6 +100,25 @@
   flex-wrap: wrap;
   gap: 8px;
 }
+.lab-cabinet-page__suggestions > .lab-cabinet-page__custom-material {
+  display: grid;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-card);
+}
+.lab-cabinet-page__custom-material p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+.lab-cabinet-page__custom-material label {
+  font-weight: 800;
+}
+.cabinet-item__classification {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--color-teal);
+}
 .lab-cabinet-page__suggestions button {
   padding: 8px 12px;
   text-align: left;

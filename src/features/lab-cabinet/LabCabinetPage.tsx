@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { missions } from '../../data'
 import {
   DEFAULT_PROFILE,
+  classifyCustomMaterial,
   generateId,
   type LabCabinetArea,
   type LabCabinetItem,
@@ -57,6 +58,7 @@ function imageFileToDataUrl(file: File): Promise<string> {
 export function LabCabinetPage() {
   const { items, loading, save, remove } = useLabCabinet(DEFAULT_PROFILE.id)
   const [search, setSearch] = useState('')
+  const [customMaterial, setCustomMaterial] = useState('')
   const [photoError, setPhotoError] = useState('')
   const filteredSuggestions = useMemo(() => {
     const storedMaterialNames = new Set(items.map((item) => item.materialName))
@@ -75,8 +77,25 @@ export function LabCabinetPage() {
       materialName,
       area: 'kueche',
       quantityStatus: 'genug',
+      source: 'katalog',
       updatedAt: new Date().toISOString(),
     })
+  }
+
+  async function addCustomMaterial() {
+    const classification = classifyCustomMaterial(customMaterial)
+    if (!classification.materialName) return
+    await save({
+      id: generateId(),
+      profileId: DEFAULT_PROFILE.id,
+      materialName: classification.materialName,
+      area: classification.area,
+      quantityStatus: 'genug',
+      source: 'eigen',
+      materialType: classification.materialType,
+      updatedAt: new Date().toISOString(),
+    })
+    setCustomMaterial('')
   }
 
   async function update(item: LabCabinetItem, patch: Partial<LabCabinetItem>) {
@@ -109,6 +128,11 @@ export function LabCabinetPage() {
               <div className="cabinet-item__title">
                 <div>
                   <h3>{item.materialName}</h3>
+                  {item.source === 'eigen' && item.materialType && (
+                    <small className="cabinet-item__classification">
+                      ✨ Als {classifyCustomMaterial(item.materialName).label} eingeordnet
+                    </small>
+                  )}
                   <input
                     aria-label={`Genaue Bezeichnung für ${item.materialName}`}
                     defaultValue={item.exactName ?? ''}
@@ -185,6 +209,21 @@ export function LabCabinetPage() {
 
       <section className="lab-cabinet-page__suggestions">
         <h2>Material hinzufügen</h2>
+        <div className="lab-cabinet-page__custom-material">
+          <label htmlFor="custom-material">Eigenes Material</label>
+          <p>Schreib einfach den Namen. Crazy Lab ordnet es passend ein.</p>
+          <input
+            id="custom-material"
+            value={customMaterial}
+            onChange={(event) => setCustomMaterial(event.target.value)}
+            placeholder="z. B. Wattestäbchen"
+            maxLength={80}
+          />
+          <Button variant="secondary" onClick={addCustomMaterial} disabled={!customMaterial.trim()}>
+            Eigenes Material aufnehmen
+          </Button>
+        </div>
+        <h3>Aus den Missionen</h3>
         <input
           type="search"
           value={search}

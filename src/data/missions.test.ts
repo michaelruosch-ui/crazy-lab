@@ -3,8 +3,8 @@ import { missions } from './missions'
 import { FORBIDDEN_DRINK_TERMS, validateMissions } from '../domain'
 
 describe('Missionsdaten', () => {
-  it('enthält fünf Grundmissionen plus vierzehn neue Getränke-Missionen', () => {
-    expect(missions).toHaveLength(19)
+  it('enthält die Grundmissionen sowie je 15 Getränke- und Bastelmissionen', () => {
+    expect(missions).toHaveLength(33)
   })
 
   it('alle Missionen sind valide', () => {
@@ -50,5 +50,13 @@ describe('Missionsdaten', () => {
 
     expect(tastes).toEqual(new Set(['suess', 'sauer', 'fruchtig', 'cremig', 'prickelnd']))
     expect(safetyLevels).toEqual(new Set(['gruen', 'gelb', 'rot']))
+  })
+
+  it('enthält genau 15 sichere und vollständige Bastelmissionen', () => {
+    const craftMissions = missions.filter((mission) => mission.primaryCategory === 'basteln')
+    expect(craftMissions).toHaveLength(15)
+    expect(craftMissions.some((mission) => mission.title.includes('Playmobil'))).toBe(true)
+    expect(craftMissions.some((mission) => mission.safetyLevel === 'gelb')).toBe(true)
+    expect(craftMissions.every((mission) => mission.steps.length >= 4)).toBe(true)
   })
 })

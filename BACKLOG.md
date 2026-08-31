@@ -107,7 +107,8 @@ späteres Praxisfeedback bleibt willkommen.
 
 ### Sprint 10 - Filter und Vorschlagsmaschine
 
-Status: **Technisch umgesetzt (2026-08-31), Familienabnahme offen.**
+Status: **Abgeschlossen (2026-08-31).** Michael hat Sprint 10 für die Weiterarbeit freigegeben;
+der iPhone-Test mit Elena folgt als normales Feedback.
 
 - [x] Aufklappbarer, mobiler Filterbereich direkt auf der Startseite
 - [x] Filter für maximale Zeit und maximales Budget
@@ -120,7 +121,26 @@ Status: **Technisch umgesetzt (2026-08-31), Familienabnahme offen.**
 - [x] Diversitätsregeln mischen unterschiedliche Zeit-, Preis- und Unordnungsprofile ein, ohne
       Missionen einer bloss sekundären Kategorie vorzuziehen
 - [x] Automatische Filter-, Diversitäts- und Navigationstests; insgesamt 107 Tests
-- [ ] Michael und Elena prüfen Filterbegriffe und Vorschläge auf dem echten iPhone
+- [x] Für Sprint 11 freigegeben; späteres iPhone-Feedback bleibt willkommen
+
+### Sprint 11 - Bastel-Labor und Bedienungsverbesserungen
+
+Status: **Technisch umgesetzt (2026-08-31), Familienabnahme offen.**
+
+- [x] 15 vollständige Bastelmissionen mit mindestens vier Schritten
+- [x] Schwerpunkte Playmobil, realistische Miniaturen, Geheimfächer und sichere Spezialeffekte
+- [x] Gefährliche Effekte ausgeschlossen; LED statt Flamme, Watte statt Rauch/Trockeneis
+- [x] Gelbe Sicherheitsstufe und klare Erwachsenenhilfe bei anspruchsvollem Zuschneiden
+- [x] Bestehende Filter, Einkaufsliste, Laborschrank und Vorschlagsmaschine nutzen neue Materialien
+- [x] Automatische lokale Sicherungsstände beim Öffnen, alle fünf Minuten und beim App-Wechsel
+- [x] Nur bei echten Datenänderungen sichern; höchstens zehn Stände aufbewahren
+- [x] Normale Bedienung mit „Jetzt sichern“, datierter Liste und „Laden“ statt sichtbarer JSON-Datei
+- [x] Externe Datei nur noch als klar gekennzeichnete Notfallkopie bei kompletter App-Löschung
+- [x] Eigene Laborschrank-Materialien per Freitext erfassen
+- [x] Lokale, transparente Einordnung in Lebensmittel, Bastelmaterial, Werkzeug, Behälter oder
+      Sonstiges; keine Cloud, kein Konto und keine kostenpflichtige KI
+- [x] Datenbankversion 6 und automatische Tests; insgesamt 113 Tests
+- [ ] Michael und Elena testen Bastelmissionen, Sicherungsliste und eigene Materialien auf dem iPhone
 
 ## Abgeschlossene Sprints
 
@@ -206,8 +226,6 @@ positiv beantwortet.
 
 ### P2 - Übrige Inhalte
 
-- **Sprint 11 - Bastel-Labor:** 15 Missionen mit Schwerpunkt Playmobil, Realismus,
-  Spezialeffekte und vorhandene Bastelkisten.
 - **Sprint 12 - Experimentier-Labor:** 15 Missionen, Vermutung, Beobachtung, Erklärung,
   mehrtägige Versuche und laufende Missionen.
 - **Sprint 13 - Foto-Challenges:** 15 Missionen, Kamera/Fotowahl, mehrere Fotos, Tipps, Rahmen

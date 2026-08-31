@@ -2,6 +2,9 @@ export type LabCabinetArea = 'kueche' | 'bastelkiste' | 'zimmer' | 'bad' | 'kell
 
 export type QuantityStatus = 'leer' | 'wenig' | 'genug' | 'viel'
 
+export type MaterialType =
+  'lebensmittel' | 'bastelmaterial' | 'werkzeug' | 'behaelter' | 'sonstiges'
+
 export interface LabCabinetItem {
   id: string
   profileId: string
@@ -13,5 +16,7 @@ export interface LabCabinetItem {
   boxName?: string
   quantityStatus: QuantityStatus
   photoDataUrl?: string
+  source?: 'katalog' | 'eigen'
+  materialType?: MaterialType
   updatedAt: string
 }

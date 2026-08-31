@@ -1,5 +1,6 @@
 import type { Mission } from '../domain'
 import { additionalDrinkMissions } from './drinkMissions'
+import { additionalCraftMissions } from './craftMissions'
 
 /**
  * Statische, versionierte Missionsdaten für Sprint 1.
@@ -362,4 +363,5 @@ export const missions: Mission[] = [
     imagePlaceholder: 'potion-sisters',
   },
   ...additionalDrinkMissions,
+  ...additionalCraftMissions,
 ]

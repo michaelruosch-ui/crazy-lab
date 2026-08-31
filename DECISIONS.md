@@ -563,3 +563,33 @@ Unordnung, wobei Primärkategorien immer vor Sekundärkategorien stehen.
 Neustart beginnt wieder mit allen Missionen. Die heuristische Ableitung ersetzt kein neues
 redaktionelles Datenfeld; falls spätere Inhalts-Sprints genauere Personen- oder Hilfsangaben
 benötigen, kann das Missionsmodell kompatibel erweitert werden.
+
+## ADR-027: Lokale Sicherungsstände als Hauptbedienung, Datei nur für den Notfall
+
+**Status:** Angenommen (Sprint 11, 2026-08-31)
+
+**Entscheidung:** Crazy Lab erzeugt automatisch vollständige lokale Sicherungsstände beim Start,
+alle fünf Minuten und beim Wechsel in den Hintergrund. Ein Fingerabdruck verhindert identische
+Dubletten; maximal zehn Stände werden in IndexedDB aufbewahrt. Die Profilseite zeigt eine normale
+Liste mit Datum, „Jetzt sichern“ und „Laden“. Der JSON-Datei-Export bleibt technisch erhalten,
+ist aber nur noch als „Notfallkopie ausserhalb der App“ sichtbar.
+
+**Konsequenzen:** Der normale Alltag fühlt sich wie eine App und nicht wie ein Dateieditor an.
+Lokale Sicherungsstände helfen bei Fehlbedienung, liegen aber im gleichen Browserspeicher wie die
+App-Daten und gehen bei vollständiger Löschung gemeinsam verloren. Nur die weiterhin mögliche
+externe Notfallkopie schützt vor diesem Fall; ohne Cloud, Server oder Nutzerinteraktion kann eine
+Browser-PWA keine unabhängige Kopie auf dem Mac oder in iCloud ablegen.
+
+## ADR-028: Eigene Materialien lokal und transparent einordnen
+
+**Status:** Angenommen (Sprint 11, 2026-08-31)
+
+**Entscheidung:** Freitext-Materialien werden lokal normalisiert und durch nachvollziehbare
+Wortregeln als Lebensmittel, Bastelmaterial, Werkzeug, Behälter oder Sonstiges eingeordnet. Daraus
+folgt ein sinnvoller Startbereich; Elena kann ihn anschließend ändern. Quelle und Materialtyp
+werden optional am Laborschrank-Eintrag gespeichert und damit automatisch mitgesichert.
+
+**Konsequenzen:** Beispiele wie „Wattestäbchen“ funktionieren sofort, ohne Konto, API-Schlüssel,
+Kosten oder Übertragung von Elenas Eingaben. Es ist bewusst keine behauptete Cloud-KI: unbekannte
+Begriffe bleiben sicher als „Sonstiges Material“ erhalten, statt möglicherweise falsch erfundene
+Informationen zu erzeugen. Die Regelmenge kann anhand echten Familienfeedbacks erweitert werden.
