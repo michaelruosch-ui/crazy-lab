@@ -4,6 +4,42 @@ import { scoreMissionForProfile } from './preferenceProfile'
 
 const MAX_SUGGESTIONS_PER_CATEGORY = 5
 
+function diversitySignature(mission: Mission): string {
+  const duration =
+    mission.durationMinutes <= 15 ? 'kurz' : mission.durationMinutes <= 30 ? 'mittel' : 'lang'
+  const mess =
+    mission.traits.unordentlich <= 1
+      ? 'sauber'
+      : mission.traits.unordentlich <= 3
+        ? 'mittel'
+        : 'wild'
+  const cost =
+    mission.estimatedCostChf <= 2 ? 'guenstig' : mission.estimatedCostChf <= 5 ? 'mittel' : 'teuer'
+  return `${duration}:${mess}:${cost}`
+}
+
+/** Behält den stärksten Treffer vorne, mischt danach aber unterschiedliche Erlebnisse ein. */
+export function diversifySuggestions(
+  candidates: Mission[],
+  limit = MAX_SUGGESTIONS_PER_CATEGORY,
+): Mission[] {
+  const result: Mission[] = []
+  const remaining = [...candidates]
+  const usedSignatures = new Set<string>()
+
+  while (remaining.length > 0 && result.length < limit) {
+    const diverseIndex = remaining.findIndex(
+      (mission) => !usedSignatures.has(diversitySignature(mission)),
+    )
+    const index = diverseIndex >= 0 ? diverseIndex : 0
+    const [chosen] = remaining.splice(index, 1)
+    if (!chosen) break
+    result.push(chosen)
+    usedSignatures.add(diversitySignature(chosen))
+  }
+  return result
+}
+
 /**
  * Missionen einer Kategorie, primäre Treffer vor sekundären, ohne aktuell versteckte Missionen.
  * Mit Präferenzprofil (sobald mindestens eine Bewertung vorliegt) werden besser passende
@@ -31,7 +67,15 @@ export function suggestionsForCategory(
     )
   }
 
-  return candidates.slice(0, MAX_SUGGESTIONS_PER_CATEGORY)
+  const diversePrimary = diversifySuggestions(
+    candidates.filter((mission) => mission.primaryCategory === category),
+  )
+  if (diversePrimary.length >= MAX_SUGGESTIONS_PER_CATEGORY) return diversePrimary
+
+  const diverseSecondary = diversifySuggestions(
+    candidates.filter((mission) => mission.primaryCategory !== category),
+  )
+  return [...diversePrimary, ...diverseSecondary].slice(0, MAX_SUGGESTIONS_PER_CATEGORY)
 }
 
 /** Einfacher deterministischer Hash für einen String, für die tagesstabile Missionsauswahl. */

@@ -1,9 +1,12 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { missions } from '../../data'
 import type { MissionCategory } from '../../domain'
 import {
   DEFAULT_PROFILE,
+  DEFAULT_MISSION_FILTERS,
   buildPreferenceProfile,
+  filterMissions,
   isBirthdayToday,
   pickDailyMission,
   suggestionsForCategory,
@@ -14,6 +17,7 @@ import { useDiaryEntries } from '../diary'
 import { useProfile } from '../profile'
 import { useHiddenMissions } from './useHiddenMissions'
 import { MissionSection } from './MissionSection'
+import { MissionFiltersPanel } from './MissionFiltersPanel'
 import './HomePage.css'
 
 const CATEGORY_SECTIONS: { category: MissionCategory; title: string }[] = [
@@ -25,6 +29,7 @@ const CATEGORY_SECTIONS: { category: MissionCategory; title: string }[] = [
 ]
 
 export function HomePage() {
+  const [filters, setFilters] = useState(DEFAULT_MISSION_FILTERS)
   const { profile } = useProfile(DEFAULT_PROFILE.id)
   const { savedMissionIds, toggle: toggleSaved } = useSecretVault(DEFAULT_PROFILE.id)
   const { currentlyHiddenMissionIds, hide } = useHiddenMissions(DEFAULT_PROFILE.id)
@@ -36,12 +41,16 @@ export function HomePage() {
   const mascotId = profile?.mascotVariant ?? DEFAULT_PROFILE.mascotVariant
   const today = new Date()
   const todaysBirthdays = (profile?.birthdays ?? []).filter((b) => isBirthdayToday(b, today))
+  const matchingMissions = filterMissions(missions, filters)
+  const matchingAvailableCount = matchingMissions.filter(
+    (mission) => !currentlyHiddenMissionIds.has(mission.id) && !completedMissionIds.has(mission.id),
+  ).length
 
   const categorySuggestions = new Map(
     CATEGORY_SECTIONS.map(({ category }) => [
       category,
       suggestionsForCategory(
-        missions,
+        matchingMissions,
         category,
         currentlyHiddenMissionIds,
         preferenceProfile,
@@ -54,7 +63,7 @@ export function HomePage() {
   )
 
   const dailyMission = pickDailyMission(
-    missions,
+    matchingMissions,
     currentlyHiddenMissionIds,
     DEFAULT_PROFILE.id,
     today,
@@ -70,6 +79,18 @@ export function HomePage() {
           <p>Willkommen zurück im Labor, {researcherName}!</p>
         </div>
       </header>
+
+      <MissionFiltersPanel
+        filters={filters}
+        resultCount={matchingAvailableCount}
+        onChange={setFilters}
+      />
+
+      {matchingAvailableCount === 0 && (
+        <p className="home-page__no-match">
+          🕵️ Keine offene Mission passt zu allen Filtern. Lösche einen Filter und schau nochmals.
+        </p>
+      )}
 
       {dailyMission && todaysBirthdays.length > 0 && (
         <section className="home-page__daily home-page__daily--birthday">

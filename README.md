@@ -5,8 +5,8 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich in **Sprint 9** (Einkaufsliste);
-die Sprints 1–8 sind abgeschlossen. Der aktuelle Stand: Beim
+Dieses Repository befindet sich in **Sprint 10** (Filter und Vorschlagsmaschine);
+die Sprints 1–9 sind abgeschlossen. Der aktuelle Stand: Beim
 ersten Start wählt man eines von 33 Maskottchen (8 Tierarten in verschiedenen Farbwelten) und
 einen Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf
 Kategorien (Getränke, Basteln, Experimente, Foto-Challenges, Schwestern-Missionen). Jede Mission
@@ -30,6 +30,9 @@ mitgesichert.
 Aus jeder Mission lassen sich fehlende Materialien auf eine Einkaufsliste übernehmen. Sie zeigt
 Coop/Migros/Jumbo, grobe Preise, Zuständigkeit und Gesamtsumme; abgehakte Einkäufe können direkt
 in den Laborschrank übernommen werden.
+Auf der Startseite lassen sich Missionen nach verfügbarer Zeit, Budget, Ort, erlaubter
+Unordnung, Erwachsenenhilfe und Personenanzahl filtern. Die Vorschlagsmaschine verbindet diese
+Vorgaben mit Elenas bisherigen Vorlieben und achtet innerhalb einer Kategorie auf Abwechslung.
 
 ## Voraussetzungen
 

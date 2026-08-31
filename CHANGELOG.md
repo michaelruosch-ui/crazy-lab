@@ -1,5 +1,16 @@
 # Changelog
 
+## Sprint 10 - Filter und Vorschlagsmaschine (2026-08-31)
+
+- Neuer aufklappbarer Missionsfilter auf der Startseite für Zeit, Budget, Ort, Unordnung,
+  Erwachsenenhilfe und Personenanzahl.
+- Filter gelten einheitlich für Kategorie-Vorschläge und Tagesmission.
+- Sicherheitsstufen und Hinweise entscheiden nachvollziehbar, welche Missionen ohne erwachsene
+  Person angeboten werden; Schwestern-Missionen benötigen mindestens zwei Personen.
+- Die bestehende Präferenzsortierung wird um einfache Diversitätsregeln für Dauer, Kosten und
+  Unordnung ergänzt; Hauptkategorien behalten immer Vorrang.
+- 107 Tests erfolgreich; Familienabnahme auf Elenas iPhone offen.
+
 ## Sprint 9 - Einkaufsliste Basis (2026-08-30)
 
 - Missionen können ihre noch fehlenden Materialien mit einem Knopfdruck auf die Einkaufsliste

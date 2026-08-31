@@ -89,7 +89,8 @@ freigegeben; späteres Praxisfeedback bleibt willkommen.
 
 ### Sprint 9 - Einkaufsliste Basis
 
-Status: **Technisch umgesetzt (2026-08-30), Familienabnahme offen.**
+Status: **Abgeschlossen (2026-08-31).** Michael hat bestätigt, dass Sprint 9 soweit passt;
+späteres Praxisfeedback bleibt willkommen.
 
 - [x] Alle fehlenden Materialien direkt aus einer Mission übernehmen
 - [x] Bereits ausreichend vorhandene Laborschrank-Materialien und bestehende Listeneinträge nicht
@@ -102,7 +103,24 @@ Status: **Technisch umgesetzt (2026-08-30), Familienabnahme offen.**
 - [x] Abgehakte Einkäufe direkt in den Laborschrank übernehmen
 - [x] Eigener IndexedDB-Store (Datenbankversion 5), im manuellen Backup enthalten
 - [x] Planungs-, Repository- und Navigationstests; insgesamt 103 Tests
-- [ ] Michael und Elena prüfen Einkauf und Laborschrank-Übernahme auf dem echten iPhone
+- [x] Für Sprint 10 freigegeben; späteres iPhone-Feedback bleibt willkommen
+
+### Sprint 10 - Filter und Vorschlagsmaschine
+
+Status: **Technisch umgesetzt (2026-08-31), Familienabnahme offen.**
+
+- [x] Aufklappbarer, mobiler Filterbereich direkt auf der Startseite
+- [x] Filter für maximale Zeit und maximales Budget
+- [x] Filter für Küche, Zimmer, Bad, Garten oder überall
+- [x] Drei verständliche Stufen für erlaubte Unordnung
+- [x] Erwachsenen-Verfügbarkeit berücksichtigt Sicherheitsstufe und Sicherheitshinweise
+- [x] Einzelperson blendet Schwestern-Missionen aus; zwei Personen lassen sie zu
+- [x] Alle Filter wirken auch auf die Tagesmission und verhindern Doppelnennungen
+- [x] Bestehende gelernte Vorlieben bleiben Teil der Sortierung
+- [x] Diversitätsregeln mischen unterschiedliche Zeit-, Preis- und Unordnungsprofile ein, ohne
+      Missionen einer bloss sekundären Kategorie vorzuziehen
+- [x] Automatische Filter-, Diversitäts- und Navigationstests; insgesamt 107 Tests
+- [ ] Michael und Elena prüfen Filterbegriffe und Vorschläge auf dem echten iPhone
 
 ## Abgeschlossene Sprints
 
@@ -185,11 +203,6 @@ positiv beantwortet.
 - [x] Familientest mit Fix erfolgreich (Abschnitt 8 der Spezifikation, alle 7 Fragen positiv)
 
 ## Offene Sprints
-
-### P1 - Getränke zuerst vollständig ausbauen
-
-- **Sprint 10 - Filter und Vorschlagsmaschine:** Zeit, Budget, Ort, Unordnung, erwachsene Hilfe,
-  Personenanzahl und Diversitätsregeln.
 
 ### P2 - Übrige Inhalte
 

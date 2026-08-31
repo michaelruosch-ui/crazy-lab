@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { missions } from '../data/missions'
-import { pickDailyMission, suggestionsForCategory } from './suggestions'
+import { diversifySuggestions, pickDailyMission, suggestionsForCategory } from './suggestions'
 import { buildPreferenceProfile } from './preferenceProfile'
 import type { DiaryEntry } from './diary'
 
@@ -101,6 +101,24 @@ describe('suggestionsForCategory', () => {
     expect(result.map((m) => m.id)).toEqual(
       suggestionsForCategory(missions, 'getraenk', new Set()).map((m) => m.id),
     )
+  })
+})
+
+describe('diversifySuggestions', () => {
+  it('behält den besten Treffer vorne und mischt unterschiedliche Erlebnisse ein', () => {
+    const candidates = missions.filter((mission) => mission.primaryCategory === 'getraenk')
+    const result = diversifySuggestions(candidates, 5)
+
+    expect(result[0]).toBe(candidates[0])
+    expect(result).toHaveLength(5)
+    expect(
+      new Set(
+        result.map(
+          (mission) =>
+            `${mission.durationMinutes}:${mission.estimatedCostChf}:${mission.traits.unordentlich}`,
+        ),
+      ).size,
+    ).toBeGreaterThan(1)
   })
 })
 

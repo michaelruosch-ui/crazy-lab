@@ -546,3 +546,20 @@ keine aktuellen Produktkataloge, Konten oder externen Schnittstellen angebunden.
 **Konsequenzen:** Preise sind ausdrücklich Schätzungen und nicht tagesaktuell, dafür bleibt die
 App schnell, privat und kostenlos. Die Datenstruktur kann später genauere Produktdaten aufnehmen,
 ohne Sprint 9 von einem Händlerkonto abhängig zu machen.
+
+## ADR-026: Situative Filter bleiben flüchtig, Vielfalt bleibt erklärbar
+
+**Status:** Angenommen (Sprint 10, 2026-08-31)
+
+**Entscheidung:** Zeit, Budget, Ort, Unordnung, Erwachsenen-Verfügbarkeit und Personenanzahl
+werden als gemeinsamer Filter vor Tagesmission und Kategorie-Vorschlägen angewendet. Diese Werte
+werden nicht gespeichert, weil sie die heutige Situation und nicht Elenas langfristige Vorlieben
+beschreiben. Erwachsenenbedarf wird aus Sicherheitsstufe und expliziten Hilfehinweisen abgeleitet;
+Schwestern-Missionen benötigen mindestens zwei Personen. Nach der bestehenden Präferenzsortierung
+wählt ein deterministisches Verfahren möglichst verschiedene Kombinationen aus Dauer, Kosten und
+Unordnung, wobei Primärkategorien immer vor Sekundärkategorien stehen.
+
+**Konsequenzen:** Die Logik bleibt lokal, kostenlos, testbar und für Elena nachvollziehbar. Ein
+Neustart beginnt wieder mit allen Missionen. Die heuristische Ableitung ersetzt kein neues
+redaktionelles Datenfeld; falls spätere Inhalts-Sprints genauere Personen- oder Hilfsangaben
+benötigen, kann das Missionsmodell kompatibel erweitert werden.

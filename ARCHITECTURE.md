@@ -207,6 +207,17 @@ auf der Liste stehen oder im Laborschrank den Status „Genug“/„Viel“ habe
 wird ein vorhandener Laborschrank-Eintrag auf „Genug“ gesetzt oder ein neuer Eintrag in Küche
 (Jumbo: Bastelkiste) angelegt und die Einkaufsposition entfernt. Auch dieses Backup-Feld ist
 optional für Rückwärtskompatibilität.
+
+## Missionsfilter und Diversität (Sprint 10)
+
+`missionFilters.ts` enthält die reine Filterlogik und ein bewusst kleines, nicht persistiertes
+`MissionFilters`-Objekt. Die Startseite filtert den statischen Katalog vor Tagesmission und
+Kategorie-Vorschlägen, damit überall dieselben Bedingungen gelten. „Allein“ schliesst Missionen
+mit gelber/roter Sicherheitsstufe oder ausdrücklichem Hilfehinweis aus; Schwestern-Missionen
+benötigen mindestens zwei Personen. `suggestions.ts` behält Präferenz-Scores und
+Primärkategorie-Vorrang bei, wählt nach dem stärksten Treffer aber möglichst verschiedene
+Kombinationen aus Dauer-, Kosten- und Unordnungsstufe. Filter werden nach einem Neustart bewusst
+zurückgesetzt: Sie beschreiben die aktuelle Situation, keine dauerhafte Vorliebe.
 `suggestionsForCategory` bleibt auf fünf Ergebnisse begrenzt und nutzt weiterhin das lokale
 Präferenzprofil aus Sprint 3. Die Startseite berechnet zuerst alle Kategorie-Vorschläge und
 übergibt deren IDs als Ausschlussmenge an `pickDailyMission`; die Tagesmission ist damit immer
@@ -214,15 +225,18 @@ eine zusätzliche, unten nicht nochmals sichtbare Mission.
 
 ## Speicherung
 
-IndexedDB, Datenbank `crazylab`, aktuell Version 3 mit vier Object Stores:
+IndexedDB, Datenbank `crazylab`, aktuell Version 5 mit sechs Object Stores:
 
 - `diaryEntries` (seit Sprint 1): Key `id`, Indizes `by-profile`, `by-completedAt`.
 - `secretVaultEntries` (seit Sprint 2): Key `id`, Indizes `by-profile`, `by-mission`.
 - `hiddenMissions` (seit Sprint 2): Key `id`, Indizes `by-profile`, `by-mission`.
 - `profiles` (seit Sprint 4): Key `id`, kein Index (aktuell genau ein Eintrag pro App).
+- `labCabinetItems` (seit Sprint 8): Key `id`, Indizes `by-profile`, `by-material`.
+- `shoppingListItems` (seit Sprint 9): Key `id`, Indizes `by-profile`, `by-material`.
 
 Zugriff ausschliesslich über je ein Repository-Interface (`DiaryRepository`,
-`SecretVaultRepository`, `HiddenMissionsRepository`, `ProfileRepository`) in `src/storage`, damit
+`SecretVaultRepository`, `HiddenMissionsRepository`, `ProfileRepository`,
+`LabCabinetRepository`, `ShoppingListRepository`) in `src/storage`, damit
 spätere
 Erweiterungen (z. B. Cloud-Sync in Sprint 19) die UI nicht verändern müssen. `storage/db.ts`
 kapselt den `upgrade`-Callback so, dass neue Object Stores versionsweise ergänzt werden, ohne
