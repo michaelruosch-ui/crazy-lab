@@ -10,6 +10,7 @@ import {
 } from '../../storage/localBackupRepository'
 import { useProfile } from './useProfile'
 import './ProfilePage.css'
+import { useAtmosphereSettings } from '../atmosphere'
 
 type BackupStatus = 'idle' | 'busy' | 'success' | 'error'
 
@@ -32,6 +33,7 @@ export function ProfilePage() {
   const [backupStatus, setBackupStatus] = useState<BackupStatus>('idle')
   const [backupMessage, setBackupMessage] = useState('')
   const [snapshots, setSnapshots] = useState<LocalBackupSnapshot[]>([])
+  const { settings: atmosphereSettings, update: updateAtmosphere } = useAtmosphereSettings()
 
   useEffect(() => {
     void getLocalSnapshots(DEFAULT_PROFILE.id).then(setSnapshots)
@@ -231,6 +233,30 @@ export function ProfilePage() {
             Geburtstag hinzufügen
           </Button>
         </div>
+      </section>
+
+      <section>
+        <h2>🎵 Musik und Bewegung</h2>
+        <p className="profile-page__hint">
+          Beides kann jederzeit geändert werden. Crazy Lab respektiert zusätzlich die
+          iPhone-Einstellung „Bewegung reduzieren“.
+        </p>
+        <label className="profile-page__toggle">
+          <input
+            type="checkbox"
+            checked={atmosphereSettings.soundEnabled}
+            onChange={(e) => updateAtmosphere({ soundEnabled: e.target.checked })}
+          />{' '}
+          Dezente Labormusik erlauben
+        </label>
+        <label className="profile-page__toggle">
+          <input
+            type="checkbox"
+            checked={atmosphereSettings.animationsEnabled}
+            onChange={(e) => updateAtmosphere({ animationsEnabled: e.target.checked })}
+          />{' '}
+          Animationen anzeigen
+        </label>
       </section>
 
       <section>

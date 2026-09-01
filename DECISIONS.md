@@ -664,3 +664,18 @@ Löschen benötigt eine ausdrückliche Rückfrage. Maximal zehn komprimierte Fot
 umzuschreiben. Gelöschte Einträge beeinflussen anschließend auch Präferenz- und
 Variantenempfehlungen nicht mehr. Eine Wiederherstellung ist nur über einen vorhandenen lokalen
 Sicherungsstand oder eine Notfallkopie möglich.
+
+## ADR-034: Atmosphäre wird lokal synthetisiert und startet nur nach Berührung
+
+**Status:** Angenommen (Sprint 17, 2026-09-01)
+
+**Entscheidung:** Crazy Lab bündelt keine fremden Musikstücke und streamt nichts. Der Browser
+erzeugt aus drei sehr leisen Sinustönen je Missionskategorie eine dezente Tonfolge. Wegen der
+iOS-Autoplay-Regeln beginnt sie erst nach „Labormusik an“. Ein Drei-Sekunden-Countdown bleibt
+überspringbar. Musik und Animationen besitzen Profil-Schalter; `prefers-reduced-motion` schaltet
+Bewegung unabhängig davon faktisch ab.
+
+**Konsequenzen:** Keine Lizenzkosten, Abos, Netzwerkanfragen oder großen Audiodateien. Die
+Atmosphäre ist bewusst einfach und kein fertiger Soundtrack. Audio funktioniert nur, wenn das
+iPhone Web Audio zulässt und nicht stumm beziehungsweise zu leise eingestellt ist. Alle wichtigen
+Missionselemente bleiben ohne Ton und Animation vollständig bedienbar.

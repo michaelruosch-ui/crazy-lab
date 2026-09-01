@@ -1,5 +1,15 @@
 # Changelog
 
+## Sprint 17 - Musik und Atmosphäre (2026-09-01)
+
+- Jede Mission startet mit einem gut sichtbaren, überspringbaren Drei-Sekunden-Countdown.
+- Fünf unterschiedliche dezente Tonfolgen werden lokal über die Web-Audio-Funktion des Browsers
+  erzeugt und passen zu Getränke-, Bastel-, Experiment-, Foto- und Schwestern-Missionen.
+- Musik startet erst nach Elenas Berührung und lässt sich während der Mission abschalten.
+- Im Profil können Musik und Animationen global ausgeschaltet werden.
+- „Bewegung reduzieren“ des Betriebssystems wird unabhängig davon automatisch respektiert.
+- Keine Musikdateien, externen Übertragungen, Konten, Abos oder neuen Kosten.
+
 ## Sprint 16 - Labortagebuch vollständig (2026-09-01)
 
 - Tagebuch nach Text, Kategorie und Status durchsuchbar und filterbar.

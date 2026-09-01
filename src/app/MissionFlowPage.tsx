@@ -183,6 +183,7 @@ export function MissionFlowPage({ missionId, missionOverride }: MissionFlowPageP
         initialCheckedStepIds={experimentProgress?.checkedStepIds}
         onProgress={mission.experimentProfile ? saveExperimentProgress : undefined}
         onPause={mission.experimentProfile?.durationDays ? () => navigate('/') : undefined}
+        showCountdown
       />
     )
   }

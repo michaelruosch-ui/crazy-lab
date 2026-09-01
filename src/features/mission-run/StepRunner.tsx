@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { MascotId, Mission } from '../../domain'
 import { findStepHelpTip } from '../../domain'
 import { Button, SpeechBubble } from '../../components'
 import { Timer } from './Timer'
 import './StepRunner.css'
+import { useAtmosphereSettings, useMissionAtmosphere } from '../atmosphere'
 
 interface StepRunnerProps {
   mission: Mission
@@ -13,6 +14,7 @@ interface StepRunnerProps {
   initialCheckedStepIds?: string[]
   onProgress?: (checkedStepIds: string[]) => void
   onPause?: () => void
+  showCountdown?: boolean
 }
 
 export function StepRunner({
@@ -23,6 +25,7 @@ export function StepRunner({
   initialCheckedStepIds = [],
   onProgress,
   onPause,
+  showCountdown = false,
 }: StepRunnerProps) {
   const [checkedSteps, setCheckedSteps] = useState<Set<string>>(new Set(initialCheckedStepIds))
   const [currentIndex, setCurrentIndex] = useState(() => {
@@ -30,6 +33,15 @@ export function StepRunner({
     return firstOpen < 0 ? mission.steps.length - 1 : firstOpen
   })
   const [helpVisible, setHelpVisible] = useState(false)
+  const [countdown, setCountdown] = useState(showCountdown ? 3 : 0)
+  const { settings } = useAtmosphereSettings()
+  const atmosphere = useMissionAtmosphere(mission.primaryCategory, settings.soundEnabled)
+
+  useEffect(() => {
+    if (countdown <= 0) return
+    const timer = setTimeout(() => setCountdown((value) => value - 1), 850)
+    return () => clearTimeout(timer)
+  }, [countdown])
 
   const steps = mission.steps
   const currentStep = steps[currentIndex]
@@ -38,6 +50,17 @@ export function StepRunner({
     currentIndex === 2 ? mission.sisterProfile?.timeChallengeSeconds : undefined
 
   if (!currentStep) return null
+
+  if (countdown > 0)
+    return (
+      <div className="mission-countdown" role="status" aria-live="assertive">
+        <p>Mission startet in</p>
+        <strong>{countdown}</strong>
+        <Button variant="ghost" onClick={() => setCountdown(0)}>
+          Countdown überspringen
+        </Button>
+      </div>
+    )
 
   function toggleStepChecked(stepId: string) {
     setCheckedSteps((current) => {
@@ -94,6 +117,13 @@ export function StepRunner({
       </div>
 
       <div className="step-runner__actions">
+        <Button variant="ghost" onClick={atmosphere.toggle} disabled={!settings.soundEnabled}>
+          {atmosphere.playing
+            ? '🔇 Labormusik aus'
+            : settings.soundEnabled
+              ? '🎵 Labormusik an'
+              : '🔇 Musik im Profil ausgeschaltet'}
+        </Button>
         {onPause && (
           <Button variant="ghost" onClick={onPause}>
             ⏸ Versuch pausieren

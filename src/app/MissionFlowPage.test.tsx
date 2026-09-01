@@ -31,6 +31,7 @@ describe('Vollständiger Missionsablauf', () => {
     )
 
     await user.click(await screen.findByRole('button', { name: 'Alles bereit für die Mission?' }))
+    await user.click(screen.getByRole('button', { name: 'Countdown überspringen' }))
 
     for (let i = 0; i < mission.steps.length; i++) {
       await user.click(screen.getByRole('checkbox'))

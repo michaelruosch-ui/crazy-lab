@@ -7,6 +7,13 @@ import { missions } from '../../data/missions'
 const mission = missions.find((m) => m.id === 'mission-blutroter-schatten-trank')!
 
 describe('StepRunner', () => {
+  it('zeigt vor der Mission einen überspringbaren Countdown', async () => {
+    const user = userEvent.setup()
+    render(<StepRunner mission={mission} onAllStepsDone={vi.fn()} onExit={vi.fn()} showCountdown />)
+    expect(screen.getByText('Mission startet in')).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: 'Countdown überspringen' }))
+    expect(screen.getByText('Schritt 1 von 6')).toBeInTheDocument()
+  })
   it('lässt Schritte abhaken', async () => {
     const user = userEvent.setup()
     render(<StepRunner mission={mission} onAllStepsDone={vi.fn()} onExit={vi.fn()} />)

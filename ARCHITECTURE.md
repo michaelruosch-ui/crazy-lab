@@ -290,6 +290,16 @@ unveränderlichen Missions-Snapshot. `DiaryEntryDetailPage` schreibt bearbeitbar
 `DiaryRepository.removeEntry` ist der einzige Löschpfad und wird erst nach einer sichtbaren
 Browser-Rückfrage aufgerufen. Neue Fotoabschlüsse begrenzen die Liste auf zehn Bilder.
 
+## Musik, Countdown und reduzierte Bewegung (Sprint 17)
+
+`features/atmosphere/useAtmosphereSettings` hält zwei unkritische Geräteeinstellungen in
+`localStorage` und synchronisiert Hook-Instanzen über ein lokales Browser-Event.
+`useMissionAtmosphere` erzeugt erst nach einer Berührung über Web Audio kurze Sinustöne; jede
+Hauptkategorie besitzt eine eigene Dreitonfolge. Beim Verlassen wird AudioContext und Intervall
+geschlossen. `StepRunner` zeigt vor dem ersten Schritt einen überspringbaren Countdown.
+`App.tsx` setzt bei abgeschalteten Animationen eine Root-Klasse; CSS respektiert zusätzlich
+`prefers-reduced-motion`. Keine Audiodatei und keine Nutzungsinformation verlässt das Gerät.
+
 ## Speicherung
 
 IndexedDB, Datenbank `crazylab`, aktuell Version 8 mit neun Object Stores:

@@ -75,3 +75,27 @@
   display: flex;
   gap: 12px;
 }
+.mission-countdown {
+  min-height: 70vh;
+  display: grid;
+  place-content: center;
+  gap: 14px;
+  padding: 24px;
+  text-align: center;
+}
+.mission-countdown strong {
+  font-size: clamp(5rem, 35vw, 10rem);
+  color: var(--color-teal);
+  line-height: 1;
+  animation: countdown-pop 850ms ease-out;
+}
+@keyframes countdown-pop {
+  from {
+    transform: scale(0.55);
+    opacity: 0.25;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

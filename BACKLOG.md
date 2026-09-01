@@ -206,6 +206,20 @@ Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
 - [x] Repository- und UI-Tests ergänzt
 - [ ] Michael und Elena testen Filtern, Bearbeiten und Löschen auf dem iPhone
 
+### Sprint 17 - Musik und Atmosphäre
+
+Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
+
+- [x] Überspringbarer Drei-Sekunden-Countdown vor jeder Mission
+- [x] Dezente, lokal erzeugte Tonfolgen passend zu allen fünf Missionskategorien
+- [x] Musik startet auf dem iPhone erst nach einer bewussten Berührung
+- [x] Musik während der Mission jederzeit an- und ausschalten
+- [x] Globale Profil-Schalter für Musik und Animationen
+- [x] Systemeinstellung „Bewegung reduzieren“ automatisch respektieren
+- [x] Keine fremden Musikdateien, kein Streaming, Konto, Abo oder Cloud-Dienst
+- [x] Automatische Tests für Countdown und gespeicherte Einstellungen
+- [ ] Michael und Elena testen Lautstärke, Countdown und reduzierte Bewegung auf dem iPhone
+
 ## Abgeschlossene Sprints
 
 ### Sprint 4 - Forschernamen, Maskottchen und Geburtstage
@@ -289,9 +303,6 @@ positiv beantwortet.
 ## Offene Sprints
 
 ### P2 - Übrige Inhalte
-
-- **Sprint 17 - Musik und Atmosphäre:** missionsabhängige Musik, Countdown, abschaltbare
-  Animationen und Barrierefreiheit.
 
 ### P3 - Plattform und Veröffentlichung
 

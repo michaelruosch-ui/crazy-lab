@@ -14,6 +14,7 @@ import { useAutomaticSnapshots } from './storage/useAutomaticSnapshots'
 import { indexedDbCustomMissionRepository } from './storage/customMissionRepository'
 import type { CustomMission } from './domain'
 import { CustomMissionEditorPage, CustomMissionsPage } from './features/custom-missions'
+import { useAtmosphereSettings } from './features/atmosphere'
 
 function MissionRoute() {
   const { missionId } = useParams<{ missionId: string }>()
@@ -41,11 +42,15 @@ function MissionRoute() {
 }
 
 export function App() {
+  const { settings } = useAtmosphereSettings()
   const { profile, loading, save } = useProfile(DEFAULT_PROFILE.id)
   useAutomaticSnapshots(profile?.onboardingCompletedAt ? profile.id : undefined)
   useEffect(() => {
     void requestPersistentStorage()
   }, [])
+  useEffect(() => {
+    document.documentElement.classList.toggle('reduce-motion', !settings.animationsEnabled)
+  }, [settings.animationsEnabled])
 
   if (loading) {
     return <p className="app-loading">Lade...</p>
