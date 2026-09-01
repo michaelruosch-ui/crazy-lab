@@ -49,6 +49,21 @@ export function CompletionForm({
   const [inventionName, setInventionName] = useState('')
   const [stamp, setStamp] = useState<StampId>('geheimnisvoll')
   const [animatingStamp, setAnimatingStamp] = useState<StampId | null>(null)
+  const [hypothesis, setHypothesis] = useState('')
+  const [observation, setObservation] = useState('')
+  const [learnedExplanation, setLearnedExplanation] = useState('')
+  const [photoDataUrls, setPhotoDataUrls] = useState<string[]>([])
+  const [photoFrame, setPhotoFrame] = useState(mission.photoProfile?.frames[0] ?? '')
+  const [photoEffect, setPhotoEffect] = useState(mission.photoProfile?.effects[0] ?? '')
+  const [sisterTeamNote, setSisterTeamNote] = useState('')
+
+  async function addPhotos(files: FileList | null) {
+    if (!files) return
+    const remaining = Math.max(0, 5 - photoDataUrls.length)
+    const selected = Array.from(files).slice(0, remaining)
+    const urls = await Promise.all(selected.map(fileToCompressedDataUrl))
+    setPhotoDataUrls((current) => [...current, ...urls].slice(0, 5))
+  }
 
   function toggleAdjustment(tag: AdjustmentTag) {
     setAdjustments((current) => {
@@ -68,6 +83,13 @@ export function CompletionForm({
       scariness: isDrink ? scariness : undefined,
       decoration: isDrink ? decoration : undefined,
       drinkVariant: isDrink ? drinkVariant : undefined,
+      hypothesis: hypothesis.trim() || undefined,
+      observation: observation.trim() || undefined,
+      learnedExplanation: learnedExplanation.trim() || undefined,
+      photoDataUrls: photoDataUrls.length ? photoDataUrls : undefined,
+      photoFrame: photoFrame || undefined,
+      photoEffect: photoEffect || undefined,
+      sisterTeamNote: sisterTeamNote.trim() || undefined,
       difficultyFeedback,
       wouldRepeat,
       wouldRecommend,
@@ -112,6 +134,101 @@ export function CompletionForm({
               <legend>Dekoration</legend>
               <StarPicker value={decoration} onChange={setDecoration} name="Dekoration" />
             </fieldset>
+          </div>
+        )}
+
+        {mission.experimentProfile && (
+          <div className="completion-form__special">
+            <h2>🔬 Forschungsnotizen</h2>
+            <label>
+              Meine Vermutung
+              <textarea
+                value={hypothesis}
+                onChange={(event) => setHypothesis(event.target.value)}
+                rows={2}
+                placeholder={mission.experimentProfile.hypothesisPrompt}
+              />
+            </label>
+            <label>
+              Meine Beobachtung
+              <textarea
+                value={observation}
+                onChange={(event) => setObservation(event.target.value)}
+                rows={2}
+                placeholder={mission.experimentProfile.observationPrompt}
+              />
+            </label>
+            <label>
+              Meine Erklärung
+              <textarea
+                value={learnedExplanation}
+                onChange={(event) => setLearnedExplanation(event.target.value)}
+                rows={2}
+                placeholder="Was hast du daraus gelernt?"
+              />
+            </label>
+            <p className="completion-form__explanation">
+              <strong>Crazy-Lab-Erklärung:</strong> {mission.experimentProfile.explanation}
+            </p>
+          </div>
+        )}
+
+        {mission.photoProfile && (
+          <div className="completion-form__special">
+            <h2>📷 Lieblingsbilder</h2>
+            <label className="completion-form__photo-picker">
+              Kamera oder Fotos öffnen
+              <input
+                type="file"
+                accept="image/*"
+                capture="environment"
+                multiple
+                onChange={(event) => void addPhotos(event.target.files)}
+              />
+            </label>
+            <p>{photoDataUrls.length} von höchstens 5 Bildern gewählt</p>
+            <div
+              className={`completion-form__photo-preview effect-${photoEffect.toLowerCase().replaceAll(' ', '-')} frame-${photoFrame.toLowerCase().replaceAll(' ', '-')}`}
+            >
+              {photoDataUrls.map((url, index) => (
+                <img
+                  key={`${url.slice(-20)}-${index}`}
+                  src={url}
+                  alt={`Ausgewähltes Foto ${index + 1}`}
+                />
+              ))}
+            </div>
+            <label>
+              Rahmen
+              <select value={photoFrame} onChange={(event) => setPhotoFrame(event.target.value)}>
+                {mission.photoProfile.frames.map((frame) => (
+                  <option key={frame}>{frame}</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Effekt
+              <select value={photoEffect} onChange={(event) => setPhotoEffect(event.target.value)}>
+                {mission.photoProfile.effects.map((effect) => (
+                  <option key={effect}>{effect}</option>
+                ))}
+              </select>
+            </label>
+          </div>
+        )}
+
+        {mission.sisterProfile && (
+          <div className="completion-form__special">
+            <h2>👭 Gemeinsamer Abschluss</h2>
+            <p>{mission.sisterProfile.jointFinish}</p>
+            <label>
+              Was hat jede von euch beigetragen?
+              <textarea
+                value={sisterTeamNote}
+                onChange={(event) => setSisterTeamNote(event.target.value)}
+                rows={3}
+              />
+            </label>
           </div>
         )}
 
@@ -227,6 +344,29 @@ export function CompletionForm({
       )}
     </>
   )
+}
+
+function fileToCompressedDataUrl(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onerror = () => reject(reader.error)
+    reader.onload = () => {
+      const image = new Image()
+      image.onerror = () => reject(new Error('Foto konnte nicht gelesen werden.'))
+      image.onload = () => {
+        const scale = Math.min(1, 1000 / Math.max(image.width, image.height))
+        const canvas = document.createElement('canvas')
+        canvas.width = Math.max(1, Math.round(image.width * scale))
+        canvas.height = Math.max(1, Math.round(image.height * scale))
+        const context = canvas.getContext('2d')
+        if (!context) return reject(new Error('Foto konnte nicht verkleinert werden.'))
+        context.drawImage(image, 0, 0, canvas.width, canvas.height)
+        resolve(canvas.toDataURL('image/jpeg', 0.78))
+      }
+      image.src = String(reader.result)
+    }
+    reader.readAsDataURL(file)
+  })
 }
 
 function StarPicker({

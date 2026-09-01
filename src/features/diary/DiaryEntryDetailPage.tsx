@@ -162,6 +162,53 @@ export function DiaryEntryDetailPage() {
         </section>
       )}
 
+      {(entry.rating.hypothesis || entry.rating.observation || entry.rating.learnedExplanation) && (
+        <section>
+          <h2>🔬 Forschungsnotizen</h2>
+          {entry.rating.hypothesis && (
+            <p>
+              <strong>Vermutung:</strong> {entry.rating.hypothesis}
+            </p>
+          )}
+          {entry.rating.observation && (
+            <p>
+              <strong>Beobachtung:</strong> {entry.rating.observation}
+            </p>
+          )}
+          {entry.rating.learnedExplanation && (
+            <p>
+              <strong>Erklärung:</strong> {entry.rating.learnedExplanation}
+            </p>
+          )}
+        </section>
+      )}
+
+      {entry.rating.photoDataUrls && entry.rating.photoDataUrls.length > 0 && (
+        <section>
+          <h2>📷 Missionsfotos</h2>
+          <p>
+            {entry.rating.photoFrame} · {entry.rating.photoEffect}
+          </p>
+          <div className="diary-entry-detail__photos">
+            {entry.rating.photoDataUrls.map((url, index) => (
+              <img
+                key={`${url.slice(-20)}-${index}`}
+                className={`effect-${(entry.rating.photoEffect ?? 'ohne-effekt').toLowerCase().replaceAll(' ', '-')} frame-${(entry.rating.photoFrame ?? 'laborrahmen').toLowerCase().replaceAll(' ', '-')}`}
+                src={url}
+                alt={`Missionsfoto ${index + 1}`}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {entry.rating.sisterTeamNote && (
+        <section>
+          <h2>👭 Teamnotiz</h2>
+          <p>{entry.rating.sisterTeamNote}</p>
+        </section>
+      )}
+
       <Button
         variant={entry.rating.wouldRepeat ? 'primary' : 'secondary'}
         onClick={toggleWouldRepeat}

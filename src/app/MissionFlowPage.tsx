@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getMissionById } from '../data'
 import {
@@ -8,6 +8,7 @@ import {
   shoppingItemsForMission,
   type CompletionRating,
   type DiaryEntry,
+  type ExperimentProgress,
 } from '../domain'
 import { MissionDetailView } from '../features/missions'
 import { StepRunner } from '../features/mission-run'
@@ -19,6 +20,7 @@ import { BackLink, Button } from '../components'
 import { indexedDbDiaryRepository } from '../storage/diaryRepository'
 import { indexedDbShoppingListRepository } from '../storage/shoppingListRepository'
 import { indexedDbLabCabinetRepository } from '../storage/labCabinetRepository'
+import { indexedDbExperimentProgressRepository } from '../storage/experimentProgressRepository'
 import './MissionFlowPage.css'
 
 interface MissionFlowPageProps {
@@ -66,6 +68,7 @@ export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
   const [pendingRating, setPendingRating] = useState<CompletionRating | null>(null)
   const [errorDetails, setErrorDetails] = useState<string>('')
   const [shoppingMessage, setShoppingMessage] = useState('')
+  const [experimentProgress, setExperimentProgress] = useState<ExperimentProgress>()
   const navigate = useNavigate()
   const { savedMissionIds, toggle: toggleSaved } = useSecretVault(DEFAULT_PROFILE.id)
   const { profile } = useProfile(DEFAULT_PROFILE.id)
@@ -74,6 +77,13 @@ export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
   const [selectedVariant, setSelectedVariant] = useState<string | undefined>(undefined)
   const effectiveVariant =
     selectedVariant ?? rankedVariants[0]?.name ?? mission?.drinkProfile?.variants[0]?.name
+
+  useEffect(() => {
+    if (!mission?.experimentProfile) return
+    void indexedDbExperimentProgressRepository
+      .get(DEFAULT_PROFILE.id, mission.id)
+      .then(setExperimentProgress)
+  }, [mission])
 
   if (!mission) {
     return (
@@ -89,12 +99,30 @@ export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
     try {
       const entry = buildEntry(mission.id, rating, mission)
       await indexedDbDiaryRepository.saveEntry(entry)
+      if (experimentProgress) {
+        await indexedDbExperimentProgressRepository.remove(experimentProgress.id)
+      }
       navigate('/diary')
     } catch (error) {
       setPendingRating(rating)
       setErrorDetails(describeError(error))
       setSaveStatus('error')
     }
+  }
+
+  const saveExperimentProgress = async (checkedStepIds: string[]) => {
+    if (!mission.experimentProfile) return
+    const now = new Date().toISOString()
+    const progress: ExperimentProgress = {
+      id: experimentProgress?.id ?? `${DEFAULT_PROFILE.id}:${mission.id}`,
+      profileId: DEFAULT_PROFILE.id,
+      missionId: mission.id,
+      checkedStepIds,
+      startedAt: experimentProgress?.startedAt ?? now,
+      updatedAt: now,
+    }
+    setExperimentProgress(progress)
+    await indexedDbExperimentProgressRepository.save(progress)
   }
 
   const addToShoppingList = async () => {
@@ -148,6 +176,9 @@ export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
         onAllStepsDone={() => setPhase('rating')}
         onExit={() => setPhase('detail')}
         mascotId={profile?.mascotVariant}
+        initialCheckedStepIds={experimentProgress?.checkedStepIds}
+        onProgress={mission.experimentProfile ? saveExperimentProgress : undefined}
+        onPause={mission.experimentProfile?.durationDays ? () => navigate('/') : undefined}
       />
     )
   }

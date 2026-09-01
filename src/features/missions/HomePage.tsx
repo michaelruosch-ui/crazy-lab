@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { missions } from '../../data'
 import type { MissionCategory } from '../../domain'
@@ -18,6 +18,7 @@ import { useProfile } from '../profile'
 import { useHiddenMissions } from './useHiddenMissions'
 import { MissionSection } from './MissionSection'
 import { MissionFiltersPanel } from './MissionFiltersPanel'
+import { indexedDbExperimentProgressRepository } from '../../storage/experimentProgressRepository'
 import './HomePage.css'
 
 const CATEGORY_SECTIONS: { category: MissionCategory; title: string }[] = [
@@ -30,12 +31,27 @@ const CATEGORY_SECTIONS: { category: MissionCategory; title: string }[] = [
 
 export function HomePage() {
   const [filters, setFilters] = useState(DEFAULT_MISSION_FILTERS)
+  const [ongoingExperimentIds, setOngoingExperimentIds] = useState<string[]>([])
   const { profile } = useProfile(DEFAULT_PROFILE.id)
   const { savedMissionIds, toggle: toggleSaved } = useSecretVault(DEFAULT_PROFILE.id)
   const { currentlyHiddenMissionIds, hide } = useHiddenMissions(DEFAULT_PROFILE.id)
   const { entries: diaryEntries } = useDiaryEntries(DEFAULT_PROFILE.id)
   const preferenceProfile = buildPreferenceProfile(DEFAULT_PROFILE.id, diaryEntries)
   const completedMissionIds = new Set(diaryEntries.map((entry) => entry.missionSnapshot.missionId))
+
+  useEffect(() => {
+    let cancelled = false
+    indexedDbExperimentProgressRepository.getAll(DEFAULT_PROFILE.id).then((progress) => {
+      if (!cancelled) setOngoingExperimentIds(progress.map((item) => item.missionId))
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  const ongoingExperiments = ongoingExperimentIds
+    .map((missionId) => missions.find((mission) => mission.id === missionId))
+    .filter((mission) => mission !== undefined)
 
   const researcherName = profile?.researcherName ?? DEFAULT_PROFILE.researcherName
   const mascotId = profile?.mascotVariant ?? DEFAULT_PROFILE.mascotVariant
@@ -85,6 +101,18 @@ export function HomePage() {
         resultCount={matchingAvailableCount}
         onChange={setFilters}
       />
+
+      {ongoingExperiments.length > 0 && (
+        <section className="home-page__ongoing">
+          <h2>🌱 Laufende Versuche</h2>
+          <p>Deine bisherigen Schritte sind sicher. Hier kannst du direkt weitermachen.</p>
+          {ongoingExperiments.map((mission) => (
+            <Link key={mission.id} to={`/mission/${mission.id}`}>
+              🧪 {mission.title} fortsetzen
+            </Link>
+          ))}
+        </section>
+      )}
 
       {matchingAvailableCount === 0 && (
         <p className="home-page__no-match">

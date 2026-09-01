@@ -75,6 +75,16 @@ export function validateMission(mission: Mission): MissionValidationError[] {
     }
   }
 
+  if (mission.primaryCategory === 'experiment' && !mission.experimentProfile) {
+    fail('experimentProfile ist für Experimentier-Missionen erforderlich')
+  }
+  if (mission.primaryCategory === 'foto' && !mission.photoProfile) {
+    fail('photoProfile ist für Foto-Missionen erforderlich')
+  }
+  if (mission.primaryCategory === 'schwestern' && !mission.sisterProfile) {
+    fail('sisterProfile ist für Schwestern-Missionen erforderlich')
+  }
+
   return errors
 }
 

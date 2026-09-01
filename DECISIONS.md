@@ -593,3 +593,43 @@ werden optional am Laborschrank-Eintrag gespeichert und damit automatisch mitges
 Kosten oder Übertragung von Elenas Eingaben. Es ist bewusst keine behauptete Cloud-KI: unbekannte
 Begriffe bleiben sicher als „Sonstiges Material“ erhalten, statt möglicherweise falsch erfundene
 Informationen zu erzeugen. Die Regelmenge kann anhand echten Familienfeedbacks erweitert werden.
+
+## ADR-029: Langzeitversuche speichern Schritte, keine laufenden Timer
+
+**Status:** Angenommen (Sprint 12, 2026-09-01)
+
+**Entscheidung:** Mehrtägige Experimente speichern profilbezogen die erledigten Schritt-IDs und
+Zeitpunkte in einem eigenen IndexedDB-Store. Sie können bewusst pausiert und über „Laufende
+Versuche“ fortgesetzt werden. Es läuft kein Hintergrund-Timer; echte Wartezeiten beschreibt die
+Mission in Tagen und Elena bestätigt den nächsten Schritt selbst.
+
+**Konsequenzen:** Ein Schliessen der App verliert den Versuchsstand nicht und verbraucht keine
+Hintergrundressourcen. Der neue Stand wird im Backup mitgesichert. Alte Backups ohne dieses
+optionale Feld bleiben gültig.
+
+## ADR-030: Missionsfotos lokal, begrenzt und vor dem Speichern verkleinert
+
+**Status:** Angenommen (Sprint 13, 2026-09-01)
+
+**Entscheidung:** Eine Foto-Challenge darf höchstens fünf Bilder speichern. Jedes Bild wird im
+Browser auf maximal 1000 Pixel verkleinert und zusammen mit einem einfachen CSS-Rahmen und
+CSS-Effekt in den Tagebucheintrag geschrieben. Die Auswahl erfolgt über die iPhone-Kamera oder
+Fotomediathek; Crazy Lab lädt nichts zu einem Server hoch.
+
+**Konsequenzen:** Fotos funktionieren privat und ohne Konto, belegen aber mehr lokalen Speicher
+als reine Textdaten und werden Teil der Backups. Rahmen und Effekte verändern das Original nicht,
+sondern nur seine Darstellung und lassen sich ohne Bildbearbeitungsdienst reproduzieren.
+
+## ADR-031: Geheime Teilaufgaben durch bewusstes Aufklappen
+
+**Status:** Angenommen (Sprint 14, 2026-09-01)
+
+**Entscheidung:** Jede Schwestern-Mission enthält eine gemeinsame Anleitung, zwei getrennte
+geheime Teilaufgaben und ein gemeinsames Finale. Die beiden Geheimnisse sind in geschlossenen,
+einzeln aufklappbaren Bereichen statt in getrennten Konten gespeichert. Optionale
+Zeit-Challenges verwenden den vorhandenen lokalen Missionstimer.
+
+**Konsequenzen:** Zwei Kinder können dasselbe iPhone nacheinander nutzen, ohne Einrichtung oder
+Login. Die Geheimhaltung ist spielerisch und nicht technisch: Wer absichtlich beide Bereiche
+öffnet, kann beide Aufgaben lesen. Das ist für den Familiengebrauch verständlicher als Profile,
+Passwörter oder eine zweite Geräteverbindung.

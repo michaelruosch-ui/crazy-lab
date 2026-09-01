@@ -1,5 +1,33 @@
 # Changelog
 
+## Sprint 14 - Schwestern-Missionen (2026-09-01)
+
+- Katalog auf 15 Schwestern-Missionen mit gemeinsamen Anleitungen ausgebaut.
+- Geheime Teilaufgaben für Elena und ihre Schwester lassen sich getrennt aufklappen.
+- Ausgewählte Missionen enthalten eine Fünf-Minuten-Challenge mit sichtbarem Timer.
+- Jede Mission endet mit einem gemeinsamen Finale; eine Teamnotiz bleibt im Tagebuch erhalten.
+- Vollständige Qualitätsprüfung gemeinsam mit Sprint 12/13: 120 Tests erfolgreich.
+
+## Sprint 13 - Foto-Challenges (2026-09-01)
+
+- Katalog auf 15 Foto-Challenges mit konkreten Bildideen und Tipps ausgebaut.
+- Bis zu fünf Bilder lassen sich über Kamera oder Fotomediathek auswählen und werden auf maximal
+  1000 Pixel verkleinert.
+- Drei Rahmen und vier einfache Effekte stehen zur Wahl; Auswahl und Bilder bleiben im Tagebuch
+  erhalten und werden dort entsprechend dargestellt.
+- Bilder bleiben ausschliesslich im lokalen IndexedDB-Speicher und in ausdrücklich erstellten
+  Sicherungen.
+
+## Sprint 12 - Experimentier-Labor (2026-09-01)
+
+- Katalog auf 15 sichere Experimente mit Forschungsfrage, Vermutung, Beobachtung und Erklärung
+  ausgebaut.
+- Mehrtägige Versuche speichern jeden abgehakten Schritt und lassen sich pausieren.
+- Laufende Versuche erscheinen zum direkten Fortsetzen auf der Startseite.
+- Forschungsnotizen und Fortschritt werden lokal gespeichert; der Fortschritt ist Bestandteil
+  von Backup und Wiederherstellung.
+- IndexedDB auf Version 7 mit neuem Store `experimentProgress` erweitert.
+
 ## Sprint 11 - Bastel-Labor und Bedienungsverbesserungen (2026-08-31)
 
 - Bastelkatalog auf 15 sichere Missionen ausgebaut: Playmobil-Szenen, Miniaturen, Geheimfächer,

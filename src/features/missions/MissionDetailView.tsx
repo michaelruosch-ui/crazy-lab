@@ -127,6 +127,59 @@ export function MissionDetailView({
         </section>
       )}
 
+      {mission.experimentProfile && (
+        <section className="mission-detail__special-profile">
+          <h2>🔬 Deine Forschungsfrage</h2>
+          <p>{mission.experimentProfile.researchQuestion}</p>
+          <p>
+            <strong>Erst vermuten, dann beobachten, zuletzt erklären.</strong>
+          </p>
+          {mission.experimentProfile.durationDays && (
+            <Badge tone="acid">
+              Läuft {mission.experimentProfile.durationDays} Tag
+              {mission.experimentProfile.durationDays === 1 ? '' : 'e'}
+            </Badge>
+          )}
+        </section>
+      )}
+
+      {mission.photoProfile && (
+        <section className="mission-detail__special-profile">
+          <h2>📷 Foto-Tipps</h2>
+          <ul>
+            {mission.photoProfile.tips.map((tip) => (
+              <li key={tip}>{tip}</li>
+            ))}
+          </ul>
+          <p>
+            Am Schluss kannst du mehrere Bilder auswählen, einen Rahmen und einen Effekt festlegen.
+          </p>
+        </section>
+      )}
+
+      {mission.sisterProfile && (
+        <section className="mission-detail__special-profile">
+          <h2>🤫 Geheime Teilaufgaben</h2>
+          <p>Öffnet immer nur den eigenen Auftrag und schliesst ihn danach wieder.</p>
+          <details>
+            <summary>Elenas Geheimauftrag</summary>
+            <p>{mission.sisterProfile.secretTaskElena}</p>
+          </details>
+          <details>
+            <summary>Geheimauftrag der Schwester</summary>
+            <p>{mission.sisterProfile.secretTaskSister}</p>
+          </details>
+          {mission.sisterProfile.timeChallengeSeconds && (
+            <Badge tone="pink">
+              ⏱ Zeit-Challenge: {Math.round(mission.sisterProfile.timeChallengeSeconds / 60)} Min.
+            </Badge>
+          )}
+          <p>
+            <strong>Gemeinsames Finale:</strong> {mission.sisterProfile.jointFinish}
+          </p>
+        </section>
+      )}
+
       <Button variant="primary" onClick={onStart}>
         Alles bereit für die Mission?
       </Button>

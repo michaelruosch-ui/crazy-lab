@@ -69,4 +69,19 @@ describe('StepRunner', () => {
     expect(onExit).not.toHaveBeenCalled()
     expect(screen.getByText('Schritt 1 von 6')).toBeInTheDocument()
   })
+
+  it('setzt ein laufendes Experiment an der ersten offenen Stelle fort', () => {
+    const experiment = missions.find((item) => item.id === 'mission-experiment-salzkristall-geist')!
+    render(
+      <StepRunner
+        mission={experiment}
+        onAllStepsDone={vi.fn()}
+        onExit={vi.fn()}
+        initialCheckedStepIds={['step-1', 'step-2']}
+        onPause={vi.fn()}
+      />,
+    )
+    expect(screen.getByText('Schritt 3 von 4')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: '⏸ Versuch pausieren' })).toBeInTheDocument()
+  })
 })

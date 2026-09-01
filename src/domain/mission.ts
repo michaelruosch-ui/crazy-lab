@@ -51,6 +51,27 @@ export interface DrinkProfile {
   variants: DrinkVariant[]
 }
 
+export interface ExperimentProfile {
+  researchQuestion: string
+  hypothesisPrompt: string
+  observationPrompt: string
+  explanation: string
+  durationDays?: number
+}
+
+export interface PhotoProfile {
+  tips: string[]
+  frames: string[]
+  effects: string[]
+}
+
+export interface SisterProfile {
+  secretTaskElena: string
+  secretTaskSister: string
+  jointFinish: string
+  timeChallengeSeconds?: number
+}
+
 export interface Mission {
   id: string
   contentVersion: number
@@ -67,6 +88,9 @@ export interface Mission {
   location: MissionLocation
   traits: MissionTraits
   drinkProfile?: DrinkProfile
+  experimentProfile?: ExperimentProfile
+  photoProfile?: PhotoProfile
+  sisterProfile?: SisterProfile
   steps: MissionStep[]
   generalHelpTip: string
   completionQuestion: string

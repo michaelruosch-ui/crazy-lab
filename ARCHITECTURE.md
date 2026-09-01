@@ -244,9 +244,36 @@ entfernt zuerst die aktuellen profilbezogenen Nutzdaten und spielt dann den gew�
 daher Komfortschutz, kein Schutz vor kompletter App-/Browserdaten-Löschung. Der externe
 Datei-Export aus Sprint 5 bleibt deshalb in einem separaten Notfallbereich erhalten.
 
+## Strukturierte Experimente und Fortschritt (Sprint 12)
+
+`experimentMissions.ts` ergänzt den statischen Katalog auf 15 primäre Experimente. Ein optionales
+`ExperimentProfile` hält Forschungsfrage, Eingabeaufforderungen, redaktionelle Erklärung und die
+Anzahl Versuchstage. `StepRunner` meldet bei Experimenten jeden abgehakten Schritt an
+`MissionFlowPage`; mehrtägige Versuche können zusätzlich pausiert werden. Das
+`experimentProgressRepository` speichert den Fortschritt profil- und missionsbezogen. Die
+Startseite liest diese Einträge und zeigt „Laufende Versuche“. Beim Abschluss wird der
+Fortschritt entfernt und Vermutung, Beobachtung sowie Erklärung werden Teil der normalen
+Tagebuchbewertung.
+
+## Foto-Challenges (Sprint 13)
+
+`photoMissions.ts` ergänzt den Katalog auf 15 primäre Foto-Challenges. Ein `PhotoProfile` enthält
+redaktionelle Tipps sowie erlaubte Rahmen und Effekte. `CompletionForm` nutzt den normalen
+Browser-Dateiwähler mit Kamera-Unterstützung, nimmt höchstens fünf Bilder an und verkleinert sie
+im Browser auf maximal 1000 Pixel. Daten-URLs, Rahmen und Effekt liegen als optionale Felder im
+Tagebucheintrag. Es gibt keinen Upload und keine externe Bildverarbeitung.
+
+## Schwestern-Missionen (Sprint 14)
+
+`sisterMissions.ts` ergänzt den Katalog auf 15 primäre Schwestern-Missionen. Das
+`SisterProfile` trennt zwei geheime Teilaufgaben, einen gemeinsamen Abschluss und optional eine
+Zeitvorgabe. Die Geheimnisse werden in der Detailansicht bewusst einzeln aufgeklappt. Bei einer
+Zeit-Challenge aktiviert `StepRunner` im vorgesehenen Schritt denselben getesteten Timer wie
+andere Missionen. Eine freiwillige Teamnotiz wird im Tagebucheintrag gespeichert.
+
 ## Speicherung
 
-IndexedDB, Datenbank `crazylab`, aktuell Version 6 mit sieben Object Stores:
+IndexedDB, Datenbank `crazylab`, aktuell Version 7 mit acht Object Stores:
 
 - `diaryEntries` (seit Sprint 1): Key `id`, Indizes `by-profile`, `by-completedAt`.
 - `secretVaultEntries` (seit Sprint 2): Key `id`, Indizes `by-profile`, `by-mission`.
@@ -255,10 +282,12 @@ IndexedDB, Datenbank `crazylab`, aktuell Version 6 mit sieben Object Stores:
 - `labCabinetItems` (seit Sprint 8): Key `id`, Indizes `by-profile`, `by-material`.
 - `shoppingListItems` (seit Sprint 9): Key `id`, Indizes `by-profile`, `by-material`.
 - `localBackupSnapshots` (seit Sprint 11): Key `id`, Indizes `by-profile`, `by-createdAt`.
+- `experimentProgress` (seit Sprint 12): Key `id`, Indizes `by-profile`, `by-mission`.
 
 Zugriff ausschliesslich über je ein Repository-Interface (`DiaryRepository`,
 `SecretVaultRepository`, `HiddenMissionsRepository`, `ProfileRepository`,
-`LabCabinetRepository`, `ShoppingListRepository`) in `src/storage`, damit
+`LabCabinetRepository`, `ShoppingListRepository`, `ExperimentProgressRepository`) in
+`src/storage`, damit
 spätere
 Erweiterungen (z. B. Cloud-Sync in Sprint 19) die UI nicht verändern müssen. `storage/db.ts`
 kapselt den `upgrade`-Callback so, dass neue Object Stores versionsweise ergänzt werden, ohne

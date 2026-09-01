@@ -1,5 +1,6 @@
 import type {
   DiaryEntry,
+  ExperimentProgress,
   HiddenMissionEntry,
   LabCabinetItem,
   Profile,
@@ -13,6 +14,7 @@ import { indexedDbSecretVaultRepository } from './secretVaultRepository'
 import { indexedDbLabCabinetRepository } from './labCabinetRepository'
 import { indexedDbShoppingListRepository } from './shoppingListRepository'
 import { clearProfileData } from './db'
+import { indexedDbExperimentProgressRepository } from './experimentProgressRepository'
 
 const BACKUP_FORMAT = 'crazylab-backup'
 const BACKUP_VERSION = 1
@@ -27,6 +29,7 @@ export interface BackupData {
   hiddenMissions: HiddenMissionEntry[]
   labCabinetItems?: LabCabinetItem[]
   shoppingListItems?: ShoppingListItem[]
+  experimentProgress?: ExperimentProgress[]
 }
 
 /** Liest alle lokalen Daten eines Profils zusammen, um sie als Datei sichern zu können. */
@@ -38,6 +41,7 @@ export async function createBackup(profileId: string): Promise<BackupData> {
     hiddenMissions,
     labCabinetItems,
     shoppingListItems,
+    experimentProgress,
   ] = await Promise.all([
     indexedDbProfileRepository.get(profileId),
     indexedDbDiaryRepository.getAllEntries(profileId),
@@ -45,6 +49,7 @@ export async function createBackup(profileId: string): Promise<BackupData> {
     indexedDbHiddenMissionsRepository.getHistory(profileId),
     indexedDbLabCabinetRepository.getAll(profileId),
     indexedDbShoppingListRepository.getAll(profileId),
+    indexedDbExperimentProgressRepository.getAll(profileId),
   ])
 
   return {
@@ -57,6 +62,7 @@ export async function createBackup(profileId: string): Promise<BackupData> {
     hiddenMissions,
     labCabinetItems,
     shoppingListItems,
+    experimentProgress,
   }
 }
 
@@ -109,6 +115,9 @@ export async function restoreBackup(data: BackupData): Promise<void> {
 
   for (const item of data.shoppingListItems ?? []) {
     await indexedDbShoppingListRepository.save(item)
+  }
+  for (const progress of data.experimentProgress ?? []) {
+    await indexedDbExperimentProgressRepository.save(progress)
   }
 }
 

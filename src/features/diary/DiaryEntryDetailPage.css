@@ -5,6 +5,42 @@
   gap: 14px;
 }
 
+.diary-entry-detail__photos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.diary-entry-detail__photos img {
+  width: 100%;
+  border-radius: var(--radius-md);
+}
+
+.diary-entry-detail__photos .effect-schwarzweiss {
+  filter: grayscale(1) contrast(1.08);
+}
+
+.diary-entry-detail__photos .effect-kaltblau {
+  filter: saturate(0.8) hue-rotate(155deg) contrast(1.05);
+}
+
+.diary-entry-detail__photos .effect-dramatisch {
+  filter: contrast(1.35) saturate(1.25);
+}
+
+.diary-entry-detail__photos .frame-laborrahmen {
+  border: 5px solid var(--color-teal);
+}
+
+.diary-entry-detail__photos .frame-monsterkrallen {
+  border: 5px dashed var(--color-pink);
+}
+
+.diary-entry-detail__photos .frame-geisternebel {
+  border: 5px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.75);
+}
+
 .diary-entry-detail__loading {
   padding: 24px 16px;
 }

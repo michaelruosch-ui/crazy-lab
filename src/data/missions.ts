@@ -1,6 +1,9 @@
 import type { Mission } from '../domain'
 import { additionalDrinkMissions } from './drinkMissions'
 import { additionalCraftMissions } from './craftMissions'
+import { additionalExperimentMissions } from './experimentMissions'
+import { additionalPhotoMissions } from './photoMissions'
+import { additionalSisterMissions } from './sisterMissions'
 
 /**
  * Statische, versionierte Missionsdaten für Sprint 1.
@@ -193,6 +196,13 @@ export const missions: Mission[] = [
     safetyNotes: [],
     location: 'kueche',
     traits: { gruselig: 2, farbig: 5, suess: 0, kreativ: 2, unordentlich: 2, aufwand: 1 },
+    experimentProfile: {
+      researchQuestion: 'Kann Wasser durch Küchenpapier in ein leeres Glas wandern?',
+      hypothesisPrompt: 'Was glaubst du: Welche Farbe kommt im mittleren Glas an?',
+      observationPrompt: 'Notiere, wann die Farbe das leere Glas erreicht und was dort passiert.',
+      explanation:
+        'Wasser haftet an den Papierfasern und zieht weiteres Wasser mit – das heisst Kapillarwirkung.',
+    },
     steps: [
       {
         id: 'step-1',
@@ -264,6 +274,11 @@ export const missions: Mission[] = [
     safetyNotes: [],
     location: 'ueberall',
     traits: { gruselig: 2, farbig: 2, suess: 1, kreativ: 4, unordentlich: 0, aufwand: 2 },
+    photoProfile: {
+      tips: ['Serienaufnahme verwenden', 'Kamera tief halten', 'Einen hellen Hintergrund wählen'],
+      frames: ['Geisternebel', 'Monsterkrallen', 'Laborrahmen'],
+      effects: ['Schwarzweiss', 'Kaltblau', 'Dramatisch'],
+    },
     steps: [
       {
         id: 'step-1',
@@ -322,6 +337,12 @@ export const missions: Mission[] = [
     safetyNotes: [],
     location: 'kueche',
     traits: { gruselig: 3, farbig: 4, suess: 3, kreativ: 3, unordentlich: 2, aufwand: 2 },
+    sisterProfile: {
+      secretTaskElena: 'Baue unbemerkt ein rotes Detail ein.',
+      secretTaskSister: 'Baue unbemerkt ein glitzerndes Detail ein.',
+      jointFinish: 'Enthüllt beide Geheimnisse gleichzeitig und gebt eurem Teamtrank einen Namen.',
+      timeChallengeSeconds: 180,
+    },
     steps: [
       {
         id: 'step-1',
@@ -364,4 +385,7 @@ export const missions: Mission[] = [
   },
   ...additionalDrinkMissions,
   ...additionalCraftMissions,
+  ...additionalExperimentMissions,
+  ...additionalPhotoMissions,
+  ...additionalSisterMissions,
 ]

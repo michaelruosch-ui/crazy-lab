@@ -3,8 +3,8 @@ import { missions } from './missions'
 import { FORBIDDEN_DRINK_TERMS, validateMissions } from '../domain'
 
 describe('Missionsdaten', () => {
-  it('enthält die Grundmissionen sowie je 15 Getränke- und Bastelmissionen', () => {
-    expect(missions).toHaveLength(33)
+  it('enthält genau 15 Missionen in jeder der fünf Kategorien', () => {
+    expect(missions).toHaveLength(75)
   })
 
   it('alle Missionen sind valide', () => {
@@ -58,5 +58,17 @@ describe('Missionsdaten', () => {
     expect(craftMissions.some((mission) => mission.title.includes('Playmobil'))).toBe(true)
     expect(craftMissions.some((mission) => mission.safetyLevel === 'gelb')).toBe(true)
     expect(craftMissions.every((mission) => mission.steps.length >= 4)).toBe(true)
+  })
+
+  it('enthält je 15 strukturierte Experimente, Foto-Challenges und Schwestern-Missionen', () => {
+    const experiments = missions.filter((mission) => mission.primaryCategory === 'experiment')
+    const photos = missions.filter((mission) => mission.primaryCategory === 'foto')
+    const sisters = missions.filter((mission) => mission.primaryCategory === 'schwestern')
+    expect(experiments).toHaveLength(15)
+    expect(photos).toHaveLength(15)
+    expect(sisters).toHaveLength(15)
+    expect(experiments.every((mission) => mission.experimentProfile)).toBe(true)
+    expect(photos.every((mission) => mission.photoProfile?.frames.length)).toBe(true)
+    expect(sisters.every((mission) => mission.sisterProfile?.jointFinish)).toBe(true)
   })
 })

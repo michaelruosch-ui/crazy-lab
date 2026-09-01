@@ -54,6 +54,20 @@
   background: color-mix(in srgb, var(--color-bg-card) 88%, var(--color-primary));
 }
 
+.mission-detail__special-profile {
+  padding: 14px;
+  border: 1px solid rgba(35, 230, 200, 0.28);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-card);
+}
+
+.mission-detail__special-profile details {
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  background: rgba(164, 99, 242, 0.13);
+}
+
 .mission-detail__drink-profile h2,
 .mission-detail__drink-profile h3 {
   margin-top: 0;

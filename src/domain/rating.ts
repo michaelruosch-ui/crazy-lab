@@ -39,6 +39,13 @@ export interface CompletionRating {
   scariness?: 1 | 2 | 3 | 4 | 5
   decoration?: 1 | 2 | 3 | 4 | 5
   drinkVariant?: string
+  hypothesis?: string
+  observation?: string
+  learnedExplanation?: string
+  photoDataUrls?: string[]
+  photoFrame?: string
+  photoEffect?: string
+  sisterTeamNote?: string
   difficultyFeedback: DifficultyFeedback
   wouldRepeat: boolean
   wouldRecommend: boolean

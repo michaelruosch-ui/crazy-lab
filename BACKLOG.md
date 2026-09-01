@@ -142,6 +142,42 @@ Status: **Technisch umgesetzt (2026-08-31), Familienabnahme offen.**
 - [x] Datenbankversion 6 und automatische Tests; insgesamt 113 Tests
 - [ ] Michael und Elena testen Bastelmissionen, Sicherungsliste und eigene Materialien auf dem iPhone
 
+### Sprint 12 - Experimentier-Labor
+
+Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
+
+- [x] 15 sichere Experimentier-Missionen mit jeweils mindestens vier Schritten
+- [x] Strukturierte Forschungsfrage, eigene Vermutung, Beobachtung und verständliche Erklärung
+- [x] Mehrtägige Versuche mit gespeichertem Schrittfortschritt pausieren und fortsetzen
+- [x] Laufende Versuche direkt auf der Startseite wiederfinden
+- [x] Forschungsnotizen im Labortagebuch speichern und anzeigen
+- [x] Laufende Versuche im Backup sichern und wiederherstellen
+- [ ] Michael und Elena testen kurze und mehrtägige Versuche auf dem iPhone
+
+### Sprint 13 - Foto-Challenges
+
+Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
+
+- [x] 15 Foto-Challenges mit mindestens vier Schritten und konkreten Fototipps
+- [x] Kamera oder Fotomediathek über die normale iPhone-Auswahl verwenden
+- [x] Bis zu fünf Fotos auswählen und vor dem Speichern auf höchstens 1000 Pixel verkleinern
+- [x] Laborrahmen, Monsterkrallen oder Geisternebel auswählen
+- [x] Ohne Effekt, Schwarzweiss, Kaltblau oder Dramatisch auswählen
+- [x] Fotos samt Rahmen und Effekt im Tagebuch speichern und sichtbar darstellen
+- [ ] Michael und Elena testen Kamera, Fotowahl und Darstellung auf dem iPhone
+
+### Sprint 14 - Schwestern-Missionen
+
+Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
+
+- [x] 15 Schwestern-Missionen mit mindestens vier gemeinsamen Schritten
+- [x] Eine verständliche gemeinsame Anleitung pro Mission
+- [x] Getrennt aufklappbare geheime Teilaufgaben für Elena und ihre Schwester
+- [x] Optionale Fünf-Minuten-Challenges mit sichtbarem Timer
+- [x] Gemeinsames Finale und freiwillige Teamnotiz im Tagebuch
+- [x] Inhalts- und UI-Prüfungen; insgesamt über alle Sprints 120 automatische Tests
+- [ ] Michael, Elena und ihre Schwester testen die Missionen auf dem iPhone
+
 ## Abgeschlossene Sprints
 
 ### Sprint 4 - Forschernamen, Maskottchen und Geburtstage
@@ -226,12 +262,6 @@ positiv beantwortet.
 
 ### P2 - Übrige Inhalte
 
-- **Sprint 12 - Experimentier-Labor:** 15 Missionen, Vermutung, Beobachtung, Erklärung,
-  mehrtägige Versuche und laufende Missionen.
-- **Sprint 13 - Foto-Challenges:** 15 Missionen, Kamera/Fotowahl, mehrere Fotos, Tipps, Rahmen
-  und einfache Effekte.
-- **Sprint 14 - Schwestern-Missionen:** 15 Missionen, gleiche Anleitung, geheime Teilaufgaben,
-  Zeit-Challenges und gemeinschaftlicher Abschluss.
 - **Sprint 15 - Eigene Missionen:** Assistent des Maskottchens, Erstellen, Kopieren, Bearbeiten
   und Sicherheitsfelder.
 - **Sprint 16 - Labortagebuch vollständig:** Filter, Bildkarten, Bearbeiten, Löschen mit

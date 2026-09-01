@@ -10,16 +10,32 @@ interface StepRunnerProps {
   onAllStepsDone: () => void
   onExit: () => void
   mascotId?: MascotId
+  initialCheckedStepIds?: string[]
+  onProgress?: (checkedStepIds: string[]) => void
+  onPause?: () => void
 }
 
-export function StepRunner({ mission, onAllStepsDone, onExit, mascotId }: StepRunnerProps) {
-  const [checkedSteps, setCheckedSteps] = useState<Set<string>>(new Set())
-  const [currentIndex, setCurrentIndex] = useState(0)
+export function StepRunner({
+  mission,
+  onAllStepsDone,
+  onExit,
+  mascotId,
+  initialCheckedStepIds = [],
+  onProgress,
+  onPause,
+}: StepRunnerProps) {
+  const [checkedSteps, setCheckedSteps] = useState<Set<string>>(new Set(initialCheckedStepIds))
+  const [currentIndex, setCurrentIndex] = useState(() => {
+    const firstOpen = mission.steps.findIndex((step) => !initialCheckedStepIds.includes(step.id))
+    return firstOpen < 0 ? mission.steps.length - 1 : firstOpen
+  })
   const [helpVisible, setHelpVisible] = useState(false)
 
   const steps = mission.steps
   const currentStep = steps[currentIndex]
   const allDone = checkedSteps.size === steps.length
+  const specialTimerSeconds =
+    currentIndex === 2 ? mission.sisterProfile?.timeChallengeSeconds : undefined
 
   if (!currentStep) return null
 
@@ -28,6 +44,7 @@ export function StepRunner({ mission, onAllStepsDone, onExit, mascotId }: StepRu
       const next = new Set(current)
       if (next.has(stepId)) next.delete(stepId)
       else next.add(stepId)
+      onProgress?.([...next])
       return next
     })
   }
@@ -64,8 +81,11 @@ export function StepRunner({ mission, onAllStepsDone, onExit, mascotId }: StepRu
           <span>{currentStep.text}</span>
         </label>
 
-        {currentStep.timerSeconds !== undefined && (
-          <Timer key={currentStep.id} totalSeconds={currentStep.timerSeconds} />
+        {(currentStep.timerSeconds !== undefined || specialTimerSeconds !== undefined) && (
+          <Timer
+            key={currentStep.id}
+            totalSeconds={currentStep.timerSeconds ?? specialTimerSeconds ?? 0}
+          />
         )}
 
         {helpVisible && (
@@ -74,6 +94,11 @@ export function StepRunner({ mission, onAllStepsDone, onExit, mascotId }: StepRu
       </div>
 
       <div className="step-runner__actions">
+        {onPause && (
+          <Button variant="ghost" onClick={onPause}>
+            ⏸ Versuch pausieren
+          </Button>
+        )}
         <Button variant="ghost" onClick={() => setHelpVisible((v) => !v)}>
           {helpVisible ? 'Hilfe schliessen' : 'Hilfe!'}
         </Button>

@@ -1,6 +1,7 @@
 import { openDB, type DBSchema, type IDBPDatabase } from 'idb'
 import type {
   DiaryEntry,
+  ExperimentProgress,
   HiddenMissionEntry,
   LabCabinetItem,
   LocalBackupSnapshot,
@@ -10,7 +11,7 @@ import type {
 } from '../domain'
 
 const DB_NAME = 'crazylab'
-const DB_VERSION = 6
+const DB_VERSION = 7
 
 export const DIARY_STORE = 'diaryEntries'
 export const SECRET_VAULT_STORE = 'secretVaultEntries'
@@ -19,6 +20,7 @@ export const PROFILES_STORE = 'profiles'
 export const LAB_CABINET_STORE = 'labCabinetItems'
 export const SHOPPING_LIST_STORE = 'shoppingListItems'
 export const LOCAL_BACKUPS_STORE = 'localBackupSnapshots'
+export const EXPERIMENT_PROGRESS_STORE = 'experimentProgress'
 
 interface CrazyLabDB extends DBSchema {
   [DIARY_STORE]: {
@@ -54,6 +56,11 @@ interface CrazyLabDB extends DBSchema {
     key: string
     value: LocalBackupSnapshot
     indexes: { 'by-profile': string; 'by-createdAt': string }
+  }
+  [EXPERIMENT_PROGRESS_STORE]: {
+    key: string
+    value: ExperimentProgress
+    indexes: { 'by-profile': string; 'by-mission': string }
   }
 }
 
@@ -96,6 +103,11 @@ function openOnce(): Promise<IDBPDatabase<CrazyLabDB>> {
         const backupStore = db.createObjectStore(LOCAL_BACKUPS_STORE, { keyPath: 'id' })
         backupStore.createIndex('by-profile', 'profileId')
         backupStore.createIndex('by-createdAt', 'createdAt')
+      }
+      if (oldVersion < 7) {
+        const progressStore = db.createObjectStore(EXPERIMENT_PROGRESS_STORE, { keyPath: 'id' })
+        progressStore.createIndex('by-profile', 'profileId')
+        progressStore.createIndex('by-mission', 'missionId')
       }
     },
   })
@@ -151,6 +163,7 @@ export async function clearProfileData(profileId: string): Promise<void> {
       HIDDEN_MISSIONS_STORE,
       LAB_CABINET_STORE,
       SHOPPING_LIST_STORE,
+      EXPERIMENT_PROGRESS_STORE,
     ],
     'readwrite',
   )
@@ -167,6 +180,9 @@ export async function clearProfileData(profileId: string): Promise<void> {
   const shopping = tx.objectStore(SHOPPING_LIST_STORE)
   for (const key of await shopping.index('by-profile').getAllKeys(profileId))
     await shopping.delete(key)
+  const progress = tx.objectStore(EXPERIMENT_PROGRESS_STORE)
+  for (const key of await progress.index('by-profile').getAllKeys(profileId))
+    await progress.delete(key)
   await tx.done
 }
 

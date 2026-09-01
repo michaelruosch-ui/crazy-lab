@@ -17,3 +17,23 @@ describe('MissionDetailView für Getränke', () => {
     expect(screen.getByText(/Frostgeist/)).toBeInTheDocument()
   })
 })
+
+describe('MissionDetailView für Sprints 12 bis 14', () => {
+  it('zeigt Forschungsfrage und mehrtägige Dauer', () => {
+    const mission = missions.find((item) => item.id === 'mission-experiment-salzkristall-geist')!
+    render(<MissionDetailView mission={mission} onStart={vi.fn()} />)
+    expect(screen.getByText('🔬 Deine Forschungsfrage')).toBeInTheDocument()
+    expect(screen.getByText('Läuft 3 Tage')).toBeInTheDocument()
+  })
+
+  it('zeigt Foto-Tipps sowie die getrennten Geheimaufträge', () => {
+    const photo = missions.find((item) => item.id === 'mission-foto-riesen-schatten')!
+    const sisters = missions.find((item) => item.id === 'mission-schwestern-monster-bau')!
+    const { unmount } = render(<MissionDetailView mission={photo} onStart={vi.fn()} />)
+    expect(screen.getByText('📷 Foto-Tipps')).toBeInTheDocument()
+    unmount()
+    render(<MissionDetailView mission={sisters} onStart={vi.fn()} />)
+    expect(screen.getByText('Elenas Geheimauftrag')).toBeInTheDocument()
+    expect(screen.getByText('Geheimauftrag der Schwester')).toBeInTheDocument()
+  })
+})

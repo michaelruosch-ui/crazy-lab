@@ -76,4 +76,33 @@ describe('CompletionForm', () => {
     expect(onSubmit).toHaveBeenCalledOnce()
     expect(onSubmit.mock.calls[0]![0].stamp).toBe('lecker')
   })
+
+  it('erfasst Vermutung, Beobachtung und Erklärung eines Experiments', async () => {
+    const user = userEvent.setup()
+    const onSubmit = vi.fn()
+    const experiment = missions.find((item) => item.id === 'mission-experiment-salzkristall-geist')!
+    render(<CompletionForm mission={experiment} onSubmit={onSubmit} />)
+    await user.type(screen.getByLabelText('Meine Vermutung'), 'Es entstehen Würfel.')
+    await user.type(screen.getByLabelText('Meine Beobachtung'), 'Kleine Kristalle wachsen.')
+    await user.type(screen.getByLabelText('Meine Erklärung'), 'Wasser verschwindet.')
+    await user.click(screen.getByRole('button', { name: 'Im Labortagebuch speichern' }))
+    expect(onSubmit.mock.calls[0]![0]).toMatchObject({
+      hypothesis: 'Es entstehen Würfel.',
+      observation: 'Kleine Kristalle wachsen.',
+      learnedExplanation: 'Wasser verschwindet.',
+    })
+  })
+
+  it('zeigt Fotoauswahl, Rahmen und Effekt sowie den Schwestern-Abschluss', () => {
+    const photo = missions.find((item) => item.id === 'mission-foto-riesen-schatten')!
+    const sisters = missions.find((item) => item.id === 'mission-schwestern-monster-bau')!
+    const { unmount } = render(<CompletionForm mission={photo} onSubmit={vi.fn()} />)
+    expect(screen.getByText('Kamera oder Fotos öffnen')).toBeInTheDocument()
+    expect(screen.getByLabelText('Rahmen')).toBeInTheDocument()
+    expect(screen.getByLabelText('Effekt')).toBeInTheDocument()
+    unmount()
+    render(<CompletionForm mission={sisters} onSubmit={vi.fn()} />)
+    expect(screen.getByText('👭 Gemeinsamer Abschluss')).toBeInTheDocument()
+    expect(screen.getByLabelText('Was hat jede von euch beigetragen?')).toBeInTheDocument()
+  })
 })
