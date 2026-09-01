@@ -337,6 +337,10 @@ Einträge nicht verändern.
   Daten verlassen IndexedDB auf dem iPhone nur beim ausdrücklich ausgelösten manuellen Backup.
 - `HashRouter` hält alle Unterseiten hinter `#`. Dadurch beantwortet GitHub Pages auch ein
   Neuladen nach Backup/Restore immer mit der App statt mit seiner statischen 404-Seite.
+- Vites Produktionsziel ist bewusst `safari12`, weil das vorhandene Familien-iPad nur iOS 12.5.8
+  ausführen kann. Es bleibt ein gemeinsamer Build: Vite übersetzt lediglich neuere Syntax zurück;
+  Datenmodell, IndexedDB-Repositories und Funktionspfade sind auf alten und neuen Apple-Geräten
+  identisch. Laufzeitmethoden, die Safari 12 nicht besitzt, werden im Quellcode vermieden.
 
 ## Erweiterungspunkte für spätere Sprints
 

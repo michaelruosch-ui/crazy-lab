@@ -25,6 +25,12 @@ const https =
 export default defineConfig({
   base: process.env.GITHUB_ACTIONS ? '/crazy-lab/' : '/',
   plugins: [react()],
+  build: {
+    // Safari 12 (iPadOS 12.5.8) versteht ES-Module, aber nicht die moderne Standardsyntax,
+    // die Vite 8 standardmässig ausgibt. Moderne Geräte laden denselben semantisch identischen
+    // Code; nur die Syntax wird für das alte Familien-iPad rückwärtskompatibel erzeugt.
+    target: 'safari12',
+  },
   server: {
     https,
     host: true,

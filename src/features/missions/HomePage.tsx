@@ -75,7 +75,9 @@ export function HomePage() {
     ]),
   )
   const categoryMissionIds = new Set(
-    [...categorySuggestions.values()].flat().map((mission) => mission.id),
+    Array.from(categorySuggestions.values())
+      .reduce((all, categoryMissions) => all.concat(categoryMissions), [])
+      .map((mission) => mission.id),
   )
 
   const dailyMission = pickDailyMission(

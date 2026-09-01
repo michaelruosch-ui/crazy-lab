@@ -240,7 +240,7 @@ export function DiaryEntryDetailPage() {
             {entry.rating.photoDataUrls.map((url, index) => (
               <img
                 key={`${url.slice(-20)}-${index}`}
-                className={`effect-${(entry.rating.photoEffect ?? 'ohne-effekt').toLowerCase().replaceAll(' ', '-')} frame-${(entry.rating.photoFrame ?? 'laborrahmen').toLowerCase().replaceAll(' ', '-')}`}
+                className={`effect-${(entry.rating.photoEffect ?? 'ohne-effekt').toLowerCase().split(' ').join('-')} frame-${(entry.rating.photoFrame ?? 'laborrahmen').toLowerCase().split(' ').join('-')}`}
                 src={url}
                 alt={`Missionsfoto ${index + 1}`}
               />

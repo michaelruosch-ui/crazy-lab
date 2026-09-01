@@ -679,3 +679,19 @@ Bewegung unabhängig davon faktisch ab.
 Atmosphäre ist bewusst einfach und kein fertiger Soundtrack. Audio funktioniert nur, wenn das
 iPhone Web Audio zulässt und nicht stumm beziehungsweise zu leise eingestellt ist. Alle wichtigen
 Missionselemente bleiben ohne Ton und Animation vollständig bedienbar.
+
+## ADR-035: Ein gemeinsamer Safari-12-kompatibler Produktions-Build
+
+**Status:** Angenommen (Kompatibilitätskorrektur, 2026-09-01)
+
+**Entscheidung:** Crazy Lab behält genau einen Produktions-Build, dessen JavaScript-Syntax von
+Vite gezielt für Safari 12 erzeugt wird. Direkte Verwendungen von `String.replaceAll` und
+`Array.flat`, die iOS 12 nicht bereitstellt, werden durch semantisch gleichwertige ältere
+Operationen ersetzt. Es gibt weder eine zweite App noch eine abweichende Speicherung für das alte
+iPad.
+
+**Konsequenzen:** Das Familien-iPad mit iOS 12.5.8 kann denselben Codepfad starten. Neue iPhones
+behalten alle Funktionen, das gleiche Datenformat und die gleiche lokale IndexedDB; die ältere
+Ausgabesyntax vergrössert das komprimierte Programmpaket nur geringfügig. Jedes Gerät besitzt
+weiterhin einen getrennten lokalen Datenspeicher. Die automatischen Prüfungen decken die gemeinsame
+Anwendungslogik ab; die Darstellung auf dem echten alten iPad muss die Familie einmal bestätigen.

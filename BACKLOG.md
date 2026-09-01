@@ -220,6 +220,19 @@ Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
 - [x] Automatische Tests für Countdown und gespeicherte Einstellungen
 - [ ] Michael und Elena testen Lautstärke, Countdown und reduzierte Bewegung auf dem iPhone
 
+### Kompatibilitätskorrektur - Familien-iPad mit iOS 12.5.8
+
+Status: **Technisch umgesetzt (2026-09-01), Familienabnahme auf dem alten iPad offen.** Diese
+Korrektur ist kein vorgezogener Sprint 18: Sie behebt nur den schwarzen Bildschirm auf dem bereits
+vorhandenen Familiengerät; grössere iPad- und Mac-Layouts bleiben in Sprint 18.
+
+- [x] Produktions-Build gezielt für Safari 12 erzeugen
+- [x] Zwei nicht verfügbare Laufzeitfunktionen (`replaceAll` und `flat`) kompatibel ersetzt
+- [x] Datenformat, IndexedDB-Speicher, Funktionen und Darstellung neuer iPhones nicht verändert
+- [x] Typecheck, Lint, 128 Tests und Produktions-Build erfolgreich
+- [ ] Laura öffnet die neu veröffentlichte Version auf dem iPad mit iOS 12.5.8 und bestätigt, dass
+      statt des schwarzen Bildschirms die Profilauswahl erscheint
+
 ## Abgeschlossene Sprints
 
 ### Sprint 4 - Forschernamen, Maskottchen und Geburtstage
@@ -307,7 +320,8 @@ positiv beantwortet.
 ### P3 - Plattform und Veröffentlichung
 
 - **Sprint 18 - iPad- und Mac-Optimierung:** responsive Navigation, grössere Layouts und
-  Installationsprüfung.
+  Installationsprüfung. Die reine Safari-12-Startkompatibilität des Familien-iPads wurde als
+  Fehlerkorrektur bereits vorgezogen; Layoutoptimierungen bleiben hier.
 - **Sprint 19 - Cloud-Synchronisation:** Backend-Auswahl, Authentifizierung, Konfliktlösung,
   Datenschutz und Austausch zwischen Geräten.
 - **Sprint 20 - Mehrere Profile:** Laura und weitere Personen mit getrennten Tagebüchern,

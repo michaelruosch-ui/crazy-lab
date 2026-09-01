@@ -1,5 +1,16 @@
 # Changelog
 
+## Kompatibilitätskorrektur für iOS 12.5.8 (2026-09-01)
+
+- Der Produktions-Build wird bis Safari 12 zurückübersetzt, damit Crazy Lab auf dem alten
+  Familien-iPad nicht mehr wegen zu neuer JavaScript-Syntax mit schwarzem Bildschirm startet.
+- Nicht verfügbare Laufzeitfunktionen für Fotoklassen und Missionslisten wurden durch gleichwertige
+  kompatible Varianten ersetzt.
+- Moderne iPhones erhalten weiterhin denselben Funktionsumfang, dasselbe Datenformat und dieselbe
+  lokale Speicherung; es gibt keine separate alte App und keine Datenübertragung zwischen Geräten.
+- Typecheck, Lint, 128 Tests und Produktions-Build erfolgreich; Sichtprüfung auf dem echten alten
+  iPad noch offen.
+
 ## Sprint 17 - Musik und Atmosphäre (2026-09-01)
 
 - Jede Mission startet mit einem gut sichtbaren, überspringbaren Drei-Sekunden-Countdown.

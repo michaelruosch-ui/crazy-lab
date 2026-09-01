@@ -53,7 +53,9 @@ abschaltbar; die iPhone-Einstellung „Bewegung reduzieren“ wird respektiert.
 ## Voraussetzungen
 
 - Node.js 20+ und npm (getestet mit Node 26 / npm 11)
-- Ein moderner Browser; für die reale Nutzung: iPhone Safari
+- Für die reale Nutzung: aktuelles iPhone Safari oder das Familien-iPad mit iOS 12.5.8. Der
+  Produktionscode wird gezielt bis Safari 12 zurückübersetzt; Funktionsumfang, Datenformat und
+  Speicherlogik bleiben auf neuen iPhones unverändert.
 
 ## Installation
 
@@ -99,15 +101,20 @@ bewusst nicht erzeugt: Die Familie hat sich gegen Offline-Betrieb entschieden.
 npm run preview
 ```
 
-## Installation auf dem iPhone (Sprint 5)
+## Installation auf iPhone und iPad (Sprint 5)
 
 Die aktuelle App läuft kostenlos und verschlüsselt unter
 <https://michaelruosch-ui.github.io/crazy-lab/>. Der Mac muss dafür nicht eingeschaltet sein.
 
-1. Die Adresse in Safari auf dem iPhone öffnen.
+1. Die Adresse in Safari auf dem iPhone oder iPad öffnen.
 2. Teilen-Symbol antippen → "Zum Home-Bildschirm".
 3. Crazy Lab künftig über das neue Schleimmonster-Symbol starten. Beim Schliessen und erneuten
    Öffnen wird automatisch die neueste Version geladen; eine Internetverbindung ist erforderlich.
+
+Auf dem alten Familien-iPad mit iOS 12.5.8 wird dieselbe App und dieselbe Adresse verwendet. Das
+iPad besitzt seinen eigenen lokalen Datenspeicher und überschreibt Elenas Daten auf dem iPhone
+nicht. Die technische Kompatibilität ist geprüft; die abschliessende Sichtprüfung auf dem echten
+alten iPad bleibt Teil der Familienabnahme.
 
 Beim Wechsel von einer früheren Installation über die lokale Netzwerk-IP gilt zwingend: zuerst
 in der alten App unter Profil ein Backup herunterladen, erst danach die alte Home-Bildschirm-App

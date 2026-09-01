@@ -188,7 +188,7 @@ export function CompletionForm({
             </label>
             <p>{photoDataUrls.length} von höchstens 10 Bildern gewählt</p>
             <div
-              className={`completion-form__photo-preview effect-${photoEffect.toLowerCase().replaceAll(' ', '-')} frame-${photoFrame.toLowerCase().replaceAll(' ', '-')}`}
+              className={`completion-form__photo-preview effect-${photoEffect.toLowerCase().split(' ').join('-')} frame-${photoFrame.toLowerCase().split(' ').join('-')}`}
             >
               {photoDataUrls.map((url, index) => (
                 <img
