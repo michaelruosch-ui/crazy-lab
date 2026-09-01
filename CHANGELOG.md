@@ -1,5 +1,15 @@
 # Changelog
 
+## Sprint 22 - Fotos und Drei-Sekunden-Video (2026-09-01)
+
+- Bis zu zehn verkleinerte Fotos sind nun bei jeder abgeschlossenen Mission möglich.
+- Fotos lassen sich beim Abschluss auswählen und später im Tagebuch ergänzen oder entfernen.
+- Pro Eintrag kann ein Video aufgenommen oder ausgewählt werden; Crazy Lab akzeptiert höchstens
+  drei Sekunden und 15 MB.
+- Ein Video lässt sich im Tagebuch abspielen, ersetzen oder entfernen.
+- Medien bleiben lokal, profilbezogen und werden in lokalen sowie externen Sicherungen mitgeführt.
+- 132 Tests, Typecheck, Lint und Produktions-Build erfolgreich.
+
 ## Sprint 21 - 25 neue geprüfte Missionen (2026-09-01)
 
 - Je fünf neue Getränke-, Bastel-, Experiment-, Foto- und Schwestern-Missionen ergänzt.

@@ -41,6 +41,12 @@ describe('CompletionForm', () => {
     expect(screen.getByText('Optik')).toBeInTheDocument()
     expect(screen.getByText('Gruseligkeit')).toBeInTheDocument()
     expect(screen.getByText('Dekoration')).toBeInTheDocument()
+    expect(screen.getByText('📷 Fotos zur Mission')).toBeInTheDocument()
+    expect(screen.getByText('🎬 Drei-Sekunden-Video')).toBeInTheDocument()
+    expect(screen.getByLabelText('Video aufnehmen oder auswählen')).toHaveAttribute(
+      'accept',
+      'video/*',
+    )
   })
 
   it('zeigt beim Wählen eines Stempels die Stempel-Animation mit dem passenden Maskottchen', async () => {

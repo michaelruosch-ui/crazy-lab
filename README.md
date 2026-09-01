@@ -5,8 +5,9 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich nach der technischen Umsetzung von **Sprint 18**; die
-Familienabnahme der Sprints 11–18 auf den Familiengeräten ist noch offen. Der aktuelle Stand: Beim
+Dieses Repository befindet sich nach der technischen Umsetzung von **Sprint 22**; Sprint 19 wurde
+auf Familienentscheid bewusst übersprungen und die Familienabnahme der neuen Funktionen ist noch
+offen. Der aktuelle Stand: Beim
 ersten Start wählt man eines von 33 Maskottchen (8 Tierarten in verschiedenen Farbwelten) und
 einen Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf
 Kategorien (Getränke, Basteln, Experimente, Foto-Challenges, Schwestern-Missionen). Jede Mission
@@ -58,6 +59,9 @@ Atmosphäre-Einstellungen; Elenas vorhandenes Profil und seine Daten bleiben unv
 Der redaktionelle Katalog umfasst jetzt 100 Missionen: je 20 Getränke-, Bastel-, Experiment-,
 Foto- und Schwestern-Missionen. Die 25 Ergänzungen aus Sprint 21 besitzen konkrete Materialien,
 Schritte, Sicherheitsangaben und die jeweils benötigten strukturierten Kategoriedaten.
+Zu jedem Missionsabschluss lassen sich bis zu zehn verkleinerte Fotos und ein lokal geprüftes
+Video von höchstens drei Sekunden speichern. Fotos und Video können im Tagebuch später ergänzt,
+ersetzt beziehungsweise entfernt werden und sind Bestandteil der Sicherungen.
 
 ## Voraussetzungen
 

@@ -11,6 +11,12 @@ import { ADJUSTMENT_LABELS, ADJUSTMENT_TAGS, DEFAULT_PROFILE, STAMPS } from '../
 import { Button, StampAnimation } from '../../components'
 import './CompletionForm.css'
 import type { FormEvent } from 'react'
+import {
+  fileToCompressedPhoto,
+  MAX_PHOTOS_PER_ENTRY,
+  MAX_VIDEO_SECONDS,
+  videoToDataUrl,
+} from './media'
 
 interface CompletionFormProps {
   mission: Mission
@@ -25,6 +31,8 @@ const DIFFICULTY_OPTIONS: { value: DifficultyFeedback; label: string }[] = [
   { value: 'genau_richtig', label: 'Genau richtig' },
   { value: 'zu_schwierig', label: 'Zu schwierig' },
 ]
+const DEFAULT_FRAMES = ['Ohne Rahmen', 'Laborrahmen']
+const DEFAULT_EFFECTS = ['Ohne Effekt', 'Schwarzweiss']
 
 export function CompletionForm({
   mission,
@@ -53,16 +61,33 @@ export function CompletionForm({
   const [observation, setObservation] = useState('')
   const [learnedExplanation, setLearnedExplanation] = useState('')
   const [photoDataUrls, setPhotoDataUrls] = useState<string[]>([])
-  const [photoFrame, setPhotoFrame] = useState(mission.photoProfile?.frames[0] ?? '')
-  const [photoEffect, setPhotoEffect] = useState(mission.photoProfile?.effects[0] ?? '')
+  const photoFrames = mission.photoProfile?.frames ?? DEFAULT_FRAMES
+  const photoEffects = mission.photoProfile?.effects ?? DEFAULT_EFFECTS
+  const [photoFrame, setPhotoFrame] = useState(photoFrames[0] ?? '')
+  const [photoEffect, setPhotoEffect] = useState(photoEffects[0] ?? '')
+  const [videoDataUrl, setVideoDataUrl] = useState<string>()
+  const [videoError, setVideoError] = useState('')
   const [sisterTeamNote, setSisterTeamNote] = useState('')
 
   async function addPhotos(files: FileList | null) {
     if (!files) return
-    const remaining = Math.max(0, 10 - photoDataUrls.length)
+    const remaining = Math.max(0, MAX_PHOTOS_PER_ENTRY - photoDataUrls.length)
     const selected = Array.from(files).slice(0, remaining)
-    const urls = await Promise.all(selected.map(fileToCompressedDataUrl))
-    setPhotoDataUrls((current) => [...current, ...urls].slice(0, 10))
+    const urls = await Promise.all(selected.map(fileToCompressedPhoto))
+    setPhotoDataUrls((current) => [...current, ...urls].slice(0, MAX_PHOTOS_PER_ENTRY))
+  }
+
+  async function addVideo(file?: File) {
+    if (!file) return
+    setVideoError('')
+    try {
+      setVideoDataUrl(await videoToDataUrl(file))
+    } catch (error) {
+      setVideoDataUrl(undefined)
+      setVideoError(
+        error instanceof Error ? error.message : 'Video konnte nicht gespeichert werden.',
+      )
+    }
   }
 
   function toggleAdjustment(tag: AdjustmentTag) {
@@ -89,6 +114,7 @@ export function CompletionForm({
       photoDataUrls: photoDataUrls.length ? photoDataUrls : undefined,
       photoFrame: photoFrame || undefined,
       photoEffect: photoEffect || undefined,
+      videoDataUrl,
       sisterTeamNote: sisterTeamNote.trim() || undefined,
       difficultyFeedback,
       wouldRepeat,
@@ -173,49 +199,85 @@ export function CompletionForm({
           </div>
         )}
 
-        {mission.photoProfile && (
-          <div className="completion-form__special">
-            <h2>📷 Lieblingsbilder</h2>
-            <label className="completion-form__photo-picker">
-              Kamera oder Fotos öffnen
-              <input
-                type="file"
-                accept="image/*"
-                capture="environment"
-                multiple
-                onChange={(event) => void addPhotos(event.target.files)}
+        <div className="completion-form__special">
+          <h2>📷 Fotos zur Mission</h2>
+          <label className="completion-form__photo-picker">
+            Kamera oder Fotos öffnen
+            <input
+              type="file"
+              accept="image/*"
+              capture="environment"
+              multiple
+              onChange={(event) => void addPhotos(event.target.files)}
+            />
+          </label>
+          <p>
+            {photoDataUrls.length} von höchstens {MAX_PHOTOS_PER_ENTRY} Bildern gewählt
+          </p>
+          <div
+            className={`completion-form__photo-preview effect-${photoEffect.toLowerCase().split(' ').join('-')} frame-${photoFrame.toLowerCase().split(' ').join('-')}`}
+          >
+            {photoDataUrls.map((url, index) => (
+              <img
+                key={`${url.slice(-20)}-${index}`}
+                src={url}
+                alt={`Ausgewähltes Foto ${index + 1}`}
               />
-            </label>
-            <p>{photoDataUrls.length} von höchstens 10 Bildern gewählt</p>
-            <div
-              className={`completion-form__photo-preview effect-${photoEffect.toLowerCase().split(' ').join('-')} frame-${photoFrame.toLowerCase().split(' ').join('-')}`}
-            >
-              {photoDataUrls.map((url, index) => (
-                <img
-                  key={`${url.slice(-20)}-${index}`}
-                  src={url}
-                  alt={`Ausgewähltes Foto ${index + 1}`}
-                />
-              ))}
-            </div>
-            <label>
-              Rahmen
-              <select value={photoFrame} onChange={(event) => setPhotoFrame(event.target.value)}>
-                {mission.photoProfile.frames.map((frame) => (
-                  <option key={frame}>{frame}</option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Effekt
-              <select value={photoEffect} onChange={(event) => setPhotoEffect(event.target.value)}>
-                {mission.photoProfile.effects.map((effect) => (
-                  <option key={effect}>{effect}</option>
-                ))}
-              </select>
-            </label>
+            ))}
           </div>
-        )}
+          <label>
+            Rahmen
+            <select value={photoFrame} onChange={(event) => setPhotoFrame(event.target.value)}>
+              {photoFrames.map((frame) => (
+                <option key={frame}>{frame}</option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Effekt
+            <select value={photoEffect} onChange={(event) => setPhotoEffect(event.target.value)}>
+              {photoEffects.map((effect) => (
+                <option key={effect}>{effect}</option>
+              ))}
+            </select>
+          </label>
+        </div>
+
+        <div className="completion-form__special">
+          <h2>🎬 Drei-Sekunden-Video</h2>
+          <p>Nimm höchstens ein kurzes Video auf. Es bleibt nur in diesem Profil auf dem Gerät.</p>
+          <label className="completion-form__photo-picker">
+            Video aufnehmen oder auswählen
+            <input
+              type="file"
+              accept="video/*"
+              capture="environment"
+              onChange={(event) => {
+                void addVideo(event.target.files?.[0])
+                event.target.value = ''
+              }}
+            />
+          </label>
+          <p>Maximal {MAX_VIDEO_SECONDS} Sekunden</p>
+          {videoError && (
+            <p className="completion-form__media-error" role="alert">
+              {videoError}
+            </p>
+          )}
+          {videoDataUrl && (
+            <div className="completion-form__video-preview">
+              <video
+                src={videoDataUrl}
+                controls
+                playsInline
+                aria-label="Ausgewähltes Missionsvideo"
+              />
+              <Button variant="ghost" onClick={() => setVideoDataUrl(undefined)}>
+                Video entfernen
+              </Button>
+            </div>
+          )}
+        </div>
 
         {mission.sisterProfile && (
           <div className="completion-form__special">
@@ -344,29 +406,6 @@ export function CompletionForm({
       )}
     </>
   )
-}
-
-function fileToCompressedDataUrl(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onerror = () => reject(reader.error)
-    reader.onload = () => {
-      const image = new Image()
-      image.onerror = () => reject(new Error('Foto konnte nicht gelesen werden.'))
-      image.onload = () => {
-        const scale = Math.min(1, 1000 / Math.max(image.width, image.height))
-        const canvas = document.createElement('canvas')
-        canvas.width = Math.max(1, Math.round(image.width * scale))
-        canvas.height = Math.max(1, Math.round(image.height * scale))
-        const context = canvas.getContext('2d')
-        if (!context) return reject(new Error('Foto konnte nicht verkleinert werden.'))
-        context.drawImage(image, 0, 0, canvas.width, canvas.height)
-        resolve(canvas.toDataURL('image/jpeg', 0.78))
-      }
-      image.src = String(reader.result)
-    }
-    reader.readAsDataURL(file)
-  })
 }
 
 function StarPicker({

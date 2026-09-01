@@ -26,6 +26,8 @@ const diaryEntry = {
     wouldRecommend: true,
     adjustments: [],
     stamp: 'geheimnisvoll' as const,
+    photoDataUrls: ['data:image/jpeg;base64,foto'],
+    videoDataUrl: 'data:video/mp4;base64,video',
   },
   completedAt: '2026-08-20T10:00:00.000Z',
 }
@@ -95,6 +97,8 @@ describe('backup', () => {
     const restoredDiary = await indexedDbDiaryRepository.getAllEntries(DEFAULT_PROFILE.id)
     expect(restoredDiary).toHaveLength(1)
     expect(restoredDiary[0]!.id).toBe('entry-1')
+    expect(restoredDiary[0]!.rating.photoDataUrls).toEqual(['data:image/jpeg;base64,foto'])
+    expect(restoredDiary[0]!.rating.videoDataUrl).toBe('data:video/mp4;base64,video')
 
     expect(
       await indexedDbSecretVaultRepository.isSaved(

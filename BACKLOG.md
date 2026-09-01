@@ -263,6 +263,21 @@ Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
 - [x] Typecheck, Lint, 130 Tests, Inhaltsvalidierung und Produktions-Build erfolgreich
 - [ ] Michael und Elena probieren neue Missionen und geben normales Inhaltsfeedback
 
+### Sprint 22 - Fotos und Video im Tagebuch
+
+Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
+
+- [x] Bis zu zehn Fotos bei jeder Missionsart statt nur bei Foto-Challenges
+- [x] Fotos direkt beim Abschluss aufnehmen oder auswählen
+- [x] Fotos auch später an abgeschlossene Tagebucheinträge anhängen und entfernen
+- [x] Höchstens ein Video pro Eintrag, strikt auf maximal drei Sekunden geprüft
+- [x] Video beim Abschluss aufnehmen sowie später ergänzen, ersetzen oder entfernen
+- [x] Unlesbare, längere oder über 15 MB grosse Videos mit verständlicher Meldung ablehnen
+- [x] Fotos und Video bleiben lokal, getrennt pro Profil und Bestandteil aller Sicherungen
+- [x] Gemeinsamer Dateiwähler funktioniert auch auf dem alten iPad ohne moderne Aufnahme-API
+- [x] Typecheck, Lint, 132 Tests und Produktions-Build erfolgreich
+- [ ] Michael und Elena testen Foto und Drei-Sekunden-Video auf einem echten iPhone
+
 ### Kompatibilitätskorrektur - Familien-iPad mit iOS 12.5.8
 
 Status: **Abgeschlossen (2026-09-01).** Diese
@@ -365,8 +380,6 @@ positiv beantwortet.
 
 - **Sprint 19 - Cloud-Synchronisation:** Backend-Auswahl, Authentifizierung, Konfliktlösung,
   Datenschutz und Austausch zwischen Geräten.
-- **Sprint 22 - Video im Tagebuch:** Aufnahme, Komprimierung, Speicherregeln und
-  Synchronisation.
 - **Sprint 23 - Englisch und weitere Sprachen:** vollständige Übersetzungsinfrastruktur und
   Inhalte.
 - **Sprint 24 - Öffentliche/App-Store-Version:** Datenschutz, Einwilligungen, Alterskonzept,

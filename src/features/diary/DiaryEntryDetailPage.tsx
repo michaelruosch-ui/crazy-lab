@@ -5,6 +5,7 @@ import type { DiaryEntry, DiaryStatus, StampId } from '../../domain'
 import { BackLink, Badge, Button, MissionImage } from '../../components'
 import { indexedDbDiaryRepository } from '../../storage/diaryRepository'
 import { useActiveProfileId } from '../profile'
+import { fileToCompressedPhoto, MAX_PHOTOS_PER_ENTRY, videoToDataUrl } from '../ratings/media'
 import './DiaryEntryDetailPage.css'
 
 const DIFFICULTY_LABELS = {
@@ -39,6 +40,8 @@ export function DiaryEntryDetailPage() {
   const [editStatus, setEditStatus] = useState<DiaryStatus>('erfolgreich')
   const [editStamp, setEditStamp] = useState<StampId>('geheimnisvoll')
   const [editPhotos, setEditPhotos] = useState<string[]>([])
+  const [editVideo, setEditVideo] = useState<string>()
+  const [editMediaError, setEditMediaError] = useState('')
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -69,6 +72,8 @@ export function DiaryEntryDetailPage() {
     setEditStatus(entry.status)
     setEditStamp(entry.rating.stamp)
     setEditPhotos(entry.rating.photoDataUrls ?? [])
+    setEditVideo(entry.rating.videoDataUrl)
+    setEditMediaError('')
     setEditing(true)
   }
 
@@ -83,6 +88,7 @@ export function DiaryEntryDetailPage() {
         freeText: editText.trim() || undefined,
         stamp: editStamp,
         photoDataUrls: editPhotos.length ? editPhotos.slice(0, 10) : undefined,
+        videoDataUrl: editVideo,
       },
     }
     await indexedDbDiaryRepository.saveEntry(updated)
@@ -251,6 +257,18 @@ export function DiaryEntryDetailPage() {
         </section>
       )}
 
+      {entry.rating.videoDataUrl && (
+        <section>
+          <h2>🎬 Missionsvideo</h2>
+          <video
+            className="diary-entry-detail__video"
+            src={entry.rating.videoDataUrl}
+            controls
+            playsInline
+          />
+        </section>
+      )}
+
       {entry.rating.sisterTeamNote && (
         <section>
           <h2>👭 Teamnotiz</h2>
@@ -311,6 +329,62 @@ export function DiaryEntryDetailPage() {
                 ))}
               </div>
             </div>
+          )}
+          <label>
+            Weitere Fotos hinzufügen
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={(event) => {
+                const remaining = MAX_PHOTOS_PER_ENTRY - editPhotos.length
+                const files = Array.from(event.target.files ?? []).slice(0, remaining)
+                void Promise.all(files.map(fileToCompressedPhoto)).then((photos) =>
+                  setEditPhotos((current) =>
+                    [...current, ...photos].slice(0, MAX_PHOTOS_PER_ENTRY),
+                  ),
+                )
+                event.target.value = ''
+              }}
+            />
+          </label>
+          {editVideo && (
+            <div>
+              <strong>Gespeichertes Video</strong>
+              <video className="diary-entry-detail__video" src={editVideo} controls playsInline />
+              <Button variant="ghost" onClick={() => setEditVideo(undefined)}>
+                Video entfernen
+              </Button>
+            </div>
+          )}
+          <label>
+            {editVideo ? 'Video ersetzen' : 'Drei-Sekunden-Video hinzufügen'}
+            <input
+              type="file"
+              accept="video/*"
+              capture="environment"
+              onChange={(event) => {
+                const file = event.target.files?.[0]
+                if (file) {
+                  setEditMediaError('')
+                  void videoToDataUrl(file)
+                    .then(setEditVideo)
+                    .catch((error: unknown) =>
+                      setEditMediaError(
+                        error instanceof Error
+                          ? error.message
+                          : 'Video konnte nicht gelesen werden.',
+                      ),
+                    )
+                }
+                event.target.value = ''
+              }}
+            />
+          </label>
+          {editMediaError && (
+            <p className="diary-entry-detail__media-error" role="alert">
+              {editMediaError}
+            </p>
           )}
           <div className="diary-entry-detail__edit-actions">
             <Button variant="primary" onClick={saveEdits}>

@@ -737,3 +737,19 @@ Kategorie-spezifische Strukturen bleiben Pflicht.
 **Konsequenzen:** Alle Familiengeräte erhalten beim nächsten Öffnen denselben geprüften Katalog
 kostenlos mit dem normalen App-Update. Neue Inhalte verändern bestehende Tagebuch-Snapshots nicht.
 Weitere Mengen oder externe Importe benötigen weiterhin eine eigene Prüfung und Freigabe.
+
+## ADR-039: Kurze Videos verwenden den nativen Dateiwähler und bleiben im Tagebucheintrag
+
+**Status:** Angenommen (Sprint 22, 2026-09-01)
+
+**Entscheidung:** Jede abgeschlossene Mission darf bis zu zehn komprimierte Fotos und genau ein
+Video enthalten. Das Video wird vor dem Speichern über seine Metadaten auf höchstens drei Sekunden
+und zusätzlich auf 15 MB geprüft. Aufnahme und Auswahl erfolgen über den nativen Apple-Dateiwähler
+statt über `MediaRecorder`, weil dieser Weg auch auf dem alten iPad verfügbar ist. Die Daten-URL
+wird als optionales Feld des vorhandenen `CompletionRating` gespeichert.
+
+**Konsequenzen:** Es gibt keinen Upload, Server, Cloud-Dienst oder neue Berechtigung ausser der vom
+Nutzer bewusst geöffneten Kamera beziehungsweise Mediathek. Medien bleiben profilbezogen und sind
+automatisch in Sicherungen enthalten. Daten-URLs benötigen mehr Speicher als reine Texte; die sehr
+kurze Dauer, Dateigrenze und ein Video pro Eintrag begrenzen das Risiko. Ein abgelehntes längeres
+Video muss in der Kamera kürzer neu aufgenommen werden.

@@ -45,6 +45,8 @@ export interface CompletionRating {
   photoDataUrls?: string[]
   photoFrame?: string
   photoEffect?: string
+  /** Höchstens ein lokal gespeichertes Video mit maximal drei Sekunden (Sprint 22). */
+  videoDataUrl?: string
   sisterTeamNote?: string
   difficultyFeedback: DifficultyFeedback
   wouldRepeat: boolean

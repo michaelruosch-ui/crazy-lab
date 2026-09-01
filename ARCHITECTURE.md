@@ -371,6 +371,17 @@ lokalen Erzeuger konsistent gesetzt; Kategorie-spezifische Materialien, Schritte
 bestehende Validierung prüft anschließend alle 100 Einträge gemeinsam auf IDs, Pflichtfelder,
 Sicherheitsangaben, Wertebereiche und ausgeschlossene Getränkebegriffe.
 
+## Lokale Abschlussmedien (Sprint 22)
+
+`features/ratings/media.ts` kapselt die Mediengrenzen. Fotos werden wie bisher im Browser auf
+höchstens 1000 Pixel verkleinert und als Daten-URL gespeichert, jetzt jedoch für jede Kategorie.
+Ein Video wird über den nativen Dateiwähler aufgenommen oder ausgewählt; ein verborgenes
+`video`-Element liest die Dauer, bevor eine Daten-URL erzeugt wird. Nur höchstens drei Sekunden und
+15 MB werden angenommen. `CompletionRating` enthält optional `videoDataUrl`; dadurch greifen das
+bestehende profilbezogene Tagebuch, automatische Sicherungsstände und der externe Backup-Export
+ohne neuen Object Store. Die Lösung verlangt kein `MediaRecorder` und funktioniert deshalb auch
+mit Safari 12, sofern dessen Kamera-/Dateiwähler ein abspielbares Video liefert.
+
 ## Erweiterungspunkte für spätere Sprints
 
 - `domain/profile.ts` ist bereits mehrprofilfähig (`Profile`, `profileId` auf jedem
