@@ -1,11 +1,13 @@
-import { DEFAULT_PROFILE, isCurrentlyHidden } from '../../domain'
+import { isCurrentlyHidden } from '../../domain'
 import { missions } from '../../data'
 import { BackLink, MissionCard, Badge } from '../../components'
 import { useHiddenMissions } from './useHiddenMissions'
+import { useActiveProfileId } from '../profile'
 import './HistoryPage.css'
 
 export function HistoryPage() {
-  const { history, loading } = useHiddenMissions(DEFAULT_PROFILE.id)
+  const { activeProfileId } = useActiveProfileId()
+  const { history, loading } = useHiddenMissions(activeProfileId)
   const now = new Date()
 
   return (

@@ -5,7 +5,7 @@ import { HomePage, HistoryPage } from './features/missions'
 import { DiaryPage, DiaryEntryDetailPage } from './features/diary'
 import { SecretVaultPage } from './features/secret-vault'
 import { OnboardingFlow } from './features/onboarding'
-import { ProfilePage, useProfile } from './features/profile'
+import { ProfilePage, useActiveProfileId, useProfile } from './features/profile'
 import { LabCabinetPage } from './features/lab-cabinet'
 import { ShoppingListPage } from './features/shopping-list'
 import { DEFAULT_PROFILE } from './domain'
@@ -16,9 +16,11 @@ import type { CustomMission } from './domain'
 import { CustomMissionEditorPage, CustomMissionsPage } from './features/custom-missions'
 import { useAtmosphereSettings } from './features/atmosphere'
 import { AppShell } from './components/AppShell'
+import { indexedDbProfileRepository } from './storage/profileRepository'
 
 function MissionRoute() {
   const { missionId } = useParams<{ missionId: string }>()
+  const { activeProfileId } = useActiveProfileId()
   const [customMission, setCustomMission] = useState<CustomMission | null>()
 
   useEffect(() => {
@@ -27,8 +29,8 @@ function MissionRoute() {
     }
     void indexedDbCustomMissionRepository
       .get(missionId)
-      .then((mission) => setCustomMission(mission ?? null))
-  }, [missionId])
+      .then((mission) => setCustomMission(mission?.profileId === activeProfileId ? mission : null))
+  }, [activeProfileId, missionId])
 
   if (!missionId) return null
   if (missionId.startsWith('mission-eigen-') && customMission === undefined)
@@ -43,12 +45,21 @@ function MissionRoute() {
 }
 
 export function App() {
-  const { settings } = useAtmosphereSettings()
-  const { profile, loading, save } = useProfile(DEFAULT_PROFILE.id)
+  const { activeProfileId, setActiveProfileId } = useActiveProfileId()
+  const { settings } = useAtmosphereSettings(activeProfileId)
+  const { profile, loading, save } = useProfile(activeProfileId)
+  const [fallbackProfileId, setFallbackProfileId] = useState<string>()
   useAutomaticSnapshots(profile?.onboardingCompletedAt ? profile.id : undefined)
   useEffect(() => {
     void requestPersistentStorage()
   }, [])
+  useEffect(() => {
+    void indexedDbProfileRepository.getAll().then((profiles) => {
+      setFallbackProfileId(
+        profiles.find((item) => item.id !== activeProfileId && item.onboardingCompletedAt)?.id,
+      )
+    })
+  }, [activeProfileId, profile])
   useEffect(() => {
     document.documentElement.classList.toggle('reduce-motion', !settings.animationsEnabled)
   }, [settings.animationsEnabled])
@@ -58,7 +69,15 @@ export function App() {
   }
 
   if (!profile || !profile.onboardingCompletedAt) {
-    return <OnboardingFlow onComplete={save} />
+    return (
+      <OnboardingFlow
+        key={activeProfileId}
+        profileId={activeProfileId}
+        initialName={activeProfileId === DEFAULT_PROFILE.id ? DEFAULT_PROFILE.researcherName : ''}
+        onComplete={save}
+        onCancel={fallbackProfileId ? () => setActiveProfileId(fallbackProfileId) : undefined}
+      />
+    )
   }
 
   return (

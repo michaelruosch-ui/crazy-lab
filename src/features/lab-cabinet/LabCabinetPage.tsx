@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
 import { missions } from '../../data'
 import {
-  DEFAULT_PROFILE,
   classifyCustomMaterial,
   generateId,
   type LabCabinetArea,
@@ -10,6 +9,7 @@ import {
 } from '../../domain'
 import { BackLink, Button } from '../../components'
 import { useLabCabinet } from './useLabCabinet'
+import { useActiveProfileId } from '../profile'
 import './LabCabinetPage.css'
 
 const AREAS: { value: LabCabinetArea; label: string }[] = [
@@ -56,7 +56,8 @@ function imageFileToDataUrl(file: File): Promise<string> {
 }
 
 export function LabCabinetPage() {
-  const { items, loading, save, remove } = useLabCabinet(DEFAULT_PROFILE.id)
+  const { activeProfileId } = useActiveProfileId()
+  const { items, loading, save, remove } = useLabCabinet(activeProfileId)
   const [search, setSearch] = useState('')
   const [customMaterial, setCustomMaterial] = useState('')
   const [photoError, setPhotoError] = useState('')
@@ -73,7 +74,7 @@ export function LabCabinetPage() {
   async function addMaterial(materialName: string) {
     await save({
       id: generateId(),
-      profileId: DEFAULT_PROFILE.id,
+      profileId: activeProfileId,
       materialName,
       area: 'kueche',
       quantityStatus: 'genug',
@@ -87,7 +88,7 @@ export function LabCabinetPage() {
     if (!classification.materialName) return
     await save({
       id: generateId(),
-      profileId: DEFAULT_PROFILE.id,
+      profileId: activeProfileId,
       materialName: classification.materialName,
       area: classification.area,
       quantityStatus: 'genug',

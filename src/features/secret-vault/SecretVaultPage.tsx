@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
-import { DEFAULT_PROFILE } from '../../domain'
 import { missions } from '../../data'
 import { BackLink, MissionCard } from '../../components'
 import { useSecretVault } from './useSecretVault'
+import { useActiveProfileId } from '../profile'
 import './SecretVaultPage.css'
 
 export function SecretVaultPage() {
-  const { entries, loading } = useSecretVault(DEFAULT_PROFILE.id)
+  const { activeProfileId } = useActiveProfileId()
+  const { entries, loading } = useSecretVault(activeProfileId)
 
   const savedMissions = entries
     .map((entry) => missions.find((m) => m.id === entry.missionId))

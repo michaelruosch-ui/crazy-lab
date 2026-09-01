@@ -27,4 +27,14 @@ describe('indexedDbProfileRepository', () => {
 
     expect(await indexedDbProfileRepository.get(DEFAULT_PROFILE.id)).toEqual(DEFAULT_PROFILE)
   })
+
+  it('liest mehrere getrennte Profile', async () => {
+    const laura = { ...DEFAULT_PROFILE, id: 'laura', researcherName: 'Laura' }
+    await indexedDbProfileRepository.save(DEFAULT_PROFILE)
+    await indexedDbProfileRepository.save(laura)
+
+    expect((await indexedDbProfileRepository.getAll()).map((profile) => profile.id).sort()).toEqual(
+      ['elena', 'laura'],
+    )
+  })
 })

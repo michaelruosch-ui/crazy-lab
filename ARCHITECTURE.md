@@ -352,6 +352,16 @@ sie eine feste linke Navigation bereit. Die Startseite wechselt ab 700 Pixeln au
 1100 Pixeln auf drei Missionsspalten; das Tagebuch folgt mit zwei beziehungsweise drei Spalten.
 Die fachlichen Komponenten und Speicherpfade bleiben unabhängig von der Bildschirmgrösse gleich.
 
+## Aktives Profil (Sprint 20)
+
+`useActiveProfileId` hält ausschliesslich die ID der zuletzt aktiven Person in `localStorage` und
+informiert alle offenen Hooks über ein Browser-Event. Die Profile selbst bleiben wie bisher im
+IndexedDB-Store `profiles`. Sämtliche fachlichen Hooks und Repositories erhalten die aktive ID;
+die bereits vorhandenen `profileId`-Indizes trennen Tagebuch, Geheimfach, Verlauf, Laborschrank,
+Einkaufsliste, Experimente, eigene Missionen und Sicherungen. Direkte Detailrouten prüfen ebenfalls
+die Profilzugehörigkeit. Ein nicht fertig eingerichtetes neues Profil bietet immer den Rückweg zu
+einem vorhandenen vollständigen Profil.
+
 ## Erweiterungspunkte für spätere Sprints
 
 - `domain/profile.ts` ist bereits mehrprofilfähig (`Profile`, `profileId` auf jedem

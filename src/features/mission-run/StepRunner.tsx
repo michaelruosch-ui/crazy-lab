@@ -15,6 +15,7 @@ interface StepRunnerProps {
   onProgress?: (checkedStepIds: string[]) => void
   onPause?: () => void
   showCountdown?: boolean
+  profileId?: string
 }
 
 export function StepRunner({
@@ -26,6 +27,7 @@ export function StepRunner({
   onProgress,
   onPause,
   showCountdown = false,
+  profileId,
 }: StepRunnerProps) {
   const [checkedSteps, setCheckedSteps] = useState<Set<string>>(new Set(initialCheckedStepIds))
   const [currentIndex, setCurrentIndex] = useState(() => {
@@ -34,7 +36,7 @@ export function StepRunner({
   })
   const [helpVisible, setHelpVisible] = useState(false)
   const [countdown, setCountdown] = useState(showCountdown ? 3 : 0)
-  const { settings } = useAtmosphereSettings()
+  const { settings } = useAtmosphereSettings(profileId)
   const atmosphere = useMissionAtmosphere(mission.primaryCategory, settings.soundEnabled)
 
   useEffect(() => {

@@ -52,6 +52,9 @@ abschaltbar; die iPhone-Einstellung „Bewegung reduzieren“ wird respektiert.
 Auf iPads nutzt Crazy Lab den zusätzlichen Platz mit mehrspaltigen Missions- und Tagebuchkarten;
 auf dem Mac ergänzt eine feste seitliche Labornavigation die weiterhin vollständig erhaltene
 mobile Bedienung.
+Auf jedem Gerät können mehrere Personen eigene Profile ohne Passwort anlegen und wechseln. Jedes
+Profil besitzt getrennte Tagebücher, Vorschläge, Listen, eigene Missionen, Sicherungsstände und
+Atmosphäre-Einstellungen; Elenas vorhandenes Profil und seine Daten bleiben unverändert erhalten.
 
 ## Voraussetzungen
 

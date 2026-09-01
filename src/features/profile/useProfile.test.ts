@@ -9,6 +9,7 @@ describe('useProfile', () => {
   it('bleibt nicht für immer bei "loading", wenn das Öffnen der Datenbank endgültig scheitert', async () => {
     const failingRepository: ProfileRepository = {
       get: () => Promise.reject(new Error('Öffnen der lokalen Datenbank hat zu lange gedauert.')),
+      getAll: () => Promise.resolve([]),
       save: () => Promise.resolve(),
     }
 
@@ -25,6 +26,7 @@ describe('useProfile', () => {
     }
     const repository: ProfileRepository = {
       get: () => Promise.resolve(profile),
+      getAll: () => Promise.resolve([profile]),
       save: () => Promise.resolve(),
     }
 

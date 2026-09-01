@@ -709,3 +709,18 @@ Seitennavigation. Unterhalb dieser Schwelle bleibt die bestehende iPhone-Navigat
 keine zweite Tablet-Version und keine Gefahr auseinanderlaufender Funktionen. Das alte iPad erhält
 dieselben responsiven Regeln, soweit seine Bildschirmbreite sie auslöst; moderne iPhones werden
 weder funktional noch in ihrer vertrauten einspaltigen Darstellung eingeschränkt.
+
+## ADR-037: Lokale Profilauswahl über eine aktive Profil-ID
+
+**Status:** Angenommen (Sprint 20, 2026-09-01)
+
+**Entscheidung:** Mehrere Personen teilen dieselbe Installation ohne Login oder Passwort. In
+`localStorage` liegt nur die zuletzt aktive Profil-ID; alle eigentlichen Profildaten und Inhalte
+bleiben in IndexedDB und werden über die bestehenden `profileId`-Felder getrennt. Elenas bisherige
+ID `elena` wird nicht migriert oder ersetzt. Detailansichten akzeptieren nur Daten des aktiven
+Profils. Ein neues Profil durchläuft denselben Maskottchen- und Namensdialog wie Elena.
+
+**Konsequenzen:** Der bestehende Datenbestand bleibt kompatibel und neue Personen beginnen leer.
+Die Trennung schützt vor versehentlicher Vermischung, ist aber keine Sicherheitsbarriere gegen
+absichtliches Wechseln: Familienmitglieder können jedes lokale Profil ohne Passwort öffnen. Eine
+Cloud oder geräteübergreifende Synchronisation entsteht dadurch ausdrücklich nicht.

@@ -1,5 +1,4 @@
 import {
-  DEFAULT_PROFILE,
   generateId,
   type ShoppingAssignee,
   type ShoppingListItem,
@@ -8,6 +7,7 @@ import {
 import { BackLink, Button } from '../../components'
 import { indexedDbLabCabinetRepository } from '../../storage/labCabinetRepository'
 import { useShoppingList } from './useShoppingList'
+import { useActiveProfileId } from '../profile'
 import './ShoppingListPage.css'
 
 const STORES: { value: ShoppingStore; label: string }[] = [
@@ -23,7 +23,8 @@ const ASSIGNEES: { value: ShoppingAssignee; label: string }[] = [
 ]
 
 export function ShoppingListPage() {
-  const { items, loading, save, remove } = useShoppingList(DEFAULT_PROFILE.id)
+  const { activeProfileId } = useActiveProfileId()
+  const { items, loading, save, remove } = useShoppingList(activeProfileId)
   const openTotal = items
     .filter((item) => !item.checked)
     .reduce((sum, item) => sum + item.estimatedPriceChf, 0)
@@ -33,14 +34,14 @@ export function ShoppingListPage() {
   }
 
   async function moveToCabinet(item: ShoppingListItem) {
-    const cabinetItems = await indexedDbLabCabinetRepository.getAll(DEFAULT_PROFILE.id)
+    const cabinetItems = await indexedDbLabCabinetRepository.getAll(activeProfileId)
     const existing = cabinetItems.find((entry) => entry.materialName === item.materialName)
     await indexedDbLabCabinetRepository.save(
       existing
         ? { ...existing, quantityStatus: 'genug', updatedAt: new Date().toISOString() }
         : {
             id: generateId(),
-            profileId: DEFAULT_PROFILE.id,
+            profileId: activeProfileId,
             materialName: item.materialName,
             area: item.store === 'jumbo' ? 'bastelkiste' : 'kueche',
             quantityStatus: 'genug',

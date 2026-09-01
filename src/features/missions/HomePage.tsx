@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { missions } from '../../data'
 import type { MissionCategory } from '../../domain'
 import {
-  DEFAULT_PROFILE,
   DEFAULT_MISSION_FILTERS,
   buildPreferenceProfile,
   filterMissions,
@@ -14,7 +13,7 @@ import {
 import { Mascot, MissionCard } from '../../components'
 import { useSecretVault } from '../secret-vault'
 import { useDiaryEntries } from '../diary'
-import { useProfile } from '../profile'
+import { useActiveProfileId, useProfile } from '../profile'
 import { useHiddenMissions } from './useHiddenMissions'
 import { MissionSection } from './MissionSection'
 import { MissionFiltersPanel } from './MissionFiltersPanel'
@@ -32,29 +31,30 @@ const CATEGORY_SECTIONS: { category: MissionCategory; title: string }[] = [
 export function HomePage() {
   const [filters, setFilters] = useState(DEFAULT_MISSION_FILTERS)
   const [ongoingExperimentIds, setOngoingExperimentIds] = useState<string[]>([])
-  const { profile } = useProfile(DEFAULT_PROFILE.id)
-  const { savedMissionIds, toggle: toggleSaved } = useSecretVault(DEFAULT_PROFILE.id)
-  const { currentlyHiddenMissionIds, hide } = useHiddenMissions(DEFAULT_PROFILE.id)
-  const { entries: diaryEntries } = useDiaryEntries(DEFAULT_PROFILE.id)
-  const preferenceProfile = buildPreferenceProfile(DEFAULT_PROFILE.id, diaryEntries)
+  const { activeProfileId } = useActiveProfileId()
+  const { profile } = useProfile(activeProfileId)
+  const { savedMissionIds, toggle: toggleSaved } = useSecretVault(activeProfileId)
+  const { currentlyHiddenMissionIds, hide } = useHiddenMissions(activeProfileId)
+  const { entries: diaryEntries } = useDiaryEntries(activeProfileId)
+  const preferenceProfile = buildPreferenceProfile(activeProfileId, diaryEntries)
   const completedMissionIds = new Set(diaryEntries.map((entry) => entry.missionSnapshot.missionId))
 
   useEffect(() => {
     let cancelled = false
-    indexedDbExperimentProgressRepository.getAll(DEFAULT_PROFILE.id).then((progress) => {
+    indexedDbExperimentProgressRepository.getAll(activeProfileId).then((progress) => {
       if (!cancelled) setOngoingExperimentIds(progress.map((item) => item.missionId))
     })
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [activeProfileId])
 
   const ongoingExperiments = ongoingExperimentIds
     .map((missionId) => missions.find((mission) => mission.id === missionId))
     .filter((mission) => mission !== undefined)
 
-  const researcherName = profile?.researcherName ?? DEFAULT_PROFILE.researcherName
-  const mascotId = profile?.mascotVariant ?? DEFAULT_PROFILE.mascotVariant
+  const researcherName = profile?.researcherName ?? 'Forscherin'
+  const mascotId = profile?.mascotVariant ?? 'blutiger-kuschelbaer'
   const today = new Date()
   const todaysBirthdays = (profile?.birthdays ?? []).filter((b) => isBirthdayToday(b, today))
   const matchingMissions = filterMissions(missions, filters)
@@ -83,7 +83,7 @@ export function HomePage() {
   const dailyMission = pickDailyMission(
     matchingMissions,
     currentlyHiddenMissionIds,
-    DEFAULT_PROFILE.id,
+    activeProfileId,
     today,
     new Set([...categoryMissionIds, ...completedMissionIds]),
   )

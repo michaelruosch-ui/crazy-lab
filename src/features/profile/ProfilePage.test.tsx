@@ -18,6 +18,27 @@ describe('ProfilePage', () => {
     })
   })
 
+  it('wechselt zwischen getrennten Personenprofilen', async () => {
+    await indexedDbProfileRepository.save({
+      ...DEFAULT_PROFILE,
+      id: 'laura',
+      researcherName: 'Laura',
+      onboardingCompletedAt: '2026-09-01T00:00:00.000Z',
+    })
+    const user = userEvent.setup()
+    render(
+      <MemoryRouter>
+        <ProfilePage />
+      </MemoryRouter>,
+    )
+
+    await user.click(await screen.findByRole('button', { name: 'Laura' }))
+
+    expect(await screen.findByDisplayValue('Laura')).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: 'Elena' }))
+    expect(await screen.findByDisplayValue('Elena')).toBeInTheDocument()
+  })
+
   it('speichert einen geänderten Forschernamen dauerhaft', async () => {
     const user = userEvent.setup()
     render(

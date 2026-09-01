@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getMissionById } from '../data'
 import {
-  DEFAULT_PROFILE,
   generateId,
   rankDrinkVariants,
   shoppingItemsForMission,
@@ -15,7 +14,7 @@ import { MissionDetailView } from '../features/missions'
 import { StepRunner } from '../features/mission-run'
 import { CompletionForm } from '../features/ratings'
 import { useSecretVault } from '../features/secret-vault'
-import { useProfile } from '../features/profile'
+import { useActiveProfileId, useProfile } from '../features/profile'
 import { useDiaryEntries } from '../features/diary'
 import { BackLink, Button } from '../components'
 import { indexedDbDiaryRepository } from '../storage/diaryRepository'
@@ -32,10 +31,15 @@ interface MissionFlowPageProps {
 type Phase = 'detail' | 'run' | 'rating'
 type SaveStatus = 'idle' | 'saving' | 'error'
 
-function buildEntry(missionId: string, rating: CompletionRating, mission: Mission): DiaryEntry {
+function buildEntry(
+  profileId: string,
+  missionId: string,
+  rating: CompletionRating,
+  mission: Mission,
+): DiaryEntry {
   return {
     id: generateId(),
-    profileId: DEFAULT_PROFILE.id,
+    profileId,
     missionSnapshot: {
       missionId,
       contentVersion: mission.contentVersion,
@@ -68,9 +72,10 @@ export function MissionFlowPage({ missionId, missionOverride }: MissionFlowPageP
   const [shoppingMessage, setShoppingMessage] = useState('')
   const [experimentProgress, setExperimentProgress] = useState<ExperimentProgress>()
   const navigate = useNavigate()
-  const { savedMissionIds, toggle: toggleSaved } = useSecretVault(DEFAULT_PROFILE.id)
-  const { profile } = useProfile(DEFAULT_PROFILE.id)
-  const { entries } = useDiaryEntries(DEFAULT_PROFILE.id)
+  const { activeProfileId } = useActiveProfileId()
+  const { savedMissionIds, toggle: toggleSaved } = useSecretVault(activeProfileId)
+  const { profile } = useProfile(activeProfileId)
+  const { entries } = useDiaryEntries(activeProfileId)
   const rankedVariants = mission ? rankDrinkVariants(mission, entries) : []
   const [selectedVariant, setSelectedVariant] = useState<string | undefined>(undefined)
   const effectiveVariant =
@@ -79,9 +84,9 @@ export function MissionFlowPage({ missionId, missionOverride }: MissionFlowPageP
   useEffect(() => {
     if (!mission?.experimentProfile) return
     void indexedDbExperimentProgressRepository
-      .get(DEFAULT_PROFILE.id, mission.id)
+      .get(activeProfileId, mission.id)
       .then(setExperimentProgress)
-  }, [mission])
+  }, [activeProfileId, mission])
 
   if (!mission) {
     return (
@@ -95,7 +100,7 @@ export function MissionFlowPage({ missionId, missionOverride }: MissionFlowPageP
   const trySave = async (rating: CompletionRating) => {
     setSaveStatus('saving')
     try {
-      const entry = buildEntry(mission.id, rating, mission)
+      const entry = buildEntry(activeProfileId, mission.id, rating, mission)
       await indexedDbDiaryRepository.saveEntry(entry)
       if (experimentProgress) {
         await indexedDbExperimentProgressRepository.remove(experimentProgress.id)
@@ -112,8 +117,8 @@ export function MissionFlowPage({ missionId, missionOverride }: MissionFlowPageP
     if (!mission.experimentProfile) return
     const now = new Date().toISOString()
     const progress: ExperimentProgress = {
-      id: experimentProgress?.id ?? `${DEFAULT_PROFILE.id}:${mission.id}`,
-      profileId: DEFAULT_PROFILE.id,
+      id: experimentProgress?.id ?? `${activeProfileId}:${mission.id}`,
+      profileId: activeProfileId,
       missionId: mission.id,
       checkedStepIds,
       startedAt: experimentProgress?.startedAt ?? now,
@@ -125,8 +130,8 @@ export function MissionFlowPage({ missionId, missionOverride }: MissionFlowPageP
 
   const addToShoppingList = async () => {
     const [existingShoppingItems, cabinetItems] = await Promise.all([
-      indexedDbShoppingListRepository.getAll(DEFAULT_PROFILE.id),
-      indexedDbLabCabinetRepository.getAll(DEFAULT_PROFILE.id),
+      indexedDbShoppingListRepository.getAll(activeProfileId),
+      indexedDbLabCabinetRepository.getAll(activeProfileId),
     ])
     const unavailableNames = new Set([
       ...existingShoppingItems.map((item) => item.materialName),
@@ -134,7 +139,7 @@ export function MissionFlowPage({ missionId, missionOverride }: MissionFlowPageP
         .filter((item) => item.quantityStatus === 'genug' || item.quantityStatus === 'viel')
         .map((item) => item.materialName),
     ])
-    const additions = shoppingItemsForMission(mission, DEFAULT_PROFILE.id).filter(
+    const additions = shoppingItemsForMission(mission, activeProfileId).filter(
       (item) => !unavailableNames.has(item.materialName),
     )
     await Promise.all(additions.map((item) => indexedDbShoppingListRepository.save(item)))
@@ -184,6 +189,7 @@ export function MissionFlowPage({ missionId, missionOverride }: MissionFlowPageP
         onProgress={mission.experimentProfile ? saveExperimentProgress : undefined}
         onPause={mission.experimentProfile?.durationDays ? () => navigate('/') : undefined}
         showCountdown
+        profileId={activeProfileId}
       />
     )
   }

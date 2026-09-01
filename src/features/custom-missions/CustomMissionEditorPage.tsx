@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { missions } from '../../data'
 import {
-  DEFAULT_PROFILE,
   generateId,
   isCustomMissionSafe,
   type CustomMission,
@@ -10,7 +9,7 @@ import {
   type SafetyLevel,
 } from '../../domain'
 import { BackLink, Button, SpeechBubble } from '../../components'
-import { useProfile } from '../profile'
+import { useActiveProfileId, useProfile } from '../profile'
 import { indexedDbCustomMissionRepository } from '../../storage/customMissionRepository'
 import './CustomMissionsPage.css'
 
@@ -72,12 +71,13 @@ export function CustomMissionEditorPage() {
   const [loaded, setLoaded] = useState(!missionId)
   const [message, setMessage] = useState('')
   const navigate = useNavigate()
-  const { profile } = useProfile(DEFAULT_PROFILE.id)
+  const { activeProfileId } = useActiveProfileId()
+  const { profile } = useProfile(activeProfileId)
 
   useEffect(() => {
     if (missionId) {
       void indexedDbCustomMissionRepository.get(missionId).then((mission) => {
-        if (mission) {
+        if (mission?.profileId === activeProfileId) {
           setExisting(mission)
           setDraft(draftFromMission(mission))
         }
@@ -88,10 +88,10 @@ export function CustomMissionEditorPage() {
     if (copyId) {
       if (!staticCopy)
         void indexedDbCustomMissionRepository.get(copyId).then((mission) => {
-          if (mission) setDraft(draftFromMission(mission))
+          if (mission?.profileId === activeProfileId) setDraft(draftFromMission(mission))
         })
     }
-  }, [copyId, missionId, staticCopy])
+  }, [activeProfileId, copyId, missionId, staticCopy])
 
   const materials = useMemo(
     () =>
@@ -129,7 +129,7 @@ export function CustomMissionEditorPage() {
     const now = new Date().toISOString()
     const mission: CustomMission = {
       id: existing?.id ?? `mission-eigen-${generateId()}`,
-      profileId: DEFAULT_PROFILE.id,
+      profileId: activeProfileId,
       contentVersion: (existing?.contentVersion ?? 0) + 1,
       title: draft.title.trim(),
       shortDescription: draft.description.trim(),

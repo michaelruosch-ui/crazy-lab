@@ -233,6 +233,22 @@ Status: **Technisch umgesetzt (2026-09-01), Familienabnahme der grösseren Layou
 - [x] Typecheck, Lint, 128 Tests und Produktions-Build erfolgreich
 - [ ] Michael prüft die grössere Darstellung gelegentlich auf iPad oder Mac
 
+### Sprint 20 - Mehrere Profile
+
+Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.** Sprint 19 wurde auf
+Familienentscheid bewusst nicht umgesetzt, weil keine Cloud-Synchronisation gewünscht ist.
+
+- [x] Vorhandenes Elena-Profil und alle bisherigen Daten unverändert übernommen
+- [x] Beliebig viele weitere Personen ohne Passwort anlegen
+- [x] Aktive Person auf der Profilseite mit einem Tippen wechseln
+- [x] Tagebuch, Vorschläge, Geheimfach, Verlauf und laufende Experimente getrennt
+- [x] Laborschrank, Einkaufsliste und eigene Missionen getrennt
+- [x] Lokale Sicherungsstände, Musik- und Animationseinstellungen getrennt
+- [x] Abgebrochenes neues Profil kann jederzeit zum vorhandenen Profil zurückkehren
+- [x] Fremde Tagebuch- und eigene Missionseinträge sind nicht über eine direkte Adresse sichtbar
+- [x] Typecheck, Lint, 130 Tests und Produktions-Build erfolgreich
+- [ ] Michael legt ein zweites Testprofil an und bestätigt den Wechsel ohne vermischte Einträge
+
 ### Kompatibilitätskorrektur - Familien-iPad mit iOS 12.5.8
 
 Status: **Abgeschlossen (2026-09-01).** Diese
@@ -335,8 +351,6 @@ positiv beantwortet.
 
 - **Sprint 19 - Cloud-Synchronisation:** Backend-Auswahl, Authentifizierung, Konfliktlösung,
   Datenschutz und Austausch zwischen Geräten.
-- **Sprint 20 - Mehrere Profile:** Laura und weitere Personen mit getrennten Tagebüchern,
-  Vorlieben und Einstellungen.
 - **Sprint 21 - Neue geprüfte Inhalte:** sicherer Import beziehungsweise redaktionelle Freigabe
   neuer Missionen.
 - **Sprint 22 - Video im Tagebuch:** Aufnahme, Komprimierung, Speicherregeln und

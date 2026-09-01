@@ -8,24 +8,30 @@ const KEY = 'crazylab-atmosphere-settings'
 const EVENT = 'crazylab-atmosphere-change'
 const DEFAULTS: AtmosphereSettings = { soundEnabled: true, animationsEnabled: true }
 
-function read(): AtmosphereSettings {
+function profileKey(profileId?: string): string {
+  return profileId ? `${KEY}-${profileId}` : KEY
+}
+
+function read(profileId?: string): AtmosphereSettings {
   try {
-    return { ...DEFAULTS, ...JSON.parse(window.localStorage.getItem(KEY) ?? '{}') }
+    const stored = window.localStorage.getItem(profileKey(profileId))
+    const legacy = profileId ? window.localStorage.getItem(KEY) : null
+    return { ...DEFAULTS, ...JSON.parse(stored ?? legacy ?? '{}') }
   } catch {
     return DEFAULTS
   }
 }
 
-export function useAtmosphereSettings() {
-  const [settings, setSettings] = useState(read)
+export function useAtmosphereSettings(profileId?: string) {
+  const [settings, setSettings] = useState(() => read(profileId))
   useEffect(() => {
-    const sync = () => setSettings(read())
+    const sync = () => setSettings(read(profileId))
     window.addEventListener(EVENT, sync)
     return () => window.removeEventListener(EVENT, sync)
-  }, [])
+  }, [profileId])
   const update = (next: Partial<AtmosphereSettings>) => {
-    const value = { ...read(), ...next }
-    window.localStorage.setItem(KEY, JSON.stringify(value))
+    const value = { ...read(profileId), ...next }
+    window.localStorage.setItem(profileKey(profileId), JSON.stringify(value))
     setSettings(value)
     window.dispatchEvent(new Event(EVENT))
   }

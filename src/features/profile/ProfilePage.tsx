@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { Birthday, LocalBackupSnapshot, MascotId, Profile } from '../../domain'
-import { DEFAULT_PROFILE, generateId } from '../../domain'
+import { generateId } from '../../domain'
 import { BackLink, Button, MascotPicker } from '../../components'
 import { backupFileName, createBackup, isBackupData, restoreBackup } from '../../storage/backup'
 import {
@@ -9,6 +9,8 @@ import {
   saveLocalSnapshot,
 } from '../../storage/localBackupRepository'
 import { useProfile } from './useProfile'
+import { useActiveProfileId } from './useActiveProfile'
+import { indexedDbProfileRepository } from '../../storage/profileRepository'
 import './ProfilePage.css'
 import { useAtmosphereSettings } from '../atmosphere'
 
@@ -24,7 +26,9 @@ function formatMonthDay(monthDay: string): string {
 }
 
 export function ProfilePage() {
-  const { profile, loading, save } = useProfile(DEFAULT_PROFILE.id)
+  const { activeProfileId, setActiveProfileId } = useActiveProfileId()
+  const { profile, loading, save } = useProfile(activeProfileId)
+  const [profiles, setProfiles] = useState<Profile[]>([])
   const [name, setName] = useState('')
   const [nameSyncedWith, setNameSyncedWith] = useState<Profile | null>(null)
   const [newBirthdayName, setNewBirthdayName] = useState('')
@@ -33,11 +37,13 @@ export function ProfilePage() {
   const [backupStatus, setBackupStatus] = useState<BackupStatus>('idle')
   const [backupMessage, setBackupMessage] = useState('')
   const [snapshots, setSnapshots] = useState<LocalBackupSnapshot[]>([])
-  const { settings: atmosphereSettings, update: updateAtmosphere } = useAtmosphereSettings()
+  const { settings: atmosphereSettings, update: updateAtmosphere } =
+    useAtmosphereSettings(activeProfileId)
 
   useEffect(() => {
-    void getLocalSnapshots(DEFAULT_PROFILE.id).then(setSnapshots)
-  }, [])
+    void getLocalSnapshots(activeProfileId).then(setSnapshots)
+    void indexedDbProfileRepository.getAll().then(setProfiles)
+  }, [activeProfileId])
 
   if (profile && profile !== nameSyncedWith) {
     setNameSyncedWith(profile)
@@ -90,7 +96,7 @@ export function ProfilePage() {
   async function downloadBackup() {
     setBackupStatus('busy')
     try {
-      const backup = await createBackup(DEFAULT_PROFILE.id)
+      const backup = await createBackup(activeProfileId)
       const contents = JSON.stringify(backup, null, 2)
       const fileName = backupFileName()
       const file = new File([contents], fileName, { type: 'application/json' })
@@ -124,8 +130,8 @@ export function ProfilePage() {
   async function saveSnapshotNow() {
     setBackupStatus('busy')
     try {
-      await saveLocalSnapshot(DEFAULT_PROFILE.id)
-      setSnapshots(await getLocalSnapshots(DEFAULT_PROFILE.id))
+      await saveLocalSnapshot(activeProfileId)
+      setSnapshots(await getLocalSnapshots(activeProfileId))
       setBackupStatus('success')
       setBackupMessage('Alles ist gesichert. Du musst keine Datei öffnen oder verschieben.')
     } catch {
@@ -183,6 +189,28 @@ export function ProfilePage() {
   return (
     <div className="profile-page">
       <h1>👤 Dein Profil</h1>
+
+      <section className="profile-page__people">
+        <h2>Wer forscht gerade?</h2>
+        <p className="profile-page__hint">
+          Jede Person hat ein eigenes Tagebuch, eigene Missionen und eigene Listen.
+        </p>
+        <div className="profile-page__people-list">
+          {profiles.map((item) => (
+            <Button
+              key={item.id}
+              variant={item.id === activeProfileId ? 'primary' : 'ghost'}
+              onClick={() => setActiveProfileId(item.id)}
+            >
+              {item.id === activeProfileId ? '✓ ' : ''}
+              {item.researcherName}
+            </Button>
+          ))}
+        </div>
+        <Button variant="secondary" onClick={() => setActiveProfileId(`profil-${generateId()}`)}>
+          ➕ Neue Person anlegen
+        </Button>
+      </section>
 
       <section>
         <h2>Forschername</h2>

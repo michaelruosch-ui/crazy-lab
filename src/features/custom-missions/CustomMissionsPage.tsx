@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { CustomMission } from '../../domain'
-import { DEFAULT_PROFILE } from '../../domain'
 import { BackLink, MissionCard, SpeechBubble } from '../../components'
-import { useProfile } from '../profile'
+import { useActiveProfileId, useProfile } from '../profile'
 import { indexedDbCustomMissionRepository } from '../../storage/customMissionRepository'
 import './CustomMissionsPage.css'
 
 export function CustomMissionsPage() {
   const [items, setItems] = useState<CustomMission[]>([])
-  const { profile } = useProfile(DEFAULT_PROFILE.id)
+  const { activeProfileId } = useActiveProfileId()
+  const { profile } = useProfile(activeProfileId)
 
   useEffect(() => {
-    void indexedDbCustomMissionRepository.getAll(DEFAULT_PROFILE.id).then(setItems)
-  }, [])
+    void indexedDbCustomMissionRepository.getAll(activeProfileId).then(setItems)
+  }, [activeProfileId])
 
   return (
     <div className="custom-missions-page">

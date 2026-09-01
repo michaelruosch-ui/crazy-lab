@@ -4,6 +4,7 @@ import { ADJUSTMENT_LABELS, STAMPS } from '../../domain'
 import type { DiaryEntry, DiaryStatus, StampId } from '../../domain'
 import { BackLink, Badge, Button, MissionImage } from '../../components'
 import { indexedDbDiaryRepository } from '../../storage/diaryRepository'
+import { useActiveProfileId } from '../profile'
 import './DiaryEntryDetailPage.css'
 
 const DIFFICULTY_LABELS = {
@@ -29,6 +30,7 @@ function Stars({ value }: { value: number }) {
 }
 
 export function DiaryEntryDetailPage() {
+  const { activeProfileId } = useActiveProfileId()
   const { entryId } = useParams<{ entryId: string }>()
   const [entry, setEntry] = useState<DiaryEntry | undefined | null>(undefined)
   const [editing, setEditing] = useState(false)
@@ -43,12 +45,12 @@ export function DiaryEntryDetailPage() {
     if (!entryId) return
     let cancelled = false
     indexedDbDiaryRepository.getEntry(entryId).then((loaded) => {
-      if (!cancelled) setEntry(loaded ?? null)
+      if (!cancelled) setEntry(loaded?.profileId === activeProfileId ? loaded : null)
     })
     return () => {
       cancelled = true
     }
-  }, [entryId])
+  }, [activeProfileId, entryId])
 
   async function toggleWouldRepeat() {
     if (!entry) return

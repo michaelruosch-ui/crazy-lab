@@ -1,5 +1,15 @@
 # Changelog
 
+## Sprint 20 - Mehrere Profile (2026-09-01)
+
+- Weitere Personen können ohne Passwort ein eigenes Profil mit Forschername und Maskottchen anlegen.
+- Die aktive Person lässt sich auf der Profilseite direkt wechseln.
+- Tagebuch, Vorlieben, Geheimfach, Verlauf, Experimente, eigene Missionen, Einkaufslisten,
+  Laborschrank und lokale Sicherungsstände bleiben profilbezogen getrennt.
+- Auch Musik- und Animationseinstellungen werden pro Profil gespeichert; die bisherige Einstellung
+  dient beim ersten Wechsel weiterhin als Ausgangswert.
+- Elenas bestehendes Profil bleibt vollständig erhalten; 130 Tests erfolgreich.
+
 ## Sprint 18 - iPad- und Mac-Optimierung (2026-09-01)
 
 - Das bewährte einspaltige iPhone-Layout bleibt unverändert erhalten.

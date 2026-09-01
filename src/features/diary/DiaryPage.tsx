@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { DEFAULT_PROFILE, STAMPS, type DiaryStatus, type MissionCategory } from '../../domain'
+import { STAMPS, type DiaryStatus, type MissionCategory } from '../../domain'
 import { BackLink, MissionImage } from '../../components'
 import { useDiaryEntries } from './useDiaryEntries'
+import { useActiveProfileId } from '../profile'
 import './DiaryPage.css'
 
 const STATUS_LABELS: Record<DiaryStatus, string> = {
@@ -20,7 +21,8 @@ const CATEGORY_LABELS: Record<MissionCategory, string> = {
 }
 
 export function DiaryPage() {
-  const { entries, loading } = useDiaryEntries(DEFAULT_PROFILE.id)
+  const { activeProfileId } = useActiveProfileId()
+  const { entries, loading } = useDiaryEntries(activeProfileId)
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState<MissionCategory | 'alle'>('alle')
   const [status, setStatus] = useState<DiaryStatus | 'alle'>('alle')

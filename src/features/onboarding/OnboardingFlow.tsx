@@ -8,18 +8,26 @@ type Step = 'mascot' | 'name'
 
 interface OnboardingFlowProps {
   onComplete: (profile: Profile) => void
+  profileId?: string
+  initialName?: string
+  onCancel?: () => void
 }
 
-export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
+export function OnboardingFlow({
+  onComplete,
+  profileId = DEFAULT_PROFILE.id,
+  initialName = DEFAULT_PROFILE.researcherName,
+  onCancel,
+}: OnboardingFlowProps) {
   const [step, setStep] = useState<Step>('mascot')
   const [mascotVariant, setMascotVariant] = useState<MascotId>(DEFAULT_PROFILE.mascotVariant)
-  const [researcherName, setResearcherName] = useState(DEFAULT_PROFILE.researcherName)
+  const [researcherName, setResearcherName] = useState(initialName)
 
   function finish() {
     const now = new Date().toISOString()
     onComplete({
-      id: DEFAULT_PROFILE.id,
-      researcherName: researcherName.trim() || DEFAULT_PROFILE.researcherName,
+      id: profileId,
+      researcherName: researcherName.trim() || initialName,
       mascotVariant,
       birthdays: [],
       createdAt: now,
@@ -38,6 +46,11 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
         <Button variant="primary" onClick={() => setStep('name')}>
           Weiter
         </Button>
+        {onCancel && (
+          <Button variant="ghost" onClick={onCancel}>
+            Zurück zu meinem bisherigen Profil
+          </Button>
+        )}
       </div>
     )
   }
@@ -61,6 +74,11 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
       <Button variant="primary" onClick={finish}>
         Los geht's ins Labor!
       </Button>
+      {onCancel && (
+        <Button variant="ghost" onClick={onCancel}>
+          Abbrechen
+        </Button>
+      )}
     </div>
   )
 }
