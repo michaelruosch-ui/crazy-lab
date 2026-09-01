@@ -3,8 +3,8 @@ import { missions } from './missions'
 import { FORBIDDEN_DRINK_TERMS, validateMissions } from '../domain'
 
 describe('Missionsdaten', () => {
-  it('enthält genau 15 Missionen in jeder der fünf Kategorien', () => {
-    expect(missions).toHaveLength(75)
+  it('enthält genau 20 Missionen in jeder der fünf Kategorien', () => {
+    expect(missions).toHaveLength(100)
   })
 
   it('alle Missionen sind valide', () => {
@@ -31,9 +31,9 @@ describe('Missionsdaten', () => {
     }
   })
 
-  it('enthält genau 15 primäre Getränke-Missionen mit Merkmalen und Varianten', () => {
+  it('enthält genau 20 primäre Getränke-Missionen mit Merkmalen und Varianten', () => {
     const drinkMissions = missions.filter((m) => m.primaryCategory === 'getraenk')
-    expect(drinkMissions).toHaveLength(15)
+    expect(drinkMissions).toHaveLength(20)
 
     for (const mission of drinkMissions) {
       expect(mission.drinkProfile).toBeDefined()
@@ -52,21 +52,21 @@ describe('Missionsdaten', () => {
     expect(safetyLevels).toEqual(new Set(['gruen', 'gelb', 'rot']))
   })
 
-  it('enthält genau 15 sichere und vollständige Bastelmissionen', () => {
+  it('enthält genau 20 sichere und vollständige Bastelmissionen', () => {
     const craftMissions = missions.filter((mission) => mission.primaryCategory === 'basteln')
-    expect(craftMissions).toHaveLength(15)
+    expect(craftMissions).toHaveLength(20)
     expect(craftMissions.some((mission) => mission.title.includes('Playmobil'))).toBe(true)
     expect(craftMissions.some((mission) => mission.safetyLevel === 'gelb')).toBe(true)
     expect(craftMissions.every((mission) => mission.steps.length >= 4)).toBe(true)
   })
 
-  it('enthält je 15 strukturierte Experimente, Foto-Challenges und Schwestern-Missionen', () => {
+  it('enthält je 20 strukturierte Experimente, Foto-Challenges und Schwestern-Missionen', () => {
     const experiments = missions.filter((mission) => mission.primaryCategory === 'experiment')
     const photos = missions.filter((mission) => mission.primaryCategory === 'foto')
     const sisters = missions.filter((mission) => mission.primaryCategory === 'schwestern')
-    expect(experiments).toHaveLength(15)
-    expect(photos).toHaveLength(15)
-    expect(sisters).toHaveLength(15)
+    expect(experiments).toHaveLength(20)
+    expect(photos).toHaveLength(20)
+    expect(sisters).toHaveLength(20)
     expect(experiments.every((mission) => mission.experimentProfile)).toBe(true)
     expect(photos.every((mission) => mission.photoProfile?.frames.length)).toBe(true)
     expect(sisters.every((mission) => mission.sisterProfile?.jointFinish)).toBe(true)

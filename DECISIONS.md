@@ -724,3 +724,16 @@ Profils. Ein neues Profil durchläuft denselben Maskottchen- und Namensdialog wi
 Die Trennung schützt vor versehentlicher Vermischung, ist aber keine Sicherheitsbarriere gegen
 absichtliches Wechseln: Familienmitglieder können jedes lokale Profil ohne Passwort öffnen. Eine
 Cloud oder geräteübergreifende Synchronisation entsteht dadurch ausdrücklich nicht.
+
+## ADR-038: Neue Inhalte bleiben versionierter Bestandteil der App
+
+**Status:** Angenommen (Sprint 21, 2026-09-01)
+
+**Entscheidung:** Die 25 neuen Missionen werden redaktionell im Repository gepflegt und durch
+dieselbe automatische Inhaltsvalidierung wie der bestehende Katalog geprüft. Es gibt keinen
+Online-Import, keine fremde Inhaltsquelle und keine automatisch veröffentlichte KI-Ausgabe.
+Kategorie-spezifische Strukturen bleiben Pflicht.
+
+**Konsequenzen:** Alle Familiengeräte erhalten beim nächsten Öffnen denselben geprüften Katalog
+kostenlos mit dem normalen App-Update. Neue Inhalte verändern bestehende Tagebuch-Snapshots nicht.
+Weitere Mengen oder externe Importe benötigen weiterhin eine eigene Prüfung und Freigabe.

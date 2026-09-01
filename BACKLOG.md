@@ -249,6 +249,20 @@ Familienentscheid bewusst nicht umgesetzt, weil keine Cloud-Synchronisation gew�
 - [x] Typecheck, Lint, 130 Tests und Produktions-Build erfolgreich
 - [ ] Michael legt ein zweites Testprofil an und bestätigt den Wechsel ohne vermischte Einträge
 
+### Sprint 21 - Neue geprüfte Inhalte
+
+Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
+
+- [x] Je fünf neue Missionen für Getränke, Basteln, Experimente, Fotos und Schwestern
+- [x] Katalog von 75 auf 100 Missionen erweitert; genau 20 je Hauptkategorie
+- [x] Alle neuen Missionen mit konkreten Materialien und mindestens fünf Schritten
+- [x] Getränke mit zwei Varianten und ohne ausgeschlossene Geschmacksbegriffe
+- [x] Experimente mit Forschungsfrage, Vermutung, Beobachtung und konkreter Erklärung
+- [x] Foto- und Schwestern-Missionen mit ihren vollständigen Spezialangaben
+- [x] Sicherheitsangaben für Spülmittel, rohe Eier, Scheren und Dosenkanten ergänzt
+- [x] Typecheck, Lint, 130 Tests, Inhaltsvalidierung und Produktions-Build erfolgreich
+- [ ] Michael und Elena probieren neue Missionen und geben normales Inhaltsfeedback
+
 ### Kompatibilitätskorrektur - Familien-iPad mit iOS 12.5.8
 
 Status: **Abgeschlossen (2026-09-01).** Diese
@@ -351,8 +365,6 @@ positiv beantwortet.
 
 - **Sprint 19 - Cloud-Synchronisation:** Backend-Auswahl, Authentifizierung, Konfliktlösung,
   Datenschutz und Austausch zwischen Geräten.
-- **Sprint 21 - Neue geprüfte Inhalte:** sicherer Import beziehungsweise redaktionelle Freigabe
-  neuer Missionen.
 - **Sprint 22 - Video im Tagebuch:** Aufnahme, Komprimierung, Speicherregeln und
   Synchronisation.
 - **Sprint 23 - Englisch und weitere Sprachen:** vollständige Übersetzungsinfrastruktur und

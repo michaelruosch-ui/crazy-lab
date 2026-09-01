@@ -1,5 +1,14 @@
 # Changelog
 
+## Sprint 21 - 25 neue geprüfte Missionen (2026-09-01)
+
+- Je fünf neue Getränke-, Bastel-, Experiment-, Foto- und Schwestern-Missionen ergänzt.
+- Der Katalog enthält jetzt genau 100 Missionen beziehungsweise 20 pro Hauptkategorie.
+- Neue Getränke besitzen Varianten und strukturierte Geschmacksdaten; Experimente enthalten
+  konkrete Forschungsfragen und Erklärungen; Foto- und Teammissionen ihre Spezialangaben.
+- Materialien, mindestens fünf Handlungsschritte und Sicherheitsinformationen sind vollständig.
+- Automatische Inhaltsvalidierung, Typecheck, Lint, 130 Tests und Produktions-Build erfolgreich.
+
 ## Sprint 20 - Mehrere Profile (2026-09-01)
 
 - Weitere Personen können ohne Passwort ein eigenes Profil mit Forschername und Maskottchen anlegen.

@@ -55,6 +55,9 @@ mobile Bedienung.
 Auf jedem Gerät können mehrere Personen eigene Profile ohne Passwort anlegen und wechseln. Jedes
 Profil besitzt getrennte Tagebücher, Vorschläge, Listen, eigene Missionen, Sicherungsstände und
 Atmosphäre-Einstellungen; Elenas vorhandenes Profil und seine Daten bleiben unverändert erhalten.
+Der redaktionelle Katalog umfasst jetzt 100 Missionen: je 20 Getränke-, Bastel-, Experiment-,
+Foto- und Schwestern-Missionen. Die 25 Ergänzungen aus Sprint 21 besitzen konkrete Materialien,
+Schritte, Sicherheitsangaben und die jeweils benötigten strukturierten Kategoriedaten.
 
 ## Voraussetzungen
 

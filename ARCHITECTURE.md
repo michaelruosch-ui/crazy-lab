@@ -362,6 +362,15 @@ Einkaufsliste, Experimente, eigene Missionen und Sicherungen. Direkte Detailrout
 die Profilzugehörigkeit. Ein nicht fertig eingerichtetes neues Profil bietet immer den Rückweg zu
 einem vorhandenen vollständigen Profil.
 
+## Katalogerweiterung (Sprint 21)
+
+`data/sprint21Missions.ts` enthält 25 statische, versionierte Missionen und wird wie die bisherigen
+Kategoriedateien in `missions.ts` zusammengeführt. Gemeinsame Grundfelder werden über einen
+lokalen Erzeuger konsistent gesetzt; Kategorie-spezifische Materialien, Schritte sowie
+`drinkProfile`, `experimentProfile`, `photoProfile` und `sisterProfile` bleiben explizit. Die
+bestehende Validierung prüft anschließend alle 100 Einträge gemeinsam auf IDs, Pflichtfelder,
+Sicherheitsangaben, Wertebereiche und ausgeschlossene Getränkebegriffe.
+
 ## Erweiterungspunkte für spätere Sprints
 
 - `domain/profile.ts` ist bereits mehrprofilfähig (`Profile`, `profileId` auf jedem

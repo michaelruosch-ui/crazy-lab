@@ -4,6 +4,7 @@ import { additionalCraftMissions } from './craftMissions'
 import { additionalExperimentMissions } from './experimentMissions'
 import { additionalPhotoMissions } from './photoMissions'
 import { additionalSisterMissions } from './sisterMissions'
+import { sprint21Missions } from './sprint21Missions'
 
 /**
  * Statische, versionierte Missionsdaten für Sprint 1.
@@ -388,4 +389,5 @@ export const missions: Mission[] = [
   ...additionalExperimentMissions,
   ...additionalPhotoMissions,
   ...additionalSisterMissions,
+  ...sprint21Missions,
 ]
