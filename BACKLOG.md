@@ -193,6 +193,19 @@ Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
 - [x] IndexedDB-Version 8 und automatische Tests; insgesamt 123 Tests
 - [ ] Michael und Elena testen Erstellen, Kopieren, Bearbeiten und Spielen auf dem iPhone
 
+### Sprint 16 - Labortagebuch vollständig
+
+Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
+
+- [x] Volltextsuche sowie Filter nach Kategorie und Status
+- [x] Bildkarten mit erstem Missionsfoto oder Missionsmotiv und sichtbarem Stempel
+- [x] Eigenen Namen, Notiz, Status und Stempel nachträglich bearbeiten
+- [x] Einzelne gespeicherte Fotos aus einem Eintrag entfernen
+- [x] Tagebucheintrag nur nach klarer Rückfrage endgültig löschen
+- [x] Bis zu zehn statt bisher fünf Fotos pro Foto-Challenge
+- [x] Repository- und UI-Tests ergänzt
+- [ ] Michael und Elena testen Filtern, Bearbeiten und Löschen auf dem iPhone
+
 ## Abgeschlossene Sprints
 
 ### Sprint 4 - Forschernamen, Maskottchen und Geburtstage
@@ -277,8 +290,6 @@ positiv beantwortet.
 
 ### P2 - Übrige Inhalte
 
-- **Sprint 16 - Labortagebuch vollständig:** Filter, Bildkarten, Bearbeiten, Löschen mit
-  Rückfrage, Status, Stempel und maximal zehn Fotos.
 - **Sprint 17 - Musik und Atmosphäre:** missionsabhängige Musik, Countdown, abschaltbare
   Animationen und Barrierefreiheit.
 

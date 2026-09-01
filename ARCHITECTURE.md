@@ -281,6 +281,15 @@ Sicherheitshinweis. `App.tsx` lädt eigene Missionen für `/mission/:missionId` 
 und reicht sie als `missionOverride` in denselben Ablauf wie Katalogmissionen. Damit bleiben
 Einkaufsliste, Schrittmodus, Bewertung und Tagebuch einheitlich.
 
+## Vollständiges Labortagebuch (Sprint 16)
+
+`DiaryPage` filtert die bereits geladenen profilbezogenen Einträge lokal nach Suchtext,
+Hauptkategorie und Status. Die Bildkarte nutzt das erste gespeicherte Foto, sonst weiterhin den
+unveränderlichen Missions-Snapshot. `DiaryEntryDetailPage` schreibt bearbeitbare Anzeigefelder
+über dasselbe Repository zurück; Fotos können einzeln aus `photoDataUrls` entfernt werden.
+`DiaryRepository.removeEntry` ist der einzige Löschpfad und wird erst nach einer sichtbaren
+Browser-Rückfrage aufgerufen. Neue Fotoabschlüsse begrenzen die Liste auf zehn Bilder.
+
 ## Speicherung
 
 IndexedDB, Datenbank `crazylab`, aktuell Version 8 mit neun Object Stores:

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Routes, Route } from 'react-router-dom'
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { IDBFactory } from 'fake-indexeddb'
 import type { DiaryEntry } from '../../domain'
 import { DiaryEntryDetailPage } from './DiaryEntryDetailPage'
@@ -80,5 +80,29 @@ describe('DiaryEntryDetailPage', () => {
 
     const persisted = await indexedDbDiaryRepository.getEntry('entry-1')
     expect(persisted?.rating.wouldRepeat).toBe(true)
+  })
+
+  it('bearbeitet Name, Status und Stempel dauerhaft', async () => {
+    const user = userEvent.setup()
+    renderDetail('entry-1')
+    await user.click(await screen.findByRole('button', { name: '✏️ Eintrag bearbeiten' }))
+    await user.clear(screen.getByLabelText('Eigener Name'))
+    await user.type(screen.getByLabelText('Eigener Name'), 'Vampirtrank')
+    await user.selectOptions(screen.getByLabelText('Status'), 'favorisiert')
+    await user.selectOptions(screen.getByLabelText('Stempel'), 'genial')
+    await user.click(screen.getByRole('button', { name: 'Änderungen speichern' }))
+    const persisted = await indexedDbDiaryRepository.getEntry('entry-1')
+    expect(persisted?.rating.inventionName).toBe('Vampirtrank')
+    expect(persisted?.status).toBe('favorisiert')
+    expect(persisted?.rating.stamp).toBe('genial')
+  })
+
+  it('löscht erst nach einer klaren Rückfrage', async () => {
+    vi.spyOn(window, 'confirm').mockReturnValue(true)
+    const user = userEvent.setup()
+    renderDetail('entry-1')
+    await user.click(await screen.findByRole('button', { name: '🗑️ Eintrag löschen' }))
+    expect(window.confirm).toHaveBeenCalled()
+    expect(await indexedDbDiaryRepository.getEntry('entry-1')).toBeUndefined()
   })
 })

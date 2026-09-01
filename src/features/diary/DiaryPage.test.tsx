@@ -54,4 +54,19 @@ describe('DiaryPage', () => {
 
     expect(await screen.findByRole('button', { name: '🔁 Nochmal machen?' })).toBeInTheDocument()
   })
+
+  it('filtert Einträge nach Suche, Kategorie und Status', async () => {
+    const user = userEvent.setup()
+    render(
+      <MemoryRouter>
+        <DiaryPage />
+      </MemoryRouter>,
+    )
+    await screen.findByText('Der blutrote Schatten-Trank')
+    await user.type(screen.getByRole('searchbox', { name: 'Suchen' }), 'unbekannt')
+    expect(screen.getByText('Keine Einträge passen zu diesen Filtern.')).toBeInTheDocument()
+    await user.clear(screen.getByRole('searchbox', { name: 'Suchen' }))
+    await user.selectOptions(screen.getByLabelText('Kategorie'), 'basteln')
+    expect(screen.getByText('Keine Einträge passen zu diesen Filtern.')).toBeInTheDocument()
+  })
 })

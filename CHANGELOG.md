@@ -1,5 +1,13 @@
 # Changelog
 
+## Sprint 16 - Labortagebuch vollständig (2026-09-01)
+
+- Tagebuch nach Text, Kategorie und Status durchsuchbar und filterbar.
+- Einträge erscheinen als Bildkarten mit erstem Foto oder Missionsmotiv und sichtbarem Stempel.
+- Eigener Name, Notiz, Status und Stempel lassen sich nachträglich bearbeiten.
+- Gespeicherte Fotos können einzeln entfernt werden; Foto-Challenges erlauben bis zu zehn Bilder.
+- Löschen eines Eintrags erfordert eine eindeutige Rückfrage und entfernt ihn erst danach lokal.
+
 ## Sprint 15 - Eigene Missionen (2026-09-01)
 
 - Neuer Startseitenbereich für eigene Missionen mit kindgerechtem Maskottchen-Assistenten.

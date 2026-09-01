@@ -5,6 +5,7 @@ export interface DiaryRepository {
   saveEntry(entry: DiaryEntry): Promise<void>
   getAllEntries(profileId?: string): Promise<DiaryEntry[]>
   getEntry(id: string): Promise<DiaryEntry | undefined>
+  removeEntry(id: string): Promise<void>
 }
 
 export const indexedDbDiaryRepository: DiaryRepository = {
@@ -23,5 +24,9 @@ export const indexedDbDiaryRepository: DiaryRepository = {
   async getEntry(id) {
     const db = await getDb()
     return db.get(DIARY_STORE, id)
+  },
+  async removeEntry(id) {
+    const db = await getDb()
+    await db.delete(DIARY_STORE, id)
   },
 }

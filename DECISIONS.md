@@ -650,3 +650,17 @@ Bewertung und Tagebuch. Sie verlassen das iPhone nicht, ausser als Bestandteil e
 erstellten Sicherung. Der Assistent ist bewusst lokale Formular- und Sicherheitslogik, keine
 behauptete KI und kein Cloud-Dienst. Eine redaktionelle Sicherheitsprüfung ersetzt er nicht;
 Michael bleibt bei ungewöhnlichen Materialien oder Werkzeugen verantwortlich.
+
+## ADR-033: Tagebuchbearbeitung bleibt auf persönliche Anzeigefelder begrenzt
+
+**Status:** Angenommen (Sprint 16, 2026-09-01)
+
+**Entscheidung:** Elena darf eigenen Namen, freie Notiz, Status, Stempel und die Auswahl bereits
+gespeicherter Fotos nachträglich ändern. Missions-Snapshot, Abschlusszeitpunkt und strukturierte
+Bewertungen bleiben unverändert, damit Verlauf und gelernte Empfehlungen nachvollziehbar sind.
+Löschen benötigt eine ausdrückliche Rückfrage. Maximal zehn komprimierte Fotos bleiben erlaubt.
+
+**Konsequenzen:** Das Tagebuch ist flexibel, ohne historische Missionsdaten unbemerkt
+umzuschreiben. Gelöschte Einträge beeinflussen anschließend auch Präferenz- und
+Variantenempfehlungen nicht mehr. Eine Wiederherstellung ist nur über einen vorhandenen lokalen
+Sicherungsstand oder eine Notfallkopie möglich.

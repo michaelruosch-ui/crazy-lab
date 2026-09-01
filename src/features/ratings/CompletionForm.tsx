@@ -59,10 +59,10 @@ export function CompletionForm({
 
   async function addPhotos(files: FileList | null) {
     if (!files) return
-    const remaining = Math.max(0, 5 - photoDataUrls.length)
+    const remaining = Math.max(0, 10 - photoDataUrls.length)
     const selected = Array.from(files).slice(0, remaining)
     const urls = await Promise.all(selected.map(fileToCompressedDataUrl))
-    setPhotoDataUrls((current) => [...current, ...urls].slice(0, 5))
+    setPhotoDataUrls((current) => [...current, ...urls].slice(0, 10))
   }
 
   function toggleAdjustment(tag: AdjustmentTag) {
@@ -186,7 +186,7 @@ export function CompletionForm({
                 onChange={(event) => void addPhotos(event.target.files)}
               />
             </label>
-            <p>{photoDataUrls.length} von höchstens 5 Bildern gewählt</p>
+            <p>{photoDataUrls.length} von höchstens 10 Bildern gewählt</p>
             <div
               className={`completion-form__photo-preview effect-${photoEffect.toLowerCase().replaceAll(' ', '-')} frame-${photoFrame.toLowerCase().replaceAll(' ', '-')}`}
             >
