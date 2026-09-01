@@ -687,8 +687,9 @@ Missionselemente bleiben ohne Ton und Animation vollständig bedienbar.
 **Entscheidung:** Crazy Lab behält genau einen Produktions-Build, dessen JavaScript-Syntax von
 Vite gezielt für Safari 12 erzeugt wird. Direkte Verwendungen von `String.replaceAll` und
 `Array.flat`, die iOS 12 nicht bereitstellt, werden durch semantisch gleichwertige ältere
-Operationen ersetzt. Es gibt weder eine zweite App noch eine abweichende Speicherung für das alte
-iPad.
+Operationen ersetzt. Weil React Router intern weiterhin `Array.flat` verwendet, ergänzt ein kleiner
+Start-Kompatibilitätsbaustein diese Methode ausschliesslich in Browsern, die sie nicht besitzen.
+Es gibt weder eine zweite App noch eine abweichende Speicherung für das alte iPad.
 
 **Konsequenzen:** Das Familien-iPad mit iOS 12.5.8 kann denselben Codepfad starten. Neue iPhones
 behalten alle Funktionen, das gleiche Datenformat und die gleiche lokale IndexedDB; die ältere

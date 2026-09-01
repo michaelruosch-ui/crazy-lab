@@ -340,7 +340,9 @@ Einträge nicht verändern.
 - Vites Produktionsziel ist bewusst `safari12`, weil das vorhandene Familien-iPad nur iOS 12.5.8
   ausführen kann. Es bleibt ein gemeinsamer Build: Vite übersetzt lediglich neuere Syntax zurück;
   Datenmodell, IndexedDB-Repositories und Funktionspfade sind auf alten und neuen Apple-Geräten
-  identisch. Laufzeitmethoden, die Safari 12 nicht besitzt, werden im Quellcode vermieden.
+  identisch. Laufzeitmethoden, die Safari 12 nicht besitzt, werden im Quellcode vermieden. Die
+  von React Router intern benötigte `Array.prototype.flat`-Methode ergänzt `compatibility.ts` nur,
+  wenn der Browser keine eigene Implementierung anbietet.
 
 ## Erweiterungspunkte für spätere Sprints
 

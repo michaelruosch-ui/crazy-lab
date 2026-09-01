@@ -5,7 +5,8 @@
 - Der Produktions-Build wird bis Safari 12 zurückübersetzt, damit Crazy Lab auf dem alten
   Familien-iPad nicht mehr wegen zu neuer JavaScript-Syntax mit schwarzem Bildschirm startet.
 - Nicht verfügbare Laufzeitfunktionen für Fotoklassen und Missionslisten wurden durch gleichwertige
-  kompatible Varianten ersetzt.
+  kompatible Varianten ersetzt; die von der Navigation intern benötigte Listenfunktion wird nur
+  ergänzt, wenn der Browser sie noch nicht selbst besitzt.
 - Moderne iPhones erhalten weiterhin denselben Funktionsumfang, dasselbe Datenformat und dieselbe
   lokale Speicherung; es gibt keine separate alte App und keine Datenübertragung zwischen Geräten.
 - Typecheck, Lint, 128 Tests und Produktions-Build erfolgreich; Sichtprüfung auf dem echten alten

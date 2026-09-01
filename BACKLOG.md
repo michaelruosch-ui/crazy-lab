@@ -227,7 +227,8 @@ Korrektur ist kein vorgezogener Sprint 18: Sie behebt nur den schwarzen Bildschi
 vorhandenen Familiengerät; grössere iPad- und Mac-Layouts bleiben in Sprint 18.
 
 - [x] Produktions-Build gezielt für Safari 12 erzeugen
-- [x] Zwei nicht verfügbare Laufzeitfunktionen (`replaceAll` und `flat`) kompatibel ersetzt
+- [x] Nicht verfügbare Laufzeitfunktionen kompatibel ersetzt; `replaceAll` wird vermieden und
+      `flat` für die intern verwendete Navigationsbibliothek nur auf alten Browsern ergänzt
 - [x] Datenformat, IndexedDB-Speicher, Funktionen und Darstellung neuer iPhones nicht verändert
 - [x] Typecheck, Lint, 128 Tests und Produktions-Build erfolgreich
 - [ ] Laura öffnet die neu veröffentlichte Version auf dem iPad mit iOS 12.5.8 und bestätigt, dass
