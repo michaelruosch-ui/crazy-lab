@@ -178,6 +178,21 @@ Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
 - [x] Inhalts- und UI-Prüfungen; insgesamt über alle Sprints 120 automatische Tests
 - [ ] Michael, Elena und ihre Schwester testen die Missionen auf dem iPhone
 
+### Sprint 15 - Eigene Missionen
+
+Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
+
+- [x] Eigener Bereich „Eigene Missionen“ auf der Startseite
+- [x] Kindgerechter Maskottchen-Assistent statt technischer Datenmaske
+- [x] Titel, Beschreibung, Kategorie, Dauer, Kosten, Materialien und Schritte erfassen
+- [x] Vorhandene und eigene Missionen als Ausgangspunkt kopieren
+- [x] Eigene Missionen später bearbeiten und versioniert speichern
+- [x] Eigene Missionen vollständig spielen, bewerten und im Tagebuch speichern
+- [x] Gelbe und rote Sicherheitsstufen nur mit verständlichem Sicherheitshinweis speichern
+- [x] Eigene Missionen in automatische Sicherungsstände und Notfallkopie aufnehmen
+- [x] IndexedDB-Version 8 und automatische Tests; insgesamt 123 Tests
+- [ ] Michael und Elena testen Erstellen, Kopieren, Bearbeiten und Spielen auf dem iPhone
+
 ## Abgeschlossene Sprints
 
 ### Sprint 4 - Forschernamen, Maskottchen und Geburtstage
@@ -262,8 +277,6 @@ positiv beantwortet.
 
 ### P2 - Übrige Inhalte
 
-- **Sprint 15 - Eigene Missionen:** Assistent des Maskottchens, Erstellen, Kopieren, Bearbeiten
-  und Sicherheitsfelder.
 - **Sprint 16 - Labortagebuch vollständig:** Filter, Bildkarten, Bearbeiten, Löschen mit
   Rückfrage, Status, Stempel und maximal zehn Fotos.
 - **Sprint 17 - Musik und Atmosphäre:** missionsabhängige Musik, Countdown, abschaltbare

@@ -271,9 +271,19 @@ Zeitvorgabe. Die Geheimnisse werden in der Detailansicht bewusst einzeln aufgekl
 Zeit-Challenge aktiviert `StepRunner` im vorgesehenen Schritt denselben getesteten Timer wie
 andere Missionen. Eine freiwillige Teamnotiz wird im Tagebucheintrag gespeichert.
 
+## Eigene Missionen (Sprint 15)
+
+`features/custom-missions` enthält Übersicht und Editor. Der Editor baut aus kindgerechten
+Feldern ein vollständiges `CustomMission`-Objekt; Materialien und Schritte werden zeilenweise
+erfasst. Eine Kopie übernimmt sichtbare Grunddaten der Vorlage, erhält beim Speichern aber eine
+neue ID. Gelbe und rote Entwürfe benötigen vor dem Speichern einen ausreichend konkreten
+Sicherheitshinweis. `App.tsx` lädt eigene Missionen für `/mission/:missionId` aus dem Repository
+und reicht sie als `missionOverride` in denselben Ablauf wie Katalogmissionen. Damit bleiben
+Einkaufsliste, Schrittmodus, Bewertung und Tagebuch einheitlich.
+
 ## Speicherung
 
-IndexedDB, Datenbank `crazylab`, aktuell Version 7 mit acht Object Stores:
+IndexedDB, Datenbank `crazylab`, aktuell Version 8 mit neun Object Stores:
 
 - `diaryEntries` (seit Sprint 1): Key `id`, Indizes `by-profile`, `by-completedAt`.
 - `secretVaultEntries` (seit Sprint 2): Key `id`, Indizes `by-profile`, `by-mission`.
@@ -283,11 +293,12 @@ IndexedDB, Datenbank `crazylab`, aktuell Version 7 mit acht Object Stores:
 - `shoppingListItems` (seit Sprint 9): Key `id`, Indizes `by-profile`, `by-material`.
 - `localBackupSnapshots` (seit Sprint 11): Key `id`, Indizes `by-profile`, `by-createdAt`.
 - `experimentProgress` (seit Sprint 12): Key `id`, Indizes `by-profile`, `by-mission`.
+- `customMissions` (seit Sprint 15): Key `id`, Indizes `by-profile`, `by-updatedAt`.
 
 Zugriff ausschliesslich über je ein Repository-Interface (`DiaryRepository`,
 `SecretVaultRepository`, `HiddenMissionsRepository`, `ProfileRepository`,
-`LabCabinetRepository`, `ShoppingListRepository`, `ExperimentProgressRepository`) in
-`src/storage`, damit
+`LabCabinetRepository`, `ShoppingListRepository`, `ExperimentProgressRepository`,
+`CustomMissionRepository`) in `src/storage`, damit
 spätere
 Erweiterungen (z. B. Cloud-Sync in Sprint 19) die UI nicht verändern müssen. `storage/db.ts`
 kapselt den `upgrade`-Callback so, dass neue Object Stores versionsweise ergänzt werden, ohne

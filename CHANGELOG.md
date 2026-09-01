@@ -1,5 +1,18 @@
 # Changelog
 
+## Sprint 15 - Eigene Missionen (2026-09-01)
+
+- Neuer Startseitenbereich für eigene Missionen mit kindgerechtem Maskottchen-Assistenten.
+- Missionen lassen sich mit Titel, Beschreibung, Kategorie, Dauer, Kosten, Materialien und
+  einzelnen Schritten erfinden und später bearbeiten.
+- Jede Katalogmission und jede eigene Mission kann als Vorlage kopiert werden.
+- Gelbe und rote Entwürfe benötigen zwingend einen konkreten Sicherheitshinweis.
+- Eigene Missionen verwenden den normalen Ablauf mit Einkaufsliste, Schritten, Bewertung und
+  Labortagebuch.
+- Neuer IndexedDB-Store `customMissions` in Version 8; automatische und externe Sicherungen
+  enthalten eigene Missionen.
+- 123 Tests, Typprüfung, Lint, Format und Produktions-Build erfolgreich; Familienabnahme offen.
+
 ## Sprint 14 - Schwestern-Missionen (2026-09-01)
 
 - Katalog auf 15 Schwestern-Missionen mit gemeinsamen Anleitungen ausgebaut.

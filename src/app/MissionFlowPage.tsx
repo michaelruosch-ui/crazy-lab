@@ -9,6 +9,7 @@ import {
   type CompletionRating,
   type DiaryEntry,
   type ExperimentProgress,
+  type Mission,
 } from '../domain'
 import { MissionDetailView } from '../features/missions'
 import { StepRunner } from '../features/mission-run'
@@ -25,16 +26,13 @@ import './MissionFlowPage.css'
 
 interface MissionFlowPageProps {
   missionId: string
+  missionOverride?: Mission
 }
 
 type Phase = 'detail' | 'run' | 'rating'
 type SaveStatus = 'idle' | 'saving' | 'error'
 
-function buildEntry(
-  missionId: string,
-  rating: CompletionRating,
-  mission: NonNullable<ReturnType<typeof getMissionById>>,
-): DiaryEntry {
+function buildEntry(missionId: string, rating: CompletionRating, mission: Mission): DiaryEntry {
   return {
     id: generateId(),
     profileId: DEFAULT_PROFILE.id,
@@ -61,8 +59,8 @@ function describeError(error: unknown): string {
   return String(error)
 }
 
-export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
-  const mission = getMissionById(missionId)
+export function MissionFlowPage({ missionId, missionOverride }: MissionFlowPageProps) {
+  const mission = missionOverride ?? getMissionById(missionId)
   const [phase, setPhase] = useState<Phase>('detail')
   const [saveStatus, setSaveStatus] = useState<SaveStatus>('idle')
   const [pendingRating, setPendingRating] = useState<CompletionRating | null>(null)
@@ -162,6 +160,12 @@ export function MissionFlowPage({ missionId }: MissionFlowPageProps) {
         <div className="mission-flow__secondary-actions">
           <Button variant="ghost" onClick={() => toggleSaved(mission.id)}>
             {savedMissionIds.has(mission.id) ? '🗝️ Gemerkt' : '🗝️ Merken'}
+          </Button>
+          <Button
+            variant="ghost"
+            onClick={() => navigate(`/eigene-missionen/neu?kopie=${mission.id}`)}
+          >
+            🪄 Als eigene Mission kopieren
           </Button>
         </div>
         <BackLink to="/">← Zurück zur Startseite</BackLink>

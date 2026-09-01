@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, Route, useParams } from 'react-router-dom'
 import { MissionFlowPage } from './app/MissionFlowPage'
 import { HomePage, HistoryPage } from './features/missions'
@@ -11,11 +11,33 @@ import { ShoppingListPage } from './features/shopping-list'
 import { DEFAULT_PROFILE } from './domain'
 import { requestPersistentStorage } from './storage/persistentStorage'
 import { useAutomaticSnapshots } from './storage/useAutomaticSnapshots'
+import { indexedDbCustomMissionRepository } from './storage/customMissionRepository'
+import type { CustomMission } from './domain'
+import { CustomMissionEditorPage, CustomMissionsPage } from './features/custom-missions'
 
 function MissionRoute() {
   const { missionId } = useParams<{ missionId: string }>()
+  const [customMission, setCustomMission] = useState<CustomMission | null>()
+
+  useEffect(() => {
+    if (!missionId?.startsWith('mission-eigen-')) {
+      return
+    }
+    void indexedDbCustomMissionRepository
+      .get(missionId)
+      .then((mission) => setCustomMission(mission ?? null))
+  }, [missionId])
+
   if (!missionId) return null
-  return <MissionFlowPage key={missionId} missionId={missionId} />
+  if (missionId.startsWith('mission-eigen-') && customMission === undefined)
+    return <p className="app-loading">Lade Mission...</p>
+  return (
+    <MissionFlowPage
+      key={`${missionId}-${customMission?.contentVersion ?? 'katalog'}`}
+      missionId={missionId}
+      missionOverride={customMission ?? undefined}
+    />
+  )
 }
 
 export function App() {
@@ -44,6 +66,9 @@ export function App() {
       <Route path="/profil" element={<ProfilePage />} />
       <Route path="/laborschrank" element={<LabCabinetPage />} />
       <Route path="/einkaufsliste" element={<ShoppingListPage />} />
+      <Route path="/eigene-missionen" element={<CustomMissionsPage />} />
+      <Route path="/eigene-missionen/neu" element={<CustomMissionEditorPage />} />
+      <Route path="/eigene-missionen/:missionId/bearbeiten" element={<CustomMissionEditorPage />} />
     </Routes>
   )
 }

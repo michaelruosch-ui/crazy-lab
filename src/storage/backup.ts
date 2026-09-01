@@ -6,6 +6,7 @@ import type {
   Profile,
   SecretVaultEntry,
   ShoppingListItem,
+  CustomMission,
 } from '../domain'
 import { indexedDbDiaryRepository } from './diaryRepository'
 import { indexedDbHiddenMissionsRepository } from './hiddenMissionsRepository'
@@ -15,6 +16,7 @@ import { indexedDbLabCabinetRepository } from './labCabinetRepository'
 import { indexedDbShoppingListRepository } from './shoppingListRepository'
 import { clearProfileData } from './db'
 import { indexedDbExperimentProgressRepository } from './experimentProgressRepository'
+import { indexedDbCustomMissionRepository } from './customMissionRepository'
 
 const BACKUP_FORMAT = 'crazylab-backup'
 const BACKUP_VERSION = 1
@@ -30,6 +32,7 @@ export interface BackupData {
   labCabinetItems?: LabCabinetItem[]
   shoppingListItems?: ShoppingListItem[]
   experimentProgress?: ExperimentProgress[]
+  customMissions?: CustomMission[]
 }
 
 /** Liest alle lokalen Daten eines Profils zusammen, um sie als Datei sichern zu können. */
@@ -42,6 +45,7 @@ export async function createBackup(profileId: string): Promise<BackupData> {
     labCabinetItems,
     shoppingListItems,
     experimentProgress,
+    customMissions,
   ] = await Promise.all([
     indexedDbProfileRepository.get(profileId),
     indexedDbDiaryRepository.getAllEntries(profileId),
@@ -50,6 +54,7 @@ export async function createBackup(profileId: string): Promise<BackupData> {
     indexedDbLabCabinetRepository.getAll(profileId),
     indexedDbShoppingListRepository.getAll(profileId),
     indexedDbExperimentProgressRepository.getAll(profileId),
+    indexedDbCustomMissionRepository.getAll(profileId),
   ])
 
   return {
@@ -63,6 +68,7 @@ export async function createBackup(profileId: string): Promise<BackupData> {
     labCabinetItems,
     shoppingListItems,
     experimentProgress,
+    customMissions,
   }
 }
 
@@ -118,6 +124,9 @@ export async function restoreBackup(data: BackupData): Promise<void> {
   }
   for (const progress of data.experimentProgress ?? []) {
     await indexedDbExperimentProgressRepository.save(progress)
+  }
+  for (const mission of data.customMissions ?? []) {
+    await indexedDbCustomMissionRepository.save(mission)
   }
 }
 

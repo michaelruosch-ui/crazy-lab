@@ -8,10 +8,11 @@ import type {
   Profile,
   SecretVaultEntry,
   ShoppingListItem,
+  CustomMission,
 } from '../domain'
 
 const DB_NAME = 'crazylab'
-const DB_VERSION = 7
+const DB_VERSION = 8
 
 export const DIARY_STORE = 'diaryEntries'
 export const SECRET_VAULT_STORE = 'secretVaultEntries'
@@ -21,6 +22,7 @@ export const LAB_CABINET_STORE = 'labCabinetItems'
 export const SHOPPING_LIST_STORE = 'shoppingListItems'
 export const LOCAL_BACKUPS_STORE = 'localBackupSnapshots'
 export const EXPERIMENT_PROGRESS_STORE = 'experimentProgress'
+export const CUSTOM_MISSIONS_STORE = 'customMissions'
 
 interface CrazyLabDB extends DBSchema {
   [DIARY_STORE]: {
@@ -61,6 +63,11 @@ interface CrazyLabDB extends DBSchema {
     key: string
     value: ExperimentProgress
     indexes: { 'by-profile': string; 'by-mission': string }
+  }
+  [CUSTOM_MISSIONS_STORE]: {
+    key: string
+    value: CustomMission
+    indexes: { 'by-profile': string; 'by-updatedAt': string }
   }
 }
 
@@ -108,6 +115,11 @@ function openOnce(): Promise<IDBPDatabase<CrazyLabDB>> {
         const progressStore = db.createObjectStore(EXPERIMENT_PROGRESS_STORE, { keyPath: 'id' })
         progressStore.createIndex('by-profile', 'profileId')
         progressStore.createIndex('by-mission', 'missionId')
+      }
+      if (oldVersion < 8) {
+        const customStore = db.createObjectStore(CUSTOM_MISSIONS_STORE, { keyPath: 'id' })
+        customStore.createIndex('by-profile', 'profileId')
+        customStore.createIndex('by-updatedAt', 'updatedAt')
       }
     },
   })
@@ -164,6 +176,7 @@ export async function clearProfileData(profileId: string): Promise<void> {
       LAB_CABINET_STORE,
       SHOPPING_LIST_STORE,
       EXPERIMENT_PROGRESS_STORE,
+      CUSTOM_MISSIONS_STORE,
     ],
     'readwrite',
   )
@@ -183,6 +196,9 @@ export async function clearProfileData(profileId: string): Promise<void> {
   const progress = tx.objectStore(EXPERIMENT_PROGRESS_STORE)
   for (const key of await progress.index('by-profile').getAllKeys(profileId))
     await progress.delete(key)
+  const customMissions = tx.objectStore(CUSTOM_MISSIONS_STORE)
+  for (const key of await customMissions.index('by-profile').getAllKeys(profileId))
+    await customMissions.delete(key)
   await tx.done
 }
 

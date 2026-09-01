@@ -5,8 +5,8 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich nach der technischen Umsetzung von **Sprint 14**; die
-Familienabnahme der Sprints 11–14 auf Elenas iPhone ist noch offen. Der aktuelle Stand: Beim
+Dieses Repository befindet sich nach der technischen Umsetzung von **Sprint 15**; die
+Familienabnahme der Sprints 11–15 auf Elenas iPhone ist noch offen. Der aktuelle Stand: Beim
 ersten Start wählt man eines von 33 Maskottchen (8 Tierarten in verschiedenen Farbwelten) und
 einen Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf
 Kategorien (Getränke, Basteln, Experimente, Foto-Challenges, Schwestern-Missionen). Jede Mission
@@ -42,6 +42,9 @@ verständlicher Erklärung; mehrtägige Versuche lassen sich pausieren und von d
 fortsetzen. Die 15 Foto-Challenges speichern bis zu fünf verkleinerte Fotos samt Tipps, Rahmen
 und Effekten im Tagebuch. 15 Schwestern-Missionen kombinieren getrennt aufklappbare geheime
 Teilaufgaben, optionale Fünf-Minuten-Challenges und einen gemeinsamen Abschluss.
+Über „Eigene Missionen“ kann Elena mit Hilfe ihres Maskottchens neue Missionen erfinden,
+vorhandene Missionen kopieren und ihre Entwürfe später bearbeiten. Eigene Missionen werden lokal
+gespeichert, wie normale Missionen gespielt und automatisch in Sicherungen aufgenommen.
 
 ## Voraussetzungen
 

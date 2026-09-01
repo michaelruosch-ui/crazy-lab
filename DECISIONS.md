@@ -633,3 +633,20 @@ Zeit-Challenges verwenden den vorhandenen lokalen Missionstimer.
 Login. Die Geheimhaltung ist spielerisch und nicht technisch: Wer absichtlich beide Bereiche
 öffnet, kann beide Aufgaben lesen. Das ist für den Familiengebrauch verständlicher als Profile,
 Passwörter oder eine zweite Geräteverbindung.
+
+## ADR-032: Eigene Missionen nutzen denselben Ablauf wie der redaktionelle Katalog
+
+**Status:** Angenommen (Sprint 15, 2026-09-01)
+
+**Entscheidung:** Eigene Missionen werden profilbezogen als vollständige `Mission`-Objekte mit
+zusätzlichen Erstell- und Änderungszeitpunkten in IndexedDB gespeichert. Der
+Maskottchen-Assistent erzeugt sie aus wenigen verständlichen Feldern; Materialien und Schritte
+werden je Zeile erfasst. Kopieren erzeugt beim Speichern eine neue Mission, Bearbeiten erhöht die
+Inhaltsversion. Gelbe und rote Missionen sind ohne konkreten Sicherheitshinweis nicht speicherbar.
+Fürs Spielen wird die eigene Mission in den bestehenden Missionsablauf eingespeist.
+
+**Konsequenzen:** Eigene Missionen funktionieren ohne zweite Ausführungslogik mit Einkaufsliste,
+Bewertung und Tagebuch. Sie verlassen das iPhone nicht, ausser als Bestandteil einer ausdrücklich
+erstellten Sicherung. Der Assistent ist bewusst lokale Formular- und Sicherheitslogik, keine
+behauptete KI und kein Cloud-Dienst. Eine redaktionelle Sicherheitsprüfung ersetzt er nicht;
+Michael bleibt bei ungewöhnlichen Materialien oder Werkzeugen verantwortlich.

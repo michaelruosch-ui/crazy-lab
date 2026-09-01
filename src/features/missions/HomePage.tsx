@@ -147,6 +147,9 @@ export function HomePage() {
       ))}
 
       <nav className="home-page__nav">
+        <Link to="/eigene-missionen" className="home-page__nav-link">
+          ✨ Eigene Missionen
+        </Link>
         <Link to="/einkaufsliste" className="home-page__nav-link">
           🛒 Einkaufsliste
         </Link>
