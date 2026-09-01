@@ -54,10 +54,23 @@ body {
 
 #root {
   min-height: 100svh;
+  width: 100%;
   max-width: 560px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+}
+
+@media (min-width: 700px) {
+  #root {
+    max-width: 860px;
+  }
+}
+
+@media (min-width: 900px) {
+  #root {
+    max-width: 1440px;
+  }
 }
 
 h1,

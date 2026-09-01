@@ -5,8 +5,8 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich nach der technischen Umsetzung von **Sprint 17**; die
-Familienabnahme der Sprints 11–17 auf Elenas iPhone ist noch offen. Der aktuelle Stand: Beim
+Dieses Repository befindet sich nach der technischen Umsetzung von **Sprint 18**; die
+Familienabnahme der Sprints 11–18 auf den Familiengeräten ist noch offen. Der aktuelle Stand: Beim
 ersten Start wählt man eines von 33 Maskottchen (8 Tierarten in verschiedenen Farbwelten) und
 einen Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf
 Kategorien (Getränke, Basteln, Experimente, Foto-Challenges, Schwestern-Missionen). Jede Mission
@@ -49,6 +49,9 @@ Das Labortagebuch bietet Suche, Filter, Bildkarten und eine sichere Bearbeitung 
 und bis zu zehn Fotos. Missionen starten mit einem überspringbaren Countdown und können je nach
 Kategorie eine lokal erzeugte Labormusik abspielen. Musik und Animationen sind im Profil
 abschaltbar; die iPhone-Einstellung „Bewegung reduzieren“ wird respektiert.
+Auf iPads nutzt Crazy Lab den zusätzlichen Platz mit mehrspaltigen Missions- und Tagebuchkarten;
+auf dem Mac ergänzt eine feste seitliche Labornavigation die weiterhin vollständig erhaltene
+mobile Bedienung.
 
 ## Voraussetzungen
 

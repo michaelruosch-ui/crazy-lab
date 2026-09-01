@@ -150,3 +150,10 @@
 .profile-page__backup-message--error {
   color: var(--color-danger);
 }
+
+@media (min-width: 700px) {
+  .profile-page {
+    width: min(100%, 840px);
+    padding: 28px;
+  }
+}

@@ -137,16 +137,18 @@ export function HomePage() {
         </section>
       )}
 
-      {CATEGORY_SECTIONS.map(({ category, title }) => (
-        <MissionSection
-          key={category}
-          title={title}
-          missions={categorySuggestions.get(category) ?? []}
-          savedMissionIds={savedMissionIds}
-          onToggleSave={toggleSaved}
-          onHide={hide}
-        />
-      ))}
+      <div className="home-page__categories">
+        {CATEGORY_SECTIONS.map(({ category, title }) => (
+          <MissionSection
+            key={category}
+            title={title}
+            missions={categorySuggestions.get(category) ?? []}
+            savedMissionIds={savedMissionIds}
+            onToggleSave={toggleSaved}
+            onHide={hide}
+          />
+        ))}
+      </div>
 
       <nav className="home-page__nav">
         <Link to="/eigene-missionen" className="home-page__nav-link">

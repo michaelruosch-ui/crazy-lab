@@ -696,3 +696,16 @@ behalten alle Funktionen, das gleiche Datenformat und die gleiche lokale Indexed
 Ausgabesyntax vergrössert das komprimierte Programmpaket nur geringfügig. Jedes Gerät besitzt
 weiterhin einen getrennten lokalen Datenspeicher. Die automatischen Prüfungen decken die gemeinsame
 Anwendungslogik ab; die Darstellung auf dem echten alten iPad muss die Familie einmal bestätigen.
+
+## ADR-036: Responsive Erweiterung statt eigener Tablet-App
+
+**Status:** Angenommen (Sprint 18, 2026-09-01)
+
+**Entscheidung:** Crazy Lab bleibt eine einzige Web-App. Ab Tabletbreite ordnen CSS-Raster
+Missions- und Tagebuchkarten mehrspaltig an; ab 900 Pixeln ergänzt `AppShell` eine feste
+Seitennavigation. Unterhalb dieser Schwelle bleibt die bestehende iPhone-Navigation unverändert.
+
+**Konsequenzen:** Alle Geräte verwenden dieselben Komponenten, Routen, Daten und Tests. Es gibt
+keine zweite Tablet-Version und keine Gefahr auseinanderlaufender Funktionen. Das alte iPad erhält
+dieselben responsiven Regeln, soweit seine Bildschirmbreite sie auslöst; moderne iPhones werden
+weder funktional noch in ihrer vertrauten einspaltigen Darstellung eingeschränkt.

@@ -1,5 +1,13 @@
 # Changelog
 
+## Sprint 18 - iPad- und Mac-Optimierung (2026-09-01)
+
+- Das bewährte einspaltige iPhone-Layout bleibt unverändert erhalten.
+- Auf iPads erscheinen Missionskategorien und Tagebucheinträge in mehreren Spalten.
+- Auf Mac und grossen iPads ist eine feste seitliche Labornavigation verfügbar.
+- Profil- und Inhaltsseiten nutzen breitere Bildschirme kontrolliert, ohne unlesbar lange Zeilen.
+- Safari 12 bleibt unterstützt; 128 Tests, Typecheck, Lint und Produktions-Build erfolgreich.
+
 ## Kompatibilitätskorrektur für iOS 12.5.8 (2026-09-01)
 
 - Der Produktions-Build wird bis Safari 12 zurückübersetzt, damit Crazy Lab auf dem alten

@@ -344,6 +344,14 @@ Einträge nicht verändern.
   von React Router intern benötigte `Array.prototype.flat`-Methode ergänzt `compatibility.ts` nur,
   wenn der Browser keine eigene Implementierung anbietet.
 
+## Responsive App-Hülle (Sprint 18)
+
+`AppShell` umschliesst alle Routen nach dem Onboarding. Unter 900 Pixeln bleibt die Hülle
+unsichtbar und die bestehende mobile Seitennavigation vollständig erhalten. Ab 900 Pixeln stellt
+sie eine feste linke Navigation bereit. Die Startseite wechselt ab 700 Pixeln auf zwei und ab
+1100 Pixeln auf drei Missionsspalten; das Tagebuch folgt mit zwei beziehungsweise drei Spalten.
+Die fachlichen Komponenten und Speicherpfade bleiben unabhängig von der Bildschirmgrösse gleich.
+
 ## Erweiterungspunkte für spätere Sprints
 
 - `domain/profile.ts` ist bereits mehrprofilfähig (`Profile`, `profileId` auf jedem

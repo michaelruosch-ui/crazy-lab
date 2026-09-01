@@ -220,9 +220,22 @@ Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
 - [x] Automatische Tests für Countdown und gespeicherte Einstellungen
 - [ ] Michael und Elena testen Lautstärke, Countdown und reduzierte Bewegung auf dem iPhone
 
+### Sprint 18 - iPad- und Mac-Optimierung
+
+Status: **Technisch umgesetzt (2026-09-01), Familienabnahme der grösseren Layouts offen.**
+
+- [x] iPhone bleibt bei der bewährten einspaltigen Bedienung
+- [x] iPads zeigen Missionskategorien und Tagebucheinträge platzsparend in mehreren Spalten
+- [x] Mac und grosse iPads erhalten eine feste seitliche Navigation
+- [x] Inhaltsseiten nutzen auf breiten Bildschirmen mehr Platz, ohne überlange Textzeilen
+- [x] Touch-Ziele und mobile Navigation bleiben vollständig erhalten
+- [x] Safari-12-Unterstützung des alten Familien-iPads bleibt aktiv
+- [x] Typecheck, Lint, 128 Tests und Produktions-Build erfolgreich
+- [ ] Michael prüft die grössere Darstellung gelegentlich auf iPad oder Mac
+
 ### Kompatibilitätskorrektur - Familien-iPad mit iOS 12.5.8
 
-Status: **Technisch umgesetzt (2026-09-01), Familienabnahme auf dem alten iPad offen.** Diese
+Status: **Abgeschlossen (2026-09-01).** Diese
 Korrektur ist kein vorgezogener Sprint 18: Sie behebt nur den schwarzen Bildschirm auf dem bereits
 vorhandenen Familiengerät; grössere iPad- und Mac-Layouts bleiben in Sprint 18.
 
@@ -231,8 +244,8 @@ vorhandenen Familiengerät; grössere iPad- und Mac-Layouts bleiben in Sprint 18
       `flat` für die intern verwendete Navigationsbibliothek nur auf alten Browsern ergänzt
 - [x] Datenformat, IndexedDB-Speicher, Funktionen und Darstellung neuer iPhones nicht verändert
 - [x] Typecheck, Lint, 128 Tests und Produktions-Build erfolgreich
-- [ ] Laura öffnet die neu veröffentlichte Version auf dem iPad mit iOS 12.5.8 und bestätigt, dass
-      statt des schwarzen Bildschirms die Profilauswahl erscheint
+- [x] Michael hat bestätigt, dass die neu veröffentlichte Version auf dem iPad mit iOS 12.5.8
+      statt des schwarzen Bildschirms korrekt startet
 
 ## Abgeschlossene Sprints
 
@@ -320,9 +333,6 @@ positiv beantwortet.
 
 ### P3 - Plattform und Veröffentlichung
 
-- **Sprint 18 - iPad- und Mac-Optimierung:** responsive Navigation, grössere Layouts und
-  Installationsprüfung. Die reine Safari-12-Startkompatibilität des Familien-iPads wurde als
-  Fehlerkorrektur bereits vorgezogen; Layoutoptimierungen bleiben hier.
 - **Sprint 19 - Cloud-Synchronisation:** Backend-Auswahl, Authentifizierung, Konfliktlösung,
   Datenschutz und Austausch zwischen Geräten.
 - **Sprint 20 - Mehrere Profile:** Laura und weitere Personen mit getrennten Tagebüchern,

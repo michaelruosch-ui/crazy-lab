@@ -15,6 +15,7 @@ import { indexedDbCustomMissionRepository } from './storage/customMissionReposit
 import type { CustomMission } from './domain'
 import { CustomMissionEditorPage, CustomMissionsPage } from './features/custom-missions'
 import { useAtmosphereSettings } from './features/atmosphere'
+import { AppShell } from './components/AppShell'
 
 function MissionRoute() {
   const { missionId } = useParams<{ missionId: string }>()
@@ -62,18 +63,23 @@ export function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/mission/:missionId" element={<MissionRoute />} />
-      <Route path="/geheimfach" element={<SecretVaultPage />} />
-      <Route path="/verlauf" element={<HistoryPage />} />
-      <Route path="/diary" element={<DiaryPage />} />
-      <Route path="/diary/:entryId" element={<DiaryEntryDetailPage />} />
-      <Route path="/profil" element={<ProfilePage />} />
-      <Route path="/laborschrank" element={<LabCabinetPage />} />
-      <Route path="/einkaufsliste" element={<ShoppingListPage />} />
-      <Route path="/eigene-missionen" element={<CustomMissionsPage />} />
-      <Route path="/eigene-missionen/neu" element={<CustomMissionEditorPage />} />
-      <Route path="/eigene-missionen/:missionId/bearbeiten" element={<CustomMissionEditorPage />} />
+      <Route element={<AppShell />}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/mission/:missionId" element={<MissionRoute />} />
+        <Route path="/geheimfach" element={<SecretVaultPage />} />
+        <Route path="/verlauf" element={<HistoryPage />} />
+        <Route path="/diary" element={<DiaryPage />} />
+        <Route path="/diary/:entryId" element={<DiaryEntryDetailPage />} />
+        <Route path="/profil" element={<ProfilePage />} />
+        <Route path="/laborschrank" element={<LabCabinetPage />} />
+        <Route path="/einkaufsliste" element={<ShoppingListPage />} />
+        <Route path="/eigene-missionen" element={<CustomMissionsPage />} />
+        <Route path="/eigene-missionen/neu" element={<CustomMissionEditorPage />} />
+        <Route
+          path="/eigene-missionen/:missionId/bearbeiten"
+          element={<CustomMissionEditorPage />}
+        />
+      </Route>
     </Routes>
   )
 }
