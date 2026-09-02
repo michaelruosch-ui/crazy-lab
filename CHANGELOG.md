@@ -1,13 +1,23 @@
 # Changelog
 
+## Teilbare eigene Missionen (2026-09-02)
+
+- Eigene Missionen erhalten den Button „Mission teilen“ und öffnen auf unterstützten iPhones den
+  normalen Teilen-Dialog; als Rückfall wird der Link kopiert beziehungsweise sichtbar angeboten.
+- Der Link enthält nur geprüfte Missionsdaten, jedoch keine Profil-ID, Namen, Fotos oder
+  Tagebuchdaten und benötigt weder Konto noch Cloud.
+- Empfangende Personen sehen Beschreibung, Kategorie, Dauer, Materialien, Schritte und
+  Sicherheitshinweise, bevor „Mission in mein Profil importieren“ eine neue lokale Kopie speichert.
+- Beschädigte, unvollständige und übergrosse Links werden ohne Speicherung abgewiesen.
+- Typecheck, Lint, 136 Tests, Produktions-Build und mobile Sichtprüfung erfolgreich.
+
 ## Familienabnahme und neues Feedback (2026-09-02)
 
 - Michael hat die offenen Familienabnahmen der Sprints 11–22 als erfolgreich bestätigt.
 - Das App-Symbol ist bereits korrigiert und wird nicht mehr als offene Idee geführt.
 - Neu im Backlog: eigene Missionen teilen beziehungsweise veröffentlichen, Missionen passend zum
   vorhandenen Laborschrank und ein unverwechselbares Bild für jede Mission.
-- Für das Teilen bleibt die Produktentscheidung zwischen privatem Import-Link ohne Cloud und einer
-- Nachtrag: Michael hat den privaten Import-Link gewählt. Eine öffentliche Galerie, Cloud und
+- Michael hat den privaten Import-Link gewählt. Eine öffentliche Galerie, Cloud und
   Benutzerkonten sind dafür ausdrücklich nicht vorgesehen.
 
 ## Sprint 22 - Fotos und Drei-Sekunden-Video (2026-09-01)

@@ -13,7 +13,11 @@ import { requestPersistentStorage } from './storage/persistentStorage'
 import { useAutomaticSnapshots } from './storage/useAutomaticSnapshots'
 import { indexedDbCustomMissionRepository } from './storage/customMissionRepository'
 import type { CustomMission } from './domain'
-import { CustomMissionEditorPage, CustomMissionsPage } from './features/custom-missions'
+import {
+  CustomMissionEditorPage,
+  CustomMissionsPage,
+  SharedMissionImportPage,
+} from './features/custom-missions'
 import { useAtmosphereSettings } from './features/atmosphere'
 import { AppShell } from './components/AppShell'
 import { indexedDbProfileRepository } from './storage/profileRepository'
@@ -94,6 +98,7 @@ export function App() {
         <Route path="/einkaufsliste" element={<ShoppingListPage />} />
         <Route path="/eigene-missionen" element={<CustomMissionsPage />} />
         <Route path="/eigene-missionen/neu" element={<CustomMissionEditorPage />} />
+        <Route path="/mission-import" element={<SharedMissionImportPage />} />
         <Route
           path="/eigene-missionen/:missionId/bearbeiten"
           element={<CustomMissionEditorPage />}

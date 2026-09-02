@@ -281,6 +281,19 @@ Sicherheitshinweis. `App.tsx` lädt eigene Missionen für `/mission/:missionId` 
 und reicht sie als `missionOverride` in denselben Ablauf wie Katalogmissionen. Damit bleiben
 Einkaufsliste, Schrittmodus, Bewertung und Tagebuch einheitlich.
 
+## Teilbare eigene Missionen
+
+`domain/missionSharing.ts` bildet eine eigene Mission auf ein versioniertes, minimales
+Transportformat ab. Profil-ID, lokale Missions-ID, Zeitstempel, Fotos und Tagebuchdaten werden
+nicht übernommen. Das JSON wird UTF-8-fähig als Base64URL im Fragment-Link transportiert, sodass
+kein Server die Mission empfängt. Der Decoder begrenzt Länge, Listen, Texte, Zahlen und erlaubte
+Werte, bevor Daten die Oberfläche erreichen.
+
+`CustomMissionsPage` verwendet auf unterstützten Geräten den nativen Teilen-Dialog und fällt sonst
+auf Zwischenablage beziehungsweise sichtbares Kopieren zurück. `/mission-import` zeigt alle für
+eine Entscheidung wichtigen Inhalte. Erst die Bestätigung erzeugt mit `generateId()` eine neue
+`CustomMission` im aktiven Profil; Absender-ID und spätere Änderungen bleiben vollständig getrennt.
+
 ## Vollständiges Labortagebuch (Sprint 16)
 
 `DiaryPage` filtert die bereits geladenen profilbezogenen Einträge lokal nach Suchtext,

@@ -387,10 +387,6 @@ positiv beantwortet.
 
 ## Unpriorisierte Ideen
 
-- **Eigene Mission teilen/veröffentlichen:** Produktentscheidung am 2026-09-02 getroffen:
-  Crazy Lab erzeugt einen teilbaren Link. Die empfangende Person sieht Titel, Inhalt und
-  Sicherheitshinweise zuerst und importiert die Mission bewusst ins eigene Profil. Kein Konto,
-  keine Cloud und keine öffentliche Galerie. Umsetzung noch zu priorisieren.
 - **Missionen nur mit vorhandenen Dingen:** Button „Was kann ich mit meinem Laborschrank machen?“
   zeigt Missionen, deren Pflichtmaterialien vollständig vorhanden sind. Besonders relevant für
   Getränke, Basteln und Experimente; Foto- und Schwestern-Missionen werden nach denselben Regeln
@@ -398,3 +394,12 @@ positiv beantwortet.
 - **Einzigartige Missionsbilder:** Alle 100 Katalogmissionen sowie neue Missionen sollen ein
   eigenes kreatives Bild im bestehenden Crazy-Lab-Stil erhalten; kein Motiv darf von zwei
   Missionen gemeinsam verwendet werden.
+
+## Umgesetzte Backlog-Ideen
+
+- [x] **Eigene Mission teilen/veröffentlichen (2026-09-02):** „Mission teilen“ erzeugt einen
+      privaten Import-Link über den nativen Teilen-Dialog. Empfänger sehen Titel, Inhalt,
+      Materialien, Schritte und Sicherheit vorab und speichern erst nach bewusster Bestätigung eine
+      neue Kopie im aktiven Profil. Profil-ID, Name, Fotos und Tagebuchdaten sind nicht enthalten;
+      kein Konto, keine Cloud und keine öffentliche Galerie. Ungültige Links werden abgewiesen.
+      Typecheck, Lint, 136 Tests, Produktions-Build und mobile Sichtprüfung erfolgreich.

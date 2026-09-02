@@ -756,7 +756,7 @@ Video muss in der Kamera kürzer neu aufgenommen werden.
 
 ## ADR-040: Eigene Missionen werden per geprüftem Import-Link geteilt
 
-**Status:** Angenommen (Produktentscheidung, 2026-09-02; Umsetzung noch offen)
+**Status:** Angenommen und umgesetzt (2026-09-02)
 
 **Entscheidung:** „Veröffentlichen“ erzeugt für eine eigene Mission einen teilbaren Link. Die
 empfangende Crazy-Lab-App zeigt Titel, Beschreibung, Materialien, Schritte und Sicherheitshinweise

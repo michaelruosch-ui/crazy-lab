@@ -1,10 +1,71 @@
 .custom-missions-page,
-.custom-mission-editor {
+.custom-mission-editor,
+.shared-mission-page {
   display: flex;
   flex-direction: column;
   gap: 16px;
   padding: 16px;
   padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+}
+
+.custom-missions-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.custom-missions-page__message,
+.shared-mission-page__notice,
+.shared-mission-page__privacy {
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: rgba(35, 230, 200, 0.12);
+  font-weight: 800;
+}
+
+.shared-mission-page__eyebrow {
+  margin: 0;
+  color: var(--color-teal);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.shared-mission-page__card {
+  padding: 18px;
+  border: 2px solid rgba(35, 230, 200, 0.4);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-card);
+}
+
+.shared-mission-page__card h2 {
+  margin-top: 0;
+}
+
+.shared-mission-page__card dl {
+  display: grid;
+  gap: 8px;
+}
+
+.shared-mission-page__card dl div {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 8px;
+}
+
+.shared-mission-page__card dt {
+  font-weight: 900;
+}
+
+.shared-mission-page__card dd {
+  margin: 0;
+}
+
+.shared-mission-page__safety {
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 190, 45, 0.15);
 }
 
 .custom-missions-page__create {

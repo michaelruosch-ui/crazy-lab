@@ -44,7 +44,10 @@ und Effekten im Tagebuch. 15 Schwestern-Missionen kombinieren getrennt aufklappb
 Teilaufgaben, optionale Fünf-Minuten-Challenges und einen gemeinsamen Abschluss.
 Über „Eigene Missionen“ kann Elena mit Hilfe ihres Maskottchens neue Missionen erfinden,
 vorhandene Missionen kopieren und ihre Entwürfe später bearbeiten. Eigene Missionen werden lokal
-gespeichert, wie normale Missionen gespielt und automatisch in Sicherungen aufgenommen.
+gespeichert, wie normale Missionen gespielt und automatisch in Sicherungen aufgenommen. Mit
+„Mission teilen“ entsteht ohne Konto oder Cloud ein privater Link. Die empfangende Crazy-Lab-App
+zeigt Inhalt, Materialien, Schritte und Sicherheit zuerst an und speichert erst nach ausdrücklicher
+Bestätigung eine unabhängige Kopie im aktiven Profil.
 Das Labortagebuch bietet Suche, Filter, Bildkarten und eine sichere Bearbeitung samt Löschrückfrage
 und bis zu zehn Fotos. Missionen starten mit einem überspringbaren Countdown und können je nach
 Kategorie eine lokal erzeugte Labormusik abspielen. Musik und Animationen sind im Profil
