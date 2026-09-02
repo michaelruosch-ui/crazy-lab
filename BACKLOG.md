@@ -387,10 +387,10 @@ positiv beantwortet.
 
 ## Unpriorisierte Ideen
 
-- **Eigene Mission teilen/veröffentlichen:** Zwei Produktvarianten sind offen. Empfohlen ist ein
-  teilbarer Link, den eine andere Crazy-Lab-Installation bewusst importiert; das benötigt weder
-  Konto noch Cloud. Eine öffentlich durchsuchbare Galerie benötigt dagegen einen zentralen Dienst,
-  Moderation und eine erneute Datenschutzentscheidung. Entscheidung durch Michael offen.
+- **Eigene Mission teilen/veröffentlichen:** Produktentscheidung am 2026-09-02 getroffen:
+  Crazy Lab erzeugt einen teilbaren Link. Die empfangende Person sieht Titel, Inhalt und
+  Sicherheitshinweise zuerst und importiert die Mission bewusst ins eigene Profil. Kein Konto,
+  keine Cloud und keine öffentliche Galerie. Umsetzung noch zu priorisieren.
 - **Missionen nur mit vorhandenen Dingen:** Button „Was kann ich mit meinem Laborschrank machen?“
   zeigt Missionen, deren Pflichtmaterialien vollständig vorhanden sind. Besonders relevant für
   Getränke, Basteln und Experimente; Foto- und Schwestern-Missionen werden nach denselben Regeln

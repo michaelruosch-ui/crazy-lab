@@ -7,7 +7,8 @@
 - Neu im Backlog: eigene Missionen teilen beziehungsweise veröffentlichen, Missionen passend zum
   vorhandenen Laborschrank und ein unverwechselbares Bild für jede Mission.
 - Für das Teilen bleibt die Produktentscheidung zwischen privatem Import-Link ohne Cloud und einer
-  öffentlichen, zentral moderierten Galerie offen.
+- Nachtrag: Michael hat den privaten Import-Link gewählt. Eine öffentliche Galerie, Cloud und
+  Benutzerkonten sind dafür ausdrücklich nicht vorgesehen.
 
 ## Sprint 22 - Fotos und Drei-Sekunden-Video (2026-09-01)
 

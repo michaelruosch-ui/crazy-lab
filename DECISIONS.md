@@ -753,3 +753,17 @@ Nutzer bewusst geöffneten Kamera beziehungsweise Mediathek. Medien bleiben prof
 automatisch in Sicherungen enthalten. Daten-URLs benötigen mehr Speicher als reine Texte; die sehr
 kurze Dauer, Dateigrenze und ein Video pro Eintrag begrenzen das Risiko. Ein abgelehntes längeres
 Video muss in der Kamera kürzer neu aufgenommen werden.
+
+## ADR-040: Eigene Missionen werden per geprüftem Import-Link geteilt
+
+**Status:** Angenommen (Produktentscheidung, 2026-09-02; Umsetzung noch offen)
+
+**Entscheidung:** „Veröffentlichen“ erzeugt für eine eigene Mission einen teilbaren Link. Die
+empfangende Crazy-Lab-App zeigt Titel, Beschreibung, Materialien, Schritte und Sicherheitshinweise
+vor dem Import an. Erst eine bewusste Bestätigung speichert eine eigene Kopie im aktiven Profil.
+Eine öffentliche Galerie, Benutzerkonten und ein zentraler Missionsdienst werden nicht gebaut.
+
+**Konsequenzen:** Teilen funktioniert ohne laufende Kosten und ohne Speicherung von Kinderinhalten
+auf einem Server. Der Link selbst enthält die für den Import benötigten Missionsdaten und darf
+daher nur bewusst an gewünschte Personen geschickt werden. Importierte Missionen erhalten eine
+eigene lokale ID, damit spätere Änderungen des Absenders nichts beim Empfänger überschreiben.
