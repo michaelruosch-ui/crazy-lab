@@ -66,4 +66,20 @@ describe('App', () => {
       screen.getByRole('button', { name: 'Alles bereit für die Mission?' }),
     ).toBeInTheDocument()
   })
+
+  it('wechselt die Sprache oben in der App und speichert sie im aktiven Profil', async () => {
+    await seedCompletedProfile()
+    const user = userEvent.setup()
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <App />
+      </MemoryRouter>,
+    )
+
+    await user.selectOptions(await screen.findByLabelText('Sprache'), 'en')
+
+    expect(await screen.findByLabelText('Language')).toHaveValue('en')
+    expect(screen.getByLabelText('Lab navigation')).toBeInTheDocument()
+    expect((await indexedDbProfileRepository.get('elena'))?.language).toBe('en')
+  })
 })

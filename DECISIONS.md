@@ -767,3 +767,18 @@ Eine öffentliche Galerie, Benutzerkonten und ein zentraler Missionsdienst werde
 auf einem Server. Der Link selbst enthält die für den Import benötigten Missionsdaten und darf
 daher nur bewusst an gewünschte Personen geschickt werden. Importierte Missionen erhalten eine
 eigene lokale ID, damit spätere Änderungen des Absenders nichts beim Empfänger überschreiben.
+
+## ADR-041: Sprache gehört zum Profil und wird über eine Weltkugel gewählt
+
+**Status:** Angenommen; Sprint 23 in Arbeit (2026-09-02)
+
+**Entscheidung:** Crazy Lab unterstützt zunächst Deutsch, Englisch, Französisch und Spanisch.
+Deutsch bleibt für vorhandene Profile und fehlende Übersetzungen der Standard. Die Auswahl wird
+pro Profil gespeichert und ist sowohl kompakt über eine Weltkugel oben in der App als auch
+ausführlich auf der Profilseite erreichbar. Länderflaggen werden vermieden, weil Sprachen nicht
+eindeutig zu einzelnen Ländern gehören.
+
+**Konsequenzen:** Mehrere Personen auf demselben Gerät können unterschiedliche Sprachen verwenden,
+ohne ihre übrigen Daten zu vermischen. Die Umstellung reagiert sofort und benötigt keine Cloud.
+Sprint 23 gilt erst nach Übersetzung der gesamten Bedienoberfläche und aller redaktionellen
+Missionsinhalte als abgeschlossen; nutzergenerierte eigene Missionen bleiben in ihrer Eingabesprache.

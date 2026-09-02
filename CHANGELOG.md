@@ -1,5 +1,15 @@
 # Changelog
 
+## Sprint 23 - Sprachgrundlage (in Arbeit, 2026-09-02)
+
+- Deutsch, Englisch, Französisch und Spanisch als profilbezogene App-Sprachen eingeführt.
+- Eine kompakte Weltkugel-Auswahl ist oben in jeder App-Seite erreichbar; dieselbe Einstellung
+  steht ausführlich im Profil.
+- Vorhandene Profile bleiben ohne Migration auf Deutsch; jedes Profil besitzt seine eigene Wahl.
+- Die feste Seitennavigation reagiert sofort in allen vier Sprachen.
+- Die vollständige Übersetzung aller übrigen Oberflächen und der 100 Missionen bleibt offen;
+  Sprint 23 ist deshalb ausdrücklich noch nicht abgeschlossen.
+
 ## Teilbare eigene Missionen (2026-09-02)
 
 - Eigene Missionen erhalten den Button „Mission teilen“ und öffnen auf unterstützten iPhones den

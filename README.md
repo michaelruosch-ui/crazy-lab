@@ -58,6 +58,10 @@ mobile Bedienung.
 Auf jedem Gerät können mehrere Personen eigene Profile ohne Passwort anlegen und wechseln. Jedes
 Profil besitzt getrennte Tagebücher, Vorschläge, Listen, eigene Missionen, Sicherungsstände und
 Atmosphäre-Einstellungen; Elenas vorhandenes Profil und seine Daten bleiben unverändert erhalten.
+Sprint 23 führt derzeit eine profilbezogene Sprachwahl für Deutsch, Englisch, Französisch und
+Spanisch ein. Sie ist über das Weltkugel-Symbol oben sowie im Profil erreichbar; vorhandene
+Profile bleiben auf Deutsch. Die Navigation ist bereits übersetzt, die vollständige Oberfläche
+und der Missionskatalog befinden sich noch in Übersetzung.
 Der redaktionelle Katalog umfasst jetzt 100 Missionen: je 20 Getränke-, Bastel-, Experiment-,
 Foto- und Schwestern-Missionen. Die 25 Ergänzungen aus Sprint 21 besitzen konkrete Materialien,
 Schritte, Sicherheitsangaben und die jeweils benötigten strukturierten Kategoriedaten.

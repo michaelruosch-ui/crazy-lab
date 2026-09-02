@@ -2,6 +2,7 @@
  * String-Typ statt einer Union in `domain`, damit der Katalog (33 Entwürfe, siehe Sprint-4-
  * Familienfeedback) frei erweiterbar bleibt, ohne die Domänenschicht anzufassen. */
 export type MascotId = string
+export type AppLanguage = 'de' | 'en' | 'fr' | 'es'
 
 export interface Birthday {
   id: string
@@ -16,6 +17,8 @@ export interface Profile {
   researcherName: string
   mascotVariant: MascotId
   birthdays: Birthday[]
+  /** Fehlt bei bestehenden Profilen und bedeutet dann weiterhin Deutsch. */
+  language?: AppLanguage
   createdAt: string
   /** Fehlt, solange das Onboarding (Maskottchen + Forschername) noch nicht abgeschlossen ist. */
   onboardingCompletedAt?: string

@@ -13,6 +13,7 @@ import { useActiveProfileId } from './useActiveProfile'
 import { indexedDbProfileRepository } from '../../storage/profileRepository'
 import './ProfilePage.css'
 import { useAtmosphereSettings } from '../atmosphere'
+import { LANGUAGE_OPTIONS, useLanguage } from '../../i18n'
 
 type BackupStatus = 'idle' | 'busy' | 'success' | 'error'
 
@@ -39,6 +40,7 @@ export function ProfilePage() {
   const [snapshots, setSnapshots] = useState<LocalBackupSnapshot[]>([])
   const { settings: atmosphereSettings, update: updateAtmosphere } =
     useAtmosphereSettings(activeProfileId)
+  const { language, t, setLanguage } = useLanguage()
 
   useEffect(() => {
     void getLocalSnapshots(activeProfileId).then(setSnapshots)
@@ -189,6 +191,23 @@ export function ProfilePage() {
   return (
     <div className="profile-page">
       <h1>👤 Dein Profil</h1>
+
+      <section>
+        <h2>{t('profileLanguageTitle')}</h2>
+        <p className="profile-page__hint">{t('profileLanguageHint')}</p>
+        <select
+          className="profile-page__input"
+          aria-label={t('language')}
+          value={language}
+          onChange={(event) => setLanguage(event.target.value as typeof language)}
+        >
+          {LANGUAGE_OPTIONS.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </section>
 
       <section className="profile-page__people">
         <h2>Wer forscht gerade?</h2>

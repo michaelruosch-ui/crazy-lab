@@ -380,8 +380,15 @@ positiv beantwortet.
 
 - **Sprint 19 - Cloud-Synchronisation:** Backend-Auswahl, Authentifizierung, Konfliktlösung,
   Datenschutz und Austausch zwischen Geräten.
-- **Sprint 23 - Englisch und weitere Sprachen:** vollständige Übersetzungsinfrastruktur und
-  Inhalte.
+- **Sprint 23 - Englisch und weitere Sprachen:** **In Arbeit (2026-09-02).**
+  - [x] Deutsch bleibt rückwärtskompatibler Standard für vorhandene Profile
+  - [x] Sprachwahl Deutsch, Englisch, Französisch und Spanisch dauerhaft pro Profil speichern
+  - [x] Weltkugel-Sprachwahl oben in der App und zusätzlich auf der Profilseite
+  - [x] Seitennavigation in allen vier Sprachen
+  - [ ] Alle übrigen Bedienungstexte vollständig übersetzen
+  - [ ] Alle 100 redaktionellen Missionen samt Materialien, Schritten und Sicherheit übersetzen
+  - [ ] Eigene und geteilte Missionen sinnvoll als nutzergenerierte Originalsprache kennzeichnen
+  - [ ] Automatische Vollständigkeitsprüfung und Familienabnahme in allen vier Sprachen
 - **Sprint 24 - Öffentliche/App-Store-Version:** Datenschutz, Einwilligungen, Alterskonzept,
   Hosting, Monitoring, Packaging und Store-Anforderungen.
 

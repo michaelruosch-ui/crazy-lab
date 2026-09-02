@@ -395,6 +395,18 @@ bestehende profilbezogene Tagebuch, automatische Sicherungsstände und der exter
 ohne neuen Object Store. Die Lösung verlangt kein `MediaRecorder` und funktioniert deshalb auch
 mit Safari 12, sofern dessen Kamera-/Dateiwähler ein abspielbares Video liefert.
 
+## Sprachgrundlage (Sprint 23, in Arbeit)
+
+`Profile.language` speichert optional `de`, `en`, `fr` oder `es`; ein fehlender Wert bedeutet für
+alle bestehenden Daten weiterhin Deutsch. Der `LanguageProvider` liegt innerhalb des geladenen
+Profils und stellt Sprache, Übersetzungszugriff und den zentralen Speicherpfad bereit. Dadurch
+ändern Weltkugel-Auswahl und Profilfeld denselben Datensatz und die Oberfläche reagiert sofort.
+
+Die erste Ausbaustufe übersetzt die feste Navigation. Weitere Oberflächentexte und die 100
+redaktionellen Missionen werden schrittweise auf Schlüssel beziehungsweise versionierte
+Inhaltsübersetzungen umgestellt. Bis diese Vollständigkeitsprüfung grün ist, bleibt Sprint 23 in
+Arbeit und Deutsch ist der sichere Rückfall.
+
 ## Erweiterungspunkte für spätere Sprints
 
 - `domain/profile.ts` ist bereits mehrprofilfähig (`Profile`, `profileId` auf jedem
