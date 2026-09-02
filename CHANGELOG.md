@@ -1,5 +1,14 @@
 # Changelog
 
+## Familienabnahme und neues Feedback (2026-09-02)
+
+- Michael hat die offenen Familienabnahmen der Sprints 11–22 als erfolgreich bestätigt.
+- Das App-Symbol ist bereits korrigiert und wird nicht mehr als offene Idee geführt.
+- Neu im Backlog: eigene Missionen teilen beziehungsweise veröffentlichen, Missionen passend zum
+  vorhandenen Laborschrank und ein unverwechselbares Bild für jede Mission.
+- Für das Teilen bleibt die Produktentscheidung zwischen privatem Import-Link ohne Cloud und einer
+  öffentlichen, zentral moderierten Galerie offen.
+
 ## Sprint 22 - Fotos und Drei-Sekunden-Video (2026-09-01)
 
 - Bis zu zehn verkleinerte Fotos sind nun bei jeder abgeschlossenen Mission möglich.

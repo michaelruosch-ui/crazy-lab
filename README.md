@@ -5,9 +5,8 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich nach der technischen Umsetzung von **Sprint 22**; Sprint 19 wurde
-auf Familienentscheid bewusst übersprungen und die Familienabnahme der neuen Funktionen ist noch
-offen. Der aktuelle Stand: Beim
+Dieses Repository befindet sich nach der abgeschlossenen Familienabnahme von **Sprint 22** am
+2026-09-02; Sprint 19 wurde auf Familienentscheid bewusst übersprungen. Der aktuelle Stand: Beim
 ersten Start wählt man eines von 33 Maskottchen (8 Tierarten in verschiedenen Farbwelten) und
 einen Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf
 Kategorien (Getränke, Basteln, Experimente, Foto-Challenges, Schwestern-Missionen). Jede Mission

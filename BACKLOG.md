@@ -125,7 +125,7 @@ der iPhone-Test mit Elena folgt als normales Feedback.
 
 ### Sprint 11 - Bastel-Labor und Bedienungsverbesserungen
 
-Status: **Technisch umgesetzt (2026-08-31), Familienabnahme offen.**
+Status: **Abgeschlossen (Familienabnahme am 2026-09-02 bestätigt).**
 
 - [x] 15 vollständige Bastelmissionen mit mindestens vier Schritten
 - [x] Schwerpunkte Playmobil, realistische Miniaturen, Geheimfächer und sichere Spezialeffekte
@@ -140,11 +140,11 @@ Status: **Technisch umgesetzt (2026-08-31), Familienabnahme offen.**
 - [x] Lokale, transparente Einordnung in Lebensmittel, Bastelmaterial, Werkzeug, Behälter oder
       Sonstiges; keine Cloud, kein Konto und keine kostenpflichtige KI
 - [x] Datenbankversion 6 und automatische Tests; insgesamt 113 Tests
-- [ ] Michael und Elena testen Bastelmissionen, Sicherungsliste und eigene Materialien auf dem iPhone
+- [x] Michael und Elena haben Bastelmissionen, Sicherungsliste und eigene Materialien getestet
 
 ### Sprint 12 - Experimentier-Labor
 
-Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
+Status: **Abgeschlossen (Familienabnahme am 2026-09-02 bestätigt).**
 
 - [x] 15 sichere Experimentier-Missionen mit jeweils mindestens vier Schritten
 - [x] Strukturierte Forschungsfrage, eigene Vermutung, Beobachtung und verständliche Erklärung
@@ -152,11 +152,11 @@ Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
 - [x] Laufende Versuche direkt auf der Startseite wiederfinden
 - [x] Forschungsnotizen im Labortagebuch speichern und anzeigen
 - [x] Laufende Versuche im Backup sichern und wiederherstellen
-- [ ] Michael und Elena testen kurze und mehrtägige Versuche auf dem iPhone
+- [x] Michael und Elena haben kurze und mehrtägige Versuche getestet
 
 ### Sprint 13 - Foto-Challenges
 
-Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
+Status: **Abgeschlossen (Familienabnahme am 2026-09-02 bestätigt).**
 
 - [x] 15 Foto-Challenges mit mindestens vier Schritten und konkreten Fototipps
 - [x] Kamera oder Fotomediathek über die normale iPhone-Auswahl verwenden
@@ -164,11 +164,11 @@ Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
 - [x] Laborrahmen, Monsterkrallen oder Geisternebel auswählen
 - [x] Ohne Effekt, Schwarzweiss, Kaltblau oder Dramatisch auswählen
 - [x] Fotos samt Rahmen und Effekt im Tagebuch speichern und sichtbar darstellen
-- [ ] Michael und Elena testen Kamera, Fotowahl und Darstellung auf dem iPhone
+- [x] Michael und Elena haben Kamera, Fotowahl und Darstellung getestet
 
 ### Sprint 14 - Schwestern-Missionen
 
-Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
+Status: **Abgeschlossen (Familienabnahme am 2026-09-02 bestätigt).**
 
 - [x] 15 Schwestern-Missionen mit mindestens vier gemeinsamen Schritten
 - [x] Eine verständliche gemeinsame Anleitung pro Mission
@@ -176,11 +176,11 @@ Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
 - [x] Optionale Fünf-Minuten-Challenges mit sichtbarem Timer
 - [x] Gemeinsames Finale und freiwillige Teamnotiz im Tagebuch
 - [x] Inhalts- und UI-Prüfungen; insgesamt über alle Sprints 120 automatische Tests
-- [ ] Michael, Elena und ihre Schwester testen die Missionen auf dem iPhone
+- [x] Michael, Elena und ihre Schwester haben die Missionen getestet
 
 ### Sprint 15 - Eigene Missionen
 
-Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
+Status: **Abgeschlossen (Familienabnahme am 2026-09-02 bestätigt).**
 
 - [x] Eigener Bereich „Eigene Missionen“ auf der Startseite
 - [x] Kindgerechter Maskottchen-Assistent statt technischer Datenmaske
@@ -191,11 +191,11 @@ Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
 - [x] Gelbe und rote Sicherheitsstufen nur mit verständlichem Sicherheitshinweis speichern
 - [x] Eigene Missionen in automatische Sicherungsstände und Notfallkopie aufnehmen
 - [x] IndexedDB-Version 8 und automatische Tests; insgesamt 123 Tests
-- [ ] Michael und Elena testen Erstellen, Kopieren, Bearbeiten und Spielen auf dem iPhone
+- [x] Michael und Elena haben Erstellen, Kopieren, Bearbeiten und Spielen getestet
 
 ### Sprint 16 - Labortagebuch vollständig
 
-Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
+Status: **Abgeschlossen (Familienabnahme am 2026-09-02 bestätigt).**
 
 - [x] Volltextsuche sowie Filter nach Kategorie und Status
 - [x] Bildkarten mit erstem Missionsfoto oder Missionsmotiv und sichtbarem Stempel
@@ -204,11 +204,11 @@ Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
 - [x] Tagebucheintrag nur nach klarer Rückfrage endgültig löschen
 - [x] Bis zu zehn statt bisher fünf Fotos pro Foto-Challenge
 - [x] Repository- und UI-Tests ergänzt
-- [ ] Michael und Elena testen Filtern, Bearbeiten und Löschen auf dem iPhone
+- [x] Michael und Elena haben Filtern, Bearbeiten und Löschen getestet
 
 ### Sprint 17 - Musik und Atmosphäre
 
-Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
+Status: **Abgeschlossen (Familienabnahme am 2026-09-02 bestätigt).**
 
 - [x] Überspringbarer Drei-Sekunden-Countdown vor jeder Mission
 - [x] Dezente, lokal erzeugte Tonfolgen passend zu allen fünf Missionskategorien
@@ -218,11 +218,11 @@ Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
 - [x] Systemeinstellung „Bewegung reduzieren“ automatisch respektieren
 - [x] Keine fremden Musikdateien, kein Streaming, Konto, Abo oder Cloud-Dienst
 - [x] Automatische Tests für Countdown und gespeicherte Einstellungen
-- [ ] Michael und Elena testen Lautstärke, Countdown und reduzierte Bewegung auf dem iPhone
+- [x] Michael und Elena haben Lautstärke, Countdown und reduzierte Bewegung getestet
 
 ### Sprint 18 - iPad- und Mac-Optimierung
 
-Status: **Technisch umgesetzt (2026-09-01), Familienabnahme der grösseren Layouts offen.**
+Status: **Abgeschlossen (Familienabnahme am 2026-09-02 bestätigt).**
 
 - [x] iPhone bleibt bei der bewährten einspaltigen Bedienung
 - [x] iPads zeigen Missionskategorien und Tagebucheinträge platzsparend in mehreren Spalten
@@ -231,11 +231,11 @@ Status: **Technisch umgesetzt (2026-09-01), Familienabnahme der grösseren Layou
 - [x] Touch-Ziele und mobile Navigation bleiben vollständig erhalten
 - [x] Safari-12-Unterstützung des alten Familien-iPads bleibt aktiv
 - [x] Typecheck, Lint, 128 Tests und Produktions-Build erfolgreich
-- [ ] Michael prüft die grössere Darstellung gelegentlich auf iPad oder Mac
+- [x] Michael hat die Darstellung auf den Familiengeräten getestet und freigegeben
 
 ### Sprint 20 - Mehrere Profile
 
-Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.** Sprint 19 wurde auf
+Status: **Abgeschlossen (Familienabnahme am 2026-09-02 bestätigt).** Sprint 19 wurde auf
 Familienentscheid bewusst nicht umgesetzt, weil keine Cloud-Synchronisation gewünscht ist.
 
 - [x] Vorhandenes Elena-Profil und alle bisherigen Daten unverändert übernommen
@@ -247,11 +247,11 @@ Familienentscheid bewusst nicht umgesetzt, weil keine Cloud-Synchronisation gew�
 - [x] Abgebrochenes neues Profil kann jederzeit zum vorhandenen Profil zurückkehren
 - [x] Fremde Tagebuch- und eigene Missionseinträge sind nicht über eine direkte Adresse sichtbar
 - [x] Typecheck, Lint, 130 Tests und Produktions-Build erfolgreich
-- [ ] Michael legt ein zweites Testprofil an und bestätigt den Wechsel ohne vermischte Einträge
+- [x] Michael hat mehrere Profile getestet und keine Vermischung beanstandet
 
 ### Sprint 21 - Neue geprüfte Inhalte
 
-Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
+Status: **Abgeschlossen (Familienabnahme am 2026-09-02 bestätigt).**
 
 - [x] Je fünf neue Missionen für Getränke, Basteln, Experimente, Fotos und Schwestern
 - [x] Katalog von 75 auf 100 Missionen erweitert; genau 20 je Hauptkategorie
@@ -261,11 +261,11 @@ Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
 - [x] Foto- und Schwestern-Missionen mit ihren vollständigen Spezialangaben
 - [x] Sicherheitsangaben für Spülmittel, rohe Eier, Scheren und Dosenkanten ergänzt
 - [x] Typecheck, Lint, 130 Tests, Inhaltsvalidierung und Produktions-Build erfolgreich
-- [ ] Michael und Elena probieren neue Missionen und geben normales Inhaltsfeedback
+- [x] Michael und Elena haben die neuen Inhalte getestet und den Gesamtstand freigegeben
 
 ### Sprint 22 - Fotos und Video im Tagebuch
 
-Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
+Status: **Abgeschlossen (Familienabnahme am 2026-09-02 bestätigt).**
 
 - [x] Bis zu zehn Fotos bei jeder Missionsart statt nur bei Foto-Challenges
 - [x] Fotos direkt beim Abschluss aufnehmen oder auswählen
@@ -276,7 +276,7 @@ Status: **Technisch umgesetzt (2026-09-01), Familienabnahme offen.**
 - [x] Fotos und Video bleiben lokal, getrennt pro Profil und Bestandteil aller Sicherungen
 - [x] Gemeinsamer Dateiwähler funktioniert auch auf dem alten iPad ohne moderne Aufnahme-API
 - [x] Typecheck, Lint, 132 Tests und Produktions-Build erfolgreich
-- [ ] Michael und Elena testen Foto und Drei-Sekunden-Video auf einem echten iPhone
+- [x] Michael und Elena haben Foto und Drei-Sekunden-Video getestet
 
 ### Kompatibilitätskorrektur - Familien-iPad mit iOS 12.5.8
 
@@ -387,6 +387,14 @@ positiv beantwortet.
 
 ## Unpriorisierte Ideen
 
-- Elena gefällt das aktuelle App-Icon (Homescreen-Symbol) nicht besonders gut - bei Gelegenheit
-  ein ansprechenderes Icon gestalten. Thematisch passt das gut zu Sprint 4 (Maskottchen-Auswahl),
-  ist aber technisch unabhängig davon (`public/favicon.svg`, `public/icons/*.png`).
+- **Eigene Mission teilen/veröffentlichen:** Zwei Produktvarianten sind offen. Empfohlen ist ein
+  teilbarer Link, den eine andere Crazy-Lab-Installation bewusst importiert; das benötigt weder
+  Konto noch Cloud. Eine öffentlich durchsuchbare Galerie benötigt dagegen einen zentralen Dienst,
+  Moderation und eine erneute Datenschutzentscheidung. Entscheidung durch Michael offen.
+- **Missionen nur mit vorhandenen Dingen:** Button „Was kann ich mit meinem Laborschrank machen?“
+  zeigt Missionen, deren Pflichtmaterialien vollständig vorhanden sind. Besonders relevant für
+  Getränke, Basteln und Experimente; Foto- und Schwestern-Missionen werden nach denselben Regeln
+  berücksichtigt, wenn sie Pflichtmaterial benötigen.
+- **Einzigartige Missionsbilder:** Alle 100 Katalogmissionen sowie neue Missionen sollen ein
+  eigenes kreatives Bild im bestehenden Crazy-Lab-Stil erhalten; kein Motiv darf von zwei
+  Missionen gemeinsam verwendet werden.
