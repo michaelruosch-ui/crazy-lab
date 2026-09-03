@@ -395,17 +395,26 @@ bestehende profilbezogene Tagebuch, automatische Sicherungsstände und der exter
 ohne neuen Object Store. Die Lösung verlangt kein `MediaRecorder` und funktioniert deshalb auch
 mit Safari 12, sofern dessen Kamera-/Dateiwähler ein abspielbares Video liefert.
 
-## Sprachgrundlage (Sprint 23, in Arbeit)
+## Vollständige Lokalisierung (Sprint 23)
 
-`Profile.language` speichert optional `de`, `en`, `fr` oder `es`; ein fehlender Wert bedeutet für
+`Profile.language` speichert optional `de`, `en`, `fr`, `es` oder `it`; ein fehlender Wert bedeutet für
 alle bestehenden Daten weiterhin Deutsch. Der `LanguageProvider` liegt innerhalb des geladenen
 Profils und stellt Sprache, Übersetzungszugriff und den zentralen Speicherpfad bereit. Dadurch
 ändern Weltkugel-Auswahl und Profilfeld denselben Datensatz und die Oberfläche reagiert sofort.
 
-Die erste Ausbaustufe übersetzt die feste Navigation. Weitere Oberflächentexte und die 100
-redaktionellen Missionen werden schrittweise auf Schlüssel beziehungsweise versionierte
-Inhaltsübersetzungen umgestellt. Bis diese Vollständigkeitsprüfung grün ist, bleibt Sprint 23 in
-Arbeit und Deutsch ist der sichere Rückfall.
+Die feste Navigation nutzt semantische Schlüssel. Alle weiteren festen Oberflächen- und
+Missionsinhalte werden aus einem versionierten, zur Entwicklungszeit erzeugten Sprachkatalog im
+gerenderten App-Bereich ersetzt; es gibt zur Laufzeit weder Übersetzungsdienst noch Netzwerkzugriff.
+Ein DOM-Beobachter deckt auch nachgeladene Dialoge und Zustandsmeldungen ab. Beim Sprachwechsel wird
+der Bereich neu aufgebaut, damit keine Texte aus der vorherigen Sprache übrig bleiben. Automatische
+Tests verlangen sämtliche sichtbaren Inhalte aller 100 Missionen in allen vier Übersetzungen.
+Nutzergenerierte Missionen werden nicht verändert und als Originalsprache gekennzeichnet.
+
+## Veröffentlichungsvorbereitung (Sprint 24)
+
+`PRIVACY_AND_STORE.md` trennt die bereits geltenden Produkt- und Datenschutzentscheide von späteren
+nativen Arbeiten. Die Web-App enthält weiterhin keine Bezahlschranke. StoreKit, Elternschranke,
+vollständiges Löschen und Store-Metadaten gehören in die nachfolgenden Veröffentlichungs-Sprints.
 
 ## Erweiterungspunkte für spätere Sprints
 

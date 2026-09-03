@@ -21,7 +21,7 @@ import {
 import { useAtmosphereSettings } from './features/atmosphere'
 import { AppShell } from './components/AppShell'
 import { indexedDbProfileRepository } from './storage/profileRepository'
-import { LanguageProvider } from './i18n'
+import { LanguageProvider, LocalizedContent } from './i18n'
 
 function MissionRoute() {
   const { missionId } = useParams<{ missionId: string }>()
@@ -90,26 +90,28 @@ export function App() {
       language={profile.language ?? 'de'}
       onLanguageChange={(language) => void save({ ...profile, language })}
     >
-      <Routes>
-        <Route element={<AppShell />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/mission/:missionId" element={<MissionRoute />} />
-          <Route path="/geheimfach" element={<SecretVaultPage />} />
-          <Route path="/verlauf" element={<HistoryPage />} />
-          <Route path="/diary" element={<DiaryPage />} />
-          <Route path="/diary/:entryId" element={<DiaryEntryDetailPage />} />
-          <Route path="/profil" element={<ProfilePage />} />
-          <Route path="/laborschrank" element={<LabCabinetPage />} />
-          <Route path="/einkaufsliste" element={<ShoppingListPage />} />
-          <Route path="/eigene-missionen" element={<CustomMissionsPage />} />
-          <Route path="/eigene-missionen/neu" element={<CustomMissionEditorPage />} />
-          <Route path="/mission-import" element={<SharedMissionImportPage />} />
-          <Route
-            path="/eigene-missionen/:missionId/bearbeiten"
-            element={<CustomMissionEditorPage />}
-          />
-        </Route>
-      </Routes>
+      <LocalizedContent key={profile.language ?? 'de'}>
+        <Routes>
+          <Route element={<AppShell />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/mission/:missionId" element={<MissionRoute />} />
+            <Route path="/geheimfach" element={<SecretVaultPage />} />
+            <Route path="/verlauf" element={<HistoryPage />} />
+            <Route path="/diary" element={<DiaryPage />} />
+            <Route path="/diary/:entryId" element={<DiaryEntryDetailPage />} />
+            <Route path="/profil" element={<ProfilePage />} />
+            <Route path="/laborschrank" element={<LabCabinetPage />} />
+            <Route path="/einkaufsliste" element={<ShoppingListPage />} />
+            <Route path="/eigene-missionen" element={<CustomMissionsPage />} />
+            <Route path="/eigene-missionen/neu" element={<CustomMissionEditorPage />} />
+            <Route path="/mission-import" element={<SharedMissionImportPage />} />
+            <Route
+              path="/eigene-missionen/:missionId/bearbeiten"
+              element={<CustomMissionEditorPage />}
+            />
+          </Route>
+        </Routes>
+      </LocalizedContent>
     </LanguageProvider>
   )
 }

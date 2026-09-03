@@ -6,8 +6,10 @@ import { BackLink, Button, MissionCard, SpeechBubble } from '../../components'
 import { useActiveProfileId, useProfile } from '../profile'
 import { indexedDbCustomMissionRepository } from '../../storage/customMissionRepository'
 import './CustomMissionsPage.css'
+import { useLanguage } from '../../i18n'
 
 export function CustomMissionsPage() {
+  const { t } = useLanguage()
   const [items, setItems] = useState<CustomMission[]>([])
   const { activeProfileId } = useActiveProfileId()
   const { profile } = useProfile(activeProfileId)
@@ -45,6 +47,7 @@ export function CustomMissionsPage() {
   return (
     <div className="custom-missions-page">
       <h1>✨ Eigene Missionen</h1>
+      <p className="shared-mission-page__privacy">🌐 {t('originalLanguageHint')}</p>
       <SpeechBubble
         mascotId={profile?.mascotVariant}
         text="Du hast die Idee – ich helfe dir, daraus eine klare und sichere Mission zu machen!"

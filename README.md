@@ -5,8 +5,8 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich nach der abgeschlossenen Familienabnahme von **Sprint 22** am
-2026-09-02; Sprint 19 wurde auf Familienentscheid bewusst übersprungen. Der aktuelle Stand: Beim
+Dieses Repository befindet sich nach dem Abschluss von **Sprint 24** am 2026-09-03; Sprint 19
+wurde auf Familienentscheid bewusst übersprungen. Der aktuelle Stand: Beim
 ersten Start wählt man eines von 33 Maskottchen (8 Tierarten in verschiedenen Farbwelten) und
 einen Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf
 Kategorien (Getränke, Basteln, Experimente, Foto-Challenges, Schwestern-Missionen). Jede Mission
@@ -33,7 +33,7 @@ in den Laborschrank übernommen werden.
 Auf der Startseite lassen sich Missionen nach verfügbarer Zeit, Budget, Ort, erlaubter
 Unordnung, Erwachsenenhilfe und Personenanzahl filtern. Die Vorschlagsmaschine verbindet diese
 Vorgaben mit Elenas bisherigen Vorlieben und achtet innerhalb einer Kategorie auf Abwechslung.
-Das Bastel-Labor enthält 15 sichere Missionen mit Playmobil-Szenen, realistischen Miniaturen und
+Das Bastel-Labor enthält 15 sichere Missionen mit Spielfiguren-Szenen, realistischen Miniaturen und
 ungefährlichen Spezialeffekten. Im Laborschrank können zusätzlich eigene Materialien per Freitext
 erfasst werden; eine lokale Regelmaschine ordnet sie ohne Cloud in verständliche Materialtypen
 und Bereiche ein.
@@ -58,10 +58,12 @@ mobile Bedienung.
 Auf jedem Gerät können mehrere Personen eigene Profile ohne Passwort anlegen und wechseln. Jedes
 Profil besitzt getrennte Tagebücher, Vorschläge, Listen, eigene Missionen, Sicherungsstände und
 Atmosphäre-Einstellungen; Elenas vorhandenes Profil und seine Daten bleiben unverändert erhalten.
-Sprint 23 führt derzeit eine profilbezogene Sprachwahl für Deutsch, Englisch, Französisch und
-Spanisch ein. Sie ist über das Weltkugel-Symbol oben sowie im Profil erreichbar; vorhandene
-Profile bleiben auf Deutsch. Die Navigation ist bereits übersetzt, die vollständige Oberfläche
-und der Missionskatalog befinden sich noch in Übersetzung.
+Crazy Lab ist vollständig auf Deutsch, Englisch, Französisch, Spanisch und Italienisch nutzbar.
+Die profilbezogene Sprachwahl ist über das Weltkugel-Symbol oben sowie im Profil erreichbar;
+vorhandene Profile bleiben auf Deutsch. Eigene und geteilte Missionen bleiben erkennbar in ihrer
+Originalsprache. Sprint 24 dokumentiert in `PRIVACY_AND_STORE.md` die verbindliche Grundlage für
+eine spätere Schweizer Kinder-App: Alter 9–11, lokaler Datenschutz, neutraler Markenwortlaut und
+ein kostenloser Einstieg mit späterer einmaliger Freischaltung statt Abo oder Werbung.
 Der redaktionelle Katalog umfasst jetzt 100 Missionen: je 20 Getränke-, Bastel-, Experiment-,
 Foto- und Schwestern-Missionen. Die 25 Ergänzungen aus Sprint 21 besitzen konkrete Materialien,
 Schritte, Sicherheitsangaben und die jeweils benötigten strukturierten Kategoriedaten.

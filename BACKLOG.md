@@ -128,7 +128,7 @@ der iPhone-Test mit Elena folgt als normales Feedback.
 Status: **Abgeschlossen (Familienabnahme am 2026-09-02 bestätigt).**
 
 - [x] 15 vollständige Bastelmissionen mit mindestens vier Schritten
-- [x] Schwerpunkte Playmobil, realistische Miniaturen, Geheimfächer und sichere Spezialeffekte
+- [x] Schwerpunkte Spielfiguren, realistische Miniaturen, Geheimfächer und sichere Spezialeffekte
 - [x] Gefährliche Effekte ausgeschlossen; LED statt Flamme, Watte statt Rauch/Trockeneis
 - [x] Gelbe Sicherheitsstufe und klare Erwachsenenhilfe bei anspruchsvollem Zuschneiden
 - [x] Bestehende Filter, Einkaufsliste, Laborschrank und Vorschlagsmaschine nutzen neue Materialien
@@ -380,19 +380,29 @@ positiv beantwortet.
 
 - **Sprint 19 - Cloud-Synchronisation:** Backend-Auswahl, Authentifizierung, Konfliktlösung,
   Datenschutz und Austausch zwischen Geräten.
-- **Sprint 23 - Englisch und weitere Sprachen:** **In Arbeit (2026-09-02).**
+- **Sprint 23 - Englisch und weitere Sprachen:** **Abgeschlossen (2026-09-03).**
   - [x] Deutsch bleibt rückwärtskompatibler Standard für vorhandene Profile
-  - [x] Sprachwahl Deutsch, Englisch, Französisch und Spanisch dauerhaft pro Profil speichern
+  - [x] Sprachwahl Deutsch, Englisch, Französisch, Spanisch und Italienisch dauerhaft pro Profil speichern
   - [x] Weltkugel-Sprachwahl oben in der App und zusätzlich auf der Profilseite
-  - [x] Seitennavigation in allen vier Sprachen
-  - [ ] Alle übrigen Bedienungstexte vollständig übersetzen
-  - [ ] Alle 100 redaktionellen Missionen samt Materialien, Schritten und Sicherheit übersetzen
-  - [ ] Eigene und geteilte Missionen sinnvoll als nutzergenerierte Originalsprache kennzeichnen
-  - [ ] Automatische Vollständigkeitsprüfung und Familienabnahme in allen vier Sprachen
-- **Sprint 24 - Öffentliche/App-Store-Version:** Datenschutz, Einwilligungen, Alterskonzept,
-  Hosting, Monitoring, Packaging und Store-Anforderungen.
+  - [x] Seitennavigation in allen fünf Sprachen
+  - [x] Alle übrigen Bedienungstexte vollständig übersetzt
+  - [x] Alle 100 redaktionellen Missionen samt Materialien, Schritten und Sicherheit übersetzt
+  - [x] Eigene und geteilte Missionen als nutzergenerierte Originalsprache gekennzeichnet
+  - [x] Automatische Vollständigkeitsprüfung in allen fünf Sprachen
+- **Sprint 24 - Datenschutz- und App-Store-Grundentscheidung:** **Abgeschlossen (2026-09-03).**
+  - [x] Zielgruppe und Apple-Kinderkategorie 9–11 festgelegt
+  - [x] Schweiz sowie fünf Sprachen mit Deutsch als Standard festgelegt
+  - [x] Kostenloser Einstieg mit zehn Missionen und einmaliger Freischaltung um ungefähr CHF 1
+  - [x] Keine Werbung, kein Abo, kein Tracking und keine automatische Cloud
+  - [x] Lokale Datenarten, Elternschranken und Anforderungen an Löschen/Einwilligung dokumentiert
+  - [x] PLAYMOBIL aus sichtbaren redaktionellen Inhalten durch „Spielfiguren“ ersetzt
+  - [x] Blutigen Kuschelbären intern behalten und für öffentliche Werbung zurückhaltend behandeln
+  - [x] Verbindliche Restcheckliste für native Verpackung und App-Store-Einreichung erstellt
 
 ## Unpriorisierte Ideen
+
+- **Maskottchen-Artwork auf App-Symbol-Niveau:** Alle auswählbaren Profil-Maskottchen erhalten
+  dieselbe hochwertige, plastische und liebevolle Bildqualität wie das neue Crazy-Lab-App-Symbol.
 
 - **Missionen nur mit vorhandenen Dingen:** Button „Was kann ich mit meinem Laborschrank machen?“
   zeigt Missionen, deren Pflichtmaterialien vollständig vorhanden sind. Besonders relevant für

@@ -105,9 +105,9 @@ export const missions: Mission[] = [
   {
     id: 'mission-playmobil-geisterbett',
     contentVersion: 1,
-    title: 'Das geheimnisvolle Playmobil-Geisterbett',
+    title: 'Das geheimnisvolle Spielfiguren-Geisterbett',
     shortDescription:
-      'Baue aus Karton und Watte ein schaurig-schönes Himmelbett für eine Playmobil-Spukgestalt.',
+      'Baue aus Karton und Watte ein schaurig-schönes Himmelbett für eine kleine Spukgestalt.',
     primaryCategory: 'basteln',
     secondaryCategories: [],
     durationMinutes: 30,
@@ -125,7 +125,7 @@ export const missions: Mission[] = [
         optional: true,
         consumable: true,
       },
-      { id: 'm7', name: 'Playmobil-Figur', optional: false, consumable: false },
+      { id: 'm7', name: 'Spielfigur', optional: false, consumable: false },
     ],
     safetyLevel: 'gruen',
     safetyNotes: ['Beim Zuschneiden von Karton auf die Fingerhaltung achten.'],
@@ -162,7 +162,7 @@ export const missions: Mission[] = [
       {
         id: 'step-6',
         order: 6,
-        text: 'Lege die Playmobil-Figur ins fertige Geisterbett und richte die Szene ein.',
+        text: 'Lege die Spielfigur ins fertige Geisterbett und richte die Szene ein.',
       },
     ],
     generalHelpTip:

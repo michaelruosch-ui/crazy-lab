@@ -55,7 +55,7 @@ describe('Missionsdaten', () => {
   it('enthält genau 20 sichere und vollständige Bastelmissionen', () => {
     const craftMissions = missions.filter((mission) => mission.primaryCategory === 'basteln')
     expect(craftMissions).toHaveLength(20)
-    expect(craftMissions.some((mission) => mission.title.includes('Playmobil'))).toBe(true)
+    expect(craftMissions.some((mission) => mission.title.includes('Spielfiguren'))).toBe(true)
     expect(craftMissions.some((mission) => mission.safetyLevel === 'gelb')).toBe(true)
     expect(craftMissions.every((mission) => mission.steps.length >= 4)).toBe(true)
   })

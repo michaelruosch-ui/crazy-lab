@@ -22,7 +22,7 @@ const craftSpecs: Spec[] = [
   ],
   [
     'playmobil-portal',
-    'Das Playmobil-Zeitportal',
+    'Das Spielfiguren-Zeitportal',
     'Gestalte ein leuchtendes Portal aus Karton und Folie.',
   ],
   [

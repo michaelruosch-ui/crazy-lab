@@ -19,7 +19,7 @@ const PHOTO_SPECS = [
   [
     'miniatur-riese',
     'Der Miniatur-Riese',
-    'Lass eine Playmobil-Figur durch Perspektive grösser als ein Mensch wirken.',
+    'Lass eine Spielfigur durch Perspektive grösser als ein Mensch wirken.',
   ],
   ['farbgeist', 'Der Farblicht-Geist', 'Erzeuge mit farbiger Folie geheimnisvolles Licht.'],
   [
@@ -76,7 +76,7 @@ export const additionalPhotoMissions: Mission[] = PHOTO_SPECS.map(
       { id: 'm1', name: 'iPhone-Kamera', optional: false, consumable: false },
       {
         id: 'm2',
-        name: index % 2 ? 'Playmobil-Figur' : 'Kleiner Alltagsgegenstand',
+        name: index % 2 ? 'Spielfigur' : 'Kleiner Alltagsgegenstand',
         optional: false,
         consumable: false,
       },

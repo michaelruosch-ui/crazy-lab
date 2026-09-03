@@ -770,9 +770,9 @@ eigene lokale ID, damit spätere Änderungen des Absenders nichts beim Empfänge
 
 ## ADR-041: Sprache gehört zum Profil und wird über eine Weltkugel gewählt
 
-**Status:** Angenommen; Sprint 23 in Arbeit (2026-09-02)
+**Status:** Angenommen und umgesetzt (2026-09-03)
 
-**Entscheidung:** Crazy Lab unterstützt zunächst Deutsch, Englisch, Französisch und Spanisch.
+**Entscheidung:** Crazy Lab unterstützt Deutsch, Englisch, Französisch, Spanisch und Italienisch.
 Deutsch bleibt für vorhandene Profile und fehlende Übersetzungen der Standard. Die Auswahl wird
 pro Profil gespeichert und ist sowohl kompakt über eine Weltkugel oben in der App als auch
 ausführlich auf der Profilseite erreichbar. Länderflaggen werden vermieden, weil Sprachen nicht
@@ -780,5 +780,22 @@ eindeutig zu einzelnen Ländern gehören.
 
 **Konsequenzen:** Mehrere Personen auf demselben Gerät können unterschiedliche Sprachen verwenden,
 ohne ihre übrigen Daten zu vermischen. Die Umstellung reagiert sofort und benötigt keine Cloud.
-Sprint 23 gilt erst nach Übersetzung der gesamten Bedienoberfläche und aller redaktionellen
-Missionsinhalte als abgeschlossen; nutzergenerierte eigene Missionen bleiben in ihrer Eingabesprache.
+Die gesamte Bedienoberfläche und alle redaktionellen Missionsinhalte werden fest mit der App
+ausgeliefert; nutzergenerierte eigene Missionen bleiben gekennzeichnet in ihrer Eingabesprache.
+
+## ADR-042: Schweizer Kinder-App mit einmaliger Freischaltung
+
+**Status:** Angenommen (2026-09-03)
+
+**Entscheidung:** Die öffentliche Version richtet sich an 9- bis 11-Jährige und wird für die
+Apple-Kinderkategorie 9–11 in der Schweiz vorbereitet. Zehn vollständige Missionen sind kostenlos;
+der Rest wird durch einen nicht verbrauchbaren In-App-Kauf von ungefähr CHF 1 freigeschaltet. Es
+gibt weder Abo noch Werbung, Tracking oder automatische Cloud. Deutsch ist Standard; Englisch,
+Französisch, Italienisch und Spanisch sind vollständig enthalten. Die private Webversion bleibt
+während der Entwicklung unbeschränkt.
+
+**Konsequenzen:** Kauf, externe Links, Teilen und Notfall-Export benötigen in der nativen
+Kinder-App eine Elternschranke. Die endgültige Preisstufe wird in App Store Connect gewählt. Die
+App muss Käufe wiederherstellen können. Der sichtbare Missionskatalog nennt die Fremdmarke
+PLAYMOBIL nicht; technische IDs bleiben zur Datenkompatibilität unverändert. Der Blutige
+Kuschelbär bleibt nicht-grafisch in der App, wird aber nicht als öffentliches Werbemotiv verwendet.

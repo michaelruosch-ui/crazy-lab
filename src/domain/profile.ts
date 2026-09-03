@@ -2,7 +2,7 @@
  * String-Typ statt einer Union in `domain`, damit der Katalog (33 Entwürfe, siehe Sprint-4-
  * Familienfeedback) frei erweiterbar bleibt, ohne die Domänenschicht anzufassen. */
 export type MascotId = string
-export type AppLanguage = 'de' | 'en' | 'fr' | 'es'
+export type AppLanguage = 'de' | 'en' | 'fr' | 'es' | 'it'
 
 export interface Birthday {
   id: string

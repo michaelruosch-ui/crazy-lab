@@ -1,14 +1,25 @@
 # Changelog
 
-## Sprint 23 - Sprachgrundlage (in Arbeit, 2026-09-02)
+## Sprint 24 - Datenschutz- und App-Store-Grundentscheidung (2026-09-03)
 
-- Deutsch, Englisch, Französisch und Spanisch als profilbezogene App-Sprachen eingeführt.
+- Zielgruppe und Apple-Kinderkategorie 9–11, Schweiz und fünf App-Sprachen festgelegt.
+- Kostenloser Einstieg mit zehn Missionen und spätere einmalige Freischaltung um ungefähr CHF 1;
+  kein Abo, keine Werbung, kein Tracking und keine automatische Cloud.
+- Datenschutz-Inventar, Elternschranken und verbindliche Restcheckliste dokumentiert.
+- Sichtbare PLAYMOBIL-Nennungen im Katalog neutral durch „Spielfiguren“ ersetzt; bestehende interne
+  IDs bleiben kompatibel. Der Blutige Kuschelbär bleibt als nicht-grafischer App-Inhalt erhalten.
+- Hochwertigere Profil-Maskottchen als Folgeidee in den Backlog aufgenommen.
+
+## Sprint 23 - Fünf vollständige App-Sprachen (2026-09-03)
+
+- Deutsch, Englisch, Französisch, Spanisch und Italienisch als profilbezogene App-Sprachen eingeführt.
 - Eine kompakte Weltkugel-Auswahl ist oben in jeder App-Seite erreichbar; dieselbe Einstellung
   steht ausführlich im Profil.
 - Vorhandene Profile bleiben ohne Migration auf Deutsch; jedes Profil besitzt seine eigene Wahl.
-- Die feste Seitennavigation reagiert sofort in allen vier Sprachen.
-- Die vollständige Übersetzung aller übrigen Oberflächen und der 100 Missionen bleibt offen;
-  Sprint 23 ist deshalb ausdrücklich noch nicht abgeschlossen.
+- Die gesamte feste Oberfläche und alle 100 Missionen samt Materialien, Schritten und
+  Sicherheitshinweisen reagieren sofort in allen fünf Sprachen.
+- Eigene und geteilte Missionen bleiben sichtbar gekennzeichnet in ihrer Originalsprache.
+- Ein automatischer Vollständigkeitstest schützt alle Missionsübersetzungen.
 
 ## Teilbare eigene Missionen (2026-09-02)
 
@@ -140,7 +151,7 @@
 
 ## Sprint 11 - Bastel-Labor und Bedienungsverbesserungen (2026-08-31)
 
-- Bastelkatalog auf 15 sichere Missionen ausgebaut: Playmobil-Szenen, Miniaturen, Geheimfächer,
+- Bastelkatalog auf 15 sichere Missionen ausgebaut: Spielfiguren-Szenen, Miniaturen, Geheimfächer,
   Kulissen sowie ungefährliche Licht- und Nebeleffekte.
 - Automatische lokale Sicherungsstände beim Start, im Fünf-Minuten-Takt und beim App-Wechsel;
   unveränderte Daten werden nicht doppelt gespeichert, maximal zehn Stände bleiben erhalten.
