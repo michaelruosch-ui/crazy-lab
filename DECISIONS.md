@@ -835,3 +835,16 @@ Maskottchen dürfen zusätzlich als lokal gebündelte Bilddateien vorliegen.
 **Konsequenzen:** Die App bleibt auf älteren Geräten klein und schnell. Das neue Bildsystem wird
 automatisch auf Eindeutigkeit geprüft. Sprint 25 bleibt vollständig geplant und ist der nächste
 Umsetzungssprint; der echte Familientest der vier Sprints erfolgt separat auf den Geräten.
+
+## ADR-045: Acht hochwertige Tiergrafiken für 33 kompatible Maskottchen
+
+**Status:** Angenommen und umgesetzt (2026-09-04)
+
+**Entscheidung:** Nach dem Familientest werden alle Profil-Maskottchen auf den hochwertigen Stil
+des neuen Nachtbären umgestellt. Jede Tierart erhält eine eigene lokal gespeicherte Premium-Grafik;
+die bisherigen Maskottchen-IDs unterscheiden diese durch Farbwelt, leichte Haltung und harmlose
+Gruseldetails. Beim Auswählen bewegt sich die Figur kurz.
+
+**Konsequenzen:** Bestehende Profile behalten exakt ihr gewähltes Maskottchen. Acht komprimierte
+Grafiken statt 33 einzelner grosser Dateien halten die App auch auf dem alten iPad handhabbar.
+Reduzierte Bewegung deaktiviert die Reaktion vollständig.

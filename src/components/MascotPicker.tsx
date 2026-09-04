@@ -34,7 +34,7 @@ export function MascotPicker({ value, onChange }: MascotPickerProps) {
                 className={`mascot-picker__tile ${value === entry.id ? 'mascot-picker__tile--selected' : ''}`}
                 onClick={() => onChange(entry.id)}
               >
-                <Mascot mascotId={entry.id} size="medium" />
+                <Mascot mascotId={entry.id} size="medium" selected={value === entry.id} />
                 <span>{entry.name}</span>
               </button>
             ))}

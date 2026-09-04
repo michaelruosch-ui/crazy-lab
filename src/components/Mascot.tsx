@@ -1,61 +1,56 @@
-import { useEffect, useRef } from 'react'
+import type { CSSProperties } from 'react'
 import type { MascotId } from '../domain'
-import { DEFAULT_MASCOT_ID, drawMascot, getMascotEntry } from './mascotArt'
+import { DEFAULT_MASCOT_ID, getMascotEntry, MASCOT_CATALOG } from './mascotArt'
 import './Mascot.css'
 
 interface MascotProps {
   mascotId?: MascotId
   size?: 'small' | 'medium' | 'large'
   talking?: boolean
+  selected?: boolean
 }
 
-const SIZE_PX: Record<NonNullable<MascotProps['size']>, number> = {
-  small: 40,
-  medium: 64,
-  large: 96,
-}
+const SIZE_PX = { small: 40, medium: 64, large: 96 } as const
+const SPECIES_IMAGE = {
+  bear: 'lila-laborbaer.jpg',
+  marmot: 'marmot-master.jpg',
+  raccoon: 'raccoon-master.jpg',
+  wolf: 'wolf-master.jpg',
+  bat: 'bat-master.jpg',
+  owl: 'owl-master.jpg',
+  frog: 'frog-master.jpg',
+  spider: 'spider-master.jpg',
+} as const
+const PALETTE_HUE = { violet: 0, teal: 95, pink: 330, acid: 55, blood: 300, amber: 25 } as const
 
 export function Mascot({
   mascotId = DEFAULT_MASCOT_ID,
   size = 'medium',
   talking = false,
+  selected = false,
 }: MascotProps) {
-  const premiumImage =
-    mascotId === 'nachtbaer' ? `${import.meta.env.BASE_URL}mascots/lila-laborbaer.jpg` : undefined
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-    const dpr = window.devicePixelRatio || 1
-    canvas.width = 240 * dpr
-    canvas.height = 240 * dpr
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-    drawMascot(ctx, mascotId)
-  }, [mascotId])
-
+  const entry = getMascotEntry(mascotId)
+  const catalogIndex = MASCOT_CATALOG.findIndex((candidate) => candidate.id === entry.id)
   const px = SIZE_PX[size]
-
-  if (premiumImage) {
-    return (
-      <img
-        className={`mascot mascot--premium ${talking ? 'mascot--talking' : ''}`}
-        src={premiumImage}
-        style={{ width: px, height: px }}
-        alt={getMascotEntry(mascotId).name}
-      />
-    )
-  }
+  const style = {
+    width: px,
+    height: px,
+    '--mascot-hue': `${PALETTE_HUE[entry.palette]}deg`,
+    '--mascot-tilt': `${((catalogIndex % 5) - 2) * 0.7}deg`,
+  } as CSSProperties
 
   return (
-    <canvas
-      ref={canvasRef}
-      className={`mascot ${talking ? 'mascot--talking' : ''}`}
-      style={{ width: px, height: px }}
+    <span
+      className={`mascot mascot--${entry.palette} ${entry.gore ? 'mascot--spooky' : ''} ${talking ? 'mascot--talking' : ''} ${selected ? 'mascot--selected' : ''}`}
+      style={style}
       role="img"
-      aria-label={getMascotEntry(mascotId).name}
-    />
+      aria-label={entry.name}
+    >
+      <img
+        className="mascot__image"
+        src={`${import.meta.env.BASE_URL}mascots/${SPECIES_IMAGE[entry.species]}`}
+        alt=""
+      />
+    </span>
   )
 }

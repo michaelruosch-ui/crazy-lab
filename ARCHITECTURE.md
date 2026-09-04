@@ -1,5 +1,13 @@
 # Architektur
 
+## Maskottchen-Bildsystem (Sprint-28-Korrektur)
+
+`Mascot.tsx` ordnet die unveränderten 33 Maskottchen-IDs einer von acht lokal gebündelten,
+komprimierten Tiergrafiken zu. Palette, individuelle leichte Neigung und ein nicht-grafisches
+Gruseldetail erzeugen die Varianten ohne 33 grosse Bilddateien. Das senkt Download und Speicher
+auf alten Geräten; Browser-Caching lädt jede Tiergrafik nur einmal. Die Auswahl-Animation ist rein
+über CSS umgesetzt und wird durch beide vorhandenen Einstellungen für reduzierte Bewegung beendet.
+
 ## Schichten
 
 ```text

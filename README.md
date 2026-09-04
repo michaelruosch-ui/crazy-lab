@@ -173,3 +173,7 @@ Laborschrank, Forscherwissen und freiwillige Abzeichen, 100 einzigartige Mission
 realistischer Nachtbär sowie bessere Barrierefreiheit und freundliche Fehlerhilfe. Sprint 25 wurde
 auf Wunsch hinter Sprint 29 verschoben und ist als Nächstes geplant. Der Familientest auf den echten
 Geräten steht noch aus.
+
+Nach dem ersten Familientest wurden alle 33 Profil-Maskottchen auf denselben hochwertigen,
+detailreichen Bildstil wie der Nachtbär umgestellt. Beim Antippen bewegt sich die Auswahl kurz;
+„Bewegung reduzieren“ bleibt vollständig unterstützt.

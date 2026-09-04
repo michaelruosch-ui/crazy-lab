@@ -1,5 +1,14 @@
 # Changelog
 
+## Sprint 28 - Maskottchen-Korrektur nach Familientest (2026-09-04)
+
+- Alle 33 Profil-Maskottchen verwenden jetzt hochwertige, detailreiche Crazy-Lab-Bilder statt
+  der bisherigen einfachen Canvas-Zeichnungen. Jede der acht Tierarten besitzt eine eigene Figur;
+  Farbwelten und harmlose Gruseldetails unterscheiden weiterhin die einzelnen Charaktere.
+- Die Auswahl reagiert mit einem kurzen Hüpfen und Wackeln. Systemeinstellung und Profiloption
+  „Bewegung reduzieren“ schalten diese Animation vollständig ab.
+- Bestehende IDs, Namen, Favoriten und gespeicherte Profile bleiben kompatibel.
+
 ## Sprint 24 - Datenschutz- und App-Store-Grundentscheidung (2026-09-03)
 
 - Zielgruppe und Apple-Kinderkategorie 9–11, Schweiz und fünf App-Sprachen festgelegt.

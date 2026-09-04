@@ -418,6 +418,11 @@ positiv beantwortet.
   - [x] Lila Bär echter und realistischer, weniger comicartig gestalten
   - [x] Blutigen Kuschelbären gruselig-lustig und nicht brutal behalten; eine leicht gruseligere
         Variante ist erwünscht, muss aber mit der Altersfreigabe vereinbar bleiben
+  - [x] Korrektur nach Familientest: alle 33 Profil-Maskottchen auf den hochwertigen,
+        detailreichen Bildstil umstellen
+  - [x] Alle acht Tierarten erhalten eigene Premium-Grafiken; Namen, gespeicherte Auswahl,
+        Farbwelten und kindgerecht gruselige Varianten bleiben erhalten
+  - [x] Ausgewähltes Maskottchen hüpft und wackelt kurz; bei „Bewegung reduzieren“ bleibt es ruhig
 
 ### P3 - Qualität und Veröffentlichung
 
