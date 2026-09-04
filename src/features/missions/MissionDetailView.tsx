@@ -25,6 +25,29 @@ const TASTE_LABELS = {
   prickelnd: 'Prickelnd',
 } as const
 
+const KNOWLEDGE_CARDS: Record<Mission['primaryCategory'], { title: string; text: string }> = {
+  getraenk: {
+    title: 'Geschmack und Farben',
+    text: 'Nase, Augen und Zunge forschen gemeinsam. Farbe und Duft können sogar verändern, wie süss oder fruchtig etwas wirkt.',
+  },
+  basteln: {
+    title: 'Kreative Erfindungen',
+    text: 'Stabile Formen entstehen durch Falten, Stützen und gute Verbindungen. Teste erst klein und verbessere deine Idee Schritt für Schritt.',
+  },
+  experiment: {
+    title: 'Wissenschaft entdecken',
+    text: 'Eine Vermutung ist keine falsche Antwort. Forschende beobachten genau, vergleichen und ändern ihre Erklärung, wenn sie etwas Neues entdecken.',
+  },
+  foto: {
+    title: 'Licht und Fotografie',
+    text: 'Licht, Abstand und Blickwinkel bestimmen, was auf einem Foto gross, geheimnisvoll oder magisch wirkt.',
+  },
+  schwestern: {
+    title: 'Team-Zauber',
+    text: 'Gute Teams teilen Aufgaben, hören einander zu und verbinden verschiedene Ideen zu einer gemeinsamen Erfindung.',
+  },
+}
+
 interface MissionDetailViewProps {
   mission: Mission
   onStart: () => void
@@ -33,6 +56,8 @@ interface MissionDetailViewProps {
   onSelectVariant?: (name: string) => void
   onAddToShoppingList?: () => void
   shoppingMessage?: string
+  hypothesis?: string
+  onHypothesisChange?: (value: string) => void
 }
 
 export function MissionDetailView({
@@ -43,9 +68,12 @@ export function MissionDetailView({
   onSelectVariant,
   onAddToShoppingList,
   shoppingMessage,
+  hypothesis = '',
+  onHypothesisChange,
 }: MissionDetailViewProps) {
   const safety = SAFETY_LABELS[mission.safetyLevel]
   const variants = rankedVariants ?? mission.drinkProfile?.variants ?? []
+  const knowledge = KNOWLEDGE_CARDS[mission.primaryCategory]
 
   return (
     <div className="mission-detail">
@@ -83,6 +111,20 @@ export function MissionDetailView({
           ))}
         </ul>
       </section>
+
+      <details className="mission-detail__all-steps">
+        <summary>👀 Alle {mission.steps.length} Schritte vorher anschauen</summary>
+        <ol>
+          {mission.steps.map((step) => (
+            <li key={step.id}>{step.text}</li>
+          ))}
+        </ol>
+      </details>
+
+      <aside className="mission-detail__knowledge">
+        <h2>✨ Wissenskarte: {knowledge.title}</h2>
+        <p>{knowledge.text}</p>
+      </aside>
 
       {mission.drinkProfile && (
         <section className="mission-detail__drink-profile">
@@ -134,6 +176,15 @@ export function MissionDetailView({
           <p>
             <strong>Erst vermuten, dann beobachten, zuletzt erklären.</strong>
           </p>
+          <label>
+            Meine Vermutung vor dem Start
+            <textarea
+              rows={3}
+              value={hypothesis}
+              onChange={(event) => onHypothesisChange?.(event.target.value)}
+              placeholder={mission.experimentProfile.hypothesisPrompt}
+            />
+          </label>
           {mission.experimentProfile.durationDays && (
             <Badge tone="acid">
               Läuft {mission.experimentProfile.durationDays} Tag

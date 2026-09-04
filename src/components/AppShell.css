@@ -94,3 +94,16 @@
     max-width: 1180px;
   }
 }
+.app-shell__skip-link {
+  position: fixed;
+  left: 12px;
+  top: -80px;
+  z-index: 1000;
+  padding: 10px 14px;
+  color: var(--color-bg-deep);
+  background: var(--color-warning);
+  border-radius: 10px;
+}
+.app-shell__skip-link:focus {
+  top: 12px;
+}

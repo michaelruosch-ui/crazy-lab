@@ -20,6 +20,8 @@ export function Mascot({
   size = 'medium',
   talking = false,
 }: MascotProps) {
+  const premiumImage =
+    mascotId === 'nachtbaer' ? `${import.meta.env.BASE_URL}mascots/lila-laborbaer.jpg` : undefined
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -35,6 +37,17 @@ export function Mascot({
   }, [mascotId])
 
   const px = SIZE_PX[size]
+
+  if (premiumImage) {
+    return (
+      <img
+        className={`mascot mascot--premium ${talking ? 'mascot--talking' : ''}`}
+        src={premiumImage}
+        style={{ width: px, height: px }}
+        alt={getMascotEntry(mascotId).name}
+      />
+    )
+  }
 
   return (
     <canvas

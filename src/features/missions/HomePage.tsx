@@ -7,10 +7,11 @@ import {
   buildPreferenceProfile,
   filterMissions,
   isBirthdayToday,
+  missionUsesOnlyAvailableMaterials,
   pickDailyMission,
   suggestionsForCategory,
 } from '../../domain'
-import { Mascot, MissionCard } from '../../components'
+import { Mascot, MissionCard, ResearchAchievements } from '../../components'
 import { useSecretVault } from '../secret-vault'
 import { useDiaryEntries } from '../diary'
 import { useActiveProfileId, useProfile } from '../profile'
@@ -18,6 +19,7 @@ import { useHiddenMissions } from './useHiddenMissions'
 import { MissionSection } from './MissionSection'
 import { MissionFiltersPanel } from './MissionFiltersPanel'
 import { indexedDbExperimentProgressRepository } from '../../storage/experimentProgressRepository'
+import { useLabCabinet } from '../lab-cabinet/useLabCabinet'
 import './HomePage.css'
 
 const CATEGORY_SECTIONS: { category: MissionCategory; title: string }[] = [
@@ -31,11 +33,13 @@ const CATEGORY_SECTIONS: { category: MissionCategory; title: string }[] = [
 export function HomePage() {
   const [filters, setFilters] = useState(DEFAULT_MISSION_FILTERS)
   const [ongoingExperimentIds, setOngoingExperimentIds] = useState<string[]>([])
+  const [onlyAvailableMaterials, setOnlyAvailableMaterials] = useState(false)
   const { activeProfileId } = useActiveProfileId()
   const { profile } = useProfile(activeProfileId)
   const { savedMissionIds, toggle: toggleSaved } = useSecretVault(activeProfileId)
   const { currentlyHiddenMissionIds, hide } = useHiddenMissions(activeProfileId)
   const { entries: diaryEntries } = useDiaryEntries(activeProfileId)
+  const { items: cabinetItems } = useLabCabinet(activeProfileId)
   const preferenceProfile = buildPreferenceProfile(activeProfileId, diaryEntries)
   const completedMissionIds = new Set(diaryEntries.map((entry) => entry.missionSnapshot.missionId))
 
@@ -57,7 +61,12 @@ export function HomePage() {
   const mascotId = profile?.mascotVariant ?? 'blutiger-kuschelbaer'
   const today = new Date()
   const todaysBirthdays = (profile?.birthdays ?? []).filter((b) => isBirthdayToday(b, today))
-  const matchingMissions = filterMissions(missions, filters)
+  const matchingMissions = filterMissions(missions, filters).filter(
+    (mission) =>
+      !onlyAvailableMaterials ||
+      (mission.primaryCategory !== 'foto' &&
+        missionUsesOnlyAvailableMaterials(mission, cabinetItems)),
+  )
   const matchingAvailableCount = matchingMissions.filter(
     (mission) => !currentlyHiddenMissionIds.has(mission.id) && !completedMissionIds.has(mission.id),
   ).length
@@ -104,6 +113,15 @@ export function HomePage() {
         onChange={setFilters}
       />
 
+      <button
+        type="button"
+        className={`home-page__available-toggle ${onlyAvailableMaterials ? 'is-active' : ''}`}
+        aria-pressed={onlyAvailableMaterials}
+        onClick={() => setOnlyAvailableMaterials((value) => !value)}
+      >
+        🧰 Missionen, für die ich alles zu Hause habe
+      </button>
+
       {ongoingExperiments.length > 0 && (
         <section className="home-page__ongoing">
           <h2>🌱 Laufende Versuche</h2>
@@ -115,6 +133,8 @@ export function HomePage() {
           ))}
         </section>
       )}
+
+      <ResearchAchievements entries={diaryEntries} />
 
       {matchingAvailableCount === 0 && (
         <p className="home-page__no-match">

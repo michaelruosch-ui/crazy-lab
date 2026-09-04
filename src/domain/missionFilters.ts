@@ -1,4 +1,5 @@
 import type { Mission, MissionLocation } from './mission'
+import type { LabCabinetItem } from './labCabinet'
 
 export interface MissionFilters {
   maxDurationMinutes?: number
@@ -55,4 +56,18 @@ export function missionMatchesFilters(mission: Mission, filters: MissionFilters)
 
 export function filterMissions(missions: Mission[], filters: MissionFilters): Mission[] {
   return missions.filter((mission) => missionMatchesFilters(mission, filters))
+}
+
+export function missionUsesOnlyAvailableMaterials(
+  mission: Mission,
+  cabinetItems: LabCabinetItem[],
+): boolean {
+  const available = new Set(
+    cabinetItems
+      .filter((item) => item.quantityStatus === 'genug' || item.quantityStatus === 'viel')
+      .map((item) => item.materialName.trim().toLocaleLowerCase('de')),
+  )
+  return mission.materials
+    .filter((material) => !material.optional)
+    .every((material) => available.has(material.name.trim().toLocaleLowerCase('de')))
 }

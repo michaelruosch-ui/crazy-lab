@@ -16,7 +16,7 @@ import { CompletionForm } from '../features/ratings'
 import { useSecretVault } from '../features/secret-vault'
 import { useActiveProfileId, useProfile } from '../features/profile'
 import { useDiaryEntries } from '../features/diary'
-import { BackLink, Button } from '../components'
+import { BackLink, Button, FriendlyError } from '../components'
 import { indexedDbDiaryRepository } from '../storage/diaryRepository'
 import { indexedDbShoppingListRepository } from '../storage/shoppingListRepository'
 import { indexedDbLabCabinetRepository } from '../storage/labCabinetRepository'
@@ -71,6 +71,7 @@ export function MissionFlowPage({ missionId, missionOverride }: MissionFlowPageP
   const [errorDetails, setErrorDetails] = useState<string>('')
   const [shoppingMessage, setShoppingMessage] = useState('')
   const [experimentProgress, setExperimentProgress] = useState<ExperimentProgress>()
+  const [experimentHypothesis, setExperimentHypothesis] = useState('')
   const navigate = useNavigate()
   const { activeProfileId } = useActiveProfileId()
   const { savedMissionIds, toggle: toggleSaved } = useSecretVault(activeProfileId)
@@ -161,6 +162,8 @@ export function MissionFlowPage({ missionId, missionOverride }: MissionFlowPageP
           onSelectVariant={setSelectedVariant}
           onAddToShoppingList={addToShoppingList}
           shoppingMessage={shoppingMessage}
+          hypothesis={experimentHypothesis}
+          onHypothesisChange={setExperimentHypothesis}
         />
         <div className="mission-flow__secondary-actions">
           <Button variant="ghost" onClick={() => toggleSaved(mission.id)}>
@@ -202,18 +205,15 @@ export function MissionFlowPage({ missionId, missionOverride }: MissionFlowPageP
         submitting={saveStatus === 'saving'}
         mascotId={profile?.mascotVariant}
         drinkVariant={effectiveVariant}
+        initialHypothesis={experimentHypothesis}
       />
       {saveStatus === 'error' && (
-        <div className="mission-flow__save-error" role="alert">
-          <p>
-            Speichern hat nicht geklappt. Bitte den Text unten Michael zeigen oder abfotografieren -
-            das hilft bei der Fehlersuche.
-          </p>
-          <p className="mission-flow__save-error-details">{errorDetails}</p>
-          <Button variant="primary" onClick={() => pendingRating && trySave(pendingRating)}>
-            Nochmals versuchen
-          </Button>
-        </div>
+        <FriendlyError
+          mascotId={profile?.mascotVariant}
+          message="Dein Eintrag ist noch da. Tippe nochmals, dann versuchen wir das Speichern erneut."
+          details={errorDetails}
+          onRetry={() => pendingRating && trySave(pendingRating)}
+        />
       )}
     </>
   )

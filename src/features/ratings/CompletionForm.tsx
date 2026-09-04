@@ -24,6 +24,7 @@ interface CompletionFormProps {
   submitting?: boolean
   mascotId?: MascotId
   drinkVariant?: string
+  initialHypothesis?: string
 }
 
 const DIFFICULTY_OPTIONS: { value: DifficultyFeedback; label: string }[] = [
@@ -40,6 +41,7 @@ export function CompletionForm({
   submitting = false,
   mascotId = DEFAULT_PROFILE.mascotVariant,
   drinkVariant,
+  initialHypothesis = '',
 }: CompletionFormProps) {
   const isDrink =
     mission.primaryCategory === 'getraenk' || mission.secondaryCategories.includes('getraenk')
@@ -57,7 +59,7 @@ export function CompletionForm({
   const [inventionName, setInventionName] = useState('')
   const [stamp, setStamp] = useState<StampId>('geheimnisvoll')
   const [animatingStamp, setAnimatingStamp] = useState<StampId | null>(null)
-  const [hypothesis, setHypothesis] = useState('')
+  const [hypothesis, setHypothesis] = useState(initialHypothesis)
   const [observation, setObservation] = useState('')
   const [learnedExplanation, setLearnedExplanation] = useState('')
   const [photoDataUrls, setPhotoDataUrls] = useState<string[]>([])

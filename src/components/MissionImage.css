@@ -2,31 +2,74 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   border-radius: var(--radius-lg);
-  background: linear-gradient(
-    155deg,
-    var(--color-bg-elevated) 0%,
-    var(--color-bg-card) 55%,
-    var(--color-violet) 140%
-  );
+  background:
+    radial-gradient(circle at 22% 18%, hsl(var(--mission-hue) 95% 70% / 0.8), transparent 27%),
+    conic-gradient(
+      from 210deg,
+      hsl(var(--mission-hue) 78% 25%),
+      hsl(var(--mission-hue-2) 85% 35%),
+      hsl(var(--mission-hue) 78% 20%)
+    );
   box-shadow:
-    0 0 0 1px rgba(35, 230, 200, 0.15),
-    0 0 30px -6px var(--color-teal-glow);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    0 0 0 1px hsl(var(--mission-hue) 90% 75% / 0.35),
+    0 12px 32px -14px hsl(var(--mission-hue-2) 90% 60%);
+  display: grid;
+  place-items: center;
   overflow: hidden;
   position: relative;
 }
 
-.mission-image::after {
+.mission-image::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 30% 20%, var(--color-teal-glow), transparent 55%);
+  inset: -30%;
+  background: repeating-radial-gradient(
+    circle at 70% 65%,
+    transparent 0 14px,
+    hsl(var(--mission-hue-2) 95% 78% / 0.12) 15px 17px
+  );
+  transform: rotate(var(--mission-tilt));
 }
 
 .mission-image__icon {
-  font-size: 64px;
-  filter: drop-shadow(0 0 12px var(--color-teal-glow));
-  z-index: 1;
+  font-size: clamp(3.6rem, 18vw, 6.4rem);
+  transform: rotate(var(--mission-tilt));
+  filter: drop-shadow(0 10px 7px rgba(0, 0, 0, 0.45));
+  z-index: 2;
+}
+
+.mission-image__accent,
+.mission-image__spark {
+  position: absolute;
+  z-index: 3;
+}
+.mission-image__accent {
+  right: 12%;
+  top: 12%;
+  font-size: 1.8rem;
+}
+.mission-image__spark {
+  left: 14%;
+  bottom: 13%;
+  color: white;
+  font-size: 2rem;
+  text-shadow: 0 0 14px white;
+}
+.mission-image__bubble {
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+}
+.mission-image__bubble--one {
+  width: 22px;
+  height: 22px;
+  left: 16%;
+  top: 25%;
+}
+.mission-image__bubble--two {
+  width: 38px;
+  height: 38px;
+  right: 19%;
+  bottom: 16%;
 }

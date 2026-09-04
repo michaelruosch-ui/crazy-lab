@@ -105,6 +105,19 @@ button {
   font-family: inherit;
 }
 
+button,
+a,
+input,
+select,
+textarea,
+summary {
+  min-height: var(--touch-target);
+}
+:focus-visible {
+  outline: 3px solid var(--color-warning);
+  outline-offset: 3px;
+}
+
 .app-loading {
   padding: 24px 16px;
 }

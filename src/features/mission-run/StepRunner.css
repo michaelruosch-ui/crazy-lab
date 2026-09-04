@@ -99,3 +99,8 @@
     opacity: 1;
   }
 }
+.step-runner__remaining {
+  margin: -4px 0 12px;
+  color: var(--color-teal);
+  font-weight: 700;
+}

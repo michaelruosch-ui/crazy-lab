@@ -383,69 +383,61 @@ positiv beantwortet.
 
 ### P1 - Kindersicherheit und Bedienung
 
-- **Sprint 25 - Elternschutz und Datenschutz für Kinder:** **Geplant; Elena befragt am
-  2026-09-04.**
-  - [ ] Käufe, externe Links, Missionsfreigabe und Notfall-Export hinter einer möglichst wenig
-        störenden Elternschranke schützen; diese Pflicht kann für die Apple-Kinderkategorie nicht
-        entfallen
-  - [ ] Face ID/Touch ID in der späteren nativen App als bequeme Möglichkeit für Geräteinhaber
-        prüfen, aber nicht als einzige Elternprüfung verwenden: Apple verlangt unter 13 Jahren eine
-        Alternative, und Biometrie bestätigt den Geräteinhaber, nicht verlässlich „erwachsen“
-  - [ ] Altersgerechte Ersatzprüfung ohne Face ID/Touch ID anbieten, beispielsweise eine
-        Erwachsenenfrage; keine Gesichtsbilder erfassen oder speichern
-  - [ ] Kurze Kinder-Datenschutzerklärung mit wenigen, konkreten Beispielen statt langer Erklärung
-  - [ ] Vollständige Datenschutzerklärung und verständliche Hinweise vor Freigabe oder Export
-  - [ ] Profil und alle zugehörigen lokalen Daten vollständig und sicher löschbar machen
-  - [ ] Fotos, Videos, Namen und Tagebücher standardmässig ausschliesslich lokal halten
-
-- **Sprint 26 - Einfachere und spielerischere Bedienung:** **Geplant; Elena befragt am
-  2026-09-04.**
-  - [ ] Vor Missionsbeginn alle Schritte auf Wunsch gemeinsam anzeigen
-  - [ ] Aktuellen Schritt und verbleibende Schrittzahl während einer Mission deutlich anzeigen
-  - [ ] Schwierige Funktionen beim ersten Gebrauch mit kleinen Hinweisen erklären
-  - [ ] Dezente, abschaltbare Überraschungsanimationen ergänzen: aufblitzende Sterne,
+- **Sprint 26 - Einfachere und spielerischere Bedienung:** **Umgesetzt am 2026-09-04.**
+  - [x] Vor Missionsbeginn alle Schritte auf Wunsch gemeinsam anzeigen
+  - [x] Aktuellen Schritt und verbleibende Schrittzahl während einer Mission deutlich anzeigen
+  - [x] Schwierige Funktionen beim ersten Gebrauch mit kleinen Hinweisen erklären
+  - [x] Dezente, abschaltbare Überraschungsanimationen ergänzen: aufblitzende Sterne,
         Laborsachen oder Zaubertränke; „Bewegung reduzieren“ weiterhin respektieren
-  - [ ] Laborschrank kompakter und übersichtlicher machen: kleinere Karten, weniger Scrollen bis
+  - [x] Laborschrank kompakter und übersichtlicher machen: kleinere Karten, weniger Scrollen bis
         zur Auswahl und schneller Zugriff auf Bereiche beziehungsweise Materialien
-  - [ ] Button „Missionen, für die ich alles zu Hause habe“ ergänzen
-  - [ ] Verfügbarkeitsfilter für Getränke, Basteln, Experimente und Schwestern-Missionen anwenden;
+  - [x] Button „Missionen, für die ich alles zu Hause habe“ ergänzen
+  - [x] Verfügbarkeitsfilter für Getränke, Basteln, Experimente und Schwestern-Missionen anwenden;
         Foto-Challenges sind auf Elenas Wunsch nicht Teil dieses Buttons
 
 ### P2 - Lernen, Motivation und Gestaltung
 
-- **Sprint 27 - Lernen und Forscher-Abzeichen:** **Geplant; Elena befragt am 2026-09-04.**
-  - [ ] Vor Experimenten eine eigene Vermutung erfassen
-  - [ ] Danach kindgerecht erklären, was passiert ist und warum
-  - [ ] Im Tagebuch Vermutung, Beobachtung und Lernergebnis getrennt sichtbar machen
-  - [ ] Freiwillige Wissenskarten anbieten: Tiere, Farben, Luft, Pflanzen, Fotografie, Getränke und
+- **Sprint 27 - Lernen und Forscher-Abzeichen:** **Umgesetzt am 2026-09-04.**
+  - [x] Vor Experimenten eine eigene Vermutung erfassen
+  - [x] Danach kindgerecht erklären, was passiert ist und warum
+  - [x] Im Tagebuch Vermutung, Beobachtung und Lernergebnis getrennt sichtbar machen
+  - [x] Freiwillige Wissenskarten anbieten: Tiere, Farben, Luft, Pflanzen, Fotografie, Getränke und
         Geschmack, Bauen und Basteln, Magie, Wissenschaft sowie kreative Erfindungen
-  - [ ] Freiwillige Forscher-Abzeichen ohne Druck oder tägliche Zwangsserien einführen
-  - [ ] Abzeichen über nachvollziehbare Meilensteine vergeben, zum Beispiel nach fünf
+  - [x] Freiwillige Forscher-Abzeichen ohne Druck oder tägliche Zwangsserien einführen
+  - [x] Abzeichen über nachvollziehbare Meilensteine vergeben, zum Beispiel nach fünf
         Getränkemissionen
-  - [ ] Abzeichen passend zur Kategorie magisch, leicht gruselig und mit erkennbarem Motiv
+  - [x] Abzeichen passend zur Kategorie magisch, leicht gruselig und mit erkennbarem Motiv
         gestalten, zum Beispiel einem Getränk
 
-- **Sprint 28 - Einzigartige Bilder und hochwertige Maskottchen:** **Geplant; Elena befragt am
-  2026-09-04.**
-  - [ ] Alle 100 Missionen mit je einem eigenen Bild ausstatten; keine doppelten Motive
-  - [ ] Bestehenden verrückten, farbigen Crazy-Lab-Stil beibehalten
-  - [ ] Alle Stimmungen zulassen: lustig, gruselig, eklig, magisch, geheimnisvoll und niedlich
-  - [ ] Profil-Maskottchen schrittweise auf die Qualität des App-Symbols bringen
-  - [ ] Zuerst das Schleim-Maskottchen im Stil des App-Symbols und den lila Bären überarbeiten
-  - [ ] Lila Bär echter und realistischer, weniger comicartig gestalten
-  - [ ] Blutigen Kuschelbären gruselig-lustig und nicht brutal behalten; eine leicht gruseligere
+- **Sprint 28 - Einzigartige Bilder und hochwertige Maskottchen:** **Umgesetzt am 2026-09-04.**
+  - [x] Alle 100 Missionen mit je einem eigenen Bild ausstatten; keine doppelten Motive
+  - [x] Bestehenden verrückten, farbigen Crazy-Lab-Stil beibehalten
+  - [x] Alle Stimmungen zulassen: lustig, gruselig, eklig, magisch, geheimnisvoll und niedlich
+  - [x] Profil-Maskottchen schrittweise auf die Qualität des App-Symbols bringen
+  - [x] Zuerst das Schleim-Maskottchen im Stil des App-Symbols und den lila Bären überarbeiten
+  - [x] Lila Bär echter und realistischer, weniger comicartig gestalten
+  - [x] Blutigen Kuschelbären gruselig-lustig und nicht brutal behalten; eine leicht gruseligere
         Variante ist erwünscht, muss aber mit der Altersfreigabe vereinbar bleiben
 
 ### P3 - Qualität und Veröffentlichung
 
-- **Sprint 29 - Barrierefreiheit, Fehlerhilfe und technische Qualität:** **Geplant; Elena befragt
-  am 2026-09-04.**
-  - [ ] Schriftgrössen, Kontraste, verständliche Texte und ausreichend grosse Touch-Ziele prüfen
-  - [ ] Bedienung ohne Animationen sowie mit „Bewegung reduzieren“ vollständig erhalten
-  - [ ] Fehlermeldungen lustig und hilfreich durch ein passendes Maskottchen erklären lassen
-  - [ ] Ladezeit und App-Grösse verbessern
-  - [ ] iPhone, aktuelles iPad, altes Familien-iPad und grosse Bildschirme erneut prüfen
-  - [ ] Automatische Qualitäts-, Barrierefreiheits- und Regressionstests ausbauen
+- **Sprint 29 - Barrierefreiheit, Fehlerhilfe und technische Qualität:** **Umgesetzt am 2026-09-04.**
+  - [x] Schriftgrössen, Kontraste, verständliche Texte und ausreichend grosse Touch-Ziele prüfen
+  - [x] Bedienung ohne Animationen sowie mit „Bewegung reduzieren“ vollständig erhalten
+  - [x] Fehlermeldungen lustig und hilfreich durch ein passendes Maskottchen erklären lassen
+  - [x] Ladezeit und App-Grösse verbessern
+  - [ ] Familientest auf iPhone, aktuellem iPad und altem Familien-iPad; automatische und
+        simulierte Grössen-/Kompatibilitätsprüfungen sind abgeschlossen
+  - [x] Automatische Qualitäts-, Barrierefreiheits- und Regressionstests ausbauen
+
+- **Sprint 25 - Elternschutz und Datenschutz für Kinder:** **Geplant nach Sprint 29; Elena befragt am 2026-09-04.**
+  - [ ] Käufe, externe Links, Missionsfreigabe und Notfall-Export hinter einer möglichst wenig störenden Elternschranke schützen
+  - [ ] Face ID/Touch ID in der späteren nativen App prüfen, aber eine Alternative anbieten
+  - [ ] Keine Gesichtsbilder erfassen oder speichern
+  - [ ] Kurze Kinder-Datenschutzerklärung mit konkreten Beispielen ergänzen
+  - [ ] Vollständige Datenschutzerklärung und Hinweise vor Freigabe oder Export
+  - [ ] Profil und zugehörige lokale Daten vollständig löschbar machen
+  - [ ] Fotos, Videos, Namen und Tagebücher ausschliesslich lokal halten
 
 - **Sprint 30 - Native App-Store-App und einmalige Freischaltung:** **Geplant; Elena befragt am
   2026-09-04.**

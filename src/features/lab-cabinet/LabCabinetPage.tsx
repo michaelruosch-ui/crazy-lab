@@ -125,7 +125,14 @@ export function LabCabinetPage() {
         {photoError && <p className="lab-cabinet-page__error">{photoError}</p>}
         <div className="lab-cabinet-page__items">
           {items.map((item) => (
-            <article key={item.id} className="cabinet-item">
+            <details key={item.id} className="cabinet-item">
+              <summary>
+                <strong>{item.materialName}</strong>
+                <span>{AREAS.find((area) => area.value === item.area)?.label}</span>
+                <span>
+                  {QUANTITIES.find((quantity) => quantity.value === item.quantityStatus)?.label}
+                </span>
+              </summary>
               <div className="cabinet-item__title">
                 <div>
                   <h3>{item.materialName}</h3>
@@ -203,7 +210,7 @@ export function LabCabinetPage() {
                   Entfernen
                 </Button>
               </div>
-            </article>
+            </details>
           ))}
         </div>
       </section>

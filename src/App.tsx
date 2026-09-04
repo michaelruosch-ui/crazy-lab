@@ -20,6 +20,7 @@ import {
 } from './features/custom-missions'
 import { useAtmosphereSettings } from './features/atmosphere'
 import { AppShell } from './components/AppShell'
+import { FirstUseHints, LabSparkles } from './components'
 import { indexedDbProfileRepository } from './storage/profileRepository'
 import { LanguageProvider, LocalizedContent } from './i18n'
 
@@ -91,6 +92,8 @@ export function App() {
       onLanguageChange={(language) => void save({ ...profile, language })}
     >
       <LocalizedContent key={profile.language ?? 'de'}>
+        <LabSparkles />
+        <FirstUseHints profileId={profile.id} />
         <Routes>
           <Route element={<AppShell />}>
             <Route path="/" element={<HomePage />} />

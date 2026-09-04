@@ -19,6 +19,9 @@ export function AppShell() {
 
   return (
     <div className="app-shell">
+      <a className="app-shell__skip-link" href="#main-content">
+        Direkt zum Inhalt
+      </a>
       <aside className="app-shell__sidebar">
         <div className="app-shell__brand">🔮 Crazy Lab</div>
         <nav aria-label={t('navigation')}>
@@ -36,7 +39,7 @@ export function AppShell() {
           ))}
         </nav>
       </aside>
-      <main className="app-shell__content">
+      <main className="app-shell__content" id="main-content" tabIndex={-1}>
         <div className="app-shell__language">
           <label>
             <span>🌐 {t('language')}</span>

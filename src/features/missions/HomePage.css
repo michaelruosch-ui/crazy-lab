@@ -202,3 +202,18 @@
     display: none;
   }
 }
+.home-page__available-toggle {
+  width: 100%;
+  min-height: var(--touch-target);
+  padding: 10px 14px;
+  border: 1px solid rgba(35, 230, 200, 0.4);
+  border-radius: var(--radius-md);
+  background: rgba(35, 230, 200, 0.08);
+  color: var(--color-text);
+  font: inherit;
+  font-weight: 800;
+}
+.home-page__available-toggle.is-active {
+  background: var(--color-teal);
+  color: #071312;
+}

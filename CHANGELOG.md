@@ -502,3 +502,34 @@ und ist ohnehin explizit Teil von Sprint 5 ("PWA auf Elenas iPhone").
 - Präferenzprofil/lernende Gewichtung noch nicht implementiert (Sprint 3).
 - Kein Onboarding, kein veränderbarer Forschername, keine Geburtstage (Sprint 4).
 - iPhone-Installationsanleitung ist provisorisch; volle Offline-/Safari-QA folgt in Sprint 5.
+
+# Sprint 29 - Barrierefreiheit, Fehlerhilfe und technische Qualität (2026-09-04)
+
+- Gut sichtbare Tastatur-Fokusringe, Sprunglink zum Inhalt und mindestens 48 Pixel grosse
+  Bedienelemente ergänzt; reduzierte Bewegung bleibt vollständig unterstützt.
+- Speicherfehler erklären sich nun freundlich mit dem gewählten Maskottchen und verstecken
+  technische Details in einem Erwachsenen-Bereich.
+- Leichte, rein lokale Missionsgrafiken halten Ladezeit und App-Grösse klein. Automatische Tests
+  prüfen weiterhin Übersetzungen, Kompatibilität und Regressionen; der Familientest folgt.
+
+# Sprint 28 - Einzigartige Bilder und hochwertige Maskottchen (2026-09-04)
+
+- Jede der 100 Missionen erhält aus ihrem stabilen Titel und Bildschlüssel eine unverwechselbare
+  Farbwelt, Symbolkombination und Stimmung; ein Test verhindert doppelte Motive.
+- Der Nachtbär wurde als hochwertiges, realistisches lila Plüsch-Labormaskottchen neu gestaltet.
+  Das Schleimmonster-App-Symbol und der kindgerecht gruselige Kuschelbär bleiben erhalten.
+
+# Sprint 27 - Lernen und Forscher-Abzeichen (2026-09-04)
+
+- Vermutungen werden vor Experimentbeginn erfasst und zusammen mit Beobachtung und Erklärung im
+  Tagebuch gespeichert. Wissenskarten ergänzen jede Missionskategorie.
+- Freiwillige Forscher-Abzeichen zeigen Fortschritt und werden bei nachvollziehbaren Meilensteinen
+  freigeschaltet, ohne tägliche Serien oder Druck.
+
+# Sprint 26 - Einfachere und spielerischere Bedienung (2026-09-04)
+
+- Alle Schritte lassen sich vorab öffnen; während der Mission sind aktueller und verbleibende
+  Schritte deutlich sichtbar. Kleine Erstbenutzungstipps helfen bei neuen Funktionen.
+- Dezente Sterne und Laborobjekte beleben die Oberfläche und respektieren reduzierte Bewegung.
+- Der Laborschrank ist kompakter. Ein neuer Filter zeigt für geeignete Kategorien nur Missionen,
+  deren benötigte Dinge laut Laborschrank vorhanden sind.

@@ -50,7 +50,7 @@ export async function createBackup(profileId: string): Promise<BackupData> {
     indexedDbProfileRepository.get(profileId),
     indexedDbDiaryRepository.getAllEntries(profileId),
     indexedDbSecretVaultRepository.getAll(profileId),
-    indexedDbHiddenMissionsRepository.getHistory(profileId),
+    indexedDbHiddenMissionsRepository.getAll(profileId),
     indexedDbLabCabinetRepository.getAll(profileId),
     indexedDbShoppingListRepository.getAll(profileId),
     indexedDbExperimentProgressRepository.getAll(profileId),

@@ -107,3 +107,24 @@
   flex: 0 0 auto;
   accent-color: var(--color-teal);
 }
+.mission-detail__all-steps {
+  padding: 12px 14px;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  border-radius: var(--radius-md);
+  background: rgba(139, 92, 246, 0.1);
+}
+.mission-detail__all-steps summary {
+  cursor: pointer;
+  font-weight: 800;
+}
+.mission-detail__all-steps li {
+  margin: 8px 0;
+}
+.mission-detail__knowledge {
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(35, 230, 200, 0.12), rgba(139, 92, 246, 0.12));
+}
+.mission-detail__knowledge h2 {
+  font-size: 1.05rem;
+}

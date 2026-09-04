@@ -97,6 +97,11 @@ export function StepRunner({
         <p className="step-runner__step-number">
           Schritt {currentIndex + 1} von {steps.length}
         </p>
+        <p className="step-runner__remaining" role="status">
+          {steps.length - currentIndex - 1 === 0
+            ? 'Das ist der letzte Schritt!'
+            : `Danach ${steps.length - currentIndex - 1} Schritt${steps.length - currentIndex - 1 === 1 ? '' : 'e'} übrig`}
+        </p>
         <label className="step-runner__step-text">
           <input
             type="checkbox"

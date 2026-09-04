@@ -821,3 +821,17 @@ Elternprüfung, weil sie nicht verlässlich zwischen Kind und erwachsener Person
 auf allen Geräten verfügbar ist und Apple für Nutzer unter 13 Jahren eine Alternative verlangt.
 Die Elternschranke bleibt trotz Elenas Einwand erforderlich, wird aber nur vor Käufen, externen
 Links, Missionsfreigabe und Export gezeigt - nicht bei normalen Missionen.
+
+## ADR-044: Inhaltliche Sprints vor Elternschutz
+
+**Status:** Angenommen und umgesetzt (2026-09-04)
+
+**Entscheidung:** Auf Michaels Wunsch wurden die inhaltlichen Sprints 26 bis 29 vorgezogen und
+Sprint 25 direkt dahinter eingeordnet. Missionsbilder werden als leichte, deterministische
+Crazy-Lab-Illustrationen erzeugt: Jede Mission besitzt einen stabilen eigenen Fingerabdruck,
+Farben, Symbole und Stimmung, ohne 100 grosse Bilddateien laden zu müssen. Hochwertige priorisierte
+Maskottchen dürfen zusätzlich als lokal gebündelte Bilddateien vorliegen.
+
+**Konsequenzen:** Die App bleibt auf älteren Geräten klein und schnell. Das neue Bildsystem wird
+automatisch auf Eindeutigkeit geprüft. Sprint 25 bleibt vollständig geplant und ist der nächste
+Umsetzungssprint; der echte Familientest der vier Sprints erfolgt separat auf den Geräten.

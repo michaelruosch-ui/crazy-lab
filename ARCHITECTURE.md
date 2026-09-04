@@ -445,3 +445,14 @@ vollständiges Löschen und Store-Metadaten gehören in die nachfolgenden Veröf
 - Sprint 20 (Mehrere Profile) muss `App.tsx`s Onboarding-Gate erweitern: aktuell prüft sie nur
   ein einziges Profil mit fester ID (`DEFAULT_PROFILE.id`), ein Profilwechsel bräuchte zusätzlich
   eine Auswahl, welches Profil aktiv ist.
+
+# Ergänzung Sprint 26 bis 29 (2026-09-04)
+
+- `missionFilters.ts` verbindet Missionsmaterialien rein lokal mit dem profilbezogenen
+  Laborschrank. Foto-Missionen werden bewusst nicht über diesen Filter eingeschränkt.
+- `achievements.ts` berechnet Abzeichen jederzeit reproduzierbar aus Tagebucheinträgen; es ist
+  kein weiterer Speicher und keine Cloud nötig.
+- `MissionImage.tsx` erzeugt aus Missionsschlüssel und Titel einen stabilen visuellen Fingerabdruck.
+  Dadurch sind 100 Motive eindeutig, ohne grosse Netzwerk- oder Speicherlast.
+- `FirstUseHints`, `LabSparkles` und `FriendlyError` sind isolierte, barrierearme UI-Bausteine.
+  Hinweise bleiben profilbezogen lokal; Animationen respektieren System- und App-Einstellungen.

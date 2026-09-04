@@ -1,0 +1,29 @@
+.research-achievements {
+  padding: 14px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.1));
+}
+.research-achievements__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px;
+}
+.research-achievement {
+  display: grid;
+  gap: 3px;
+  padding: 10px;
+  border: 1px dashed rgba(139, 92, 246, 0.4);
+  border-radius: var(--radius-md);
+  opacity: 0.72;
+}
+.research-achievement.is-unlocked {
+  border-style: solid;
+  background: radial-gradient(circle at top right, rgba(250, 204, 21, 0.25), transparent 55%);
+  opacity: 1;
+}
+.research-achievement > span {
+  font-size: 1.6rem;
+}
+.research-achievement small {
+  color: var(--color-text-muted);
+}
