@@ -374,43 +374,107 @@ positiv beantwortet.
 
 ## Offene Sprints
 
-### P2 - Übrige Inhalte
+### Bewusst nicht umgesetzt
 
-### P3 - Plattform und Veröffentlichung
+- **Sprint 19 - Cloud-Synchronisation:** **Verworfen durch Familienentscheid.** Jedes Gerät behält
+  seine eigenen lokalen Daten. Es gibt keine automatische Cloud und keine automatische
+  Zusammenführung zwischen Geräten. Auf einem Gerät können weiterhin mehrere Personen je ein
+  vollständig getrenntes Profil verwenden.
 
-- **Sprint 19 - Cloud-Synchronisation:** Backend-Auswahl, Authentifizierung, Konfliktlösung,
-  Datenschutz und Austausch zwischen Geräten.
-- **Sprint 23 - Englisch und weitere Sprachen:** **Abgeschlossen (2026-09-03).**
-  - [x] Deutsch bleibt rückwärtskompatibler Standard für vorhandene Profile
-  - [x] Sprachwahl Deutsch, Englisch, Französisch, Spanisch und Italienisch dauerhaft pro Profil speichern
-  - [x] Weltkugel-Sprachwahl oben in der App und zusätzlich auf der Profilseite
-  - [x] Seitennavigation in allen fünf Sprachen
-  - [x] Alle übrigen Bedienungstexte vollständig übersetzt
-  - [x] Alle 100 redaktionellen Missionen samt Materialien, Schritten und Sicherheit übersetzt
-  - [x] Eigene und geteilte Missionen als nutzergenerierte Originalsprache gekennzeichnet
-  - [x] Automatische Vollständigkeitsprüfung in allen fünf Sprachen
-- **Sprint 24 - Datenschutz- und App-Store-Grundentscheidung:** **Abgeschlossen (2026-09-03).**
-  - [x] Zielgruppe und Apple-Kinderkategorie 9–11 festgelegt
-  - [x] Schweiz sowie fünf Sprachen mit Deutsch als Standard festgelegt
-  - [x] Kostenloser Einstieg mit zehn Missionen und einmaliger Freischaltung um ungefähr CHF 1
-  - [x] Keine Werbung, kein Abo, kein Tracking und keine automatische Cloud
-  - [x] Lokale Datenarten, Elternschranken und Anforderungen an Löschen/Einwilligung dokumentiert
-  - [x] PLAYMOBIL aus sichtbaren redaktionellen Inhalten durch „Spielfiguren“ ersetzt
-  - [x] Blutigen Kuschelbären intern behalten und für öffentliche Werbung zurückhaltend behandeln
-  - [x] Verbindliche Restcheckliste für native Verpackung und App-Store-Einreichung erstellt
+### P1 - Kindersicherheit und Bedienung
+
+- **Sprint 25 - Elternschutz und Datenschutz für Kinder:** **Geplant; Elena befragt am
+  2026-09-04.**
+  - [ ] Käufe, externe Links, Missionsfreigabe und Notfall-Export hinter einer möglichst wenig
+        störenden Elternschranke schützen; diese Pflicht kann für die Apple-Kinderkategorie nicht
+        entfallen
+  - [ ] Face ID/Touch ID in der späteren nativen App als bequeme Möglichkeit für Geräteinhaber
+        prüfen, aber nicht als einzige Elternprüfung verwenden: Apple verlangt unter 13 Jahren eine
+        Alternative, und Biometrie bestätigt den Geräteinhaber, nicht verlässlich „erwachsen“
+  - [ ] Altersgerechte Ersatzprüfung ohne Face ID/Touch ID anbieten, beispielsweise eine
+        Erwachsenenfrage; keine Gesichtsbilder erfassen oder speichern
+  - [ ] Kurze Kinder-Datenschutzerklärung mit wenigen, konkreten Beispielen statt langer Erklärung
+  - [ ] Vollständige Datenschutzerklärung und verständliche Hinweise vor Freigabe oder Export
+  - [ ] Profil und alle zugehörigen lokalen Daten vollständig und sicher löschbar machen
+  - [ ] Fotos, Videos, Namen und Tagebücher standardmässig ausschliesslich lokal halten
+
+- **Sprint 26 - Einfachere und spielerischere Bedienung:** **Geplant; Elena befragt am
+  2026-09-04.**
+  - [ ] Vor Missionsbeginn alle Schritte auf Wunsch gemeinsam anzeigen
+  - [ ] Aktuellen Schritt und verbleibende Schrittzahl während einer Mission deutlich anzeigen
+  - [ ] Schwierige Funktionen beim ersten Gebrauch mit kleinen Hinweisen erklären
+  - [ ] Dezente, abschaltbare Überraschungsanimationen ergänzen: aufblitzende Sterne,
+        Laborsachen oder Zaubertränke; „Bewegung reduzieren“ weiterhin respektieren
+  - [ ] Laborschrank kompakter und übersichtlicher machen: kleinere Karten, weniger Scrollen bis
+        zur Auswahl und schneller Zugriff auf Bereiche beziehungsweise Materialien
+  - [ ] Button „Missionen, für die ich alles zu Hause habe“ ergänzen
+  - [ ] Verfügbarkeitsfilter für Getränke, Basteln, Experimente und Schwestern-Missionen anwenden;
+        Foto-Challenges sind auf Elenas Wunsch nicht Teil dieses Buttons
+
+### P2 - Lernen, Motivation und Gestaltung
+
+- **Sprint 27 - Lernen und Forscher-Abzeichen:** **Geplant; Elena befragt am 2026-09-04.**
+  - [ ] Vor Experimenten eine eigene Vermutung erfassen
+  - [ ] Danach kindgerecht erklären, was passiert ist und warum
+  - [ ] Im Tagebuch Vermutung, Beobachtung und Lernergebnis getrennt sichtbar machen
+  - [ ] Freiwillige Wissenskarten anbieten: Tiere, Farben, Luft, Pflanzen, Fotografie, Getränke und
+        Geschmack, Bauen und Basteln, Magie, Wissenschaft sowie kreative Erfindungen
+  - [ ] Freiwillige Forscher-Abzeichen ohne Druck oder tägliche Zwangsserien einführen
+  - [ ] Abzeichen über nachvollziehbare Meilensteine vergeben, zum Beispiel nach fünf
+        Getränkemissionen
+  - [ ] Abzeichen passend zur Kategorie magisch, leicht gruselig und mit erkennbarem Motiv
+        gestalten, zum Beispiel einem Getränk
+
+- **Sprint 28 - Einzigartige Bilder und hochwertige Maskottchen:** **Geplant; Elena befragt am
+  2026-09-04.**
+  - [ ] Alle 100 Missionen mit je einem eigenen Bild ausstatten; keine doppelten Motive
+  - [ ] Bestehenden verrückten, farbigen Crazy-Lab-Stil beibehalten
+  - [ ] Alle Stimmungen zulassen: lustig, gruselig, eklig, magisch, geheimnisvoll und niedlich
+  - [ ] Profil-Maskottchen schrittweise auf die Qualität des App-Symbols bringen
+  - [ ] Zuerst das Schleim-Maskottchen im Stil des App-Symbols und den lila Bären überarbeiten
+  - [ ] Lila Bär echter und realistischer, weniger comicartig gestalten
+  - [ ] Blutigen Kuschelbären gruselig-lustig und nicht brutal behalten; eine leicht gruseligere
+        Variante ist erwünscht, muss aber mit der Altersfreigabe vereinbar bleiben
+
+### P3 - Qualität und Veröffentlichung
+
+- **Sprint 29 - Barrierefreiheit, Fehlerhilfe und technische Qualität:** **Geplant; Elena befragt
+  am 2026-09-04.**
+  - [ ] Schriftgrössen, Kontraste, verständliche Texte und ausreichend grosse Touch-Ziele prüfen
+  - [ ] Bedienung ohne Animationen sowie mit „Bewegung reduzieren“ vollständig erhalten
+  - [ ] Fehlermeldungen lustig und hilfreich durch ein passendes Maskottchen erklären lassen
+  - [ ] Ladezeit und App-Grösse verbessern
+  - [ ] iPhone, aktuelles iPad, altes Familien-iPad und grosse Bildschirme erneut prüfen
+  - [ ] Automatische Qualitäts-, Barrierefreiheits- und Regressionstests ausbauen
+
+- **Sprint 30 - Native App-Store-App und einmalige Freischaltung:** **Geplant; Elena befragt am
+  2026-09-04.**
+  - [ ] Crazy Lab als native iPhone-/iPad-App für den Apple App Store verpacken
+  - [ ] Je zwei vollständige Missionen pro Kategorie kostenlos anbieten; konkrete Auswahl trifft
+        das Product Owner Team anhand von Qualität, Sicherheit und Abwechslung
+  - [ ] Alle übrigen Inhalte einmalig für ungefähr CHF 1 dauerhaft freischalten
+  - [ ] Kein Abo, keine Werbung und kein Tracking
+  - [ ] Bereits bezahlten Kauf auf demselben Apple-Konto wiederherstellen können
+  - [ ] Kauf und externe Wege hinter der in Sprint 25 festgelegten Elternschranke schützen
+
+- **Sprint 31 - Familientest und Schweizer App-Store-Start:** **Geplant; Elena befragt am
+  2026-09-04.**
+  - [ ] Vor Veröffentlichung ausschliesslich mit Elenas Familie testen
+  - [ ] Missionen, Sprachen, Bilder, Käufe, Datenschutz und unterstützte Geräte vollständig prüfen
+  - [ ] App zuerst in der Schweiz in Deutsch, Englisch, Französisch, Italienisch und Spanisch
+        veröffentlichen
+  - [ ] Bestehendes Schleimmonster-App-Symbol und dessen aktuellen Look für die Store-Bilder
+        beibehalten
+  - [ ] Store-Kernaussage in Elenas Grundton verwenden: „Crazy Lab ist die App für Kinder, die mit
+        viel Spass neue Getränke, Bastelideen, Experimente und Foto-Challenges ausprobieren und
+        eigene verrückte Ideen erfinden wollen.“
+  - [ ] Erst nach erfolgreicher Familienfreigabe zur öffentlichen App-Store-Prüfung einreichen
 
 ## Unpriorisierte Ideen
 
-- **Maskottchen-Artwork auf App-Symbol-Niveau:** Alle auswählbaren Profil-Maskottchen erhalten
-  dieselbe hochwertige, plastische und liebevolle Bildqualität wie das neue Crazy-Lab-App-Symbol.
-
-- **Missionen nur mit vorhandenen Dingen:** Button „Was kann ich mit meinem Laborschrank machen?“
-  zeigt Missionen, deren Pflichtmaterialien vollständig vorhanden sind. Besonders relevant für
-  Getränke, Basteln und Experimente; Foto- und Schwestern-Missionen werden nach denselben Regeln
-  berücksichtigt, wenn sie Pflichtmaterial benötigen.
-- **Einzigartige Missionsbilder:** Alle 100 Katalogmissionen sowie neue Missionen sollen ein
-  eigenes kreatives Bild im bestehenden Crazy-Lab-Stil erhalten; kein Motiv darf von zwei
-  Missionen gemeinsam verwendet werden.
+Alle bisher unpriorisierten Ideen wurden mit Elena besprochen und den Sprints 26 oder 28
+zugeordnet. Neue Ideen werden weiterhin zuerst hier gesammelt und nicht zwischen bestehende
+Sprintnummern geschoben.
 
 ## Umgesetzte Backlog-Ideen
 

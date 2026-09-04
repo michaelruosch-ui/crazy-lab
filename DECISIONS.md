@@ -799,3 +799,25 @@ Kinder-App eine Elternschranke. Die endgültige Preisstufe wird in App Store Con
 App muss Käufe wiederherstellen können. Der sichtbare Missionskatalog nennt die Fremdmarke
 PLAYMOBIL nicht; technische IDs bleiben zur Datenkompatibilität unverändert. Der Blutige
 Kuschelbär bleibt nicht-grafisch in der App, wird aber nicht als öffentliches Werbemotiv verwendet.
+
+## ADR-043: Elenas Produktfreigabe für die Sprints 25 bis 31
+
+**Status:** Angenommen (2026-09-04)
+
+**Entscheidung:** Elena hat als Hauptautorin und primäre Nutzerin den kindgerechten Zukunftsplan
+ausgefüllt. Sprint 19 bleibt verworfen: Geräte synchronisieren nicht automatisch; mehrere Personen
+nutzen auf demselben Gerät weiterhin getrennte Profile. Die Sprints 25 bis 31 folgen dem nun in
+`BACKLOG.md` festgehaltenen fachlichen Umfang. Dazu gehören eine kurze Datenschutzerklärung mit
+Beispielen, eine möglichst wenig störende Elternschranke, die Gesamtansicht aller Missionsschritte,
+Fortschrittsanzeige, Erstbenutzungshinweise, dezente Laboranimationen, ein kompakterer
+Laborschrank, Missionen nur mit vorhandenen Dingen, Wissenskarten, Meilenstein-Abzeichen,
+einzigartige Missionsbilder, bessere Maskottchen, hilfreiche Maskottchen-Fehlertexte, die
+Einmalfreischaltung und ein reiner Familientest vor dem Schweizer Start.
+
+**Konsequenzen:** Elenas Wunsch nach Gesichtserkennung wird sicher und regelkonform interpretiert:
+Eine spätere native Version darf Face ID oder Touch ID als bequeme Geräteinhaber-Authentifizierung
+anbieten, erfasst aber selbst keine biometrischen Daten. Biometrie ist nicht die einzige
+Elternprüfung, weil sie nicht verlässlich zwischen Kind und erwachsener Person unterscheidet, nicht
+auf allen Geräten verfügbar ist und Apple für Nutzer unter 13 Jahren eine Alternative verlangt.
+Die Elternschranke bleibt trotz Elenas Einwand erforderlich, wird aber nur vor Käufen, externen
+Links, Missionsfreigabe und Export gezeigt - nicht bei normalen Missionen.
