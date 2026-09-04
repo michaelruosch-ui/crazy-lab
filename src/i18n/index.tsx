@@ -136,6 +136,130 @@ export function LanguageProvider({
 
 const TRANSLATABLE_ATTRIBUTES = ['aria-label', 'placeholder', 'title', 'alt'] as const
 
+const SPRINT_TRANSLATIONS: Record<Exclude<AppLanguage, 'de'>, Record<string, string>> = {
+  en: {
+    '✨ Wissenskarte:': '✨ Knowledge card:',
+    '🏅 Deine Forscher-Abzeichen': '🏅 Your research badges',
+    '👀 Alle': '👀 View all',
+    '🧰 Missionen, für die ich alles zu Hause habe': '🧰 Missions I have everything for at home',
+    'Das ist der letzte Schritt!': 'This is the final step!',
+    'Direkt zum Inhalt': 'Skip to content',
+    'Meine Vermutung vor dem Start': 'My prediction before starting',
+    'Schritte vorher anschauen': 'Preview the steps',
+    'Technische Hinweise für Erwachsene': 'Technical details for adults',
+    übrig: 'remaining',
+    'Huch, ein Labor-Kobold war da!': 'Oops, a lab goblin was here!',
+    'Magisch erforscht!': 'Magically researched!',
+    'Noch keines freigeschaltet – deine Forschung hat begonnen!':
+      'None unlocked yet – your research has begun!',
+    'Geschmack und Farben': 'Taste and colours',
+    'Kreative Erfindungen': 'Creative inventions',
+    'Licht und Fotografie': 'Light and photography',
+    'Wissenschaft entdecken': 'Discover science',
+    'Der neue Zuhause-Knopf zeigt Missionen, für die alles bereitliegt.':
+      'The new home button shows missions for which everything is ready.',
+    'Vor einer Mission kannst du alle Schritte auf einmal anschauen.':
+      'You can preview all the steps before a mission.',
+    'Im Laborschrank tippst du ein Material an, um alle Einstellungen zu öffnen.':
+      'Tap a material in the lab cabinet to open all its settings.',
+    'Mit der Weltkugel kannst du die Sprache jederzeit ändern.':
+      'Use the globe to change the language at any time.',
+    'Dein Eintrag ist noch da. Tippe nochmals, dann versuchen wir das Speichern erneut.':
+      'Your entry is still here. Tap again and we will try saving it once more.',
+  },
+  fr: {
+    '✨ Wissenskarte:': '✨ Carte de savoir :',
+    '🏅 Deine Forscher-Abzeichen': '🏅 Tes badges de recherche',
+    '👀 Alle': '👀 Voir toutes les étapes',
+    '🧰 Missionen, für die ich alles zu Hause habe':
+      '🧰 Missions pour lesquelles j’ai tout à la maison',
+    'Das ist der letzte Schritt!': 'C’est la dernière étape !',
+    'Direkt zum Inhalt': 'Aller directement au contenu',
+    'Meine Vermutung vor dem Start': 'Mon hypothèse avant de commencer',
+    'Schritte vorher anschauen': 'Voir les étapes à l’avance',
+    'Technische Hinweise für Erwachsene': 'Détails techniques pour les adultes',
+    übrig: 'restantes',
+    'Huch, ein Labor-Kobold war da!': 'Oups, un lutin du labo est passé !',
+    'Magisch erforscht!': 'Recherche magique terminée !',
+    'Noch keines freigeschaltet – deine Forschung hat begonnen!':
+      'Aucun badge débloqué – tes recherches commencent !',
+    'Geschmack und Farben': 'Goûts et couleurs',
+    'Kreative Erfindungen': 'Inventions créatives',
+    'Licht und Fotografie': 'Lumière et photographie',
+    'Wissenschaft entdecken': 'Découvrir les sciences',
+    'Der neue Zuhause-Knopf zeigt Missionen, für die alles bereitliegt.':
+      'Le nouveau bouton Maison affiche les missions pour lesquelles tout est prêt.',
+    'Vor einer Mission kannst du alle Schritte auf einmal anschauen.':
+      'Tu peux voir toutes les étapes avant une mission.',
+    'Im Laborschrank tippst du ein Material an, um alle Einstellungen zu öffnen.':
+      'Touche un matériel dans l’armoire du labo pour ouvrir ses réglages.',
+    'Mit der Weltkugel kannst du die Sprache jederzeit ändern.':
+      'Utilise le globe pour changer de langue à tout moment.',
+    'Dein Eintrag ist noch da. Tippe nochmals, dann versuchen wir das Speichern erneut.':
+      'Ton entrée est toujours là. Appuie encore une fois pour réessayer de l’enregistrer.',
+  },
+  es: {
+    '✨ Wissenskarte:': '✨ Tarjeta de conocimientos:',
+    '🏅 Deine Forscher-Abzeichen': '🏅 Tus insignias de investigación',
+    '👀 Alle': '👀 Ver todos los pasos',
+    '🧰 Missionen, für die ich alles zu Hause habe': '🧰 Misiones para las que tengo todo en casa',
+    'Das ist der letzte Schritt!': '¡Este es el último paso!',
+    'Direkt zum Inhalt': 'Ir directamente al contenido',
+    'Meine Vermutung vor dem Start': 'Mi predicción antes de empezar',
+    'Schritte vorher anschauen': 'Ver los pasos antes',
+    'Technische Hinweise für Erwachsene': 'Detalles técnicos para adultos',
+    übrig: 'restantes',
+    'Huch, ein Labor-Kobold war da!': '¡Uy, ha pasado un duende del laboratorio!',
+    'Magisch erforscht!': '¡Investigado mágicamente!',
+    'Noch keines freigeschaltet – deine Forschung hat begonnen!':
+      'Aún no hay insignias: ¡tu investigación ha comenzado!',
+    'Geschmack und Farben': 'Sabores y colores',
+    'Kreative Erfindungen': 'Inventos creativos',
+    'Licht und Fotografie': 'Luz y fotografía',
+    'Wissenschaft entdecken': 'Descubrir la ciencia',
+    'Der neue Zuhause-Knopf zeigt Missionen, für die alles bereitliegt.':
+      'El nuevo botón Casa muestra misiones para las que todo está listo.',
+    'Vor einer Mission kannst du alle Schritte auf einmal anschauen.':
+      'Puedes ver todos los pasos antes de una misión.',
+    'Im Laborschrank tippst du ein Material an, um alle Einstellungen zu öffnen.':
+      'Toca un material del armario del laboratorio para abrir sus ajustes.',
+    'Mit der Weltkugel kannst du die Sprache jederzeit ändern.':
+      'Usa el globo para cambiar el idioma cuando quieras.',
+    'Dein Eintrag ist noch da. Tippe nochmals, dann versuchen wir das Speichern erneut.':
+      'Tu entrada sigue aquí. Toca otra vez e intentaremos guardarla de nuevo.',
+  },
+  it: {
+    '✨ Wissenskarte:': '✨ Scheda delle conoscenze:',
+    '🏅 Deine Forscher-Abzeichen': '🏅 I tuoi distintivi di ricerca',
+    '👀 Alle': '👀 Guarda tutti i passaggi',
+    '🧰 Missionen, für die ich alles zu Hause habe': '🧰 Missioni per cui ho tutto a casa',
+    'Das ist der letzte Schritt!': 'Questo è l’ultimo passaggio!',
+    'Direkt zum Inhalt': 'Vai direttamente al contenuto',
+    'Meine Vermutung vor dem Start': 'La mia previsione prima di iniziare',
+    'Schritte vorher anschauen': 'Guarda prima i passaggi',
+    'Technische Hinweise für Erwachsene': 'Dettagli tecnici per adulti',
+    übrig: 'rimanenti',
+    'Huch, ein Labor-Kobold war da!': 'Ops, è passato un folletto del laboratorio!',
+    'Magisch erforscht!': 'Ricerca magica completata!',
+    'Noch keines freigeschaltet – deine Forschung hat begonnen!':
+      'Ancora nessun distintivo: la tua ricerca è iniziata!',
+    'Geschmack und Farben': 'Sapori e colori',
+    'Kreative Erfindungen': 'Invenzioni creative',
+    'Licht und Fotografie': 'Luce e fotografia',
+    'Wissenschaft entdecken': 'Scoprire la scienza',
+    'Der neue Zuhause-Knopf zeigt Missionen, für die alles bereitliegt.':
+      'Il nuovo pulsante Casa mostra le missioni per cui è tutto pronto.',
+    'Vor einer Mission kannst du alle Schritte auf einmal anschauen.':
+      'Puoi vedere tutti i passaggi prima di una missione.',
+    'Im Laborschrank tippst du ein Material an, um alle Einstellungen zu öffnen.':
+      'Tocca un materiale nell’armadio del laboratorio per aprire le impostazioni.',
+    'Mit der Weltkugel kannst du die Sprache jederzeit ändern.':
+      'Usa il globo per cambiare lingua in qualsiasi momento.',
+    'Dein Eintrag ist noch da. Tippe nochmals, dann versuchen wir das Speichern erneut.':
+      'La tua voce è ancora qui. Tocca di nuovo e proveremo a salvarla ancora una volta.',
+  },
+}
+
 function preserveWhitespace(original: string, replacement: string) {
   return original.replace(original.trim(), replacement)
 }
@@ -144,6 +268,8 @@ const phraseEntries = new Map<AppLanguage, Array<readonly [string, string]>>()
 
 export function translateGeneratedText(original: string, language: AppLanguage): string {
   if (language === 'de' || !original.trim()) return original
+  const sprintTranslation = SPRINT_TRANSLATIONS[language][original.trim()]
+  if (sprintTranslation) return preserveWhitespace(original, sprintTranslation)
   const dictionary = GENERATED_TRANSLATIONS[language]
   const exact = dictionary[original.trim() as keyof typeof dictionary]
   if (exact) return preserveWhitespace(original, exact)
