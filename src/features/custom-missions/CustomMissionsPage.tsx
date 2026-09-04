@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { CustomMission } from '../../domain'
-import { encodeSharedMission } from '../../domain'
+import { canEditMissionCatalog, encodeSharedMission } from '../../domain'
 import { BackLink, Button, MissionCard, SpeechBubble } from '../../components'
 import { useActiveProfileId, useProfile } from '../profile'
 import { indexedDbCustomMissionRepository } from '../../storage/customMissionRepository'
@@ -14,6 +14,7 @@ export function CustomMissionsPage() {
   const { activeProfileId } = useActiveProfileId()
   const { profile } = useProfile(activeProfileId)
   const [message, setMessage] = useState('')
+  const isProductOwner = canEditMissionCatalog(activeProfileId)
 
   useEffect(() => {
     void indexedDbCustomMissionRepository.getAll(activeProfileId).then(setItems)
@@ -28,12 +29,12 @@ export function CustomMissionsPage() {
           text: 'Probier meine Crazy-Lab-Mission aus!',
           url,
         })
-        setMessage('Mission zum Teilen geöffnet.')
+        setMessage('Privater Testlink geöffnet. Die Mission wurde noch nicht veröffentlicht.')
         return
       }
       if (navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(url)
-        setMessage('Link kopiert! Du kannst ihn jetzt verschicken.')
+        setMessage('Privater Testlink kopiert. Die Mission wurde noch nicht veröffentlicht.')
         return
       }
       window.prompt('Kopiere diesen Missionslink:', url)
@@ -50,11 +51,23 @@ export function CustomMissionsPage() {
       <p className="shared-mission-page__privacy">🌐 {t('originalLanguageHint')}</p>
       <SpeechBubble
         mascotId={profile?.mascotVariant}
-        text="Du hast die Idee – ich helfe dir, daraus eine klare und sichere Mission zu machen!"
+        text={
+          isProductOwner
+            ? 'Du hast die Idee – ich helfe dir, daraus eine klare und sichere Mission zu machen!'
+            : 'Die Missionswerkstatt gehört Elena als Product Owner. Du kannst veröffentlichte Missionen spielen.'
+        }
       />
-      <Link className="custom-missions-page__create" to="/eigene-missionen/neu">
-        ➕ Neue Mission erfinden
-      </Link>
+      {isProductOwner && (
+        <Link className="custom-missions-page__create" to="/eigene-missionen/neu">
+          ➕ Neue Mission erfinden
+        </Link>
+      )}
+      {isProductOwner && (
+        <p className="shared-mission-page__notice">
+          🌍 Für alle veröffentlichen kommt mit dem gemeinsamen, geprüften Missionskatalog. Ein
+          privater Testlink veröffentlicht noch nichts.
+        </p>
+      )}
       {message && (
         <p role="status" className="custom-missions-page__message">
           {message}
@@ -73,12 +86,14 @@ export function CustomMissionsPage() {
               key={mission.id}
               mission={mission}
               actions={
-                <div className="custom-missions-page__actions">
-                  <Link to={`/eigene-missionen/${mission.id}/bearbeiten`}>✏️ Bearbeiten</Link>
-                  <Button variant="secondary" onClick={() => void shareMission(mission)}>
-                    🔗 Mission teilen
-                  </Button>
-                </div>
+                isProductOwner ? (
+                  <div className="custom-missions-page__actions">
+                    <Link to={`/eigene-missionen/${mission.id}/bearbeiten`}>✏️ Bearbeiten</Link>
+                    <Button variant="secondary" onClick={() => void shareMission(mission)}>
+                      🧪 Privaten Testlink senden
+                    </Button>
+                  </div>
+                ) : undefined
               }
             />
           ))}

@@ -469,9 +469,24 @@ positiv beantwortet.
 
 ## Unpriorisierte Ideen
 
-Alle bisher unpriorisierten Ideen wurden mit Elena besprochen und den Sprints 26 oder 28
-zugeordnet. Neue Ideen werden weiterhin zuerst hier gesammelt und nicht zwischen bestehende
-Sprintnummern geschoben.
+- [ ] **Gemeinsamer geprüfter Missionskatalog:** Der bisherige private Import-Link ist nicht das
+      gewünschte Endprodukt. Nur Elena darf als Product Owner Missionen erstellen und zur
+      Veröffentlichung freigeben; andere Spielerinnen und Spieler erhalten veröffentlichte
+      Missionen automatisch. Die empfohlene kostenfreie Variante veröffentlicht geprüfte
+      Missionen zusammen mit einem normalen App-Update. Falls die Veröffentlichung direkt beim
+      Antippen weltweit erfolgen soll, braucht Crazy Lab stattdessen einen sicheren zentralen
+      Dienst und eine echte Product-Owner-Anmeldung. Diese Produktentscheidung ist noch offen;
+      kein Cloud-Dienst wurde eingerichtet.
+- [x] **Product-Owner-Sperre in der Familienversion (2026-09-04):** Nur das bestehende Elena-Profil
+      mit der ID `elena` sieht die Missionswerkstatt, kann Katalogmissionen kopieren sowie eigene
+      Missionen erstellen, bearbeiten oder aus einem Testlink importieren. Für eine öffentliche
+      App ist das ausdrücklich noch keine sichere Authentifizierung.
+- [x] **Labormusik-Korrektur nach Familientest (2026-09-04):** iOS-Audio wird nach dem Antippen
+      ausdrücklich fortgesetzt, auch der ältere Safari-Audiozugang wird unterstützt, die Tonfolge
+      ist besser hörbar und ein blockierter Start erhält eine hilfreiche Meldung.
+
+Neue Ideen werden weiterhin zuerst hier gesammelt und nicht zwischen bestehende Sprintnummern
+geschoben.
 
 ## Umgesetzte Backlog-Ideen
 

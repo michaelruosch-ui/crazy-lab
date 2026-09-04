@@ -32,6 +32,13 @@ export const DEFAULT_PROFILE: Profile = {
   createdAt: '2026-08-16T00:00:00.000Z',
 }
 
+/** Die lokale Familienversion reserviert die Missionswerkstatt für Elenas bestehendes Profil. */
+export const PRODUCT_OWNER_PROFILE_ID = DEFAULT_PROFILE.id
+
+export function canEditMissionCatalog(profileId: string): boolean {
+  return profileId === PRODUCT_OWNER_PROFILE_ID
+}
+
 export function isBirthdayToday(birthday: Birthday, today: Date): boolean {
   const monthDay = `${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`
   return birthday.monthDay === monthDay

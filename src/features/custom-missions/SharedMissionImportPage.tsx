@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import {
   decodeSharedMission,
   generateId,
+  canEditMissionCatalog,
   type CustomMission,
   type MissionCategory,
 } from '../../domain'
@@ -34,9 +35,10 @@ export function SharedMissionImportPage() {
   const [importedId, setImportedId] = useState<string>()
   const [saving, setSaving] = useState(false)
   const { activeProfileId } = useActiveProfileId()
+  const isProductOwner = canEditMissionCatalog(activeProfileId)
 
   async function importMission() {
-    if (!shared || saving) return
+    if (!shared || saving || !isProductOwner) return
     setSaving(true)
     const now = new Date().toISOString()
     const id = `mission-eigen-${generateId()}`
@@ -62,6 +64,19 @@ export function SharedMissionImportPage() {
         <p className="shared-mission-page__notice">
           Dieser Link ist unvollständig oder beschädigt. Bitte lass dir die Mission noch einmal neu
           schicken.
+        </p>
+        <BackLink to="/">← Zurück zur Startseite</BackLink>
+      </div>
+    )
+  }
+
+  if (!isProductOwner) {
+    return (
+      <div className="shared-mission-page">
+        <h1>🔒 Elenas Missionswerkstatt</h1>
+        <p className="shared-mission-page__notice">
+          Nur Elena darf als Product Owner Missionen in Crazy Lab aufnehmen. Veröffentlichte
+          Missionen erscheinen später automatisch für alle Spielerinnen und Spieler.
         </p>
         <BackLink to="/">← Zurück zur Startseite</BackLink>
       </div>

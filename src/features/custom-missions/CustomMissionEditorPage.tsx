@@ -4,6 +4,7 @@ import { missions } from '../../data'
 import {
   generateId,
   isCustomMissionSafe,
+  canEditMissionCatalog,
   type CustomMission,
   type MissionCategory,
   type SafetyLevel,
@@ -73,6 +74,7 @@ export function CustomMissionEditorPage() {
   const navigate = useNavigate()
   const { activeProfileId } = useActiveProfileId()
   const { profile } = useProfile(activeProfileId)
+  const isProductOwner = canEditMissionCatalog(activeProfileId)
 
   useEffect(() => {
     if (missionId) {
@@ -159,6 +161,18 @@ export function CustomMissionEditorPage() {
     await indexedDbCustomMissionRepository.save(mission)
     navigate('/eigene-missionen')
   }
+
+  if (!isProductOwner)
+    return (
+      <div className="custom-mission-editor">
+        <h1>🔒 Elenas Missionswerkstatt</h1>
+        <SpeechBubble
+          mascotId={profile?.mascotVariant}
+          text="Nur Elena darf als Product Owner neue Crazy-Lab-Missionen erstellen und bearbeiten."
+        />
+        <BackLink to="/">← Zurück zur Startseite</BackLink>
+      </div>
+    )
 
   if (!loaded) return <p className="custom-mission-editor">Lade Mission...</p>
 

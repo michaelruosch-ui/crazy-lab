@@ -166,6 +166,24 @@ const SPRINT_TRANSLATIONS: Record<Exclude<AppLanguage, 'de'>, Record<string, str
       'Use the globe to change the language at any time.',
     'Dein Eintrag ist noch da. Tippe nochmals, dann versuchen wir das Speichern erneut.':
       'Your entry is still here. Tap again and we will try saving it once more.',
+    'Dieses Gerät kann die Labormusik leider nicht abspielen.':
+      'Unfortunately, this device cannot play the lab music.',
+    'Die Musik konnte nicht starten. Prüfe die Lautstärke und versuche es noch einmal.':
+      'The music could not start. Check the volume and try again.',
+    '🔒 Elenas Missionswerkstatt': "🔒 Elena's mission workshop",
+    'Die Missionswerkstatt gehört Elena als Product Owner. Du kannst veröffentlichte Missionen spielen.':
+      'The mission workshop belongs to Elena as Product Owner. You can play published missions.',
+    'Nur Elena darf als Product Owner neue Crazy-Lab-Missionen erstellen und bearbeiten.':
+      'Only Elena can create and edit new Crazy Lab missions as Product Owner.',
+    'Nur Elena darf als Product Owner Missionen in Crazy Lab aufnehmen. Veröffentlichte Missionen erscheinen später automatisch für alle Spielerinnen und Spieler.':
+      'Only Elena can add missions to Crazy Lab as Product Owner. Published missions will later appear automatically for all players.',
+    '🧪 Privaten Testlink senden': '🧪 Send private test link',
+    '🌍 Für alle veröffentlichen kommt mit dem gemeinsamen, geprüften Missionskatalog. Ein privater Testlink veröffentlicht noch nichts.':
+      '🌍 Publishing for everyone will arrive with the shared, reviewed mission catalogue. A private test link does not publish anything yet.',
+    'Privater Testlink geöffnet. Die Mission wurde noch nicht veröffentlicht.':
+      'Private test link opened. The mission has not been published yet.',
+    'Privater Testlink kopiert. Die Mission wurde noch nicht veröffentlicht.':
+      'Private test link copied. The mission has not been published yet.',
   },
   fr: {
     '✨ Wissenskarte:': '✨ Carte de savoir :',
@@ -197,6 +215,24 @@ const SPRINT_TRANSLATIONS: Record<Exclude<AppLanguage, 'de'>, Record<string, str
       'Utilise le globe pour changer de langue à tout moment.',
     'Dein Eintrag ist noch da. Tippe nochmals, dann versuchen wir das Speichern erneut.':
       'Ton entrée est toujours là. Appuie encore une fois pour réessayer de l’enregistrer.',
+    'Dieses Gerät kann die Labormusik leider nicht abspielen.':
+      'Cet appareil ne peut malheureusement pas jouer la musique du labo.',
+    'Die Musik konnte nicht starten. Prüfe die Lautstärke und versuche es noch einmal.':
+      'La musique n’a pas pu démarrer. Vérifie le volume et réessaie.',
+    '🔒 Elenas Missionswerkstatt': '🔒 L’atelier de missions d’Elena',
+    'Die Missionswerkstatt gehört Elena als Product Owner. Du kannst veröffentlichte Missionen spielen.':
+      'L’atelier de missions appartient à Elena en tant que Product Owner. Tu peux jouer aux missions publiées.',
+    'Nur Elena darf als Product Owner neue Crazy-Lab-Missionen erstellen und bearbeiten.':
+      'Seule Elena peut créer et modifier de nouvelles missions Crazy Lab en tant que Product Owner.',
+    'Nur Elena darf als Product Owner Missionen in Crazy Lab aufnehmen. Veröffentlichte Missionen erscheinen später automatisch für alle Spielerinnen und Spieler.':
+      'Seule Elena peut ajouter des missions à Crazy Lab en tant que Product Owner. Les missions publiées apparaîtront ensuite automatiquement pour tout le monde.',
+    '🧪 Privaten Testlink senden': '🧪 Envoyer un lien de test privé',
+    '🌍 Für alle veröffentlichen kommt mit dem gemeinsamen, geprüften Missionskatalog. Ein privater Testlink veröffentlicht noch nichts.':
+      '🌍 La publication pour tout le monde arrivera avec le catalogue commun et vérifié. Un lien de test privé ne publie encore rien.',
+    'Privater Testlink geöffnet. Die Mission wurde noch nicht veröffentlicht.':
+      'Lien de test privé ouvert. La mission n’est pas encore publiée.',
+    'Privater Testlink kopiert. Die Mission wurde noch nicht veröffentlicht.':
+      'Lien de test privé copié. La mission n’est pas encore publiée.',
   },
   es: {
     '✨ Wissenskarte:': '✨ Tarjeta de conocimientos:',
@@ -227,6 +263,24 @@ const SPRINT_TRANSLATIONS: Record<Exclude<AppLanguage, 'de'>, Record<string, str
       'Usa el globo para cambiar el idioma cuando quieras.',
     'Dein Eintrag ist noch da. Tippe nochmals, dann versuchen wir das Speichern erneut.':
       'Tu entrada sigue aquí. Toca otra vez e intentaremos guardarla de nuevo.',
+    'Dieses Gerät kann die Labormusik leider nicht abspielen.':
+      'Este dispositivo no puede reproducir la música del laboratorio.',
+    'Die Musik konnte nicht starten. Prüfe die Lautstärke und versuche es noch einmal.':
+      'La música no pudo comenzar. Comprueba el volumen e inténtalo de nuevo.',
+    '🔒 Elenas Missionswerkstatt': '🔒 El taller de misiones de Elena',
+    'Die Missionswerkstatt gehört Elena als Product Owner. Du kannst veröffentlichte Missionen spielen.':
+      'El taller de misiones pertenece a Elena como Product Owner. Puedes jugar a las misiones publicadas.',
+    'Nur Elena darf als Product Owner neue Crazy-Lab-Missionen erstellen und bearbeiten.':
+      'Solo Elena puede crear y editar nuevas misiones de Crazy Lab como Product Owner.',
+    'Nur Elena darf als Product Owner Missionen in Crazy Lab aufnehmen. Veröffentlichte Missionen erscheinen später automatisch für alle Spielerinnen und Spieler.':
+      'Solo Elena puede añadir misiones a Crazy Lab como Product Owner. Las misiones publicadas aparecerán después automáticamente para todo el mundo.',
+    '🧪 Privaten Testlink senden': '🧪 Enviar enlace de prueba privado',
+    '🌍 Für alle veröffentlichen kommt mit dem gemeinsamen, geprüften Missionskatalog. Ein privater Testlink veröffentlicht noch nichts.':
+      '🌍 La publicación para todos llegará con el catálogo común y revisado. Un enlace de prueba privado todavía no publica nada.',
+    'Privater Testlink geöffnet. Die Mission wurde noch nicht veröffentlicht.':
+      'Enlace de prueba privado abierto. La misión todavía no se ha publicado.',
+    'Privater Testlink kopiert. Die Mission wurde noch nicht veröffentlicht.':
+      'Enlace de prueba privado copiado. La misión todavía no se ha publicado.',
   },
   it: {
     '✨ Wissenskarte:': '✨ Scheda delle conoscenze:',
@@ -257,6 +311,24 @@ const SPRINT_TRANSLATIONS: Record<Exclude<AppLanguage, 'de'>, Record<string, str
       'Usa il globo per cambiare lingua in qualsiasi momento.',
     'Dein Eintrag ist noch da. Tippe nochmals, dann versuchen wir das Speichern erneut.':
       'La tua voce è ancora qui. Tocca di nuovo e proveremo a salvarla ancora una volta.',
+    'Dieses Gerät kann die Labormusik leider nicht abspielen.':
+      'Questo dispositivo non può riprodurre la musica del laboratorio.',
+    'Die Musik konnte nicht starten. Prüfe die Lautstärke und versuche es noch einmal.':
+      'La musica non è partita. Controlla il volume e riprova.',
+    '🔒 Elenas Missionswerkstatt': '🔒 Il laboratorio delle missioni di Elena',
+    'Die Missionswerkstatt gehört Elena als Product Owner. Du kannst veröffentlichte Missionen spielen.':
+      'Il laboratorio delle missioni appartiene a Elena come Product Owner. Puoi giocare alle missioni pubblicate.',
+    'Nur Elena darf als Product Owner neue Crazy-Lab-Missionen erstellen und bearbeiten.':
+      'Solo Elena può creare e modificare nuove missioni Crazy Lab come Product Owner.',
+    'Nur Elena darf als Product Owner Missionen in Crazy Lab aufnehmen. Veröffentlichte Missionen erscheinen später automatisch für alle Spielerinnen und Spieler.':
+      'Solo Elena può aggiungere missioni a Crazy Lab come Product Owner. Le missioni pubblicate appariranno poi automaticamente per tutti.',
+    '🧪 Privaten Testlink senden': '🧪 Invia link di prova privato',
+    '🌍 Für alle veröffentlichen kommt mit dem gemeinsamen, geprüften Missionskatalog. Ein privater Testlink veröffentlicht noch nichts.':
+      '🌍 La pubblicazione per tutti arriverà con il catalogo comune e verificato. Un link di prova privato non pubblica ancora nulla.',
+    'Privater Testlink geöffnet. Die Mission wurde noch nicht veröffentlicht.':
+      'Link di prova privato aperto. La missione non è ancora pubblicata.',
+    'Privater Testlink kopiert. Die Mission wurde noch nicht veröffentlicht.':
+      'Link di prova privato copiato. La missione non è ancora pubblicata.',
   },
 }
 

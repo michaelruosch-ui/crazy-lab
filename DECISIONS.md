@@ -848,3 +848,35 @@ Gruseldetails. Beim Auswählen bewegt sich die Figur kurz.
 **Konsequenzen:** Bestehende Profile behalten exakt ihr gewähltes Maskottchen. Acht komprimierte
 Grafiken statt 33 einzelner grosser Dateien halten die App auch auf dem alten iPad handhabbar.
 Reduzierte Bewegung deaktiviert die Reaktion vollständig.
+
+## ADR-046: Elena kuratiert einen globalen Missionskatalog
+
+**Status:** Produktziel angenommen, technische Veröffentlichungsvariante offen (2026-09-04)
+
+**Entscheidung:** Der private Missionslink aus ADR-040 ist nur noch ein Testweg und nicht das
+gewünschte Endprodukt. Nur Elena soll als Product Owner Missionen erstellen und freigeben. Andere
+Crazy-Lab-Spielerinnen und -Spieler sollen keine Missionen einreichen, sondern Elenas
+veröffentlichte Missionen automatisch im Katalog erhalten. In der heutigen Familienversion
+begrenzt `canEditMissionCatalog` die Werkstatt auf Elenas bestehende Profil-ID.
+
+**Konsequenzen:** Eine lokale Profil-ID ist keine sichere Identität für eine öffentliche App und
+darf dort nicht als alleiniger Zugriffsschutz gelten. Ohne zusätzlichen Server ist die sichere,
+kostenfreie Variante ein redaktionelles App-Update: Elena erstellt, die Familie prüft, der Inhalt
+wird in den versionierten Katalog übernommen und alle Geräte erhalten ihn beim nächsten Öffnen.
+Eine unmittelbare weltweite Veröffentlichung direkt aus Elenas App benötigt dagegen einen
+schreibbaren zentralen Dienst und eine echte Product-Owner-Anmeldung. Vor dieser noch offenen
+Entscheidung wird kein Cloud-Dienst eingerichtet.
+
+## ADR-047: iOS-Audio vor der ersten Note ausdrücklich aktivieren
+
+**Status:** Angenommen und umgesetzt (Familienfeedback, 2026-09-04)
+
+**Entscheidung:** `useMissionAtmosphere` unterstützt sowohl `AudioContext` als auch den älteren
+Safari-Namen `webkitAudioContext`. Nach dem bewussten Antippen wird ein pausierter Kontext mit
+`resume()` aktiviert; Töne starten nur im bestätigten Zustand `running`. Dreieckswellen mit etwas
+höherer, weiterhin moderater Lautstärke ersetzen die kaum hörbaren Sinustöne. Fehler erscheinen
+als verständliche Meldung in der Mission.
+
+**Konsequenzen:** Die iOS-Autoplay-Regel bleibt respektiert, weil die Aktivierung weiterhin direkt
+von Elenas Berührung ausgeht. Es werden keine Audiodateien, Lizenzen, Streams oder externen Dienste
+benötigt. Hardwarelautstärke und Geräteeinstellungen bleiben ausserhalb der App.

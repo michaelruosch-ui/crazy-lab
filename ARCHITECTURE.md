@@ -302,6 +302,12 @@ auf Zwischenablage beziehungsweise sichtbares Kopieren zurück. `/mission-import
 eine Entscheidung wichtigen Inhalte. Erst die Bestätigung erzeugt mit `generateId()` eine neue
 `CustomMission` im aktiven Profil; Absender-ID und spätere Änderungen bleiben vollständig getrennt.
 
+Nach dem Familienfeedback vom 2026-09-04 ist dieser Link nur noch als privater Testweg beschriftet.
+`canEditMissionCatalog` begrenzt Werkstatt, Kopieren, Bearbeiten und Import in der Familienversion
+auf Elenas unveränderte Profil-ID. Das ist eine lokale Produktregel, keine Authentifizierung. Der
+gewünschte gemeinsame Katalog benötigt entweder geprüfte statische App-Veröffentlichungen oder
+einen sicheren schreibbaren Dienst; bis zu dieser Entscheidung existiert kein globaler Upload.
+
 ## Vollständiges Labortagebuch (Sprint 16)
 
 `DiaryPage` filtert die bereits geladenen profilbezogenen Einträge lokal nach Suchtext,
@@ -315,11 +321,14 @@ Browser-Rückfrage aufgerufen. Neue Fotoabschlüsse begrenzen die Liste auf zehn
 
 `features/atmosphere/useAtmosphereSettings` hält zwei unkritische Geräteeinstellungen in
 `localStorage` und synchronisiert Hook-Instanzen über ein lokales Browser-Event.
-`useMissionAtmosphere` erzeugt erst nach einer Berührung über Web Audio kurze Sinustöne; jede
+`useMissionAtmosphere` erzeugt erst nach einer Berührung über Web Audio kurze Tonfolgen; jede
 Hauptkategorie besitzt eine eigene Dreitonfolge. Beim Verlassen wird AudioContext und Intervall
 geschlossen. `StepRunner` zeigt vor dem ersten Schritt einen überspringbaren Countdown.
 `App.tsx` setzt bei abgeschalteten Animationen eine Root-Klasse; CSS respektiert zusätzlich
 `prefers-reduced-motion`. Keine Audiodatei und keine Nutzungsinformation verlässt das Gerät.
+Für iOS wird ein zunächst pausierter Kontext ausdrücklich fortgesetzt; ältere Safari-Versionen
+können den präfixierten Audiozugang verwenden. Erst im Zustand `running` beginnt die besser
+hörbare Dreieckswellen-Tonfolge. Ein fehlgeschlagener Start bleibt ausgeschaltet und wird erklärt.
 
 ## Speicherung
 

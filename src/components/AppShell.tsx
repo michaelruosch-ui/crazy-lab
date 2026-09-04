@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom'
-import type { AppLanguage } from '../domain'
+import { canEditMissionCatalog, type AppLanguage } from '../domain'
 import { LANGUAGE_OPTIONS, useLanguage, type TranslationKey } from '../i18n'
+import { useActiveProfileId } from '../features/profile'
 import './AppShell.css'
 
 const NAVIGATION = [
@@ -16,6 +17,7 @@ const NAVIGATION = [
 
 export function AppShell() {
   const { language, t, setLanguage } = useLanguage()
+  const { activeProfileId } = useActiveProfileId()
 
   return (
     <div className="app-shell">
@@ -25,7 +27,9 @@ export function AppShell() {
       <aside className="app-shell__sidebar">
         <div className="app-shell__brand">🔮 Crazy Lab</div>
         <nav aria-label={t('navigation')}>
-          {NAVIGATION.map((item) => (
+          {NAVIGATION.filter(
+            (item) => item.to !== '/eigene-missionen' || canEditMissionCatalog(activeProfileId),
+          ).map((item) => (
             <NavLink
               key={item.to}
               to={item.to}

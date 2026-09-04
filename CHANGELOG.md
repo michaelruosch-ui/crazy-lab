@@ -1,5 +1,17 @@
 # Changelog
 
+## Familienfeedback - Product Owner und Labormusik (2026-09-04)
+
+- Die Missionswerkstatt, das Kopieren und der Import eigener Missionen sind in der Familienversion
+  auf Elenas bestehendes Product-Owner-Profil begrenzt. Andere lokale Profile können keine eigenen
+  Missionen mehr erzeugen.
+- Der bisherige Link ist eindeutig als privater Testlink beschriftet. Das neue Ziel eines
+  gemeinsamen, von Elena freigegebenen Missionskatalogs ist geplant, aber ohne Entscheidung über
+  normale App-Updates oder einen zentralen Sofort-Veröffentlichungsdienst noch nicht umgesetzt.
+- Die Labormusik setzt einen von iOS pausierten Audio-Kontext nun nach dem Antippen ausdrücklich
+  fort, unterstützt den älteren Safari-Zugang, ist besser hörbar und erklärt einen blockierten
+  Start verständlich.
+
 ## Sprint 28 - Maskottchen-Korrektur nach Familientest (2026-09-04)
 
 - Alle 33 Profil-Maskottchen verwenden jetzt hochwertige, detailreiche Crazy-Lab-Bilder statt

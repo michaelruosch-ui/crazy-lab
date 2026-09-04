@@ -124,13 +124,18 @@ export function StepRunner({
       </div>
 
       <div className="step-runner__actions">
-        <Button variant="ghost" onClick={atmosphere.toggle} disabled={!settings.soundEnabled}>
+        <Button
+          variant="ghost"
+          onClick={() => void atmosphere.toggle()}
+          disabled={!settings.soundEnabled}
+        >
           {atmosphere.playing
             ? '🔇 Labormusik aus'
             : settings.soundEnabled
               ? '🎵 Labormusik an'
               : '🔇 Musik im Profil ausgeschaltet'}
         </Button>
+        {atmosphere.error && <p role="alert">🎧 {atmosphere.error}</p>}
         {onPause && (
           <Button variant="ghost" onClick={onPause}>
             ⏸ Versuch pausieren

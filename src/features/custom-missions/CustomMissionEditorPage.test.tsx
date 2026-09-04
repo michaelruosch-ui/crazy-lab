@@ -11,6 +11,28 @@ describe('Maskottchen-Assistent für eigene Missionen', () => {
   beforeEach(() => {
     globalThis.indexedDB = new IDBFactory()
     resetDbConnection()
+    const data = new Map<string, string>()
+    Object.defineProperty(window, 'localStorage', {
+      configurable: true,
+      value: {
+        getItem: (key: string) => data.get(key) ?? null,
+        setItem: (key: string, value: string) => data.set(key, value),
+        clear: () => data.clear(),
+      },
+    })
+    window.localStorage.setItem('crazylab-active-profile', 'elena')
+  })
+
+  it('reserviert die Missionswerkstatt für Elena als Product Owner', () => {
+    window.localStorage.setItem('crazylab-active-profile', 'michael')
+    render(
+      <MemoryRouter>
+        <CustomMissionEditorPage />
+      </MemoryRouter>,
+    )
+
+    expect(screen.getByText('🔒 Elenas Missionswerkstatt')).toBeInTheDocument()
+    expect(screen.queryByLabelText('Titel der Mission')).not.toBeInTheDocument()
   })
 
   it('erstellt aus verständlichen Feldern eine spielbare Mission', async () => {

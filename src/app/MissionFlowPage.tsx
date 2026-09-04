@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { getMissionById } from '../data'
 import {
   generateId,
+  canEditMissionCatalog,
   rankDrinkVariants,
   shoppingItemsForMission,
   type CompletionRating,
@@ -169,12 +170,14 @@ export function MissionFlowPage({ missionId, missionOverride }: MissionFlowPageP
           <Button variant="ghost" onClick={() => toggleSaved(mission.id)}>
             {savedMissionIds.has(mission.id) ? '🗝️ Gemerkt' : '🗝️ Merken'}
           </Button>
-          <Button
-            variant="ghost"
-            onClick={() => navigate(`/eigene-missionen/neu?kopie=${mission.id}`)}
-          >
-            🪄 Als eigene Mission kopieren
-          </Button>
+          {canEditMissionCatalog(activeProfileId) && (
+            <Button
+              variant="ghost"
+              onClick={() => navigate(`/eigene-missionen/neu?kopie=${mission.id}`)}
+            >
+              🪄 Als eigene Mission kopieren
+            </Button>
+          )}
         </div>
         <BackLink to="/">← Zurück zur Startseite</BackLink>
       </div>
