@@ -1,5 +1,6 @@
 import type { MascotId } from '../domain'
-import { MASCOT_CATALOG, SPECIES_LABEL, type MascotSpecies } from './mascotArt'
+import { translateGeneratedText, useLanguage, type TranslationKey } from '../i18n'
+import { MASCOT_CATALOG, type MascotSpecies } from './mascotArt'
 import { Mascot } from './Mascot'
 import './MascotPicker.css'
 
@@ -9,6 +10,17 @@ interface MascotPickerProps {
 }
 
 export function MascotPicker({ value, onChange }: MascotPickerProps) {
+  const { language, t } = useLanguage()
+  const speciesKeys: Record<MascotSpecies, TranslationKey> = {
+    bear: 'speciesBear',
+    marmot: 'speciesMarmot',
+    raccoon: 'speciesRaccoon',
+    wolf: 'speciesWolf',
+    bat: 'speciesBat',
+    owl: 'speciesOwl',
+    frog: 'speciesFrog',
+    spider: 'speciesSpider',
+  }
   const bySpecies = new Map<MascotSpecies, typeof MASCOT_CATALOG>()
   for (const entry of MASCOT_CATALOG) {
     const list = bySpecies.get(entry.species) ?? []
@@ -17,13 +29,11 @@ export function MascotPicker({ value, onChange }: MascotPickerProps) {
   }
 
   return (
-    <div className="mascot-picker" role="radiogroup" aria-label="Maskottchen auswählen">
-      <p className="mascot-picker__hint">
-        Scroll durch alle {MASCOT_CATALOG.length} Entwürfe und tippe deinen Favoriten an.
-      </p>
+    <div className="mascot-picker" role="radiogroup" aria-label={t('chooseMascot')}>
+      <p className="mascot-picker__hint">{t('mascotPickerHint')}</p>
       {[...bySpecies.entries()].map(([species, entries]) => (
         <div key={species} className="mascot-picker__group">
-          <h3 className="mascot-picker__species">{SPECIES_LABEL[species]}</h3>
+          <h3 className="mascot-picker__species">{t(speciesKeys[species])}</h3>
           <div className="mascot-picker__grid">
             {entries.map((entry) => (
               <button
@@ -35,7 +45,7 @@ export function MascotPicker({ value, onChange }: MascotPickerProps) {
                 onClick={() => onChange(entry.id)}
               >
                 <Mascot mascotId={entry.id} size="medium" selected={value === entry.id} />
-                <span>{entry.name}</span>
+                <span>{translateGeneratedText(entry.name, language)}</span>
               </button>
             ))}
           </div>

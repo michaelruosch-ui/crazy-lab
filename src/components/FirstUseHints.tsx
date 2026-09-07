@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { translateGeneratedText, useLanguage } from '../i18n'
 import { Button } from './Button'
 import './FirstUseHints.css'
 
@@ -10,6 +11,7 @@ const HINTS = [
 ]
 
 export function FirstUseHints({ profileId }: { profileId: string }) {
+  const { language, t } = useLanguage()
   const storageKey = `crazy-lab:hints:${profileId}`
   const [index, setIndex] = useState(() => {
     try {
@@ -31,13 +33,13 @@ export function FirstUseHints({ profileId }: { profileId: string }) {
   }
 
   return (
-    <aside className="first-use-hint" aria-label="Crazy-Lab-Tipp">
+    <aside className="first-use-hint" aria-label={t('labTip')}>
       <span aria-hidden="true">💡</span>
       <p>
-        <strong>Labor-Tipp:</strong> {HINTS[index]}
+        <strong>{t('labTip')}</strong> {translateGeneratedText(HINTS[index]!, language)}
       </p>
       <Button variant="ghost" onClick={next}>
-        Verstanden
+        {t('understood')}
       </Button>
     </aside>
   )

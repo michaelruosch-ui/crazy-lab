@@ -91,6 +91,15 @@
   background: var(--color-bg-card);
 }
 
+.custom-mission-editor__image-preview {
+  width: min(100%, 320px);
+  margin: 0 auto;
+}
+
+.custom-mission-editor__image-builder > p {
+  margin: 0;
+}
+
 .custom-mission-editor label {
   display: flex;
   flex-direction: column;

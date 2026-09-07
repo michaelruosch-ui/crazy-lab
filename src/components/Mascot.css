@@ -8,77 +8,80 @@
   box-shadow:
     0 0 0 1px rgba(35, 230, 200, 0.25),
     0 5px 16px -7px var(--color-teal);
-  transform: rotate(var(--mascot-tilt));
 }
 
-.mascot__image {
+.mascot__background {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: hue-rotate(var(--mascot-hue)) saturate(1.12);
-  transform: scale(1.04);
 }
 
-.mascot--spooky::after {
-  content: '';
+.mascot__sprite-window {
   position: absolute;
-  top: 17%;
-  right: 12%;
-  width: 28%;
-  height: 6%;
-  border-radius: 999px;
-  background: #c41e43;
-  box-shadow: 0 7px 0 -2px #ff4f6a;
-  opacity: 0.8;
-  transform: rotate(-24deg);
+  inset: 0;
+  overflow: hidden;
 }
 
-.mascot--talking {
-  animation: mascot-wiggle 0.55s ease-in-out infinite;
+.mascot__sprite {
+  display: block;
+  width: 200%;
+  max-width: none;
+  height: 100%;
+  object-fit: fill;
+  filter: hue-rotate(var(--mascot-hue)) saturate(1.12);
+  transform: translateX(0);
+}
+
+.mascot--talking .mascot__sprite {
+  animation: mascot-breathe 0.7s ease-in-out infinite;
   transform-origin: 50% 100%;
 }
 
 .mascot--selected {
-  animation: mascot-selected 0.72s cubic-bezier(0.2, 0.9, 0.25, 1.2);
   box-shadow:
     0 0 0 3px var(--color-teal),
     0 0 22px var(--color-teal-glow);
 }
 
-@keyframes mascot-wiggle {
+.mascot--selected .mascot__sprite {
+  animation: mascot-wave 1.8s steps(1, end);
+}
+
+@keyframes mascot-breathe {
   0%,
   100% {
-    transform: rotate(var(--mascot-tilt)) translateY(0);
+    transform: translateX(0) scale(1);
   }
   50% {
-    transform: rotate(calc(var(--mascot-tilt) + 3deg)) translateY(-3px) scale(1.04);
+    transform: translateX(0) scale(1.025);
   }
 }
 
-@keyframes mascot-selected {
-  0% {
-    transform: rotate(var(--mascot-tilt)) scale(0.9);
-  }
-  42% {
-    transform: rotate(calc(var(--mascot-tilt) - 7deg)) translateY(-8px) scale(1.12);
-  }
-  72% {
-    transform: rotate(calc(var(--mascot-tilt) + 5deg)) translateY(-3px) scale(1.04);
-  }
+@keyframes mascot-wave {
+  0%,
+  16%,
+  42%,
+  68%,
   100% {
-    transform: rotate(var(--mascot-tilt)) scale(1);
+    transform: translateX(0);
+  }
+  17%,
+  41%,
+  43%,
+  67% {
+    transform: translateX(-50%);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mascot--talking,
-  .mascot--selected {
+  .mascot--talking .mascot__sprite,
+  .mascot--selected .mascot__sprite {
     animation: none;
   }
 }
 
-.reduce-motion .mascot--talking,
-.reduce-motion .mascot--selected {
+.reduce-motion .mascot--talking .mascot__sprite,
+.reduce-motion .mascot--selected .mascot__sprite {
   animation: none;
 }

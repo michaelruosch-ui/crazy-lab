@@ -13,14 +13,14 @@ import { useActiveProfileId } from './useActiveProfile'
 import { indexedDbProfileRepository } from '../../storage/profileRepository'
 import './ProfilePage.css'
 import { useAtmosphereSettings } from '../atmosphere'
-import { LANGUAGE_OPTIONS, useLanguage } from '../../i18n'
+import { APP_LOCALES, LANGUAGE_OPTIONS, useLanguage } from '../../i18n'
 
 type BackupStatus = 'idle' | 'busy' | 'success' | 'error'
 
-function formatMonthDay(monthDay: string): string {
+function formatMonthDay(monthDay: string, locale: string): string {
   const [month, day] = monthDay.split('-').map(Number)
   if (!month || !day) return monthDay
-  return new Date(2000, month - 1, day).toLocaleDateString('de-CH', {
+  return new Date(2000, month - 1, day).toLocaleDateString(locale, {
     day: 'numeric',
     month: 'long',
   })
@@ -33,7 +33,8 @@ export function ProfilePage() {
   const [name, setName] = useState('')
   const [nameSyncedWith, setNameSyncedWith] = useState<Profile | null>(null)
   const [newBirthdayName, setNewBirthdayName] = useState('')
-  const dateInputRef = useRef<HTMLInputElement>(null)
+  const [newBirthdayMonth, setNewBirthdayMonth] = useState('')
+  const [newBirthdayDay, setNewBirthdayDay] = useState('')
   const backupFileInputRef = useRef<HTMLInputElement>(null)
   const [backupStatus, setBackupStatus] = useState<BackupStatus>('idle')
   const [backupMessage, setBackupMessage] = useState('')
@@ -78,16 +79,16 @@ export function ProfilePage() {
   }
 
   async function addBirthday() {
-    const fullDate = dateInputRef.current?.value ?? ''
-    if (!profile || !newBirthdayName.trim() || !fullDate) return
+    if (!profile || !newBirthdayName.trim() || !newBirthdayMonth || !newBirthdayDay) return
     const birthday: Birthday = {
       id: generateId(),
       personName: newBirthdayName.trim(),
-      monthDay: fullDate.slice(5),
+      monthDay: `${newBirthdayMonth.padStart(2, '0')}-${newBirthdayDay.padStart(2, '0')}`,
     }
     await save({ ...profile, birthdays: [...profile.birthdays, birthday] })
     setNewBirthdayName('')
-    if (dateInputRef.current) dateInputRef.current.value = ''
+    setNewBirthdayMonth('')
+    setNewBirthdayDay('')
   }
 
   async function removeBirthday(id: string) {
@@ -157,7 +158,7 @@ export function ProfilePage() {
   }
 
   function formatSnapshotDate(isoDate: string): string {
-    return new Date(isoDate).toLocaleString('de-CH', {
+    return new Date(isoDate).toLocaleString(APP_LOCALES[language], {
       weekday: 'short',
       day: '2-digit',
       month: '2-digit',
@@ -190,7 +191,7 @@ export function ProfilePage() {
 
   return (
     <div className="profile-page">
-      <h1>👤 Dein Profil</h1>
+      <h1>{t('profileTitle')}</h1>
 
       <section>
         <h2>{t('profileLanguageTitle')}</h2>
@@ -210,10 +211,8 @@ export function ProfilePage() {
       </section>
 
       <section className="profile-page__people">
-        <h2>Wer forscht gerade?</h2>
-        <p className="profile-page__hint">
-          Jede Person hat ein eigenes Tagebuch, eigene Missionen und eigene Listen.
-        </p>
+        <h2>{t('currentResearcher')}</h2>
+        <p className="profile-page__hint">{t('profileSeparationHint')}</p>
         <div className="profile-page__people-list">
           {profiles.map((item) => (
             <Button
@@ -227,12 +226,12 @@ export function ProfilePage() {
           ))}
         </div>
         <Button variant="secondary" onClick={() => setActiveProfileId(`profil-${generateId()}`)}>
-          ➕ Neue Person anlegen
+          {t('addPerson')}
         </Button>
       </section>
 
       <section>
-        <h2>Forschername</h2>
+        <h2>{t('researcherName')}</h2>
         <input
           className="profile-page__input"
           value={name}
@@ -243,25 +242,23 @@ export function ProfilePage() {
       </section>
 
       <section>
-        <h2>Maskottchen</h2>
+        <h2>{t('mascot')}</h2>
         <MascotPicker value={profile.mascotVariant} onChange={changeMascot} />
       </section>
 
       <section>
-        <h2>Geburtstage</h2>
-        <p className="profile-page__hint">
-          Trage Geburtstage ein - dann erscheint an diesem Tag eine besondere Geburtstagsmission.
-        </p>
+        <h2>{t('birthdays')}</h2>
+        <p className="profile-page__hint">{t('birthdaysHint')}</p>
 
         {profile.birthdays.length > 0 && (
           <ul className="profile-page__birthday-list">
             {profile.birthdays.map((birthday) => (
               <li key={birthday.id}>
                 <span>
-                  {birthday.personName} - {formatMonthDay(birthday.monthDay)}
+                  {birthday.personName} - {formatMonthDay(birthday.monthDay, APP_LOCALES[language])}
                 </span>
                 <Button variant="ghost" onClick={() => removeBirthday(birthday.id)}>
-                  Entfernen
+                  {t('remove')}
                 </Button>
               </li>
             ))}
@@ -271,13 +268,55 @@ export function ProfilePage() {
         <div className="profile-page__add-birthday">
           <input
             className="profile-page__input"
-            placeholder="Name"
+            placeholder={t('name')}
             value={newBirthdayName}
             onChange={(e) => setNewBirthdayName(e.target.value)}
           />
-          <input className="profile-page__input" type="date" ref={dateInputRef} defaultValue="" />
+          <select
+            className="profile-page__input"
+            aria-label={t('month')}
+            value={newBirthdayMonth}
+            onChange={(event) => {
+              setNewBirthdayMonth(event.target.value)
+              setNewBirthdayDay('')
+            }}
+          >
+            <option value="">{t('month')}</option>
+            {Array.from({ length: 12 }, (_, index) => {
+              const value = String(index + 1)
+              const label = new Intl.DateTimeFormat(APP_LOCALES[language], {
+                month: 'long',
+              }).format(new Date(2000, index, 1))
+              return (
+                <option key={value} value={value}>
+                  {label.charAt(0).toLocaleUpperCase(language) + label.slice(1)}
+                </option>
+              )
+            })}
+          </select>
+          <select
+            className="profile-page__input"
+            aria-label={t('day')}
+            value={newBirthdayDay}
+            disabled={!newBirthdayMonth}
+            onChange={(event) => setNewBirthdayDay(event.target.value)}
+          >
+            <option value="">{t('day')}</option>
+            {Array.from(
+              {
+                length: newBirthdayMonth
+                  ? new Date(2000, Number(newBirthdayMonth), 0).getDate()
+                  : 31,
+              },
+              (_, index) => String(index + 1),
+            ).map((day) => (
+              <option key={day} value={day}>
+                {day}
+              </option>
+            ))}
+          </select>
           <Button variant="secondary" onClick={addBirthday}>
-            Geburtstag hinzufügen
+            {t('addBirthday')}
           </Button>
         </div>
       </section>
@@ -338,7 +377,7 @@ export function ProfilePage() {
                   onClick={() => restoreSnapshot(snapshot)}
                   disabled={backupStatus === 'busy'}
                 >
-                  Laden
+                  {t('load')}
                 </Button>
               </li>
             ))}

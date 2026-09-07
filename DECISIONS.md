@@ -756,7 +756,7 @@ Video muss in der Kamera kürzer neu aufgenommen werden.
 
 ## ADR-040: Eigene Missionen werden per geprüftem Import-Link geteilt
 
-**Status:** Angenommen und umgesetzt (2026-09-02)
+**Status:** Am 2026-09-07 durch ADR-046 ersetzt; Decoder bleibt zur Rückwärtskompatibilität
 
 **Entscheidung:** „Veröffentlichen“ erzeugt für eine eigene Mission einen teilbaren Link. Die
 empfangende Crazy-Lab-App zeigt Titel, Beschreibung, Materialien, Schritte und Sicherheitshinweise
@@ -788,8 +788,9 @@ ausgeliefert; nutzergenerierte eigene Missionen bleiben gekennzeichnet in ihrer 
 **Status:** Angenommen (2026-09-03)
 
 **Entscheidung:** Die öffentliche Version richtet sich an 9- bis 11-Jährige und wird für die
-Apple-Kinderkategorie 9–11 in der Schweiz vorbereitet. Zehn vollständige Missionen sind kostenlos;
-der Rest wird durch einen nicht verbrauchbaren In-App-Kauf von ungefähr CHF 1 freigeschaltet. Es
+Apple-Kinderkategorie 9–11 in der Schweiz vorbereitet. Genau sechs von Elena und Michael benannte
+Missionen sind kostenlos; der Rest wird durch einen nicht verbrauchbaren In-App-Kauf von ungefähr
+CHF 1 freigeschaltet. Es
 gibt weder Abo noch Werbung, Tracking oder automatische Cloud. Deutsch ist Standard; Englisch,
 Französisch, Italienisch und Spanisch sind vollständig enthalten. Die private Webversion bleibt
 während der Entwicklung unbeschränkt.
@@ -841,9 +842,10 @@ Umsetzungssprint; der echte Familientest der vier Sprints erfolgt separat auf de
 **Status:** Angenommen und umgesetzt (2026-09-04)
 
 **Entscheidung:** Nach dem Familientest werden alle Profil-Maskottchen auf den hochwertigen Stil
-des neuen Nachtbären umgestellt. Jede Tierart erhält eine eigene lokal gespeicherte Premium-Grafik;
-die bisherigen Maskottchen-IDs unterscheiden diese durch Farbwelt, leichte Haltung und harmlose
-Gruseldetails. Beim Auswählen bewegt sich die Figur kurz.
+des neuen Nachtbären umgestellt. Jede Tierart erhält eine eigene transparente Premium-Grafik mit
+zwei exakt ausgerichteten Phasen: Ruhepose und sichtbare Winkpose. Eine separate Laborillustration
+bleibt statisch im Hintergrund. Beim Auswählen bewegt sich nur die Figur; der beanstandete rote
+Strich und jeder künstlich aufgesetzte rote Effekt entfallen vollständig.
 
 **Konsequenzen:** Bestehende Profile behalten exakt ihr gewähltes Maskottchen. Acht komprimierte
 Grafiken statt 33 einzelner grosser Dateien halten die App auch auf dem alten iPad handhabbar.
@@ -851,21 +853,38 @@ Reduzierte Bewegung deaktiviert die Reaktion vollständig.
 
 ## ADR-046: Elena kuratiert einen globalen Missionskatalog
 
-**Status:** Produktziel angenommen, technische Veröffentlichungsvariante offen (2026-09-04)
+**Status:** Angenommen und in der Familienversion umgesetzt (2026-09-07)
 
-**Entscheidung:** Der private Missionslink aus ADR-040 ist nur noch ein Testweg und nicht das
-gewünschte Endprodukt. Nur Elena soll als Product Owner Missionen erstellen und freigeben. Andere
-Crazy-Lab-Spielerinnen und -Spieler sollen keine Missionen einreichen, sondern Elenas
-veröffentlichte Missionen automatisch im Katalog erhalten. In der heutigen Familienversion
-begrenzt `canEditMissionCatalog` die Werkstatt auf Elenas bestehende Profil-ID.
+**Entscheidung:** Der private Missionslink aus ADR-040 wird aus der sichtbaren App entfernt. Nur
+Elena soll als Product Owner Missionen erstellen und mit „Für alle freigeben“ zur Prüfung
+vormerken. Andere Crazy-Lab-Spielerinnen und -Spieler haben keine Werkstatt. Die kostenlose und
+cloudfreie Veröffentlichungsvariante ist verbindlich: Nach Familien- und Sicherheitsprüfung wird
+die Mission redaktionell in den statischen Katalog des nächsten App-Updates übernommen. In der
+heutigen Familienversion begrenzt `canEditMissionCatalog` die Werkstatt auf Elenas Profil-ID.
 
 **Konsequenzen:** Eine lokale Profil-ID ist keine sichere Identität für eine öffentliche App und
 darf dort nicht als alleiniger Zugriffsschutz gelten. Ohne zusätzlichen Server ist die sichere,
 kostenfreie Variante ein redaktionelles App-Update: Elena erstellt, die Familie prüft, der Inhalt
 wird in den versionierten Katalog übernommen und alle Geräte erhalten ihn beim nächsten Öffnen.
-Eine unmittelbare weltweite Veröffentlichung direkt aus Elenas App benötigt dagegen einen
-schreibbaren zentralen Dienst und eine echte Product-Owner-Anmeldung. Vor dieser noch offenen
-Entscheidung wird kein Cloud-Dienst eingerichtet.
+Eine unmittelbare weltweite Veröffentlichung direkt aus Elenas App wird nicht gebaut; dafür wäre
+ein schreibbarer zentraler Dienst mit echter Product-Owner-Anmeldung nötig. Es wird kein
+Cloud-Dienst eingerichtet.
+
+## ADR-048: Zusammengestellte Titelbilder und feste Gratis-Auswahl
+
+**Status:** Angenommen und umgesetzt als Vorbereitung für Sprint 30 (2026-09-07)
+
+**Entscheidung:** Elena gestaltet das Titelbild einer eigenen Mission aus je einer geprüften
+Auswahl für Hintergrund, Symbol und Stimmung. Es gibt weder freien Bild-Upload noch automatische
+KI-Veröffentlichung. Die Schwierigkeit bleibt automatisch aus der Dauer abgeleitet. Kostenlos
+sind genau „Der Blutkleim“, „Das leuchtende Geisterportal“, „Der blutrote Schatten-Trank“, „Regen
+im Glas“, „Das Monster-Frühstück“ und „Die Mini-Schatzsuche“. Alle übrigen Missionen gehören in
+der späteren nativen App zur einmaligen Freischaltung.
+
+**Konsequenzen:** Titelbilder bleiben klein, konsistent, übersetzbar und sicher. Die Auswahl ist in
+`domain/entitlements.ts` zentral testbar; die private Webversion bleibt bis zur StoreKit-Umsetzung
+unbeschränkt. „Der Blutkleim“ wird vor seiner Aufnahme in den redaktionellen Katalog über den
+normalisierten Titel erkannt, weil seine lokale ID auf Elenas Gerät erzeugt wurde.
 
 ## ADR-047: iOS-Audio vor der ersten Note ausdrücklich aktivieren
 

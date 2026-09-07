@@ -46,12 +46,17 @@ describe('Maskottchen-Assistent für eigene Missionen', () => {
     await user.type(screen.getByLabelText('Was passiert?'), 'Wir bauen ein lustiges Monster.')
     await user.type(screen.getByLabelText(/Materialien/), 'Socke\nFilzstifte')
     await user.type(screen.getByLabelText(/Schritte/), 'Socke wählen.\nGesicht malen.')
+    await user.selectOptions(screen.getByLabelText('Hintergrund'), 'blood')
+    await user.selectOptions(screen.getByLabelText('Symbol'), 'ghost')
+    await user.selectOptions(screen.getByLabelText('Stimmung'), 'gruselig')
     await user.click(screen.getByRole('button', { name: 'Mission speichern' }))
 
     const saved = await indexedDbCustomMissionRepository.getAll('elena')
     expect(saved).toHaveLength(1)
     expect(saved[0]!.steps).toHaveLength(2)
     expect(saved[0]!.title).toBe('Das Sockenmonster')
+    expect(saved[0]!.imagePlaceholder).toBe('custom-v1:blood:ghost:gruselig')
+    expect(saved[0]!.difficulty).toBe('leicht')
   })
 
   it('verlangt bei Erwachsenenhilfe einen Sicherheitshinweis', async () => {

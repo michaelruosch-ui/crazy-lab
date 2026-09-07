@@ -1,5 +1,24 @@
 # Changelog
 
+## Familienkorrekturen - Maskottchen, Product Owner und Gratis-Auswahl (2026-09-07)
+
+- Alle acht Tierarten besitzen neue transparente Zweibild-Grafiken. Beim Auswählen winkt jetzt
+  tatsächlich die Pfote beziehungsweise der Flügel, während der separate Laborhintergrund stehen
+  bleibt. Der beanstandete rote Strich und nachträgliche rote Effekte wurden entfernt.
+- Der sichtbare private Testlink wurde entfernt. Ausschliesslich Elena sieht die Missionswerkstatt
+  und kann eine fertige Mission mit „Für alle freigeben“ zur redaktionellen Familien- und
+  Sicherheitsprüfung für das nächste normale App-Update markieren. Es gibt keinen Cloud-Upload.
+- Der Editor bietet einen kindgerechten Titelbild-Baukasten aus Hintergrund, Symbol und Stimmung.
+  Die Schwierigkeit wird weiterhin automatisch aus der Dauer berechnet.
+- Die spätere Store-Freischaltung verwendet genau sechs festgelegte Gratis-Missionen. Eine zentrale
+  Domänenregel und automatische Tests sichern die Auswahl; die Familien-Webversion bleibt noch
+  vollständig freigeschaltet.
+- Restliche Sprachlücken wurden bei Profil, Tierarten, Geburtstagskalender, Ersthinweisen,
+  Missionskarten, Sicherheitsangaben und Missionswerkstatt in Deutsch, Englisch, Französisch,
+  Spanisch und Italienisch geschlossen.
+- Neue Regressionstests prüfen Sprite-Trennung, rote Artefakte, alle Maskottchennamen,
+  Titelbild-Kodierung, Freigabestatus, Gratis-Auswahl und lokalisierte Profilbedienung.
+
 ## Familienfeedback - Product Owner und Labormusik (2026-09-04)
 
 - Die Missionswerkstatt, das Kopieren und der Import eigener Missionen sind in der Familienversion

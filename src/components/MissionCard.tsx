@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom'
 import type { Mission } from '../domain'
 import { Badge } from './Badge'
 import { MissionImage } from './MissionImage'
+import { useLanguage, type TranslationKey } from '../i18n'
 import './MissionCard.css'
 
-const DIFFICULTY_LABELS: Record<Mission['difficulty'], string> = {
-  leicht: 'Leicht',
-  mittel: 'Mittel',
-  schwer: 'Schwer',
+const DIFFICULTY_KEYS: Record<Mission['difficulty'], TranslationKey> = {
+  leicht: 'difficultyEasy',
+  mittel: 'difficultyMedium',
+  schwer: 'difficultyHard',
 }
 
 interface MissionCardProps {
@@ -17,6 +18,7 @@ interface MissionCardProps {
 }
 
 export function MissionCard({ mission, actions }: MissionCardProps) {
+  const { t } = useLanguage()
   return (
     <div className="mission-card">
       <Link to={`/mission/${mission.id}`} className="mission-card__link">
@@ -26,11 +28,14 @@ export function MissionCard({ mission, actions }: MissionCardProps) {
         <div className="mission-card__body">
           <h3 className="mission-card__title">{mission.title}</h3>
           <div className="mission-card__badges">
-            <Badge tone="teal">⏱ {mission.durationMinutes} Min.</Badge>
-            <Badge tone="violet">{DIFFICULTY_LABELS[mission.difficulty]}</Badge>
+            <Badge tone="teal">
+              ⏱ {mission.durationMinutes} {t('minuteShort')}
+            </Badge>
+            <Badge tone="violet">{t(DIFFICULTY_KEYS[mission.difficulty])}</Badge>
             <Badge tone="pink">CHF {mission.estimatedCostChf.toFixed(2)}</Badge>
             <Badge tone="acid">
-              {mission.materials.length} {mission.materials.length === 1 ? 'Zutat' : 'Zutaten'}
+              {mission.materials.length}{' '}
+              {mission.materials.length === 1 ? t('ingredient') : t('ingredients')}
             </Badge>
           </div>
         </div>

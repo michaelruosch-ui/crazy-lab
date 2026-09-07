@@ -3,10 +3,11 @@
 ## Maskottchen-Bildsystem (Sprint-28-Korrektur)
 
 `Mascot.tsx` ordnet die unveränderten 33 Maskottchen-IDs einer von acht lokal gebündelten,
-komprimierten Tiergrafiken zu. Palette, individuelle leichte Neigung und ein nicht-grafisches
-Gruseldetail erzeugen die Varianten ohne 33 grosse Bilddateien. Das senkt Download und Speicher
-auf alten Geräten; Browser-Caching lädt jede Tiergrafik nur einmal. Die Auswahl-Animation ist rein
-über CSS umgesetzt und wird durch beide vorhandenen Einstellungen für reduzierte Bewegung beendet.
+transparenten Zweibild-Spritegrafiken zu. Eine separate statische Laborhintergrund-Grafik liegt
+ausserhalb des Spritefensters. Die CSS-Animation schaltet ausschliesslich die Tierfigur zwischen
+Ruhe- und Winkpose um; der Hintergrund bewegt sich nie. Es gibt keine nachträglich aufgemalte rote
+Linie oder Blutspur. Das senkt Download und Speicher gegenüber 33 Animationen; Browser-Caching lädt
+jede Tierart nur einmal. Beide Einstellungen für reduzierte Bewegung beenden die Animation.
 
 ## Schichten
 
@@ -96,10 +97,10 @@ keine Features.
    (Textfeld, Speichern bei Blur), Maskottchen (`MascotPicker` erneut verwendet) und Geburtstage
    (Liste mit Hinzufügen/Entfernen) sind jederzeit änderbar.
 4. `components/Mascot` nimmt eine `mascotId`-Prop entgegen (`MascotId` = `string`, siehe
-   `domain/profile.ts`) und rendert per Canvas eines von 33 Maskottchen-Entwürfen aus
-   `components/mascotArt.ts` (8 Tierarten × Farbwelt/Blutig-Variante, siehe DECISIONS.md
-   ADR-015). Wird im `HomePage`-Header und in der Hilfe-Sprechblase (`StepRunner` →
-   `SpeechBubble`) mit dem im Profil gespeicherten Maskottchen dargestellt.
+   `domain/profile.ts`) und kombiniert die passende von acht transparenten Zweibild-Tiergrafiken
+   mit einem statischen Laborhintergrund. Die 33 stabilen Maskottchen-IDs bleiben für vorhandene
+   Profile erhalten. Die Figur wird im `HomePage`-Header und in der Hilfe-Sprechblase
+   (`StepRunner` → `SpeechBubble`) mit dem im Profil gespeicherten Maskottchen dargestellt.
 5. `domain/isBirthdayToday` vergleicht nur Monat und Tag (Jahr bewusst irrelevant). `HomePage`
    filtert die Geburtstage des Profils auf "heute" und zeigt bei Treffer die Tagesmission mit
    festlichem Rahmen als "Geburtstagsmission für {Name}" statt der normalen Tagesmission -
@@ -283,30 +284,25 @@ andere Missionen. Eine freiwillige Teamnotiz wird im Tagebucheintrag gespeichert
 
 `features/custom-missions` enthält Übersicht und Editor. Der Editor baut aus kindgerechten
 Feldern ein vollständiges `CustomMission`-Objekt; Materialien und Schritte werden zeilenweise
-erfasst. Eine Kopie übernimmt sichtbare Grunddaten der Vorlage, erhält beim Speichern aber eine
-neue ID. Gelbe und rote Entwürfe benötigen vor dem Speichern einen ausreichend konkreten
-Sicherheitshinweis. `App.tsx` lädt eigene Missionen für `/mission/:missionId` aus dem Repository
-und reicht sie als `missionOverride` in denselben Ablauf wie Katalogmissionen. Damit bleiben
-Einkaufsliste, Schrittmodus, Bewertung und Tagebuch einheitlich.
+erfasst. Das Titelbild wird ohne Upload aus Hintergrund, Symbol und Stimmung zusammengesetzt und
+versioniert als `custom-v1:<background>:<symbol>:<mood>` in `imagePlaceholder` gespeichert. Die
+Schwierigkeit wird aus der eingegebenen Dauer abgeleitet. Eine Kopie übernimmt sichtbare
+Grunddaten der Vorlage, erhält beim Speichern aber eine neue ID. Gelbe und rote Entwürfe benötigen
+vor dem Speichern einen ausreichend konkreten Sicherheitshinweis. `App.tsx` lädt eigene Missionen
+für `/mission/:missionId` aus dem Repository und reicht sie als `missionOverride` in denselben
+Ablauf wie Katalogmissionen. Damit bleiben Einkaufsliste, Schrittmodus, Bewertung und Tagebuch
+einheitlich.
 
-## Teilbare eigene Missionen
+## Von Elena freigegebene eigene Missionen
 
-`domain/missionSharing.ts` bildet eine eigene Mission auf ein versioniertes, minimales
-Transportformat ab. Profil-ID, lokale Missions-ID, Zeitstempel, Fotos und Tagebuchdaten werden
-nicht übernommen. Das JSON wird UTF-8-fähig als Base64URL im Fragment-Link transportiert, sodass
-kein Server die Mission empfängt. Der Decoder begrenzt Länge, Listen, Texte, Zahlen und erlaubte
-Werte, bevor Daten die Oberfläche erreichen.
-
-`CustomMissionsPage` verwendet auf unterstützten Geräten den nativen Teilen-Dialog und fällt sonst
-auf Zwischenablage beziehungsweise sichtbares Kopieren zurück. `/mission-import` zeigt alle für
-eine Entscheidung wichtigen Inhalte. Erst die Bestätigung erzeugt mit `generateId()` eine neue
-`CustomMission` im aktiven Profil; Absender-ID und spätere Änderungen bleiben vollständig getrennt.
-
-Nach dem Familienfeedback vom 2026-09-04 ist dieser Link nur noch als privater Testweg beschriftet.
-`canEditMissionCatalog` begrenzt Werkstatt, Kopieren, Bearbeiten und Import in der Familienversion
-auf Elenas unveränderte Profil-ID. Das ist eine lokale Produktregel, keine Authentifizierung. Der
-gewünschte gemeinsame Katalog benötigt entweder geprüfte statische App-Veröffentlichungen oder
-einen sicheren schreibbaren Dienst; bis zu dieser Entscheidung existiert kein globaler Upload.
+`canEditMissionCatalog` begrenzt Werkstatt, Kopieren und Bearbeiten in der Familienversion auf
+Elenas unveränderte Profil-ID. Das ist eine lokale Produktregel, keine öffentliche
+Authentifizierung. `CustomMission.publicationStatus` unterscheidet lokale Entwürfe von
+`ready-for-review`. Der Knopf „Für alle freigeben“ setzt nur diesen lokalen Prüfstatus; er lädt
+keine Kinderinhalte hoch. Nach Familien- und Sicherheitsprüfung wird die Mission redaktionell in
+den versionierten statischen Katalog übernommen und erreicht alle Installationen mit dem nächsten
+normalen App-Update. Der frühere sichtbare private Testlink wurde entfernt. Der Decoder und die
+Import-Route bleiben vorläufig ausschliesslich zur Rückwärtskompatibilität alter Links im Code.
 
 ## Vollständiges Labortagebuch (Sprint 16)
 
@@ -432,6 +428,13 @@ Nutzergenerierte Missionen werden nicht verändert und als Originalsprache geken
 `PRIVACY_AND_STORE.md` trennt die bereits geltenden Produkt- und Datenschutzentscheide von späteren
 nativen Arbeiten. Die Web-App enthält weiterhin keine Bezahlschranke. StoreKit, Elternschranke,
 vollständiges Löschen und Store-Metadaten gehören in die nachfolgenden Veröffentlichungs-Sprints.
+
+`domain/entitlements.ts` hält die verbindliche kostenlose Auswahl unabhängig von UI und späterer
+StoreKit-Anbindung fest. Fünf redaktionelle Missionen werden über stabile IDs erkannt; Elenas auf
+dem Gerät erstellter „Der Blutkleim“ wird bis zu seiner redaktionellen Übernahme über den
+normalisierten Titel erkannt. Die Web-App wertet diese Regel bewusst noch nicht als Bezahlschranke
+aus. Sprint 30 verbindet sie in der nativen App mit dem nicht verbrauchbaren Kauf und dessen
+Wiederherstellung.
 
 ## Erweiterungspunkte für spätere Sprints
 

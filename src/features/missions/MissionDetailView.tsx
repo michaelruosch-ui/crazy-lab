@@ -1,20 +1,21 @@
 import type { Mission, RankedDrinkVariant } from '../../domain'
 import { Badge, Button, MissionImage } from '../../components'
+import { useLanguage, type TranslationKey } from '../../i18n'
 import './MissionDetailView.css'
 
-const DIFFICULTY_LABELS: Record<Mission['difficulty'], string> = {
-  leicht: 'Leicht',
-  mittel: 'Mittel',
-  schwer: 'Schwer',
+const DIFFICULTY_KEYS: Record<Mission['difficulty'], TranslationKey> = {
+  leicht: 'difficultyEasy',
+  mittel: 'difficultyMedium',
+  schwer: 'difficultyHard',
 }
 
 const SAFETY_LABELS: Record<
   Mission['safetyLevel'],
-  { label: string; tone: 'safety-green' | 'safety-yellow' | 'safety-red' }
+  { label: TranslationKey; tone: 'safety-green' | 'safety-yellow' | 'safety-red' }
 > = {
-  gruen: { label: 'Sicher', tone: 'safety-green' },
-  gelb: { label: 'Mit Vorsicht', tone: 'safety-yellow' },
-  rot: { label: 'Nur mit Erwachsenen', tone: 'safety-red' },
+  gruen: { label: 'safetySafe', tone: 'safety-green' },
+  gelb: { label: 'safetyCaution', tone: 'safety-yellow' },
+  rot: { label: 'safetyAdultsOnly', tone: 'safety-red' },
 }
 
 const TASTE_LABELS = {
@@ -71,6 +72,7 @@ export function MissionDetailView({
   hypothesis = '',
   onHypothesisChange,
 }: MissionDetailViewProps) {
+  const { t } = useLanguage()
   const safety = SAFETY_LABELS[mission.safetyLevel]
   const variants = rankedVariants ?? mission.drinkProfile?.variants ?? []
   const knowledge = KNOWLEDGE_CARDS[mission.primaryCategory]
@@ -83,10 +85,12 @@ export function MissionDetailView({
       <p className="mission-detail__description">{mission.shortDescription}</p>
 
       <div className="mission-detail__badges">
-        <Badge tone="teal">⏱ {mission.durationMinutes} Min.</Badge>
-        <Badge tone="violet">{DIFFICULTY_LABELS[mission.difficulty]}</Badge>
+        <Badge tone="teal">
+          ⏱ {mission.durationMinutes} {t('minuteShort')}
+        </Badge>
+        <Badge tone="violet">{t(DIFFICULTY_KEYS[mission.difficulty])}</Badge>
         <Badge tone="pink">CHF {mission.estimatedCostChf.toFixed(2)}</Badge>
-        <Badge tone={safety.tone}>{safety.label}</Badge>
+        <Badge tone={safety.tone}>{t(safety.label)}</Badge>
       </div>
 
       {mission.safetyNotes.length > 0 && (

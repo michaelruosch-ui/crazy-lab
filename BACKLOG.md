@@ -422,7 +422,9 @@ positiv beantwortet.
         detailreichen Bildstil umstellen
   - [x] Alle acht Tierarten erhalten eigene Premium-Grafiken; Namen, gespeicherte Auswahl,
         Farbwelten und kindgerecht gruselige Varianten bleiben erhalten
-  - [x] Ausgewähltes Maskottchen hüpft und wackelt kurz; bei „Bewegung reduzieren“ bleibt es ruhig
+  - [x] Alle acht Tierarten besitzen eine echte zweiphasige Winke-Animation: Nur Pfote/Flügel und
+        Figur bewegen sich, der Laborhintergrund bleibt stehen; der beanstandete rote Strich ist
+        entfernt und „Bewegung reduzieren“ bleibt unterstützt
 
 ### P3 - Qualität und Veröffentlichung
 
@@ -447,8 +449,9 @@ positiv beantwortet.
 - **Sprint 30 - Native App-Store-App und einmalige Freischaltung:** **Geplant; Elena befragt am
   2026-09-04.**
   - [ ] Crazy Lab als native iPhone-/iPad-App für den Apple App Store verpacken
-  - [ ] Je zwei vollständige Missionen pro Kategorie kostenlos anbieten; konkrete Auswahl trifft
-        das Product Owner Team anhand von Qualität, Sicherheit und Abwechslung
+  - [ ] Genau diese sechs Missionen kostenlos anbieten: „Der Blutkleim“, „Das leuchtende
+        Geisterportal“, „Der blutrote Schatten-Trank“, „Regen im Glas“, „Das Monster-Frühstück“
+        und „Die Mini-Schatzsuche“; alle anderen Missionen sind Teil der Freischaltung
   - [ ] Alle übrigen Inhalte einmalig für ungefähr CHF 1 dauerhaft freischalten
   - [ ] Kein Abo, keine Werbung und kein Tracking
   - [ ] Bereits bezahlten Kauf auf demselben Apple-Konto wiederherstellen können
@@ -469,18 +472,15 @@ positiv beantwortet.
 
 ## Unpriorisierte Ideen
 
-- [ ] **Gemeinsamer geprüfter Missionskatalog:** Der bisherige private Import-Link ist nicht das
-      gewünschte Endprodukt. Nur Elena darf als Product Owner Missionen erstellen und zur
-      Veröffentlichung freigeben; andere Spielerinnen und Spieler erhalten veröffentlichte
-      Missionen automatisch. Die empfohlene kostenfreie Variante veröffentlicht geprüfte
-      Missionen zusammen mit einem normalen App-Update. Falls die Veröffentlichung direkt beim
-      Antippen weltweit erfolgen soll, braucht Crazy Lab stattdessen einen sicheren zentralen
-      Dienst und eine echte Product-Owner-Anmeldung. Diese Produktentscheidung ist noch offen;
-      kein Cloud-Dienst wurde eingerichtet.
+- [x] **Gemeinsamer geprüfter Missionskatalog (Familienentscheidung 2026-09-07):** Nur Elena darf
+      als Product Owner Missionen erstellen und „Für alle freigeben“. Der private Testlink ist aus
+      der Oberfläche entfernt. Die Freigabe markiert die Mission für Familien- und
+      Sicherheitsprüfung; danach wird sie redaktionell in das nächste normale App-Update
+      übernommen. Es gibt keinen sofortigen Upload, keinen Cloud-Dienst und kein Zusatzkonto.
 - [x] **Product-Owner-Sperre in der Familienversion (2026-09-04):** Nur das bestehende Elena-Profil
       mit der ID `elena` sieht die Missionswerkstatt, kann Katalogmissionen kopieren sowie eigene
-      Missionen erstellen, bearbeiten oder aus einem Testlink importieren. Für eine öffentliche
-      App ist das ausdrücklich noch keine sichere Authentifizierung.
+      Missionen erstellen, bearbeiten und für die Prüfung freigeben. Für eine öffentliche App ist
+      das ausdrücklich noch keine sichere Authentifizierung.
 - [x] **Labormusik-Korrektur nach Familientest (2026-09-04):** iOS-Audio wird nach dem Antippen
       ausdrücklich fortgesetzt, auch der ältere Safari-Audiozugang wird unterstützt, die Tonfolge
       ist besser hörbar und ein blockierter Start erhält eine hilfreiche Meldung.
@@ -490,9 +490,8 @@ geschoben.
 
 ## Umgesetzte Backlog-Ideen
 
-- [x] **Eigene Mission teilen/veröffentlichen (2026-09-02):** „Mission teilen“ erzeugt einen
-      privaten Import-Link über den nativen Teilen-Dialog. Empfänger sehen Titel, Inhalt,
-      Materialien, Schritte und Sicherheit vorab und speichern erst nach bewusster Bestätigung eine
-      neue Kopie im aktiven Profil. Profil-ID, Name, Fotos und Tagebuchdaten sind nicht enthalten;
-      kein Konto, keine Cloud und keine öffentliche Galerie. Ungültige Links werden abgewiesen.
+- [x] **Eigene Mission veröffentlichen (am 2026-09-07 ersetzt):** Der frühere private Import-Link
+      wurde nach Elenas Testfeedback aus der sichtbaren App entfernt. Stattdessen stellt Elena das
+      Titelbild aus Hintergrund, Symbol und Stimmung zusammen und markiert die fertige Mission für
+      den geprüften Katalog im nächsten App-Update.
       Typecheck, Lint, 136 Tests, Produktions-Build und mobile Sichtprüfung erfolgreich.

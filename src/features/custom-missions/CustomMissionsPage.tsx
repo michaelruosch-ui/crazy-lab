@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { CustomMission } from '../../domain'
-import { canEditMissionCatalog, encodeSharedMission } from '../../domain'
+import { canEditMissionCatalog } from '../../domain'
 import { BackLink, Button, MissionCard, SpeechBubble } from '../../components'
 import { useActiveProfileId, useProfile } from '../profile'
 import { indexedDbCustomMissionRepository } from '../../storage/customMissionRepository'
@@ -20,29 +20,15 @@ export function CustomMissionsPage() {
     void indexedDbCustomMissionRepository.getAll(activeProfileId).then(setItems)
   }, [activeProfileId])
 
-  async function shareMission(mission: CustomMission) {
-    const url = `${window.location.origin}${window.location.pathname}#/mission-import?mission=${encodeSharedMission(mission)}`
-    try {
-      if (navigator.share) {
-        await navigator.share({
-          title: `Crazy Lab: ${mission.title}`,
-          text: 'Probier meine Crazy-Lab-Mission aus!',
-          url,
-        })
-        setMessage('Privater Testlink geöffnet. Die Mission wurde noch nicht veröffentlicht.')
-        return
-      }
-      if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(url)
-        setMessage('Privater Testlink kopiert. Die Mission wurde noch nicht veröffentlicht.')
-        return
-      }
-      window.prompt('Kopiere diesen Missionslink:', url)
-      setMessage('Der Missionslink ist bereit zum Kopieren.')
-    } catch (error) {
-      if (error instanceof DOMException && error.name === 'AbortError') return
-      window.prompt('Kopiere diesen Missionslink:', url)
+  async function markReadyForReview(mission: CustomMission) {
+    const updated: CustomMission = {
+      ...mission,
+      publicationStatus: 'ready-for-review',
+      updatedAt: new Date().toISOString(),
     }
+    await indexedDbCustomMissionRepository.save(updated)
+    setItems((current) => current.map((item) => (item.id === updated.id ? updated : item)))
+    setMessage(t('publicationReadyMessage').replace('{title}', mission.title))
   }
 
   return (
@@ -64,8 +50,8 @@ export function CustomMissionsPage() {
       )}
       {isProductOwner && (
         <p className="shared-mission-page__notice">
-          🌍 Für alle veröffentlichen kommt mit dem gemeinsamen, geprüften Missionskatalog. Ein
-          privater Testlink veröffentlicht noch nichts.
+          🌍 Nur du kannst Missionen für alle freigeben. Vor dem nächsten App-Update werden Inhalt
+          und Sicherheit noch einmal geprüft.
         </p>
       )}
       {message && (
@@ -89,9 +75,13 @@ export function CustomMissionsPage() {
                 isProductOwner ? (
                   <div className="custom-missions-page__actions">
                     <Link to={`/eigene-missionen/${mission.id}/bearbeiten`}>✏️ Bearbeiten</Link>
-                    <Button variant="secondary" onClick={() => void shareMission(mission)}>
-                      🧪 Privaten Testlink senden
-                    </Button>
+                    {mission.publicationStatus === 'ready-for-review' ? (
+                      <strong>✅ Für das nächste App-Update freigegeben</strong>
+                    ) : (
+                      <Button variant="secondary" onClick={() => void markReadyForReview(mission)}>
+                        🌍 Für alle freigeben
+                      </Button>
+                    )}
                   </div>
                 ) : undefined
               }

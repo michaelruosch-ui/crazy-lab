@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
@@ -7,6 +7,7 @@ import { DEFAULT_PROFILE } from '../../domain'
 import { ProfilePage } from './ProfilePage'
 import { indexedDbProfileRepository } from '../../storage/profileRepository'
 import { resetDbConnection } from '../../storage/db'
+import { LanguageProvider } from '../../i18n'
 
 describe('ProfilePage', () => {
   beforeEach(async () => {
@@ -80,9 +81,8 @@ describe('ProfilePage', () => {
     )
 
     await user.type(await screen.findByPlaceholderText('Name'), 'Laura')
-    const dateInput = document.querySelector('input[type="date"]')
-    expect(dateInput).toBeTruthy()
-    fireEvent.change(dateInput as HTMLInputElement, { target: { value: '2000-08-23' } })
+    await user.selectOptions(screen.getByLabelText('Monat'), '8')
+    await user.selectOptions(screen.getByLabelText('Tag'), '23')
     await user.click(screen.getByRole('button', { name: 'Geburtstag hinzufügen' }))
 
     expect(await screen.findByText(/Laura/)).toBeInTheDocument()
@@ -165,5 +165,23 @@ describe('ProfilePage', () => {
     expect(
       await screen.findByText('Diese Datei sieht nicht nach einem Crazy-Lab-Backup aus.'),
     ).toBeInTheDocument()
+  })
+
+  it('zeigt Profil, Maskottchenarten und Geburtstagsauswahl vollständig auf Englisch', async () => {
+    render(
+      <LanguageProvider language="en" onLanguageChange={() => undefined}>
+        <MemoryRouter>
+          <ProfilePage />
+        </MemoryRouter>
+      </LanguageProvider>,
+    )
+
+    expect(await screen.findByText('Researcher name')).toBeInTheDocument()
+    expect(screen.getByText('Mascot')).toBeInTheDocument()
+    expect(screen.getByText('Birthdays')).toBeInTheDocument()
+    expect(screen.getByText('Marmot')).toBeInTheDocument()
+    expect(screen.getByText('Spider creature')).toBeInTheDocument()
+    expect(screen.getByRole('option', { name: 'August' })).toBeInTheDocument()
+    expect(document.querySelector('input[type="date"]')).not.toBeInTheDocument()
   })
 })

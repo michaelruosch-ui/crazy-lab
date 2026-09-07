@@ -5,8 +5,8 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich nach dem Abschluss von **Sprint 29** am 2026-09-04; Sprint 19
-wurde auf Familienentscheid bewusst übersprungen. Der aktuelle Stand: Beim
+Dieses Repository befindet sich nach dem Abschluss von **Sprint 29** und den Familienkorrekturen
+vom 2026-09-07; Sprint 19 wurde auf Familienentscheid bewusst übersprungen. Der aktuelle Stand: Beim
 ersten Start wählt man eines von 33 Maskottchen (8 Tierarten in verschiedenen Farbwelten) und
 einen Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf
 Kategorien (Getränke, Basteln, Experimente, Foto-Challenges, Schwestern-Missionen). Jede Mission
@@ -43,16 +43,14 @@ fortsetzen. Die 15 Foto-Challenges speichern bis zu fünf verkleinerte Fotos sam
 und Effekten im Tagebuch. 15 Schwestern-Missionen kombinieren getrennt aufklappbare geheime
 Teilaufgaben, optionale Fünf-Minuten-Challenges und einen gemeinsamen Abschluss.
 Über „Eigene Missionen“ kann ausschliesslich Elenas bestehendes Product-Owner-Profil mit Hilfe
-seines Maskottchens neue Missionen erfinden,
-vorhandene Missionen kopieren und ihre Entwürfe später bearbeiten. Eigene Missionen werden lokal
-gespeichert, wie normale Missionen gespielt und automatisch in Sicherungen aufgenommen. Mit
-„Privaten Testlink senden“ entsteht ohne Konto oder Cloud ein privater Link. Die empfangende Crazy-Lab-App
-zeigt Inhalt, Materialien, Schritte und Sicherheit zuerst an und speichert erst nach ausdrücklicher
-Bestätigung eine unabhängige Kopie im aktiven Profil.
-Nach Elenas und Michaels aktuellem Produktentscheid soll dieser Testweg künftig durch einen
-geprüften Katalog ersetzt werden: Von Elena freigegebene Missionen erscheinen dann für alle
-Crazy-Lab-Spieler. Die technische Veröffentlichungsvariante ist noch offen; es wurde dafür kein
-Server und kein zusätzlicher Cloud-Dienst eingerichtet.
+seines Maskottchens neue Missionen erfinden, vorhandene Missionen kopieren und Entwürfe später
+bearbeiten. Ein Titelbild lässt sich dabei kindgerecht aus Hintergrund, Symbol und Stimmung
+zusammenstellen; die Schwierigkeit berechnet Crazy Lab weiterhin aus der Dauer. Eigene Missionen
+werden lokal gespeichert, wie normale Missionen gespielt und automatisch in Sicherungen
+aufgenommen. Der missverständliche private Testlink ist entfernt. Elena kann eine fertige Mission
+mit „Für alle freigeben“ für die redaktionelle Prüfung markieren. Nach Familien- und
+Sicherheitsprüfung wird sie ohne Cloud und ohne Zusatzkonto in das nächste normale App-Update
+übernommen; andere Profile besitzen weder Werkstatt noch Freigabeknopf.
 Das Labortagebuch bietet Suche, Filter, Bildkarten und eine sichere Bearbeitung samt Löschrückfrage
 und bis zu zehn Fotos. Missionen starten mit einem überspringbaren Countdown und können je nach
 Kategorie eine lokal erzeugte Labormusik abspielen. Der Start weckt nun auch einen von iOS
@@ -70,7 +68,10 @@ Die profilbezogene Sprachwahl ist über das Weltkugel-Symbol oben sowie im Profi
 vorhandene Profile bleiben auf Deutsch. Eigene und geteilte Missionen bleiben erkennbar in ihrer
 Originalsprache. Sprint 24 dokumentiert in `PRIVACY_AND_STORE.md` die verbindliche Grundlage für
 eine spätere Schweizer Kinder-App: Alter 9–11, lokaler Datenschutz, neutraler Markenwortlaut und
-ein kostenloser Einstieg mit späterer einmaliger Freischaltung statt Abo oder Werbung.
+ein kostenloser Einstieg mit späterer einmaliger Freischaltung statt Abo oder Werbung. Genau sechs
+Missionen sind für den kostenlosen Einstieg beschlossen: „Der Blutkleim“, „Das leuchtende
+Geisterportal“, „Der blutrote Schatten-Trank“, „Regen im Glas“, „Das Monster-Frühstück“ und „Die
+Mini-Schatzsuche“. Die private Webversion bleibt bis zur nativen App unbeschränkt.
 Der redaktionelle Katalog umfasst jetzt 100 Missionen: je 20 Getränke-, Bastel-, Experiment-,
 Foto- und Schwestern-Missionen. Die 25 Ergänzungen aus Sprint 21 besitzen konkrete Materialien,
 Schritte, Sicherheitsangaben und die jeweils benötigten strukturierten Kategoriedaten.
@@ -173,7 +174,7 @@ Siehe [ARCHITECTURE.md](./ARCHITECTURE.md) für Schichten, Datenfluss und Erweit
 Siehe [BACKLOG.md](./BACKLOG.md) für den aktuellen Sprint und offene Sprints, sowie
 [CHANGELOG.md](./CHANGELOG.md) für die Änderungshistorie.
 
-# Aktueller Stand (2026-09-04)
+# Aktueller Stand (2026-09-07)
 
 Die Sprints 26 bis 29 sind programmiert: einfachere Missionsführung, Zuhause-Filter und kompakter
 Laborschrank, Forscherwissen und freiwillige Abzeichen, 100 einzigartige Missionsmotive, ein neuer
@@ -181,6 +182,9 @@ realistischer Nachtbär sowie bessere Barrierefreiheit und freundliche Fehlerhil
 auf Wunsch hinter Sprint 29 verschoben und ist als Nächstes geplant. Der Familientest auf den echten
 Geräten steht noch aus.
 
-Nach dem ersten Familientest wurden alle 33 Profil-Maskottchen auf denselben hochwertigen,
-detailreichen Bildstil wie der Nachtbär umgestellt. Beim Antippen bewegt sich die Auswahl kurz;
-„Bewegung reduzieren“ bleibt vollständig unterstützt.
+Nach dem Familientest wurden alle 33 Profil-Maskottchen auf denselben hochwertigen, detailreichen
+Bildstil wie der Nachtbär umgestellt. Jede der acht Tierarten besitzt jetzt eine echte zweiphasige
+Figurenanimation: Beim Auswählen winkt die Pfote beziehungsweise der Flügel, während der
+Laborhintergrund stehen bleibt. Der beanstandete rote Strich ist vollständig entfernt;
+„Bewegung reduzieren“ bleibt unterstützt. Die fünf Sprachen umfassen nun auch Profilfelder,
+Tierarten, Geburtstagsmonate, Hinweise sowie dynamische Missionswerkstatt-Texte.

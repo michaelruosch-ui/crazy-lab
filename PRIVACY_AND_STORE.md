@@ -1,6 +1,6 @@
 # Datenschutz- und App-Store-Grundlage
 
-Stand: 2026-09-03. Dieses Dokument hält die verbindlichen Produktentscheidungen für eine spätere
+Stand: 2026-09-07. Dieses Dokument hält die verbindlichen Produktentscheidungen für eine spätere
 Veröffentlichung fest. Es ersetzt vor der Einreichung keine Prüfung der dann aktuellen
 Apple-Vorgaben.
 
@@ -9,8 +9,10 @@ Apple-Vorgaben.
 - Primäre Zielgruppe: Kinder von 9 bis 11 Jahren; Apple-Kinderkategorie 9–11.
 - Erstes Veröffentlichungsgebiet: Schweiz.
 - Sprachen: Deutsch (Standard), Englisch, Französisch, Italienisch und Spanisch.
-- Geschäftsmodell: kostenloser Einstieg mit zehn vollständigen Missionen (zwei je Kategorie),
-  danach einmalig ungefähr CHF 1 als nicht verbrauchbarer In-App-Kauf. Kein Abo, keine Werbung.
+- Geschäftsmodell: kostenloser Einstieg mit genau sechs vollständigen Missionen: „Der Blutkleim“,
+  „Das leuchtende Geisterportal“, „Der blutrote Schatten-Trank“, „Regen im Glas“, „Das
+  Monster-Frühstück“ und „Die Mini-Schatzsuche“. Danach einmalig ungefähr CHF 1 als nicht
+  verbrauchbarer In-App-Kauf. Kein Abo, keine Werbung.
 - Die bestehende private Familien-Webversion bleibt während der Entwicklung vollständig nutzbar;
   die Bezahlschranke wird erst in der späteren nativen App-Store-Verpackung umgesetzt.
 
@@ -18,9 +20,10 @@ Apple-Vorgaben.
 
 Crazy Lab speichert Profile, Geburtstage, Tagebuch, Fotos, kurze Videos, Listen, Bewertungen und
 eigene Missionen lokal auf dem jeweiligen Gerät. Es gibt derzeit keine Benutzerkonten, Werbung,
-Analyse, Tracking oder automatische Cloud-Übertragung. Ein externer Backup-Export und ein
-Missionslink entstehen nur nach bewusster Aktion. Der Missionslink enthält keine Profil-ID,
-Namen, Fotos oder Tagebuchdaten.
+Analyse, Tracking oder automatische Cloud-Übertragung. Ein externer Backup-Export entsteht nur
+nach bewusster Aktion. Eigene Missionen werden nicht über einen Datenlink verschickt: Elena kann
+sie lokal zur redaktionellen Prüfung markieren; eine geprüfte Fassung wird erst mit einem normalen
+App-Update verteilt.
 
 Für die öffentliche Kinder-App gelten zusätzlich:
 

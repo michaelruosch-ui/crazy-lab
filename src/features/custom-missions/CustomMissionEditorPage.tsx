@@ -9,7 +9,18 @@ import {
   type MissionCategory,
   type SafetyLevel,
 } from '../../domain'
-import { BackLink, Button, SpeechBubble } from '../../components'
+import {
+  BackLink,
+  Button,
+  CUSTOM_IMAGE_BACKGROUNDS,
+  CUSTOM_IMAGE_MOODS,
+  CUSTOM_IMAGE_SYMBOLS,
+  decodeCustomMissionImage,
+  encodeCustomMissionImage,
+  MissionImage,
+  SpeechBubble,
+  type CustomMissionImageSelection,
+} from '../../components'
 import { useActiveProfileId, useProfile } from '../profile'
 import { indexedDbCustomMissionRepository } from '../../storage/customMissionRepository'
 import './CustomMissionsPage.css'
@@ -32,6 +43,7 @@ interface Draft {
   steps: string
   safetyLevel: SafetyLevel
   safetyNote: string
+  image: CustomMissionImageSelection
 }
 
 const EMPTY_DRAFT: Draft = {
@@ -44,6 +56,7 @@ const EMPTY_DRAFT: Draft = {
   steps: '',
   safetyLevel: 'gruen',
   safetyNote: '',
+  image: decodeCustomMissionImage(''),
 }
 
 function draftFromMission(mission: CustomMission | (typeof missions)[number]): Draft {
@@ -57,6 +70,7 @@ function draftFromMission(mission: CustomMission | (typeof missions)[number]): D
     steps: mission.steps.map((step) => step.text).join('\n'),
     safetyLevel: mission.safetyLevel,
     safetyNote: mission.safetyNotes.join('\n'),
+    image: decodeCustomMissionImage(mission.imagePlaceholder),
   }
 }
 
@@ -153,10 +167,11 @@ export function CustomMissionEditorPage() {
       steps: steps.map((text, index) => ({ id: `step-${index + 1}`, order: index + 1, text })),
       generalHelpTip: 'Lies jeden Schritt noch einmal und hole Hilfe, sobald du unsicher bist.',
       completionQuestion: 'Was hat besonders gut funktioniert und was würdest du verändern?',
-      imagePlaceholder: `eigen-${draft.category}`,
+      imagePlaceholder: encodeCustomMissionImage(draft.image),
       createdAt: existing?.createdAt ?? now,
       updatedAt: now,
       sourceMissionId: existing?.sourceMissionId ?? copyId ?? undefined,
+      publicationStatus: existing?.publicationStatus ?? 'draft',
     }
     await indexedDbCustomMissionRepository.save(mission)
     navigate('/eigene-missionen')
@@ -249,6 +264,71 @@ export function CustomMissionEditorPage() {
           placeholder={'Lege alles bereit.\nBaue deine Idee.\nGib ihr einen Namen.'}
         />
       </label>
+
+      <fieldset className="custom-mission-editor__image-builder">
+        <legend>🎨 Titelbild zusammenstellen</legend>
+        <p>Wähle einen Hintergrund, ein Symbol und die Stimmung deiner Mission.</p>
+        <div className="custom-mission-editor__image-preview">
+          <MissionImage
+            placeholder={encodeCustomMissionImage(draft.image)}
+            title={draft.title || 'Meine neue Mission'}
+          />
+        </div>
+        <label>
+          Hintergrund
+          <select
+            value={draft.image.background}
+            onChange={(event) =>
+              update('image', {
+                ...draft.image,
+                background: event.target.value as CustomMissionImageSelection['background'],
+              })
+            }
+          >
+            {CUSTOM_IMAGE_BACKGROUNDS.map((background) => (
+              <option key={background.id} value={background.id}>
+                {background.label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Symbol
+          <select
+            value={draft.image.symbol}
+            onChange={(event) =>
+              update('image', {
+                ...draft.image,
+                symbol: event.target.value as CustomMissionImageSelection['symbol'],
+              })
+            }
+          >
+            {CUSTOM_IMAGE_SYMBOLS.map((symbol) => (
+              <option key={symbol.id} value={symbol.id}>
+                {symbol.symbol} {symbol.label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Stimmung
+          <select
+            value={draft.image.mood}
+            onChange={(event) =>
+              update('image', {
+                ...draft.image,
+                mood: event.target.value as CustomMissionImageSelection['mood'],
+              })
+            }
+          >
+            {CUSTOM_IMAGE_MOODS.map((mood) => (
+              <option key={mood.id} value={mood.id}>
+                {mood.label}
+              </option>
+            ))}
+          </select>
+        </label>
+      </fieldset>
 
       <fieldset>
         <legend>🛡️ Sicherheit</legend>

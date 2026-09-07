@@ -5,6 +5,8 @@ export interface CustomMission extends Mission {
   createdAt: string
   updatedAt: string
   sourceMissionId?: string
+  /** Lokal vorgemerkte Freigabe für den redaktionell geprüften nächsten App-Katalog. */
+  publicationStatus?: 'draft' | 'ready-for-review'
 }
 
 export function isCustomMissionSafe(
