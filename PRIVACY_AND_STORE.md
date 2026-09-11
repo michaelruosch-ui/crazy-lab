@@ -1,6 +1,6 @@
 # Datenschutz- und App-Store-Grundlage
 
-Stand: 2026-09-07. Dieses Dokument hält die verbindlichen Produktentscheidungen für eine spätere
+Stand: 2026-09-11. Dieses Dokument hält die verbindlichen Produktentscheidungen für eine spätere
 Veröffentlichung fest. Es ersetzt vor der Einreichung keine Prüfung der dann aktuellen
 Apple-Vorgaben.
 
@@ -14,7 +14,7 @@ Apple-Vorgaben.
   Monster-Frühstück“ und „Die Mini-Schatzsuche“. Danach einmalig ungefähr CHF 1 als nicht
   verbrauchbarer In-App-Kauf. Kein Abo, keine Werbung.
 - Die bestehende private Familien-Webversion bleibt während der Entwicklung vollständig nutzbar;
-  die Bezahlschranke wird erst in der späteren nativen App-Store-Verpackung umgesetzt.
+  die Bezahlschranke greift ausschliesslich in der nativen App-Store-Verpackung.
 
 ## Daten und Privatsphäre
 
@@ -51,8 +51,9 @@ gespeicherten Daten beschädigt werden.
 
 - Apple-Developer-Konto und öffentliche verantwortliche Kontaktadresse festlegen.
 - Öffentliche Datenschutz- und Support-URL bereitstellen.
-- Native Verpackung, StoreKit-Kauf und Kaufwiederherstellung umsetzen.
-- Elternschranke, vollständiges Löschen und altersgerechte Einwilligungen umsetzen.
+- Apple-Produkt `ch.crazylab.fullversion` in App Store Connect als nicht verbrauchbaren Kauf mit
+  Schweizer Preisstufe um ungefähr CHF 1 anlegen und im Sandbox-Konto prüfen.
+- Elenas „Der Blutkleim“ aus ihrem lokalen Backup redaktionell in den Katalog übernehmen.
 - App-Privacy-Angaben, Altersfragebogen und Metadaten anhand des fertigen Builds ausfüllen.
 - TestFlight-, Geräte-, Barrierefreiheits- und Store-Review durchführen.
 
@@ -63,3 +64,15 @@ gespeicherten Daten beschädigt werden.
 - Native Schnittstelle für Face ID, Touch ID oder Gerätecode ohne biometrische Rohdaten.
 - Vollständiges Löschen eines Profils einschließlich aller zugehörigen lokalen Inhalte und
   Sicherungsstände.
+
+## Umgesetzt in Sprint 30 (2026-09-11)
+
+- Native UIKit-/WKWebView-App für iPhone und iPad ab iOS 12 mit vollständigem lokalem App-Bundle.
+- Nicht verbrauchbarer StoreKit-Kauf statt Abo; Kaufwiederherstellung nur nach bewusster Aktion.
+- Bezahlschranke nur in der nativen App, exakt sechs kostenlose Missionen und klar erkennbare
+  Vollversionsinhalte.
+- Kauf und Wiederherstellung hinter Apples Geräteauthentifizierung; externe Navigation gesperrt.
+- Privacy Manifest erklärt null erhobene Daten, null Tracking und ausschließlich app-eigene
+  `UserDefaults` für den von StoreKit bestätigten Freischaltungszustand.
+- Lokale Xcode-StoreKit-Konfiguration für den Familientest. Die echte Produkteinrichtung und
+  Preiswahl in App Store Connect bleiben Teil von Sprint 31 und wurden nicht vorweggenommen.

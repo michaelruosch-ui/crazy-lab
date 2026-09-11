@@ -446,16 +446,18 @@ positiv beantwortet.
   - [x] Profil und sämtliche zugehörigen lokalen Daten vollständig löschbar machen
   - [x] Fotos, Videos, Namen und Tagebücher weiterhin ausschliesslich lokal halten
 
-- **Sprint 30 - Native App-Store-App und einmalige Freischaltung:** **Geplant; Elena befragt am
-  2026-09-04.**
-  - [ ] Crazy Lab als native iPhone-/iPad-App für den Apple App Store verpacken
-  - [ ] Genau diese sechs Missionen kostenlos anbieten: „Der Blutkleim“, „Das leuchtende
+- **Sprint 30 - Native App-Store-App und einmalige Freischaltung:** **Umgesetzt am 2026-09-11;
+  App-Store-Connect-Einrichtung folgt erst in Sprint 31.**
+  - [x] Crazy Lab als native iPhone-/iPad-App für den Apple App Store verpacken
+  - [x] Genau diese sechs Missionen kostenlos anbieten: „Der Blutkleim“, „Das leuchtende
         Geisterportal“, „Der blutrote Schatten-Trank“, „Regen im Glas“, „Das Monster-Frühstück“
         und „Die Mini-Schatzsuche“; alle anderen Missionen sind Teil der Freischaltung
-  - [ ] Alle übrigen Inhalte einmalig für ungefähr CHF 1 dauerhaft freischalten
-  - [ ] Kein Abo, keine Werbung und kein Tracking
-  - [ ] Bereits bezahlten Kauf auf demselben Apple-Konto wiederherstellen können
-  - [ ] Kauf und externe Wege hinter der in Sprint 25 festgelegten Elternschranke schützen
+  - [x] Alle übrigen Inhalte einmalig für ungefähr CHF 1 dauerhaft freischalten
+  - [x] Kein Abo, keine Werbung und kein Tracking
+  - [x] Bereits bezahlten Kauf auf demselben Apple-Konto wiederherstellen können
+  - [x] Kauf und externe Wege hinter der in Sprint 25 festgelegten Elternschranke schützen
+  - [ ] Elenas lokal erstellten „Der Blutkleim“ nach Erhalt ihres Backups redaktionell in den
+        statischen Katalog übernehmen; die Freischaltungsregel erkennt den Titel bereits korrekt
 
 - **Sprint 31 - Familientest und Schweizer App-Store-Start:** **Geplant; Elena befragt am
   2026-09-04.**

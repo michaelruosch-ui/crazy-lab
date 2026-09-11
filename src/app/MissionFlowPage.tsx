@@ -23,6 +23,8 @@ import { indexedDbShoppingListRepository } from '../storage/shoppingListReposito
 import { indexedDbLabCabinetRepository } from '../storage/labCabinetRepository'
 import { indexedDbExperimentProgressRepository } from '../storage/experimentProgressRepository'
 import './MissionFlowPage.css'
+import { isMissionFree } from '../domain'
+import { MissionPaywall, useEntitlement } from '../features/entitlements'
 
 interface MissionFlowPageProps {
   missionId: string
@@ -82,6 +84,7 @@ export function MissionFlowPage({ missionId, missionOverride }: MissionFlowPageP
   const [selectedVariant, setSelectedVariant] = useState<string | undefined>(undefined)
   const effectiveVariant =
     selectedVariant ?? rankedVariants[0]?.name ?? mission?.drinkProfile?.variants[0]?.name
+  const entitlement = useEntitlement()
 
   useEffect(() => {
     if (!mission?.experimentProfile) return
@@ -94,6 +97,15 @@ export function MissionFlowPage({ missionId, missionOverride }: MissionFlowPageP
     return (
       <div className="mission-flow__not-found">
         <p>Diese Mission konnte nicht gefunden werden.</p>
+        <BackLink to="/">← Zurück zur Startseite</BackLink>
+      </div>
+    )
+  }
+
+  if (entitlement.native && !entitlement.status.unlocked && !isMissionFree(mission)) {
+    return (
+      <div className="mission-flow">
+        <MissionPaywall mission={mission} />
         <BackLink to="/">← Zurück zur Startseite</BackLink>
       </div>
     )

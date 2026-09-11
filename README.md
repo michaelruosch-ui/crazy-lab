@@ -5,7 +5,7 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich nach dem Abschluss von **Sprint 25** am 2026-09-11; Sprint 19
+Dieses Repository befindet sich nach dem Abschluss von **Sprint 30** am 2026-09-11; Sprint 19
 wurde auf Familienentscheid bewusst übersprungen. Der aktuelle Stand: Beim
 ersten Start wählt man eines von 33 Maskottchen (8 Tierarten in verschiedenen Farbwelten) und
 einen Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf
@@ -71,7 +71,9 @@ eine spätere Schweizer Kinder-App: Alter 9–11, lokaler Datenschutz, neutraler
 ein kostenloser Einstieg mit späterer einmaliger Freischaltung statt Abo oder Werbung. Genau sechs
 Missionen sind für den kostenlosen Einstieg beschlossen: „Der Blutkleim“, „Das leuchtende
 Geisterportal“, „Der blutrote Schatten-Trank“, „Regen im Glas“, „Das Monster-Frühstück“ und „Die
-Mini-Schatzsuche“. Die private Webversion bleibt bis zur nativen App unbeschränkt.
+Mini-Schatzsuche“. Die private Webversion bleibt unbeschränkt. Die native iPhone-/iPad-App sperrt
+alle übrigen Missionen hinter einer einmaligen Apple-Freischaltung von ungefähr CHF 1. Sie enthält
+weder Abo, Werbung noch Tracking und kann einen Kauf mit demselben Apple-Konto wiederherstellen.
 Der redaktionelle Katalog umfasst jetzt 100 Missionen: je 20 Getränke-, Bastel-, Experiment-,
 Foto- und Schwestern-Missionen. Die 25 Ergänzungen aus Sprint 21 besitzen konkrete Materialien,
 Schritte, Sicherheitsangaben und die jeweils benötigten strukturierten Kategoriedaten.
@@ -127,6 +129,18 @@ npm run build
 
 Erstellt einen produktiven Online-Build inkl. PWA-Manifest in `dist/`. Ein Service Worker wird
 bewusst nicht erzeugt: Die Familie hat sich gegen Offline-Betrieb entschieden.
+
+Für den nativen Xcode-Build werden zuerst die lokalen App-Inhalte erzeugt und anschließend das
+Xcode-Projekt gebaut:
+
+```bash
+npm run build:native
+xcodebuild -project ios/CrazyLab.xcodeproj -scheme CrazyLab -sdk iphonesimulator build
+```
+
+Die App-Store-Fassung liegt in `ios/`, unterstützt iPhone und iPad ab iOS 12 und besitzt einen
+lokalen StoreKit-Testkatalog. Die echte Produktanlage, Signierung und Familienabnahme erfolgen
+erst in Sprint 31; dafür wurde noch kein Abo abgeschlossen und nichts veröffentlicht.
 
 ## Lokale Vorschau des Production-Builds
 

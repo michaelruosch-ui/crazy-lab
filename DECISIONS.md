@@ -925,3 +925,32 @@ Experimente, eigene Missionen und lokale Sicherungsstände. Andere Profile bleib
 **Konsequenzen:** Die Löschung ist endgültig und kann nur über eine zuvor bewusst ausserhalb der
 App gespeicherte Notfallkopie rückgängig gemacht werden. Die Kinder-Datenschutzseite erklärt dies
 in allen fünf App-Sprachen.
+
+## ADR-051: Native UIKit-Hülle mit nicht verbrauchbarem Apple-Kauf
+
+**Status:** Angenommen und umgesetzt (Sprint 30, 2026-09-11)
+
+**Entscheidung:** Die App-Store-Fassung ist eine kleine UIKit-/WKWebView-Hülle ohne zusätzliche
+Drittanbieter-Abhängigkeit. Alle digitalen Vollinhalte werden über genau einen nicht
+verbrauchbaren StoreKit-Kauf `ch.crazylab.fullversion` freigeschaltet. Preis und Währung kommen
+vom App Store; Zielpreis ist ungefähr CHF 1. Die Wiederherstellung erfolgt nur nach bewusstem
+Antippen. Die bestehende Web-Familienversion bleibt zum Testen unbeschränkt.
+
+**Konsequenzen:** Löschen und Neuinstallieren macht nur die sechs ohnehin kostenlosen Missionen
+erneut verfügbar, niemals kostenpflichtige Inhalte. Ein Kauf kann mit demselben Apple-Konto
+wiederhergestellt werden. Das lokale Boolesche Freischaltungsmerkmal wird ausschliesslich nach
+einer von StoreKit gelieferten gekauften oder wiederhergestellten Transaktion gesetzt. Für den
+echten Verkauf müssen Produkt, Preis und Sandbox-Test in App Store Connect in Sprint 31 noch von
+Michael bestätigt werden; es wurde weder ein Abo abgeschlossen noch Geld ausgegeben.
+
+## ADR-052: iOS 12 bleibt Mindestziel der nativen Hülle
+
+**Status:** Angenommen und umgesetzt (Sprint 30, 2026-09-11)
+
+**Entscheidung:** UIKit, StoreKit 1, LocalAuthentication und WKWebView werden so verwendet, dass
+die App ab iOS 12 gebaut werden kann. Der Web-Build bleibt auf Safari 12 übersetzt. Moderne Geräte
+verwenden unverändert Face ID/Touch ID/Gerätecode, hochauflösende Icons und dieselben Inhalte.
+
+**Konsequenzen:** Das alte Familien-iPad wird nicht durch eine modernere Mindestversion
+ausgeschlossen. Die spätere Familienabnahme muss trotzdem auf dem echten iPad erfolgen, weil ein
+Simulator weder dessen Speicherzustand noch Leistung vollständig nachbildet.

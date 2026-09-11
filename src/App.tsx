@@ -24,6 +24,7 @@ import { FirstUseHints, LabSparkles } from './components'
 import { indexedDbProfileRepository } from './storage/profileRepository'
 import { LanguageProvider, LocalizedContent } from './i18n'
 import { PrivacyPage, StandalonePrivacyPage } from './features/privacy'
+import { EntitlementProvider } from './features/entitlements'
 
 function MissionRoute() {
   const { missionId } = useParams<{ missionId: string }>()
@@ -98,29 +99,31 @@ export function App() {
       onLanguageChange={(language) => void save({ ...profile, language })}
     >
       <LocalizedContent key={profile.language ?? 'de'}>
-        <LabSparkles />
-        <FirstUseHints profileId={profile.id} />
-        <Routes>
-          <Route element={<AppShell />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/mission/:missionId" element={<MissionRoute />} />
-            <Route path="/geheimfach" element={<SecretVaultPage />} />
-            <Route path="/verlauf" element={<HistoryPage />} />
-            <Route path="/diary" element={<DiaryPage />} />
-            <Route path="/diary/:entryId" element={<DiaryEntryDetailPage />} />
-            <Route path="/profil" element={<ProfilePage />} />
-            <Route path="/datenschutz" element={<PrivacyPage />} />
-            <Route path="/laborschrank" element={<LabCabinetPage />} />
-            <Route path="/einkaufsliste" element={<ShoppingListPage />} />
-            <Route path="/eigene-missionen" element={<CustomMissionsPage />} />
-            <Route path="/eigene-missionen/neu" element={<CustomMissionEditorPage />} />
-            <Route path="/mission-import" element={<SharedMissionImportPage />} />
-            <Route
-              path="/eigene-missionen/:missionId/bearbeiten"
-              element={<CustomMissionEditorPage />}
-            />
-          </Route>
-        </Routes>
+        <EntitlementProvider>
+          <LabSparkles />
+          <FirstUseHints profileId={profile.id} />
+          <Routes>
+            <Route element={<AppShell />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/mission/:missionId" element={<MissionRoute />} />
+              <Route path="/geheimfach" element={<SecretVaultPage />} />
+              <Route path="/verlauf" element={<HistoryPage />} />
+              <Route path="/diary" element={<DiaryPage />} />
+              <Route path="/diary/:entryId" element={<DiaryEntryDetailPage />} />
+              <Route path="/profil" element={<ProfilePage />} />
+              <Route path="/datenschutz" element={<PrivacyPage />} />
+              <Route path="/laborschrank" element={<LabCabinetPage />} />
+              <Route path="/einkaufsliste" element={<ShoppingListPage />} />
+              <Route path="/eigene-missionen" element={<CustomMissionsPage />} />
+              <Route path="/eigene-missionen/neu" element={<CustomMissionEditorPage />} />
+              <Route path="/mission-import" element={<SharedMissionImportPage />} />
+              <Route
+                path="/eigene-missionen/:missionId/bearbeiten"
+                element={<CustomMissionEditorPage />}
+              />
+            </Route>
+          </Routes>
+        </EntitlementProvider>
       </LocalizedContent>
     </LanguageProvider>
   )

@@ -18,6 +18,12 @@ interface NativeResponse {
   error?: string
 }
 
+export interface NativeEntitlementStatus {
+  unlocked: boolean
+  productAvailable: boolean
+  price: string
+}
+
 declare global {
   interface Window {
     webkit?: {
@@ -78,4 +84,16 @@ export async function requestNativeParentAuthorization(reason: string): Promise<
 export async function triggerNativeHaptic(kind: 'selection' | 'success' | 'warning') {
   if (!hasNativeBridge()) return
   await sendNativeRequest<boolean>('haptic', { kind }).catch(() => false)
+}
+
+export function getNativeEntitlementStatus(): Promise<NativeEntitlementStatus> {
+  return sendNativeRequest<NativeEntitlementStatus>('entitlement-status')
+}
+
+export function purchaseNativeFullVersion(): Promise<NativeEntitlementStatus> {
+  return sendNativeRequest<NativeEntitlementStatus>('purchase-full-version')
+}
+
+export function restoreNativeFullVersion(): Promise<NativeEntitlementStatus> {
+  return sendNativeRequest<NativeEntitlementStatus>('restore-full-version')
 }

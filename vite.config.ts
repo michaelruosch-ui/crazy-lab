@@ -23,7 +23,7 @@ const https =
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: process.env.GITHUB_ACTIONS ? '/crazy-lab/' : '/',
+  base: process.env.CRAZY_LAB_NATIVE ? './' : process.env.GITHUB_ACTIONS ? '/crazy-lab/' : '/',
   plugins: [react()],
   build: {
     // Safari 12 (iPadOS 12.5.8) versteht ES-Module, aber nicht die moderne Standardsyntax,

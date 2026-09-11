@@ -452,6 +452,24 @@ erreichbar und kann deshalb später als öffentliche App-Store-Datenschutzadress
 über `profileId` zugeordneten Inhalte einschließlich lokaler Sicherungsstände. Gerätespezifische
 Atmosphäre-Einstellungen werden danach separat aus `localStorage` entfernt.
 
+## Native Apple-App und Freischaltung (Sprint 30)
+
+`ios/CrazyLab.xcodeproj` ist eine kleine, abhängigkeitenfreie UIKit-Hülle für iPhone und iPad ab
+iOS 12. Ein `WKWebView` lädt den mit `npm run build:native` erzeugten relativen Vite-Build aus dem
+App-Bundle. Profil- und Tagebuchdaten bleiben im lokalen WebKit-/IndexedDB-Speicher des jeweiligen
+Geräts; es existiert keine Netzwerk- oder Cloud-Synchronisation.
+
+`NativeBridge.swift` beantwortet ausschliesslich typisierte Nachrichten aus `native/bridge.ts`:
+Geräteauthentifizierung, StoreKit-Status, Kauf, Wiederherstellung und haptisches Feedback. Beliebige
+Webnavigation wird in der nativen Hülle abgewiesen. `PurchaseManager.swift` beobachtet die
+StoreKit-Zahlungswarteschlange dauerhaft, schaltet nur nach den Apple-Zuständen `purchased` oder
+`restored` frei und beendet anschließend die Transaktion.
+
+`features/entitlements/EntitlementProvider` fragt den Zustand einmal pro App-Baum ab.
+`domain/entitlements.ts` bleibt die einzige fachliche Quelle der sechs kostenlosen Missionen.
+In der Browser-Familienversion liefert der Provider absichtlich „freigeschaltet“; eine
+Bezahlschranke gibt es nur bei vorhandener nativer Apple-Brücke.
+
 ## Erweiterungspunkte für spätere Sprints
 
 - `domain/profile.ts` ist bereits mehrprofilfähig (`Profile`, `profileId` auf jedem

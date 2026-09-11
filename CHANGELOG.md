@@ -1,5 +1,22 @@
 # Changelog
 
+## Sprint 30 - Native App und Einmalfreischaltung (2026-09-11)
+
+- Ein eigenes Xcode-Projekt verpackt Crazy Lab als iPhone-/iPad-App mit lokal gebündelten
+  Web-Inhalten und demselben getrennten Gerätespeicher. Das Mindestziel bleibt iOS 12; moderne
+  iPhones erhalten dieselbe Funktionalität.
+- Genau die sechs von Elena gewählten Startmissionen sind gratis. Alle übrigen Karten werden nur
+  in der nativen App als Vollversionsinhalt gekennzeichnet und führen zu einer kindgerechten
+  Bezahlschranke; die Familien-Webversion bleibt vollständig offen.
+- Die Vollversion ist als nicht verbrauchbarer StoreKit-Kauf `ch.crazylab.fullversion` für
+  ungefähr CHF 1 angelegt. Sie läuft nie ab, enthält kein Abo und kann auf demselben Apple-Konto
+  ausdrücklich wiederhergestellt werden.
+- Kauf und Wiederherstellung sind durch Face ID, Touch ID oder Gerätecode geschützt. Externe
+  Webnavigation bleibt in der Kinder-App gesperrt; Werbung, Tracking und Cloud wurden nicht
+  ergänzt.
+- App-Symbole für alle iPhone-/iPad-Grössen, Startbildschirm, Privacy Manifest und lokaler
+  StoreKit-Testkatalog sind enthalten. Der native Web-Build ist reproduzierbar.
+
 ## Sprint 25 - Elternschutz und Kinder-Datenschutz (2026-09-11)
 
 - Missionsfreigabe, externe Notfallkopie und vollständiges Profillöschen liegen hinter einer

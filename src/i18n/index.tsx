@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useEffect, useRef, type ReactNode } from 'react'
+import { createContext, useCallback, useContext, useEffect, useRef, type ReactNode } from 'react'
 import type { AppLanguage } from '../domain'
 import { GENERATED_TRANSLATIONS } from './generatedTranslations'
 
@@ -65,6 +65,23 @@ const translations = {
     speciesOwl: 'Eule',
     speciesFrog: 'Frosch',
     speciesSpider: 'Spinnenwesen',
+    fullVersionEyebrow: 'Geheime Vollversion',
+    fullVersionDescription:
+      'Diese Mission gehört zum grossen Crazy Lab. Eine erwachsene Person kann alle Missionen einmalig freischalten – ohne Abo, Werbung oder Tracking.',
+    fullVersionPermanent: 'Danach dauerhaft mit demselben Apple-Konto nutzbar.',
+    fullVersionUnlock: '🔓 Ganzes Crazy Lab freischalten',
+    restorePurchase: 'Früheren Kauf wiederherstellen',
+    freeMissionsHint:
+      'Die sechs Startmissionen bleiben gratis. Käufe sind nur in der App-Store-App nötig; eure bisherige Familien-Testversion bleibt vollständig offen.',
+    storeUnavailable:
+      'Der App Store ist gerade nicht erreichbar. Deine kostenlosen Missionen funktionieren trotzdem.',
+    purchaseSuccess: '🎉 Das ganze Crazy Lab ist jetzt dauerhaft freigeschaltet!',
+    restoreSuccess: '✅ Dein früherer Kauf wurde wiederhergestellt.',
+    restoreEmpty: 'Zu diesem Apple-Konto wurde noch kein Kauf gefunden.',
+    freeLabel: 'GRATIS',
+    purchaseGateReason:
+      'Alle Missionen sollen einmalig über den Apple App Store freigeschaltet werden.',
+    restoreGateReason: 'Ein früherer Kauf soll mit dem Apple-Konto wiederhergestellt werden.',
   },
   en: {
     language: 'Language',
@@ -116,6 +133,21 @@ const translations = {
     speciesOwl: 'Owl',
     speciesFrog: 'Frog',
     speciesSpider: 'Spider creature',
+    fullVersionEyebrow: 'Secret full version',
+    fullVersionDescription:
+      'This mission belongs to the big Crazy Lab. An adult can unlock every mission with one purchase – with no subscription, ads or tracking.',
+    fullVersionPermanent: 'Then it stays available with the same Apple Account.',
+    fullVersionUnlock: '🔓 Unlock the whole Crazy Lab',
+    restorePurchase: 'Restore an earlier purchase',
+    freeMissionsHint:
+      'The six starter missions stay free. Purchases are only needed in the App Store app; your existing family test version remains fully open.',
+    storeUnavailable: 'The App Store is not reachable right now. Your free missions still work.',
+    purchaseSuccess: '🎉 The whole Crazy Lab is now permanently unlocked!',
+    restoreSuccess: '✅ Your earlier purchase has been restored.',
+    restoreEmpty: 'No purchase was found for this Apple Account yet.',
+    freeLabel: 'FREE',
+    purchaseGateReason: 'All missions are about to be unlocked with one Apple App Store purchase.',
+    restoreGateReason: 'An earlier purchase is about to be restored with the Apple Account.',
   },
   fr: {
     language: 'Langue',
@@ -170,6 +202,23 @@ const translations = {
     speciesOwl: 'Chouette',
     speciesFrog: 'Grenouille',
     speciesSpider: 'Créature araignée',
+    fullVersionEyebrow: 'Version complète secrète',
+    fullVersionDescription:
+      'Cette mission fait partie du grand Crazy Lab. Un adulte peut débloquer toutes les missions en un seul achat, sans abonnement, publicité ni suivi.',
+    fullVersionPermanent: 'Elle reste ensuite disponible avec le même compte Apple.',
+    fullVersionUnlock: '🔓 Débloquer tout Crazy Lab',
+    restorePurchase: 'Restaurer un achat précédent',
+    freeMissionsHint:
+      'Les six missions de départ restent gratuites. Un achat est nécessaire uniquement dans l’app de l’App Store ; votre version familiale de test reste entièrement ouverte.',
+    storeUnavailable:
+      'L’App Store est momentanément inaccessible. Tes missions gratuites fonctionnent quand même.',
+    purchaseSuccess: '🎉 Tout Crazy Lab est maintenant débloqué pour toujours !',
+    restoreSuccess: '✅ Ton achat précédent a été restauré.',
+    restoreEmpty: 'Aucun achat n’a encore été trouvé pour ce compte Apple.',
+    freeLabel: 'GRATUIT',
+    purchaseGateReason:
+      'Toutes les missions vont être débloquées par un achat unique sur l’App Store.',
+    restoreGateReason: 'Un achat précédent va être restauré avec le compte Apple.',
   },
   es: {
     language: 'Idioma',
@@ -224,6 +273,23 @@ const translations = {
     speciesOwl: 'Búho',
     speciesFrog: 'Rana',
     speciesSpider: 'Criatura araña',
+    fullVersionEyebrow: 'Versión completa secreta',
+    fullVersionDescription:
+      'Esta misión pertenece al gran Crazy Lab. Una persona adulta puede desbloquear todas las misiones con una sola compra, sin suscripción, anuncios ni seguimiento.',
+    fullVersionPermanent: 'Después seguirá disponible con la misma cuenta de Apple.',
+    fullVersionUnlock: '🔓 Desbloquear todo Crazy Lab',
+    restorePurchase: 'Restaurar una compra anterior',
+    freeMissionsHint:
+      'Las seis misiones iniciales siguen siendo gratis. Solo hace falta comprar en la app del App Store; vuestra versión familiar de prueba sigue completamente abierta.',
+    storeUnavailable:
+      'Ahora mismo no se puede acceder al App Store. Tus misiones gratuitas siguen funcionando.',
+    purchaseSuccess: '🎉 ¡Todo Crazy Lab está desbloqueado para siempre!',
+    restoreSuccess: '✅ Se ha restaurado tu compra anterior.',
+    restoreEmpty: 'Todavía no se ha encontrado ninguna compra para esta cuenta de Apple.',
+    freeLabel: 'GRATIS',
+    purchaseGateReason:
+      'Todas las misiones se van a desbloquear con una sola compra en el App Store.',
+    restoreGateReason: 'Se va a restaurar una compra anterior con la cuenta de Apple.',
   },
   it: {
     language: 'Lingua',
@@ -277,6 +343,22 @@ const translations = {
     speciesOwl: 'Gufo',
     speciesFrog: 'Rana',
     speciesSpider: 'Creatura ragno',
+    fullVersionEyebrow: 'Versione completa segreta',
+    fullVersionDescription:
+      'Questa missione fa parte del grande Crazy Lab. Un adulto può sbloccare tutte le missioni con un solo acquisto, senza abbonamento, pubblicità o tracciamento.',
+    fullVersionPermanent: 'Poi resterà disponibile con lo stesso Apple Account.',
+    fullVersionUnlock: '🔓 Sblocca tutto Crazy Lab',
+    restorePurchase: 'Ripristina un acquisto precedente',
+    freeMissionsHint:
+      'Le sei missioni iniziali restano gratuite. Un acquisto serve solo nell’app dell’App Store; la vostra versione familiare di prova resta completamente aperta.',
+    storeUnavailable:
+      'L’App Store non è raggiungibile in questo momento. Le missioni gratuite funzionano comunque.',
+    purchaseSuccess: '🎉 Tutto Crazy Lab è ora sbloccato per sempre!',
+    restoreSuccess: '✅ Il tuo acquisto precedente è stato ripristinato.',
+    restoreEmpty: 'Non è stato ancora trovato alcun acquisto per questo Apple Account.',
+    freeLabel: 'GRATIS',
+    purchaseGateReason: 'Tutte le missioni saranno sbloccate con un solo acquisto sull’App Store.',
+    restoreGateReason: 'Un acquisto precedente sarà ripristinato con l’Apple Account.',
   },
 } as const
 
@@ -311,6 +393,7 @@ export function LanguageProvider({
   onLanguageChange: (language: AppLanguage) => void
   children: ReactNode
 }) {
+  const translate = useCallback((key: TranslationKey) => translations[language][key], [language])
   useEffect(() => {
     document.documentElement.lang = language
   }, [language])
@@ -319,7 +402,7 @@ export function LanguageProvider({
     <LanguageContext.Provider
       value={{
         language,
-        t: (key) => translations[language][key],
+        t: translate,
         setLanguage: onLanguageChange,
       }}
     >

@@ -17,6 +17,9 @@ coverage
 # Lokale mkcert-Zertifikate (privater Schlüssel, gehört nie ins Repo, siehe README.md)
 certs/
 
+# Wird aus dem geprüften Web-Build erzeugt; keine doppelte gebaute Kopie versionieren
+ios/CrazyLab/www/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

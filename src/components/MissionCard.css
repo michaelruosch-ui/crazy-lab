@@ -17,6 +17,32 @@
 .mission-card__image {
   width: 88px;
   flex-shrink: 0;
+  position: relative;
+}
+
+.mission-card__lock {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border-radius: 50%;
+  background: #111827;
+  box-shadow: 0 0 0 2px var(--color-bg-card);
+}
+
+.mission-card__free {
+  display: inline-block;
+  margin-bottom: 5px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  color: #092019;
+  background: var(--color-acid);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
 }
 
 .mission-card__body {

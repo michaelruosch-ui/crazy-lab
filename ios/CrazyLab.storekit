@@ -1,0 +1,33 @@
+{
+  "identifier": "C6F71526-AD88-4CD0-A063-06633C3B68AD",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "1.00",
+      "familyShareable": false,
+      "internalID": "6EAB6A2B-7D01-457C-827D-C2C11960D749",
+      "localizations": [
+        {
+          "description": "Schaltet alle Missionen im Crazy Lab dauerhaft frei.",
+          "displayName": "Crazy Lab Vollversion",
+          "locale": "de_CH"
+        },
+        {
+          "description": "Permanently unlocks every mission in Crazy Lab.",
+          "displayName": "Crazy Lab full version",
+          "locale": "en_GB"
+        }
+      ],
+      "productID": "ch.crazylab.fullversion",
+      "referenceName": "Crazy Lab Vollversion",
+      "type": "NonConsumable"
+    }
+  ],
+  "settings": {
+    "_failTransactionsEnabled": false,
+    "_locale": "de_CH",
+    "_storefront": "CHE"
+  },
+  "subscriptionGroups": [],
+  "version": { "major": 3, "minor": 0 }
+}
