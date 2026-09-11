@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { IDBFactory } from 'fake-indexeddb'
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import { missions } from '../../data'
 import type { CustomMission } from '../../domain'
@@ -11,6 +11,7 @@ import { CustomMissionsPage } from './CustomMissionsPage'
 
 describe('Elenas Missionsfreigabe', () => {
   beforeEach(() => {
+    vi.spyOn(Math, 'random').mockReturnValue(0)
     globalThis.indexedDB = new IDBFactory()
     resetDbConnection()
     const data = new Map<string, string>()
@@ -47,6 +48,10 @@ describe('Elenas Missionsfreigabe', () => {
     expect(await screen.findByRole('button', { name: '🌍 Für alle freigeben' })).toBeInTheDocument()
     expect(screen.queryByText(/Testlink/i)).not.toBeInTheDocument()
     await user.click(screen.getByRole('button', { name: '🌍 Für alle freigeben' }))
+
+    expect(screen.getByRole('dialog', { name: 'Eine erwachsene Person ist gefragt' })).toBeVisible()
+    await user.type(screen.getByLabelText('Antwort der Erwachsenen'), '42')
+    await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }))
 
     expect(await screen.findByText('✅ Für das nächste App-Update freigegeben')).toBeInTheDocument()
     expect((await indexedDbCustomMissionRepository.get(custom.id))?.publicationStatus).toBe(

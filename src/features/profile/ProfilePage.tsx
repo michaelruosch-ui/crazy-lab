@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import type { Birthday, LocalBackupSnapshot, MascotId, Profile } from '../../domain'
-import { generateId } from '../../domain'
-import { BackLink, Button, MascotPicker } from '../../components'
+import { DEFAULT_PROFILE, generateId } from '../../domain'
+import { BackLink, Button, MascotPicker, ParentGate } from '../../components'
 import { backupFileName, createBackup, isBackupData, restoreBackup } from '../../storage/backup'
 import {
   getLocalSnapshots,
@@ -11,8 +12,9 @@ import {
 import { useProfile } from './useProfile'
 import { useActiveProfileId } from './useActiveProfile'
 import { indexedDbProfileRepository } from '../../storage/profileRepository'
+import { deleteProfileCompletely } from '../../storage/db'
 import './ProfilePage.css'
-import { useAtmosphereSettings } from '../atmosphere'
+import { clearAtmosphereSettings, useAtmosphereSettings } from '../atmosphere'
 import { APP_LOCALES, LANGUAGE_OPTIONS, useLanguage } from '../../i18n'
 
 type BackupStatus = 'idle' | 'busy' | 'success' | 'error'
@@ -38,6 +40,10 @@ export function ProfilePage() {
   const backupFileInputRef = useRef<HTMLInputElement>(null)
   const [backupStatus, setBackupStatus] = useState<BackupStatus>('idle')
   const [backupMessage, setBackupMessage] = useState('')
+  const [protectedAction, setProtectedAction] = useState<{
+    reason: string
+    run: () => void | Promise<void>
+  } | null>(null)
   const [snapshots, setSnapshots] = useState<LocalBackupSnapshot[]>([])
   const { settings: atmosphereSettings, update: updateAtmosphere } =
     useAtmosphereSettings(activeProfileId)
@@ -187,6 +193,29 @@ export function ProfilePage() {
         'Backup konnte nicht gelesen werden. Ist es wirklich eine Crazy-Lab-Backup-Datei?',
       )
     }
+  }
+
+  function requireAdult(reason: string, run: () => void | Promise<void>) {
+    setProtectedAction({ reason, run })
+  }
+
+  async function deleteActiveProfile() {
+    if (!profile) return
+    if (
+      !window.confirm(
+        `Profil „${profile.researcherName}“ und wirklich alle zugehörigen Inhalte löschen? Das kann nicht rückgängig gemacht werden.`,
+      )
+    )
+      return
+    await deleteProfileCompletely(profile.id)
+    clearAtmosphereSettings(profile.id)
+    const fallback = profiles.find((item) => item.id !== profile.id)
+    const nextId =
+      fallback?.id ??
+      (profile.id === DEFAULT_PROFILE.id ? DEFAULT_PROFILE.id : `profil-${generateId()}`)
+    setActiveProfileId(nextId)
+    window.location.hash = '#/'
+    window.location.reload()
   }
 
   return (
@@ -390,12 +419,25 @@ export function ProfilePage() {
             Nur nötig, falls die App komplett gelöscht wird oder das iPhone kaputtgeht. Dabei wird
             eine Datei in „Dateien“ oder auf dem Mac abgelegt.
           </p>
-          <Button variant="ghost" onClick={downloadBackup} disabled={backupStatus === 'busy'}>
+          <Button
+            variant="ghost"
+            onClick={() =>
+              requireAdult(
+                'Eine Notfallkopie kann persönliche Labordaten ausserhalb von Crazy Lab speichern.',
+                downloadBackup,
+              )
+            }
+            disabled={backupStatus === 'busy'}
+          >
             Notfallkopie in „Dateien“ sichern
           </Button>
           <Button
             variant="ghost"
-            onClick={() => backupFileInputRef.current?.click()}
+            onClick={() =>
+              requireAdult('Eine Notfallkopie ersetzt die Daten des aktiven Profils.', () =>
+                backupFileInputRef.current?.click(),
+              )
+            }
             disabled={backupStatus === 'busy'}
           >
             Notfallkopie auswählen
@@ -422,6 +464,43 @@ export function ProfilePage() {
           </p>
         )}
       </section>
+
+      <section>
+        <h2>🛡️ Datenschutz und Elternbereich</h2>
+        <p className="profile-page__hint">
+          Crazy Lab erklärt Kindern und Erwachsenen verständlich, was auf diesem Gerät gespeichert
+          wird und was niemals in eine automatische Cloud gelangt.
+        </p>
+        <Link className="profile-page__privacy-link" to="/datenschutz">
+          🔐 Datenschutz einfach erklärt
+        </Link>
+      </section>
+
+      <section className="profile-page__danger-zone">
+        <h2>🗑️ Profil vollständig löschen</h2>
+        <p className="profile-page__hint">
+          Löscht Forschername, Geburtstage, Tagebuch, Fotos, Videos, Listen, Vorräte, eigene
+          Missionen und Sicherungsstände dieses Profils endgültig von diesem Gerät.
+        </p>
+        <Button
+          variant="ghost"
+          onClick={() =>
+            requireAdult(
+              `Das Profil „${profile.researcherName}“ und alle zugehörigen Inhalte werden endgültig gelöscht.`,
+              deleteActiveProfile,
+            )
+          }
+        >
+          Profil und alle Daten löschen
+        </Button>
+      </section>
+
+      <ParentGate
+        open={protectedAction !== null}
+        reason={protectedAction?.reason ?? ''}
+        onAuthorized={() => protectedAction?.run()}
+        onClose={() => setProtectedAction(null)}
+      />
 
       <BackLink to="/">← Zurück zur Startseite</BackLink>
     </div>

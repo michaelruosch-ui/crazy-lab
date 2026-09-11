@@ -1,0 +1,58 @@
+.parent-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(3, 14, 20, 0.86);
+  backdrop-filter: blur(8px);
+}
+
+.parent-gate__card {
+  width: min(100%, 440px);
+  padding: 24px;
+  border: 1px solid rgba(35, 230, 200, 0.5);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-card);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+}
+
+.parent-gate__icon {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 2.4rem;
+}
+
+.parent-gate__card h2 {
+  margin-top: 0;
+}
+
+.parent-gate__hint,
+.parent-gate__message {
+  color: var(--color-text-muted);
+}
+
+.parent-gate__challenge {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0;
+  font-weight: 800;
+}
+
+.parent-gate__challenge input {
+  min-height: var(--touch-target);
+  padding: 10px 12px;
+  border: 1px solid rgba(35, 230, 200, 0.45);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: inherit;
+  font-size: 1.2rem;
+}
+
+.parent-gate__actions {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}

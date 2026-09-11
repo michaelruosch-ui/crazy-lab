@@ -12,6 +12,14 @@ function profileKey(profileId?: string): string {
   return profileId ? `${KEY}-${profileId}` : KEY
 }
 
+export function clearAtmosphereSettings(profileId: string): void {
+  try {
+    window.localStorage.removeItem(profileKey(profileId))
+  } catch {
+    // Wenn lokaler Speicher blockiert ist, existiert auch keine Einstellung zum Löschen.
+  }
+}
+
 function read(profileId?: string): AtmosphereSettings {
   try {
     const stored = window.localStorage.getItem(profileKey(profileId))

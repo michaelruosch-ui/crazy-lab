@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Routes, Route, useParams } from 'react-router-dom'
+import { Routes, Route, useLocation, useParams } from 'react-router-dom'
 import { MissionFlowPage } from './app/MissionFlowPage'
 import { HomePage, HistoryPage } from './features/missions'
 import { DiaryPage, DiaryEntryDetailPage } from './features/diary'
@@ -23,6 +23,7 @@ import { AppShell } from './components/AppShell'
 import { FirstUseHints, LabSparkles } from './components'
 import { indexedDbProfileRepository } from './storage/profileRepository'
 import { LanguageProvider, LocalizedContent } from './i18n'
+import { PrivacyPage, StandalonePrivacyPage } from './features/privacy'
 
 function MissionRoute() {
   const { missionId } = useParams<{ missionId: string }>()
@@ -51,6 +52,7 @@ function MissionRoute() {
 }
 
 export function App() {
+  const location = useLocation()
   const { activeProfileId, setActiveProfileId } = useActiveProfileId()
   const { settings } = useAtmosphereSettings(activeProfileId)
   const { profile, loading, save } = useProfile(activeProfileId)
@@ -69,6 +71,10 @@ export function App() {
   useEffect(() => {
     document.documentElement.classList.toggle('reduce-motion', !settings.animationsEnabled)
   }, [settings.animationsEnabled])
+
+  if (location.pathname === '/datenschutz' && (!profile || !profile.onboardingCompletedAt)) {
+    return <StandalonePrivacyPage />
+  }
 
   if (loading) {
     return <p className="app-loading">Lade...</p>
@@ -103,6 +109,7 @@ export function App() {
             <Route path="/diary" element={<DiaryPage />} />
             <Route path="/diary/:entryId" element={<DiaryEntryDetailPage />} />
             <Route path="/profil" element={<ProfilePage />} />
+            <Route path="/datenschutz" element={<PrivacyPage />} />
             <Route path="/laborschrank" element={<LabCabinetPage />} />
             <Route path="/einkaufsliste" element={<ShoppingListPage />} />
             <Route path="/eigene-missionen" element={<CustomMissionsPage />} />

@@ -899,3 +899,29 @@ als verständliche Meldung in der Mission.
 **Konsequenzen:** Die iOS-Autoplay-Regel bleibt respektiert, weil die Aktivierung weiterhin direkt
 von Elenas Berührung ausgeht. Es werden keine Audiodateien, Lizenzen, Streams oder externen Dienste
 benötigt. Hardwarelautstärke und Geräteeinstellungen bleiben ausserhalb der App.
+
+## ADR-049: Elternschranke verwendet Geräteauthentifizierung mit barrierearmer Web-Alternative
+
+**Status:** Angenommen und umgesetzt (Sprint 25, 2026-09-11)
+
+**Entscheidung:** Geschützte Erwachsenenaktionen verwenden in der nativen App ausschließlich die
+Apple-Geräteauthentifizierung mit Face ID, Touch ID oder Gerätecode. Crazy Lab erhält nur Erfolg
+oder Abbruch. Im Browser steht eine bei jedem Öffnen wechselnde Erwachsenenfrage bereit. Die
+Schranke schützt Missionsfreigabe, externe Notfallkopien, spätere Käufe und vollständiges Löschen,
+nicht aber das normale Spielen.
+
+**Konsequenzen:** Crazy Lab erfasst oder speichert keine Gesichtsbilder, Fingerabdrücke oder andere
+biometrische Rohdaten. Geräte ohne Biometrie bleiben über den Gerätecode nutzbar. Die Web-Frage ist
+eine Schutzschranke gegen unbeabsichtigte Aktionen und keine Identitätsprüfung.
+
+## ADR-050: Ein Profil ist mit sämtlichen lokalen Inhalten löschbar
+
+**Status:** Angenommen und umgesetzt (Sprint 25, 2026-09-11)
+
+**Entscheidung:** Nach Erwachsenenprüfung und eindeutiger Bestätigung löscht eine einzige
+Transaktion Profil, Tagebuch, Medien, Geheimfach, Verlauf, Laborschrank, Einkaufsliste,
+Experimente, eigene Missionen und lokale Sicherungsstände. Andere Profile bleiben unberührt.
+
+**Konsequenzen:** Die Löschung ist endgültig und kann nur über eine zuvor bewusst ausserhalb der
+App gespeicherte Notfallkopie rückgängig gemacht werden. Die Kinder-Datenschutzseite erklärt dies
+in allen fünf App-Sprachen.

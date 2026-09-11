@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { CustomMission } from '../../domain'
 import { canEditMissionCatalog } from '../../domain'
-import { BackLink, Button, MissionCard, SpeechBubble } from '../../components'
+import { BackLink, Button, MissionCard, ParentGate, SpeechBubble } from '../../components'
 import { useActiveProfileId, useProfile } from '../profile'
 import { indexedDbCustomMissionRepository } from '../../storage/customMissionRepository'
 import './CustomMissionsPage.css'
@@ -14,6 +14,7 @@ export function CustomMissionsPage() {
   const { activeProfileId } = useActiveProfileId()
   const { profile } = useProfile(activeProfileId)
   const [message, setMessage] = useState('')
+  const [missionAwaitingApproval, setMissionAwaitingApproval] = useState<CustomMission | null>(null)
   const isProductOwner = canEditMissionCatalog(activeProfileId)
 
   useEffect(() => {
@@ -78,7 +79,10 @@ export function CustomMissionsPage() {
                     {mission.publicationStatus === 'ready-for-review' ? (
                       <strong>✅ Für das nächste App-Update freigegeben</strong>
                     ) : (
-                      <Button variant="secondary" onClick={() => void markReadyForReview(mission)}>
+                      <Button
+                        variant="secondary"
+                        onClick={() => setMissionAwaitingApproval(mission)}
+                      >
                         🌍 Für alle freigeben
                       </Button>
                     )}
@@ -89,6 +93,14 @@ export function CustomMissionsPage() {
           ))}
         </div>
       )}
+      <ParentGate
+        open={missionAwaitingApproval !== null}
+        reason="Diese Mission wird für den gemeinsamen, von Elena geprüften Katalog vorgemerkt."
+        onAuthorized={() =>
+          missionAwaitingApproval ? markReadyForReview(missionAwaitingApproval) : undefined
+        }
+        onClose={() => setMissionAwaitingApproval(null)}
+      />
       <BackLink to="/">← Zurück zur Startseite</BackLink>
     </div>
   )

@@ -55,3 +55,11 @@ gespeicherten Daten beschädigt werden.
 - Elternschranke, vollständiges Löschen und altersgerechte Einwilligungen umsetzen.
 - App-Privacy-Angaben, Altersfragebogen und Metadaten anhand des fertigen Builds ausfüllen.
 - TestFlight-, Geräte-, Barrierefreiheits- und Store-Review durchführen.
+
+## Umgesetzt in Sprint 25 (2026-09-11)
+
+- Kinder- und Erwachseneninformation in fünf Sprachen unter `#/datenschutz`.
+- Elternschranke vor Missionsfreigabe, Notfallkopien und vollständigem Profillöschen.
+- Native Schnittstelle für Face ID, Touch ID oder Gerätecode ohne biometrische Rohdaten.
+- Vollständiges Löschen eines Profils einschließlich aller zugehörigen lokalen Inhalte und
+  Sicherungsstände.

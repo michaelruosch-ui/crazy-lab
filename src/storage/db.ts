@@ -202,6 +202,45 @@ export async function clearProfileData(profileId: string): Promise<void> {
   await tx.done
 }
 
+/** Löscht ein Profil samt sämtlichen zugehörigen Inhalten und lokalen Sicherungsständen. */
+export async function deleteProfileCompletely(profileId: string): Promise<void> {
+  const db = await getDb()
+  const tx = db.transaction(
+    [
+      DIARY_STORE,
+      SECRET_VAULT_STORE,
+      HIDDEN_MISSIONS_STORE,
+      PROFILES_STORE,
+      LAB_CABINET_STORE,
+      SHOPPING_LIST_STORE,
+      LOCAL_BACKUPS_STORE,
+      EXPERIMENT_PROGRESS_STORE,
+      CUSTOM_MISSIONS_STORE,
+    ],
+    'readwrite',
+  )
+
+  const indexedStores = [
+    DIARY_STORE,
+    SECRET_VAULT_STORE,
+    HIDDEN_MISSIONS_STORE,
+    LAB_CABINET_STORE,
+    SHOPPING_LIST_STORE,
+    LOCAL_BACKUPS_STORE,
+    EXPERIMENT_PROGRESS_STORE,
+    CUSTOM_MISSIONS_STORE,
+  ] as const
+
+  for (const storeName of indexedStores) {
+    const store = tx.objectStore(storeName)
+    for (const key of await store.index('by-profile').getAllKeys(profileId)) {
+      await store.delete(key)
+    }
+  }
+  await tx.objectStore(PROFILES_STORE).delete(profileId)
+  await tx.done
+}
+
 /** Nur für Tests: erzwingt eine frische Verbindung nach dem Zurücksetzen der Fake-IndexedDB. */
 export function resetDbConnection(): void {
   dbPromise = undefined

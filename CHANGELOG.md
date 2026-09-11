@@ -1,5 +1,20 @@
 # Changelog
 
+## Sprint 25 - Elternschutz und Kinder-Datenschutz (2026-09-11)
+
+- Missionsfreigabe, externe Notfallkopie und vollständiges Profillöschen liegen hinter einer
+  Erwachsenenprüfung. Die Webversion verwendet eine kurze Erwachsenenfrage; die native
+  Schnittstelle ist für Face ID, Touch ID oder Gerätecode vorbereitet.
+- Crazy Lab erhält bei der Geräteauthentifizierung nur Erfolg oder Abbruch und verarbeitet keine
+  Gesichtsbilder, Fingerabdrücke oder biometrischen Rohdaten.
+- Eine eigenständige Datenschutzseite erklärt Kindern und Erwachsenen in Deutsch, Englisch,
+  Französisch, Spanisch und Italienisch mit Beispielen, welche Daten lokal bleiben und was Crazy
+  Lab ausdrücklich nicht macht.
+- Ein Profil kann mitsamt Tagebuch, Fotos, Videos, Geburtstagen, Listen, Vorräten, eigenen
+  Missionen, Versuchen, Einstellungen und lokalen Sicherungsständen vollständig gelöscht werden.
+- Automatische Tests sichern Elternschranke, Datenschutztexte, Missionsfreigabe und vollständiges
+  Profillöschen ab.
+
 ## Familienkorrekturen - Maskottchen, Product Owner und Gratis-Auswahl (2026-09-07)
 
 - Alle acht Tierarten besitzen neue transparente Zweibild-Grafiken. Beim Auswählen winkt jetzt

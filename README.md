@@ -5,8 +5,8 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich nach dem Abschluss von **Sprint 29** und den Familienkorrekturen
-vom 2026-09-07; Sprint 19 wurde auf Familienentscheid bewusst übersprungen. Der aktuelle Stand: Beim
+Dieses Repository befindet sich nach dem Abschluss von **Sprint 25** am 2026-09-11; Sprint 19
+wurde auf Familienentscheid bewusst übersprungen. Der aktuelle Stand: Beim
 ersten Start wählt man eines von 33 Maskottchen (8 Tierarten in verschiedenen Farbwelten) und
 einen Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf
 Kategorien (Getränke, Basteln, Experimente, Foto-Challenges, Schwestern-Missionen). Jede Mission
@@ -78,6 +78,10 @@ Schritte, Sicherheitsangaben und die jeweils benötigten strukturierten Kategori
 Zu jedem Missionsabschluss lassen sich bis zu zehn verkleinerte Fotos und ein lokal geprüftes
 Video von höchstens drei Sekunden speichern. Fotos und Video können im Tagebuch später ergänzt,
 ersetzt beziehungsweise entfernt werden und sind Bestandteil der Sicherungen.
+Eine kindgerechte Datenschutzseite erklärt in allen fünf Sprachen mit Beispielen, welche Inhalte
+auf dem Gerät bleiben. Missionsfreigabe, Notfallkopie und vollständiges Profillöschen benötigen
+eine Erwachsenenprüfung. In der nativen App verwendet sie Face ID, Touch ID oder Gerätecode, ohne
+biometrische Rohdaten an Crazy Lab weiterzugeben; die Webversion besitzt eine Erwachsenenfrage.
 
 ## Voraussetzungen
 
@@ -174,13 +178,13 @@ Siehe [ARCHITECTURE.md](./ARCHITECTURE.md) für Schichten, Datenfluss und Erweit
 Siehe [BACKLOG.md](./BACKLOG.md) für den aktuellen Sprint und offene Sprints, sowie
 [CHANGELOG.md](./CHANGELOG.md) für die Änderungshistorie.
 
-# Aktueller Stand (2026-09-07)
+# Aktueller Stand (2026-09-11)
 
-Die Sprints 26 bis 29 sind programmiert: einfachere Missionsführung, Zuhause-Filter und kompakter
+Die Sprints 25 bis 29 sind programmiert: Elternschutz und Kinder-Datenschutz, einfachere Missionsführung, Zuhause-Filter und kompakter
 Laborschrank, Forscherwissen und freiwillige Abzeichen, 100 einzigartige Missionsmotive, ein neuer
-realistischer Nachtbär sowie bessere Barrierefreiheit und freundliche Fehlerhilfe. Sprint 25 wurde
-auf Wunsch hinter Sprint 29 verschoben und ist als Nächstes geplant. Der Familientest auf den echten
-Geräten steht noch aus.
+realistischer Nachtbär sowie bessere Barrierefreiheit und freundliche Fehlerhilfe. Als Nächstes
+folgt Sprint 30 mit der nativen App-Store-Verpackung und der einmaligen Freischaltung. Der
+Familientest auf den echten Geräten bleibt für Sprint 31 und 36 reserviert.
 
 Nach dem Familientest wurden alle 33 Profil-Maskottchen auf denselben hochwertigen, detailreichen
 Bildstil wie der Nachtbär umgestellt. Jede der acht Tierarten besitzt jetzt eine echte zweiphasige

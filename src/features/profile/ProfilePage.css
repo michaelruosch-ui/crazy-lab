@@ -5,6 +5,23 @@
   gap: 24px;
 }
 
+.profile-page__privacy-link {
+  display: inline-flex;
+  min-height: var(--touch-target);
+  align-items: center;
+  padding: 10px 14px;
+  border: 1px solid rgba(35, 230, 200, 0.4);
+  border-radius: var(--radius-md);
+  color: var(--color-teal);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.profile-page__danger-zone {
+  border: 1px solid rgba(255, 92, 92, 0.45) !important;
+  background: rgba(120, 20, 30, 0.12) !important;
+}
+
 .profile-page__loading {
   padding: 24px 16px;
 }

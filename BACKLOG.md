@@ -437,14 +437,14 @@ positiv beantwortet.
         simulierte Grössen-/Kompatibilitätsprüfungen sind abgeschlossen
   - [x] Automatische Qualitäts-, Barrierefreiheits- und Regressionstests ausbauen
 
-- **Sprint 25 - Elternschutz und Datenschutz für Kinder:** **Geplant nach Sprint 29; Elena befragt am 2026-09-04.**
-  - [ ] Käufe, externe Links, Missionsfreigabe und Notfall-Export hinter einer möglichst wenig störenden Elternschranke schützen
-  - [ ] Face ID/Touch ID in der späteren nativen App prüfen, aber eine Alternative anbieten
-  - [ ] Keine Gesichtsbilder erfassen oder speichern
-  - [ ] Kurze Kinder-Datenschutzerklärung mit konkreten Beispielen ergänzen
-  - [ ] Vollständige Datenschutzerklärung und Hinweise vor Freigabe oder Export
-  - [ ] Profil und zugehörige lokale Daten vollständig löschbar machen
-  - [ ] Fotos, Videos, Namen und Tagebücher ausschliesslich lokal halten
+- **Sprint 25 - Elternschutz und Datenschutz für Kinder:** **Umgesetzt am 2026-09-11.**
+  - [x] Käufe, externe Links, Missionsfreigabe und Notfall-Export hinter einer möglichst wenig störenden Elternschranke schützen
+  - [x] Native Schnittstelle für Face ID/Touch ID beziehungsweise Gerätecode schaffen und eine Erwachsenenfrage als Web-Alternative anbieten
+  - [x] Keine Gesichtsbilder, Fingerabdrücke oder sonstigen biometrischen Rohdaten erfassen oder speichern
+  - [x] Kurze Kinder-Datenschutzerklärung mit konkreten Beispielen in allen fünf Sprachen ergänzen
+  - [x] Vollständige Datenschutzerklärung und Hinweise vor Freigabe oder Export integrieren
+  - [x] Profil und sämtliche zugehörigen lokalen Daten vollständig löschbar machen
+  - [x] Fotos, Videos, Namen und Tagebücher weiterhin ausschliesslich lokal halten
 
 - **Sprint 30 - Native App-Store-App und einmalige Freischaltung:** **Geplant; Elena befragt am
   2026-09-04.**

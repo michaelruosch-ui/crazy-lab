@@ -436,6 +436,22 @@ normalisierten Titel erkannt. Die Web-App wertet diese Regel bewusst noch nicht 
 aus. Sprint 30 verbindet sie in der nativen App mit dem nicht verbrauchbaren Kauf und dessen
 Wiederherstellung.
 
+## Elternschutz und Datenschutz (Sprint 25)
+
+`components/ParentGate` kapselt geschützte Erwachsenenaktionen. Im Browser verwendet die
+Komponente eine bei jedem Öffnen neu erzeugte Rechenfrage. In der nativen App delegiert sie über
+`native/bridge.ts` an Apples Geräteauthentifizierung und erhält ausschließlich einen booleschen
+Erfolg; biometrische Daten gelangen nie in JavaScript oder IndexedDB. Missionsfreigabe,
+Notfall-Export beziehungsweise -Import und vollständiges Profillöschen verwenden denselben Pfad.
+
+`features/privacy/PrivacyPage` liefert eine kurze Kindererklärung und eine aufklappbare
+Erwachseneninformation in fünf Sprachen. Die Route `#/datenschutz` ist auch ohne angelegtes Profil
+erreichbar und kann deshalb später als öffentliche App-Store-Datenschutzadresse dienen.
+
+`storage/db.deleteProfileCompletely` entfernt in einer gemeinsamen Transaktion das Profil und alle
+über `profileId` zugeordneten Inhalte einschließlich lokaler Sicherungsstände. Gerätespezifische
+Atmosphäre-Einstellungen werden danach separat aus `localStorage` entfernt.
+
 ## Erweiterungspunkte für spätere Sprints
 
 - `domain/profile.ts` ist bereits mehrprofilfähig (`Profile`, `profileId` auf jedem
