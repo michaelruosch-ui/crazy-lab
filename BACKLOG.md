@@ -485,6 +485,19 @@ positiv beantwortet.
   - [x] Beim Seitenwechsel immer oben beginnen und alle Wow-Bewegungen bei reduzierten Animationen
         abschalten
 
+- **Sprint 33 - Magische Abzeichen-Vitrine:** **Umgesetzt am 2026-09-12.**
+  - [x] Das frühere System mit nur fünf gleichartigen Zielen auf 40 unterschiedliche Abzeichen
+        ausbauen
+  - [x] Vier Stufen für jede Laborwelt ergänzen: erster Erfolg, 5, 10 und 20 verschiedene Missionen
+  - [x] Besondere Leistungen wie lange oder schwere Missionen, Wiederholungen, Fotos, Videos,
+        vollständige Forschungsnotizen und eigene Erfindungen belohnen
+  - [x] Fünf kuratierte Missionsabzeichen für Schatten-Trank, Geisterportal, Regen im Glas,
+        Monster-Frühstück und Mini-Schatzsuche ergänzen
+  - [x] Eine eigene Abzeichen-Vitrine mit Fortschrittsanzeigen, Seltenheitsstufen und magischen
+        Medaillen bereitstellen
+  - [x] Auf der Startseite nur einen kompakten Auszug und den nächsten sinnvollen Fortschritt zeigen
+  - [x] Neue Abzeichen mit einer einsammelbaren Vollbild-Feier und optionaler Vibration ankündigen
+
 ## Unpriorisierte Ideen
 
 - [x] **Gemeinsamer geprüfter Missionskatalog (Familienentscheidung 2026-09-07):** Nur Elena darf

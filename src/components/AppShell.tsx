@@ -13,6 +13,7 @@ const NAVIGATION = [
   { to: '/geheimfach', icon: '🗝️', key: 'saved' },
   { to: '/verlauf', icon: '📜', key: 'history' },
   { to: '/diary', icon: '📖', key: 'diary' },
+  { to: '/abzeichen', icon: '🏆', key: 'badges' },
   { to: '/profil', icon: '👤', key: 'profile' },
 ]
 

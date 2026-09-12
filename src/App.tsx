@@ -25,6 +25,7 @@ import { indexedDbProfileRepository } from './storage/profileRepository'
 import { LanguageProvider, LocalizedContent } from './i18n'
 import { PrivacyPage, StandalonePrivacyPage } from './features/privacy'
 import { EntitlementProvider } from './features/entitlements'
+import { BadgeCabinetPage } from './features/achievements'
 
 function MissionRoute() {
   const { missionId } = useParams<{ missionId: string }>()
@@ -110,6 +111,7 @@ export function App() {
               <Route path="/verlauf" element={<HistoryPage />} />
               <Route path="/diary" element={<DiaryPage />} />
               <Route path="/diary/:entryId" element={<DiaryEntryDetailPage />} />
+              <Route path="/abzeichen" element={<BadgeCabinetPage />} />
               <Route path="/profil" element={<ProfilePage />} />
               <Route path="/datenschutz" element={<PrivacyPage />} />
               <Route path="/laborschrank" element={<LabCabinetPage />} />

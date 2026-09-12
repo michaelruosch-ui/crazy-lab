@@ -1,0 +1,102 @@
+.achievement-celebration {
+  position: fixed;
+  z-index: 950;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  padding: 24px;
+  background: rgba(4, 11, 18, 0.93);
+  text-align: center;
+  animation: badge-appear 360ms ease-out both;
+}
+
+.achievement-celebration__confetti {
+  position: absolute;
+  inset: 14% 5% auto;
+  color: var(--color-acid);
+  font-size: clamp(1.2rem, 6vw, 2.8rem);
+  letter-spacing: 0.45em;
+  text-shadow: 0 0 18px currentColor;
+  animation: badge-confetti 1.4s ease-in-out infinite alternate;
+}
+
+.achievement-celebration > p {
+  margin: 0 0 14px;
+  color: var(--color-acid);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.achievement-celebration__medal {
+  display: grid;
+  width: 148px;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 10px double #facc15;
+  border-radius: 50%;
+  background: radial-gradient(circle, #5b237f, #101726 70%);
+  box-shadow:
+    0 0 0 12px rgba(250, 204, 21, 0.12),
+    0 0 60px rgba(217, 70, 239, 0.62);
+  font-size: 4.8rem;
+  animation: badge-pulse 900ms ease-in-out infinite alternate;
+}
+
+.achievement-celebration__medal.is-bronze {
+  border-color: #d38b5d;
+}
+
+.achievement-celebration__medal.is-silver {
+  border-color: #cbd5e1;
+}
+
+.achievement-celebration__medal.is-legendary {
+  border-color: #d946ef;
+}
+
+.achievement-celebration h2 {
+  margin: 22px 0 6px;
+  font-size: clamp(2rem, 9vw, 3rem);
+}
+
+.achievement-celebration > span {
+  max-width: 28rem;
+  margin-bottom: 22px;
+  color: var(--color-text-muted);
+}
+
+@keyframes badge-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+}
+
+@keyframes badge-pulse {
+  to {
+    transform: scale(1.07) rotate(-3deg);
+  }
+}
+
+@keyframes badge-confetti {
+  to {
+    transform: translateY(24px) rotate(2deg);
+    opacity: 0.55;
+  }
+}
+
+.reduce-motion .achievement-celebration,
+.reduce-motion .achievement-celebration__confetti,
+.reduce-motion .achievement-celebration__medal {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .achievement-celebration,
+  .achievement-celebration__confetti,
+  .achievement-celebration__medal {
+    animation: none;
+  }
+}

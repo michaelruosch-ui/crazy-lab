@@ -1,0 +1,47 @@
+.badge-cabinet-page {
+  display: grid;
+  gap: 20px;
+  padding: 16px 0 calc(28px + env(safe-area-inset-bottom, 0px));
+}
+
+.badge-cabinet-page > header,
+.badge-cabinet-page > a {
+  margin: 0 16px;
+}
+
+.badge-cabinet-page > header {
+  padding: 18px;
+  border: 1px solid rgba(250, 204, 21, 0.34);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 86% 0%, rgba(250, 204, 21, 0.22), transparent 38%),
+    var(--color-bg-card);
+}
+
+.badge-cabinet-page > header p {
+  margin: 0;
+  color: var(--color-acid);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.badge-cabinet-page > header h1 {
+  margin: 4px 0 8px;
+}
+
+.badge-cabinet-page > header span {
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 700px) {
+  .badge-cabinet-page {
+    padding: 24px;
+  }
+
+  .badge-cabinet-page > header,
+  .badge-cabinet-page > a {
+    margin: 0;
+  }
+}

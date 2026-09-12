@@ -523,3 +523,15 @@ die visuelle Informationsmenge auf kleinen Bildschirmen deutlich sinkt.
 nur für die aktuelle Browsersitzung und enthält keine Profildaten ausser dem lokalen Schlüssel der
 Profil-ID. Die Komponente und alle Bewegungen werden durch die bestehende Einstellung für reduzierte
 Animationen stillgelegt. `AppShell` setzt den Scrollstand bei Routenwechseln zurück.
+
+## Ableitbare Abzeichen (Sprint 33)
+
+`domain/achievements.ts` enthält 40 deklarative Ziele und berechnet ihren Zustand vollständig aus
+den Tagebucheinträgen. Es gibt weiterhin keinen separaten Abzeichen-Datenspeicher und daher auch
+keinen inkonsistenten Zähler. Neue Tagebuch-Schnappschüsse enthalten optional Dauer und Schwierigkeit
+der Mission; die optionalen Felder erhalten die Lesbarkeit älterer Backups.
+
+`ResearchAchievements` hat eine kompakte Startseiten- und eine vollständige Vitrinenansicht.
+`AchievementCelebration` merkt sich nur die IDs bereits angezeigter Erfolge im lokalen
+Profilschlüssel und feiert beim nächsten Startseitenbesuch höchstens ein neues Abzeichen. Alle
+eigentlichen Freischaltungen bleiben jederzeit aus dem Tagebuch rekonstruierbar.

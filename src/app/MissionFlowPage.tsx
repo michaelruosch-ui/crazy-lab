@@ -49,6 +49,8 @@ function buildEntry(
       title: mission.title,
       primaryCategory: mission.primaryCategory,
       imagePlaceholder: mission.imagePlaceholder,
+      durationMinutes: mission.durationMinutes,
+      difficulty: mission.difficulty,
     },
     status: 'erfolgreich',
     rating,

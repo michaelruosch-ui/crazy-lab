@@ -1,4 +1,4 @@
-import type { MissionCategory } from './mission'
+import type { Difficulty, MissionCategory } from './mission'
 import type { CompletionRating } from './rating'
 
 export type DiaryStatus = 'erfolgreich' | 'fehlgeschlagen' | 'pausiert' | 'favorisiert'
@@ -11,6 +11,9 @@ export interface MissionSnapshot {
   title: string
   primaryCategory: MissionCategory
   imagePlaceholder: string
+  /** Seit Sprint 33 für Ausdauer- und Schwierigkeitsabzeichen; ältere Einträge bleiben gültig. */
+  durationMinutes?: number
+  difficulty?: Difficulty
 }
 
 export interface DiaryEntry {

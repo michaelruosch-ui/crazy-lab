@@ -22,6 +22,7 @@ const translations = {
     saved: 'Gemerkt',
     history: 'Verlauf',
     diary: 'Tagebuch',
+    badges: 'Abzeichen',
     profile: 'Profil',
     profileLanguageTitle: '🌐 Sprache der App',
     profileLanguageHint: 'Die Auswahl gilt für dieses Profil und kann jederzeit geändert werden.',
@@ -96,6 +97,7 @@ const translations = {
     saved: 'Saved',
     history: 'History',
     diary: 'Diary',
+    badges: 'Badges',
     profile: 'Profile',
     profileLanguageTitle: '🌐 App language',
     profileLanguageHint: 'This choice is saved for this profile and can be changed at any time.',
@@ -165,6 +167,7 @@ const translations = {
     saved: 'Enregistrées',
     history: 'Historique',
     diary: 'Journal',
+    badges: 'Badges',
     profile: 'Profil',
     profileLanguageTitle: "🌐 Langue de l'application",
     profileLanguageHint:
@@ -239,6 +242,7 @@ const translations = {
     saved: 'Guardadas',
     history: 'Historial',
     diary: 'Diario',
+    badges: 'Insignias',
     profile: 'Perfil',
     profileLanguageTitle: '🌐 Idioma de la app',
     profileLanguageHint:
@@ -313,6 +317,7 @@ const translations = {
     saved: 'Salvate',
     history: 'Cronologia',
     diary: 'Diario',
+    badges: 'Distintivi',
     profile: 'Profilo',
     profileLanguageTitle: "🌐 Lingua dell'app",
     profileLanguageHint:

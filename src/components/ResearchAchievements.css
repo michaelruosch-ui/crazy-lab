@@ -1,29 +1,138 @@
 .research-achievements {
-  padding: 14px;
+  margin: 0 16px;
+  padding: 16px;
+  border: 1px solid rgba(181, 46, 255, 0.34);
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.1));
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255, 79, 163, 0.18), transparent 35%),
+    linear-gradient(135deg, rgba(139, 92, 246, 0.14), rgba(236, 72, 153, 0.08));
 }
+
+.research-achievements__heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.research-achievements__heading h2 {
+  margin: 0;
+}
+
+.research-achievements__heading a {
+  color: var(--color-acid);
+  font-size: 0.8rem;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.research-achievements__eyebrow {
+  margin: 0 0 3px;
+  color: #d8b4fe;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
 .research-achievements__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
 }
+
 .research-achievement {
+  position: relative;
   display: grid;
-  gap: 3px;
-  padding: 10px;
-  border: 1px dashed rgba(139, 92, 246, 0.4);
+  align-content: start;
+  gap: 5px;
+  min-height: 184px;
+  padding: 12px;
+  border: 1px dashed rgba(148, 163, 184, 0.35);
   border-radius: var(--radius-md);
-  opacity: 0.72;
+  overflow: hidden;
+  background: rgba(7, 16, 24, 0.48);
+  opacity: 0.78;
 }
+
 .research-achievement.is-unlocked {
   border-style: solid;
-  background: radial-gradient(circle at top right, rgba(250, 204, 21, 0.25), transparent 55%);
   opacity: 1;
 }
-.research-achievement > span {
-  font-size: 1.6rem;
+
+.research-achievement--bronze.is-unlocked {
+  border-color: #d38b5d;
+  background: radial-gradient(circle at top right, rgba(211, 139, 93, 0.24), transparent 54%);
 }
-.research-achievement small {
+
+.research-achievement--silver.is-unlocked {
+  border-color: #cbd5e1;
+  background: radial-gradient(circle at top right, rgba(203, 213, 225, 0.22), transparent 54%);
+}
+
+.research-achievement--gold.is-unlocked {
+  border-color: #facc15;
+  background: radial-gradient(circle at top right, rgba(250, 204, 21, 0.25), transparent 54%);
+}
+
+.research-achievement--legendary.is-unlocked {
+  border-color: #d946ef;
+  background:
+    radial-gradient(circle at top right, rgba(217, 70, 239, 0.33), transparent 52%),
+    radial-gradient(circle at bottom left, rgba(35, 230, 200, 0.2), transparent 48%);
+  box-shadow: 0 0 24px rgba(217, 70, 239, 0.18);
+}
+
+.research-achievement__medal {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border: 3px double rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  background: rgba(7, 16, 24, 0.78);
+  box-shadow: inset 0 0 16px rgba(181, 46, 255, 0.22);
+  font-size: 1.8rem;
+}
+
+.research-achievement strong {
+  line-height: 1.15;
+}
+
+.research-achievement p {
+  margin: 0;
   color: var(--color-text-muted);
+  font-size: 0.78rem;
+}
+
+.research-achievement small {
+  color: var(--color-acid);
+  font-weight: 750;
+}
+
+.research-achievement__progress {
+  display: grid;
+  gap: 3px;
+  margin-top: auto;
+}
+
+.research-achievement progress {
+  width: 100%;
+  height: 7px;
+  accent-color: #d8b4fe;
+}
+
+.research-achievements--compact .research-achievements__grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.research-achievements--compact .research-achievement {
+  min-height: 158px;
+}
+
+@media (min-width: 700px) {
+  .research-achievements {
+    margin: 0;
+  }
 }

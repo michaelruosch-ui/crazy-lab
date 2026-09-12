@@ -5,7 +5,7 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich nach dem Abschluss von **Sprint 32** am 2026-09-12; Sprint 19
+Dieses Repository befindet sich nach dem Abschluss von **Sprint 33** am 2026-09-12; Sprint 19
 wurde auf Familienentscheid bewusst übersprungen. Der aktuelle Stand: Beim
 ersten Start wählt man eines von 33 Maskottchen (8 Tierarten in verschiedenen Farbwelten) und
 einen Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf
@@ -194,11 +194,12 @@ Siehe [BACKLOG.md](./BACKLOG.md) für den aktuellen Sprint und offene Sprints, s
 
 # Aktueller Stand (2026-09-12)
 
-Die Sprints 25 bis 30 sowie Sprint 32 sind programmiert: Elternschutz und Kinder-Datenschutz, einfachere Missionsführung, Zuhause-Filter und kompakter
+Die Sprints 25 bis 30 sowie Sprint 32 und 33 sind programmiert: Elternschutz und Kinder-Datenschutz, einfachere Missionsführung, Zuhause-Filter und kompakter
 Laborschrank, Forscherwissen und freiwillige Abzeichen, 100 einzigartige Missionsmotive, ein neuer
 realistischer Nachtbär, bessere Barrierefreiheit, die native App-Store-Hülle mit Einmalfreischaltung
 und der neue Wow-Start. Das Laborportal führt zur grossen Tagesmission, drei abwechslungsreichen
-Empfehlungen und kompakten Kategorie-Laboren. Der Familientest auf den echten Geräten bleibt für
+Empfehlungen und kompakten Kategorie-Laboren. Eine eigene Vitrine sammelt 40 magische Abzeichen für
+unterschiedliche Arten von Forschungserfolgen. Der Familientest auf den echten Geräten bleibt für
 Sprint 31 und 36 reserviert.
 
 Nach dem Familientest wurden alle 33 Profil-Maskottchen auf denselben hochwertigen, detailreichen

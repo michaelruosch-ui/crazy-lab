@@ -1,5 +1,21 @@
 # Changelog
 
+## Sprint 33 - Magische Abzeichen-Vitrine (2026-09-12)
+
+- Crazy Lab besitzt jetzt 40 statt 15 Abzeichen: vier Stufen je Laborwelt, allgemeine
+  Forschererfolge und fünf besondere Missionsabzeichen.
+- Neben Missionsanzahlen werden nun unter anderem lange und schwere Aufgaben, Wiederholungen,
+  Fünf-Sterne-Ergebnisse, Empfehlungen, Fotos, Videos, Vermutungen, vollständige Forschungsnotizen
+  und eigene Erfindungsnamen belohnt.
+- Die neue Abzeichen-Vitrine zeigt freigeschaltete und noch geheime Medaillen in Bronze, Silber,
+  Gold und legendärer Stufe mit verständlichem Fortschritt.
+- Die Startseite zeigt nur vier relevante Medaillen; die vollständige Sammlung hat einen eigenen
+  Navigationspunkt.
+- Neu entdeckte Abzeichen erscheinen als einsammelbare, barrierearm abschaltbare Vollbild-Feier.
+- Neue Tagebucheinträge merken sich Dauer und Schwierigkeit der abgeschlossenen Mission; bestehende
+  Einträge bleiben kompatibel.
+- Typecheck, Lint, 169 automatisierte Tests, Produktions-Build und mobile Sichtprüfung erfolgreich.
+
 ## Sprint 32 - Wow-Start und Entdeckung (2026-09-12)
 
 - Ein animiertes Laborportal begrüsst Kinder beim ersten Öffnen einer App-Sitzung und kann sofort

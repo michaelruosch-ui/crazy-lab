@@ -967,3 +967,16 @@ Animationen deaktivieren sämtliche Portalbewegungen.
 **Begründung:** Ein zehnjähriges Kind soll beim Öffnen sofort Neugier und eine klare nächste Aktion
 erleben, ohne durch mehr als zwanzig gleichgewichtete Karten scrollen zu müssen. Das Portal darf
 dabei weder den Zugriff verzögern noch bei jedem internen Seitenwechsel erneut erscheinen.
+
+## ADR-054: Abzeichen werden aus dem Tagebuch berechnet
+
+**Status:** Angenommen und umgesetzt (Sprint 33, 2026-09-12)
+
+**Entscheidung:** Alle 40 Abzeichen werden deterministisch aus den lokalen Tagebucheinträgen
+berechnet. Nur welche Feier bereits gezeigt wurde, wird als lokale Liste von Abzeichen-IDs
+gespeichert. Dauer und Schwierigkeit werden für neue Einträge optional im unveränderlichen
+Missionsschnappschuss ergänzt.
+
+**Begründung:** Ein eigenes Punktekonto könnte nach Backup, Profilwechsel oder Inhalts-Update vom
+Tagebuch abweichen. Die Ableitung aus tatsächlich abgeschlossenen Missionen ist nachvollziehbar,
+profilgetrennt, offlinefähig und ohne Migration mit bestehenden Daten vereinbar.

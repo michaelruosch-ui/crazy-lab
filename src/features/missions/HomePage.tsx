@@ -20,6 +20,7 @@ import { useHiddenMissions } from './useHiddenMissions'
 import { MissionSection } from './MissionSection'
 import { MissionFiltersPanel } from './MissionFiltersPanel'
 import { LabPortal } from './LabPortal'
+import { AchievementCelebration } from '../achievements'
 import { indexedDbExperimentProgressRepository } from '../../storage/experimentProgressRepository'
 import { useLabCabinet } from '../lab-cabinet/useLabCabinet'
 import './HomePage.css'
@@ -108,6 +109,7 @@ export function HomePage() {
   return (
     <div className="home-page">
       <LabPortal profileId={activeProfileId} researcherName={researcherName} />
+      <AchievementCelebration profileId={activeProfileId} entries={diaryEntries} />
       <header className="home-page__header">
         <Mascot mascotId={mascotId} size="small" />
         <div>
@@ -204,7 +206,7 @@ export function HomePage() {
         ))}
       </div>
 
-      <ResearchAchievements entries={diaryEntries} />
+      <ResearchAchievements entries={diaryEntries} compact />
 
       <nav className="home-page__nav">
         {canEditMissionCatalog(activeProfileId) && (
@@ -226,6 +228,9 @@ export function HomePage() {
         </Link>
         <Link to="/diary" className="home-page__nav-link">
           📖 Geheimnisvolles Labortagebuch
+        </Link>
+        <Link to="/abzeichen" className="home-page__nav-link">
+          🏆 Abzeichen-Vitrine
         </Link>
         <Link to="/profil" className="home-page__nav-link">
           👤 Profil
