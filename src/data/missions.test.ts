@@ -56,6 +56,13 @@ describe('Missionsdaten', () => {
     const craftMissions = missions.filter((mission) => mission.primaryCategory === 'basteln')
     expect(craftMissions).toHaveLength(20)
     expect(craftMissions.some((mission) => mission.title.includes('Spielfiguren'))).toBe(true)
+    const visibleCraftContent = craftMissions.flatMap((mission) => [
+      mission.title,
+      mission.shortDescription,
+      ...mission.materials.map((material) => material.name),
+      ...mission.steps.map((step) => step.text),
+    ])
+    expect(visibleCraftContent.join(' ')).not.toMatch(/Playmobil/i)
     expect(craftMissions.some((mission) => mission.safetyLevel === 'gelb')).toBe(true)
     expect(craftMissions.every((mission) => mission.steps.length >= 4)).toBe(true)
   })

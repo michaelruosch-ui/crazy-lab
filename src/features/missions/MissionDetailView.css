@@ -32,6 +32,18 @@
   gap: 8px;
 }
 
+.mission-detail__figure-freedom {
+  margin-top: 0.8rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(116, 255, 211, 0.35);
+  border-radius: var(--radius-md);
+  background: rgba(27, 196, 167, 0.09);
+}
+
+.mission-detail__figure-freedom p {
+  margin: 0.35rem 0 0;
+}
+
 .mission-detail__materials li {
   display: flex;
   align-items: center;

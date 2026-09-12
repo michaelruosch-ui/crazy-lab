@@ -1,5 +1,20 @@
 # Changelog
 
+## Sprint 35 - Premium-Missionsbilder und freie Figurenwahl (2026-09-12)
+
+- Die sechs kostenlosen Kernmissionen besitzen jetzt sechs eigene, detailreiche
+  Crazy-Lab-Illustrationen: Blutkleim, Geisterportal, Schatten-Trank, Regen im Glas,
+  Monster-Frühstück und Mini-Schatzsuche sind auf den ersten Blick unterscheidbar.
+- Ein komprimierter lokaler Bildatlas hält die zusätzliche App-Grösse bei rund 444 KB und
+  funktioniert ohne Cloud, Bilddienst oder spätere Netzwerkabfrage.
+- „Der Blutkleim“ erhält automatisch sein vorgesehenes Motiv, sobald Elenas lokale Mission über
+  das Backup in den Katalog übernommen wird; am fehlenden Originalinhalt wurde nichts erfunden.
+- Jede Bastelmission erklärt nun in allen fünf Sprachen, dass ganz unterschiedliche Figuren,
+  Kuscheltiere, selbst gemachte Papierfiguren oder gar keine Figur verwendet werden können. Eine
+  bestimmte Spielzeugmarke wird nie benötigt.
+- 173 automatische Tests, Produktions-Build und mobile Sichtprüfung der Premium-Bilder sowie der
+  freien Figurenwahl erfolgreich.
+
 ## Sprint 34 - Magische Klangwelt und fühlbare Erfolge (2026-09-12)
 
 - Die Labormusik ist jetzt eine ruhige, geheimnisvolle Mischung aus schwebendem Grundton,

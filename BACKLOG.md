@@ -511,6 +511,18 @@ positiv beantwortet.
   - [x] Apples Regel einhalten, dass Musik erst nach einer bewussten Berührung startet; keine
         Audiodateien, Lizenzen, Streams oder externen Dienste verwenden
 
+- **Sprint 35 - Premium-Missionsbilder und freie Figurenwahl:** **Umgesetzt am 2026-09-12.**
+  - [x] Die sechs kostenlosen Kernmissionen mit sechs eigenen hochwertigen, sofort erkennbaren
+        Crazy-Lab-Szenen hervorheben
+  - [x] „Der Blutkleim“ bereits über seinen von Elena vergebenen Titel mit seinem eigenen Bild
+        verbinden; sein Missionsinhalt bleibt bis zum Import von Elenas Backup unangetastet
+  - [x] Bilddatei für schnelles Laden auf dem Handy optimieren und lokal in Web- und nativer App
+        bündeln
+  - [x] Bei allen Bastelmissionen deutlich machen, dass Tierfigur, Puppe, Bausteinfigur,
+        Spielfigur, Kuscheltier, eigene Papierfigur oder eine Szene ganz ohne Figur erlaubt sind
+  - [x] Keine bestimmte Spielzeugmarke voraussetzen; alle Hinweise in den fünf App-Sprachen
+        anbieten
+
 ## Unpriorisierte Ideen
 
 - [x] **Gemeinsamer geprüfter Missionskatalog (Familienentscheidung 2026-09-07):** Nur Elena darf

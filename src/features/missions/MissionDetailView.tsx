@@ -114,6 +114,12 @@ export function MissionDetailView({
             </li>
           ))}
         </ul>
+        {mission.primaryCategory === 'basteln' && (
+          <aside className="mission-detail__figure-freedom">
+            <strong>{t('craftFreedomTitle')}</strong>
+            <p>{t('craftFreedomText')}</p>
+          </aside>
+        )}
       </section>
 
       <details className="mission-detail__all-steps">

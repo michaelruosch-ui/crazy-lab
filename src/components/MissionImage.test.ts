@@ -4,6 +4,7 @@ import {
   decodeCustomMissionImage,
   encodeCustomMissionImage,
   getMissionVisualSpec,
+  getPremiumMissionArt,
 } from './MissionImage'
 
 describe('Missionsbilder', () => {
@@ -31,5 +32,19 @@ describe('Missionsbilder', () => {
       symbol: '👻',
       mood: 'gruselig',
     })
+  })
+
+  it('ordnet allen sechs Gratis-Missionen ein eigenes Premium-Bild zu', () => {
+    const titles = [
+      'Der Blutkleim',
+      'Das leuchtende Geisterportal',
+      'Der blutrote Schatten-Trank',
+      'Regen im Glas',
+      'Das Monster-Frühstück',
+      'Die Mini-Schatzsuche',
+    ]
+    const positions = titles.map((title) => getPremiumMissionArt(title)?.position)
+    expect(positions.every(Boolean)).toBe(true)
+    expect(new Set(positions)).toHaveLength(6)
   })
 })

@@ -83,6 +83,9 @@ const translations = {
     restoreSuccess: '✅ Dein früherer Kauf wurde wiederhergestellt.',
     restoreEmpty: 'Zu diesem Apple-Konto wurde noch kein Kauf gefunden.',
     freeLabel: 'GRATIS',
+    craftFreedomTitle: '🧸 Deine Figuren, deine Wahl',
+    craftFreedomText:
+      'Nimm eine Tierfigur, Puppe, Bausteinfigur, Spielfigur, ein Kuscheltier oder bastle selbst eine Papierfigur. Eine bestimmte Marke brauchst du nie – und wenn es besser passt, baust du die Szene ganz ohne Figur.',
     purchaseGateReason:
       'Alle Missionen sollen einmalig über den Apple App Store freigeschaltet werden.',
     restoreGateReason: 'Ein früherer Kauf soll mit dem Apple-Konto wiederhergestellt werden.',
@@ -154,6 +157,9 @@ const translations = {
     restoreSuccess: '✅ Your earlier purchase has been restored.',
     restoreEmpty: 'No purchase was found for this Apple Account yet.',
     freeLabel: 'FREE',
+    craftFreedomTitle: '🧸 Your figures, your choice',
+    craftFreedomText:
+      'Use an animal figure, doll, building-block figure, toy figure, cuddly toy, or make your own paper figure. You never need a particular brand—and if it suits your idea better, build the scene without a figure.',
     purchaseGateReason: 'All missions are about to be unlocked with one Apple App Store purchase.',
     restoreGateReason: 'An earlier purchase is about to be restored with the Apple Account.',
   },
@@ -228,6 +234,9 @@ const translations = {
     restoreSuccess: '✅ Ton achat précédent a été restauré.',
     restoreEmpty: 'Aucun achat n’a encore été trouvé pour ce compte Apple.',
     freeLabel: 'GRATUIT',
+    craftFreedomTitle: '🧸 Tes personnages, ton choix',
+    craftFreedomText:
+      'Prends un animal miniature, une poupée, un personnage à construire, une figurine, une peluche ou fabrique ton propre personnage en papier. Aucune marque précise n’est nécessaire – et tu peux aussi créer la scène sans personnage.',
     purchaseGateReason:
       'Toutes les missions vont être débloquées par un achat unique sur l’App Store.',
     restoreGateReason: 'Un achat précédent va être restauré avec le compte Apple.',
@@ -303,6 +312,9 @@ const translations = {
     restoreSuccess: '✅ Se ha restaurado tu compra anterior.',
     restoreEmpty: 'Todavía no se ha encontrado ninguna compra para esta cuenta de Apple.',
     freeLabel: 'GRATIS',
+    craftFreedomTitle: '🧸 Tus figuras, tu elección',
+    craftFreedomText:
+      'Usa un animal de juguete, una muñeca, una figura de bloques, una figura de juguete, un peluche o crea tu propia figura de papel. Nunca necesitas una marca concreta y también puedes montar la escena sin figura.',
     purchaseGateReason:
       'Todas las misiones se van a desbloquear con una sola compra en el App Store.',
     restoreGateReason: 'Se va a restaurar una compra anterior con la cuenta de Apple.',
@@ -377,6 +389,9 @@ const translations = {
     restoreSuccess: '✅ Il tuo acquisto precedente è stato ripristinato.',
     restoreEmpty: 'Non è stato ancora trovato alcun acquisto per questo Apple Account.',
     freeLabel: 'GRATIS',
+    craftFreedomTitle: '🧸 I tuoi personaggi, la tua scelta',
+    craftFreedomText:
+      'Usa un animale giocattolo, una bambola, un personaggio di mattoncini, una statuina, un peluche oppure crea un personaggio di carta. Non serve mai una marca particolare e puoi anche costruire la scena senza personaggi.',
     purchaseGateReason: 'Tutte le missioni saranno sbloccate con un solo acquisto sull’App Store.',
     restoreGateReason: 'Un acquisto precedente sarà ripristinato con l’Apple Account.',
   },

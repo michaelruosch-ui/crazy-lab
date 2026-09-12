@@ -996,3 +996,32 @@ Musik, Netzwerkabrufe, Tracking oder zusätzliche App-Grösse. Die ausdrücklich
 Berührung respektiert Apples Audio-Regeln und verhindert überraschenden Ton beim Öffnen. Kinder
 mit Geräusch- oder Vibrationssensibilität können die Klänge abschalten; die App bleibt vollständig
 ohne Ton bedienbar.
+
+## ADR-056: Premium-Bilder bündeln Kernmissionen in einem lokalen Atlas
+
+**Status:** Angenommen und umgesetzt (Sprint 35, 2026-09-12)
+
+**Entscheidung:** Die sechs kostenlosen Kernmissionen erhalten hochwertige, KI-gestützt erzeugte
+Rasterillustrationen in einem einzigen lokal gebündelten und komprimierten 3-mal-2-Atlas. Die
+Auswahl erfolgt über den normalisierten deutschen Ursprungstitel. Alle 100 Katalogmissionen
+behalten zusätzlich ihre eindeutige codegenerierte Bildspezifikation als leichtgewichtigen
+Standard.
+
+**Begründung:** Die wichtigsten ersten Erlebnisse brauchen stärkere emotionale Bilder, ohne dass
+100 grosse Dateien die App auf alten Geräten verlangsamen. Ein Atlas benötigt nur eine Anfrage,
+funktioniert auch in der nativen App vollständig lokal und bleibt klein. Der Titelabgleich löst
+den Sonderfall von Elenas „Der Blutkleim“, dessen Geräte-ID nicht bekannt ist. Die Bildzuordnung
+erfindet ausdrücklich keinen fehlenden Missionsinhalt.
+
+## ADR-057: Bastelmissionen sind marken- und figurenoffen
+
+**Status:** Angenommen und umgesetzt (Sprint 35, 2026-09-12)
+
+**Entscheidung:** Jede Bastelmissionsdetailseite erklärt dauerhaft, dass beliebige Tierfiguren,
+Puppen, Bausteinfiguren, Spielfiguren, Kuscheltiere, selbst gebastelte Papierfiguren oder gar keine
+Figur verwendet werden können. Dieser Hinweis ist redaktionell in allen fünf Sprachen hinterlegt.
+
+**Begründung:** Kinder sollen vorhandenes Spielzeug frei kombinieren können und weder eine Marke
+besitzen noch ein bestimmtes Figurenformat nachkaufen müssen. Bestehende Missions-IDs und
+Tagebucheinträge bleiben dabei stabil; „Spielfigur“ wird nur noch als eine von mehreren möglichen
+Ideen verstanden.

@@ -5,6 +5,19 @@ import './MissionImage.css'
 const SYMBOLS = ['🧪', '⚗️', '🔬', '✨', '🌈', '👻', '🐉', '📷', '🌙', '🪄', '🧿', '🦠']
 const MOODS = ['lustig', 'gruselig', 'eklig', 'magisch', 'geheimnisvoll', 'niedlich'] as const
 
+const PREMIUM_MISSION_ART: Record<string, { position: string; mood: string }> = {
+  'der blutkleim': { position: '0% 0%', mood: 'lustig-gruselig' },
+  'das leuchtende geisterportal': { position: '50% 0%', mood: 'magisch' },
+  'der blutrote schatten-trank': { position: '100% 0%', mood: 'geheimnisvoll' },
+  'regen im glas': { position: '0% 100%', mood: 'wissenschaftlich-magisch' },
+  'das monster-frühstück': { position: '50% 100%', mood: 'lustig' },
+  'die mini-schatzsuche': { position: '100% 100%', mood: 'abenteuerlich' },
+}
+
+export function getPremiumMissionArt(title: string) {
+  return PREMIUM_MISSION_ART[title.trim().toLocaleLowerCase('de-CH')]
+}
+
 export const CUSTOM_IMAGE_BACKGROUNDS = [
   { id: 'violet', label: 'Violettes Labor', hue: 276, secondHue: 205 },
   { id: 'aqua', label: 'Türkiser Nebel', hue: 178, secondHue: 225 },
@@ -99,6 +112,21 @@ export function getMissionVisualSpec(placeholder: string, title: string) {
 }
 
 export function MissionImage({ placeholder, title }: { placeholder: string; title: string }) {
+  const premium = getPremiumMissionArt(title)
+  if (premium) {
+    const premiumStyle = {
+      backgroundImage: `url(${import.meta.env.BASE_URL}mission-art/free-missions-atlas.jpg)`,
+      backgroundPosition: premium.position,
+    }
+    return (
+      <div
+        className="mission-image mission-image--premium"
+        style={premiumStyle}
+        role="img"
+        aria-label={`${title}, ${premium.mood}`}
+      />
+    )
+  }
   const visual = getMissionVisualSpec(placeholder, title)
   const style = {
     '--mission-hue': visual.hue,

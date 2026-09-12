@@ -48,6 +48,19 @@ die gleichen Ereignisse an `NativeBridge.swift` weiter; UIKit wählt dort Auswah
 Erfolgshaptik. In der Webversion ist `navigator.vibrate` nur eine optionale Ergänzung. Die
 profilbezogene Einstellung `soundEnabled` sperrt Musik und Ereignisklänge gemeinsam.
 
+## Premium-Missionsbilder (Sprint 35)
+
+`MissionImage` ordnet die sechs festgelegten Gratis-Titel deterministisch sechs Ausschnitten aus
+`public/mission-art/free-missions-atlas.jpg` zu. Die Zuordnung erfolgt über den normalisierten
+Titel, damit auch Elenas lokal erzeugter „Der Blutkleim“ ohne bekannte Geräte-ID das richtige Bild
+erhält. Alle übrigen Katalog- und eigenen Missionen behalten ihre leichten, eindeutigen
+codegenerierten Motive.
+
+Der Atlas enthält ein einziges komprimiertes Rasterbild mit sechs quadratischen Szenen. CSS wählt
+über die Hintergrundposition den passenden Ausschnitt; dadurch lädt der Browser für alle sechs
+Karten nur eine Datei. Die Datei liegt auch im nativen Web-Bündel und verursacht weder Cloudzugriff
+noch Tracking. Alt-Texte entstehen weiterhin aus Missionstitel und Stimmung.
+
 ## Datenfluss
 
 ### Startseite und Entdecken (Sprint 2)

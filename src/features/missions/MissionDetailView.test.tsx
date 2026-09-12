@@ -19,6 +19,13 @@ describe('MissionDetailView für Getränke', () => {
 })
 
 describe('MissionDetailView für Sprints 12 bis 14', () => {
+  it('erlaubt bei Bastelmissionen ausdrücklich unterschiedliche Figuren oder keine Figur', () => {
+    const mission = missions.find((item) => item.id === 'mission-playmobil-geisterbett')!
+    render(<MissionDetailView mission={mission} onStart={vi.fn()} />)
+    expect(screen.getByText('🧸 Deine Figuren, deine Wahl')).toBeInTheDocument()
+    expect(screen.getByText(/Tierfigur, Puppe, Bausteinfigur/)).toBeInTheDocument()
+  })
+
   it('zeigt Forschungsfrage und mehrtägige Dauer', () => {
     const mission = missions.find((item) => item.id === 'mission-experiment-salzkristall-geist')!
     render(<MissionDetailView mission={mission} onStart={vi.fn()} />)

@@ -19,6 +19,24 @@
   position: relative;
 }
 
+.mission-image--premium {
+  aspect-ratio: 1;
+  background-repeat: no-repeat;
+  background-size: 300% 200%;
+  border: 1px solid rgba(154, 255, 227, 0.42);
+  box-shadow:
+    0 0 0 1px rgba(151, 93, 255, 0.35),
+    0 14px 34px -14px rgba(0, 255, 218, 0.7);
+}
+
+.mission-image--premium::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 65%, rgba(6, 16, 29, 0.24));
+  pointer-events: none;
+}
+
 .mission-image::before {
   content: '';
   position: absolute;
