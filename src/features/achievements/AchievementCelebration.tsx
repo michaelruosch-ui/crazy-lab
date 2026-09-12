@@ -3,6 +3,8 @@ import type { DiaryEntry, ResearchAchievement } from '../../domain'
 import { researchAchievements } from '../../domain'
 import { Button } from '../../components'
 import './AchievementCelebration.css'
+import { playMagicSound, useAtmosphereSettings } from '../atmosphere'
+import { triggerNativeHaptic } from '../../native/bridge'
 
 function readSeen(profileId: string): Set<string> {
   try {
@@ -28,6 +30,7 @@ export function AchievementCelebration({
   entries: DiaryEntry[]
 }) {
   const [badge, setBadge] = useState<ResearchAchievement>()
+  const { settings } = useAtmosphereSettings(profileId)
 
   useEffect(() => {
     if (entries.length === 0) return
@@ -40,10 +43,12 @@ export function AchievementCelebration({
     )
     if (newBadge) {
       navigator.vibrate?.([80, 40, 140])
+      void triggerNativeHaptic('success')
+      if (settings.soundEnabled) void playMagicSound('badge')
       const timeout = window.setTimeout(() => setBadge(newBadge), 0)
       return () => window.clearTimeout(timeout)
     }
-  }, [entries, profileId])
+  }, [entries, profileId, settings.soundEnabled])
 
   useEffect(() => {
     if (!badge) return

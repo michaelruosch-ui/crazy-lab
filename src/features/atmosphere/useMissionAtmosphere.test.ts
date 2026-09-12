@@ -57,7 +57,7 @@ describe('Labormusik', () => {
     await act(async () => result.current.toggle())
 
     expect(context.resume).toHaveBeenCalledOnce()
-    expect(oscillator.start).toHaveBeenCalledOnce()
+    expect(oscillator.start).toHaveBeenCalledTimes(4)
     expect(result.current.playing).toBe(true)
     unmount()
   })

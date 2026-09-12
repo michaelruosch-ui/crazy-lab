@@ -362,7 +362,7 @@ export function ProfilePage() {
             checked={atmosphereSettings.soundEnabled}
             onChange={(e) => updateAtmosphere({ soundEnabled: e.target.checked })}
           />{' '}
-          Dezente Labormusik erlauben
+          Magische Labormusik und Erfolgsklänge erlauben
         </label>
         <label className="profile-page__toggle">
           <input

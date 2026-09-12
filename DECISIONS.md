@@ -980,3 +980,19 @@ Missionsschnappschuss ergänzt.
 **Begründung:** Ein eigenes Punktekonto könnte nach Backup, Profilwechsel oder Inhalts-Update vom
 Tagebuch abweichen. Die Ableitung aus tatsächlich abgeschlossenen Missionen ist nachvollziehbar,
 profilgetrennt, offlinefähig und ohne Migration mit bestehenden Daten vereinbar.
+
+## ADR-055: Die Klangwelt wird lokal synthetisiert und bleibt berührungsgesteuert
+
+**Status:** Angenommen und umgesetzt (Sprint 34, 2026-09-12)
+
+**Entscheidung:** Fünf musikalische Atmosphären sowie Start-, Schritt-, Abschluss- und
+Abzeichenklänge werden mit Web Audio aus leisen Oszillatoren erzeugt. Längere Musik beginnt nur
+nach dem sichtbaren Knopf „Labormusik an“. Kurze Klänge folgen einer bewussten Kinderaktion. Eine
+gemeinsame Profileinstellung deaktiviert beides. Native Haptik ergänzt, ersetzt aber nie eine
+sichtbare Rückmeldung.
+
+**Begründung:** So erhält Crazy Lab eine eigene magische Identität ohne urheberrechtlich fremde
+Musik, Netzwerkabrufe, Tracking oder zusätzliche App-Grösse. Die ausdrücklich notwendige
+Berührung respektiert Apples Audio-Regeln und verhindert überraschenden Ton beim Öffnen. Kinder
+mit Geräusch- oder Vibrationssensibilität können die Klänge abschalten; die App bleibt vollständig
+ohne Ton bedienbar.

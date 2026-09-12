@@ -5,6 +5,8 @@ import { Button, SpeechBubble } from '../../components'
 import { Timer } from './Timer'
 import './StepRunner.css'
 import { useAtmosphereSettings, useMissionAtmosphere } from '../atmosphere'
+import { playMagicSound } from '../atmosphere'
+import { triggerNativeHaptic } from '../../native/bridge'
 
 interface StepRunnerProps {
   mission: Mission
@@ -68,7 +70,12 @@ export function StepRunner({
     setCheckedSteps((current) => {
       const next = new Set(current)
       if (next.has(stepId)) next.delete(stepId)
-      else next.add(stepId)
+      else {
+        next.add(stepId)
+        if (settings.soundEnabled) void playMagicSound('step-success', mission.primaryCategory)
+        void triggerNativeHaptic('selection')
+        navigator.vibrate?.(35)
+      }
       onProgress?.([...next])
       return next
     })
@@ -156,7 +163,17 @@ export function StepRunner({
               Weiter
             </Button>
           ) : (
-            <Button variant="primary" onClick={onAllStepsDone} disabled={!allDone}>
+            <Button
+              variant="primary"
+              onClick={() => {
+                if (settings.soundEnabled)
+                  void playMagicSound('mission-success', mission.primaryCategory)
+                void triggerNativeHaptic('success')
+                navigator.vibrate?.([60, 35, 110])
+                onAllStepsDone()
+              }}
+              disabled={!allDone}
+            >
               Mission abschliessen
             </Button>
           )}

@@ -1,5 +1,18 @@
 # Changelog
 
+## Sprint 34 - Magische Klangwelt und fühlbare Erfolge (2026-09-12)
+
+- Die Labormusik ist jetzt eine ruhige, geheimnisvolle Mischung aus schwebendem Grundton,
+  magischem Arpeggio und hohen Glitzertönen statt einer einfachen wiederholten Tonfolge.
+- Jede der fünf Laborwelten besitzt eine eigene Tonart und Melodie.
+- Missionsstart, erledigter Schritt, Missionsabschluss und neues Abzeichen haben eigene kurze
+  Erfolgsklänge.
+- Unterstützte iPhones und iPads geben bei Schritten und Erfolgen zusätzlich dezente native
+  Haptik; im Browser bleibt eine vorsichtige Vibrationsalternative erhalten.
+- Die gesamte Klangwelt wird lokal erzeugt, startet nur nach bewusster Berührung und lässt sich im
+  Profil vollständig abschalten. Es gibt keine Audiodateien, Lizenzen, Streams oder Tracking.
+- Typecheck, Lint, 171 automatisierte Tests und nativer Produktions-Build erfolgreich.
+
 ## Sprint 33 - Magische Abzeichen-Vitrine (2026-09-12)
 
 - Crazy Lab besitzt jetzt 40 statt 15 Abzeichen: vier Stufen je Laborwelt, allgemeine

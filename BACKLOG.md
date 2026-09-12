@@ -498,6 +498,19 @@ positiv beantwortet.
   - [x] Auf der Startseite nur einen kompakten Auszug und den nächsten sinnvollen Fortschritt zeigen
   - [x] Neue Abzeichen mit einer einsammelbaren Vollbild-Feier und optionaler Vibration ankündigen
 
+- **Sprint 34 - Magische Klangwelt und fühlbare Erfolge:** **Umgesetzt am 2026-09-12.**
+  - [x] Die bisherige einfache Tonfolge durch eine geheimnisvollere, mehrstimmige Labormusik
+        ersetzen
+  - [x] Für Getränke, Basteln, Experimente, Foto und Schwestern je eine eigene musikalische
+        Stimmung verwenden
+  - [x] Eigene kurze Klänge für Missionsstart, erledigten Schritt, Missionsabschluss und neues
+        Abzeichen ergänzen
+  - [x] Erfolge auf unterstützten Geräten zusätzlich mit dezenter Vibration beziehungsweise
+        nativer iPhone-Haptik fühlbar machen
+  - [x] Musik und Erfolgsklänge gemeinsam im Profil abschaltbar lassen
+  - [x] Apples Regel einhalten, dass Musik erst nach einer bewussten Berührung startet; keine
+        Audiodateien, Lizenzen, Streams oder externen Dienste verwenden
+
 ## Unpriorisierte Ideen
 
 - [x] **Gemeinsamer geprüfter Missionskatalog (Familienentscheidung 2026-09-07):** Nur Elena darf

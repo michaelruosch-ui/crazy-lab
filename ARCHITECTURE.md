@@ -34,6 +34,20 @@ Abhängigkeitsrichtung: `app` → `features` → `domain`/`storage`. `domain` ha
 zu React, Storage oder UI. `storage` kennt nur `domain`-Typen, keine UI. `components` kennen
 keine Features.
 
+## Magische Klangwelt (Sprint 34)
+
+`features/atmosphere/magicSounds.ts` ist die einzige Klangerzeugungsschicht. Sie verwendet die
+Web-Audio-Schnittstelle beziehungsweise deren alten Safari-Namen und baut aus Oszillatoren lokale
+Mehrstimmigkeit; es werden keine Audioinhalte geladen. Jede Missionskategorie besitzt eine eigene
+Grundfrequenz und Melodie. `useMissionAtmosphere` verwaltet nur die ausdrücklich gestartete,
+laufende Musik und schliesst deren Audio-Kontext beim Verlassen der Mission.
+
+Kurze Ereignisklänge verwenden einen wiederverwendeten Audio-Kontext und werden ausschließlich
+aus einer Kinderaktion oder einem von ihr ausgelösten Erfolg gestartet. `native/bridge.ts` reicht
+die gleichen Ereignisse an `NativeBridge.swift` weiter; UIKit wählt dort Auswahl- oder
+Erfolgshaptik. In der Webversion ist `navigator.vibrate` nur eine optionale Ergänzung. Die
+profilbezogene Einstellung `soundEnabled` sperrt Musik und Ereignisklänge gemeinsam.
+
 ## Datenfluss
 
 ### Startseite und Entdecken (Sprint 2)

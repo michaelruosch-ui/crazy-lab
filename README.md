@@ -194,12 +194,14 @@ Siehe [BACKLOG.md](./BACKLOG.md) für den aktuellen Sprint und offene Sprints, s
 
 # Aktueller Stand (2026-09-12)
 
-Die Sprints 25 bis 30 sowie Sprint 32 und 33 sind programmiert: Elternschutz und Kinder-Datenschutz, einfachere Missionsführung, Zuhause-Filter und kompakter
+Die Sprints 25 bis 30 sowie Sprint 32 bis 34 sind programmiert: Elternschutz und Kinder-Datenschutz, einfachere Missionsführung, Zuhause-Filter und kompakter
 Laborschrank, Forscherwissen und freiwillige Abzeichen, 100 einzigartige Missionsmotive, ein neuer
 realistischer Nachtbär, bessere Barrierefreiheit, die native App-Store-Hülle mit Einmalfreischaltung
 und der neue Wow-Start. Das Laborportal führt zur grossen Tagesmission, drei abwechslungsreichen
 Empfehlungen und kompakten Kategorie-Laboren. Eine eigene Vitrine sammelt 40 magische Abzeichen für
-unterschiedliche Arten von Forschungserfolgen. Der Familientest auf den echten Geräten bleibt für
+unterschiedliche Arten von Forschungserfolgen. Eine neue lokal erzeugte Klangwelt gibt jeder
+Kategorie eine eigene magische Musik und begleitet Erfolge mit kurzen Klängen und dezenter Haptik.
+Der Familientest auf den echten Geräten bleibt für
 Sprint 31 und 36 reserviert.
 
 Nach dem Familientest wurden alle 33 Profil-Maskottchen auf denselben hochwertigen, detailreichen

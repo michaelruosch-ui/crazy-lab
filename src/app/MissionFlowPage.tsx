@@ -25,6 +25,8 @@ import { indexedDbExperimentProgressRepository } from '../storage/experimentProg
 import './MissionFlowPage.css'
 import { isMissionFree } from '../domain'
 import { MissionPaywall, useEntitlement } from '../features/entitlements'
+import { playMagicSound, useAtmosphereSettings } from '../features/atmosphere'
+import { triggerNativeHaptic } from '../native/bridge'
 
 interface MissionFlowPageProps {
   missionId: string
@@ -87,6 +89,7 @@ export function MissionFlowPage({ missionId, missionOverride }: MissionFlowPageP
   const effectiveVariant =
     selectedVariant ?? rankedVariants[0]?.name ?? mission?.drinkProfile?.variants[0]?.name
   const entitlement = useEntitlement()
+  const { settings: atmosphereSettings } = useAtmosphereSettings(activeProfileId)
 
   useEffect(() => {
     if (!mission?.experimentProfile) return
@@ -171,7 +174,12 @@ export function MissionFlowPage({ missionId, missionOverride }: MissionFlowPageP
       <div className="mission-flow">
         <MissionDetailView
           mission={mission}
-          onStart={() => setPhase('run')}
+          onStart={() => {
+            if (atmosphereSettings.soundEnabled)
+              void playMagicSound('mission-start', mission.primaryCategory)
+            void triggerNativeHaptic('selection')
+            setPhase('run')
+          }}
           rankedVariants={rankedVariants}
           selectedVariant={effectiveVariant}
           onSelectVariant={setSelectedVariant}
