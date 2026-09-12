@@ -42,8 +42,10 @@ describe('App', () => {
     )
 
     expect(await screen.findByRole('heading', { name: '🔮 Crazy Lab' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: '✨ Tagesmission' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: '🧃 Getränke' })).toBeInTheDocument()
+    expect(screen.getByRole('dialog', { name: 'Crazy Lab öffnen' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: '✨ Deine Tagesmission' })).toBeInTheDocument()
+    expect(screen.getByText('🧃 Getränke')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: '🔮 Für dich entdeckt' })).toBeInTheDocument()
     expect(screen.getByText('🧭 Missionen filtern')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: '🗝️ Gemerkte Missionen' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: '🧰 Laborschrank' })).toBeInTheDocument()

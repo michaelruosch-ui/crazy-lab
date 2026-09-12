@@ -1,0 +1,105 @@
+.lab-portal {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  padding: max(26px, env(safe-area-inset-top)) 24px max(26px, env(safe-area-inset-bottom));
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(151, 50, 255, 0.5), transparent 34%),
+    radial-gradient(circle at 50% 50%, #102f36, #061017 72%);
+  text-align: center;
+  animation: portal-arrive 420ms ease-out both;
+}
+
+.lab-portal__stars {
+  position: absolute;
+  inset: 12% 8% auto;
+  color: var(--color-acid);
+  font-size: clamp(1.4rem, 7vw, 3rem);
+  letter-spacing: 0.8em;
+  text-shadow: 0 0 18px currentColor;
+  animation: portal-stars 1.8s ease-in-out infinite alternate;
+}
+
+.lab-portal__vortex {
+  display: grid;
+  width: min(64vw, 270px);
+  aspect-ratio: 1;
+  place-items: center;
+  margin-bottom: 18px;
+  border: 10px solid rgba(35, 230, 200, 0.75);
+  border-radius: 50%;
+  background: conic-gradient(from 20deg, #b52eff, #23e6c8, #b5ff2e, #ff4fa3, #b52eff);
+  box-shadow:
+    0 0 35px rgba(35, 230, 200, 0.6),
+    inset 0 0 40px #071018;
+  animation: portal-pulse 1.6s ease-in-out infinite alternate;
+}
+
+.lab-portal__vortex span {
+  display: grid;
+  width: 62%;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 50%;
+  background: #071018;
+  font-size: clamp(3.5rem, 18vw, 6rem);
+}
+
+.lab-portal__eyebrow {
+  margin: 0;
+  color: var(--color-acid);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lab-portal h1 {
+  margin: 6px 0 8px;
+  font-size: clamp(2rem, 9vw, 3.5rem);
+}
+
+.lab-portal p:not(.lab-portal__eyebrow) {
+  max-width: 32rem;
+  margin: 0 0 22px;
+  color: var(--color-text-muted);
+}
+
+@keyframes portal-arrive {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes portal-pulse {
+  to {
+    transform: scale(1.06) rotate(4deg);
+    box-shadow:
+      0 0 60px rgba(181, 46, 255, 0.78),
+      inset 0 0 55px #071018;
+  }
+}
+
+@keyframes portal-stars {
+  to {
+    opacity: 0.45;
+    transform: translateY(16px);
+  }
+}
+
+.reduce-motion .lab-portal,
+.reduce-motion .lab-portal__stars,
+.reduce-motion .lab-portal__vortex {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lab-portal,
+  .lab-portal__stars,
+  .lab-portal__vortex {
+    animation: none;
+  }
+}

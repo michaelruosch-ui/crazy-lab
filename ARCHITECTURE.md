@@ -510,3 +510,16 @@ Bezahlschranke gibt es nur bei vorhandener nativer Apple-Brücke.
   Dadurch sind 100 Motive eindeutig, ohne grosse Netzwerk- oder Speicherlast.
 - `FirstUseHints`, `LabSparkles` und `FriendlyError` sind isolierte, barrierearme UI-Bausteine.
   Hinweise bleiben profilbezogen lokal; Animationen respektieren System- und App-Einstellungen.
+
+## Gestufte Missionsentdeckung (Sprint 32)
+
+Die Startseite rendert nicht mehr alle Vorschläge als eine lange vertikale Liste. `HomePage`
+bestimmt weiterhin deterministisch die separate Tagesmission, wählt danach je eine Empfehlung aus
+drei unterschiedlichen Kategorien und gibt die verbleibenden Vorschläge an aufklappbare
+`MissionSection`-Bereiche weiter. So bleiben Auswahlalgorithmus und Datenmodell unverändert, während
+die visuelle Informationsmenge auf kleinen Bildschirmen deutlich sinkt.
+
+`LabPortal` ist eine rein lokale, abbrechbare Einstiegsanimation. Ihr „bereits gesehen“-Zustand gilt
+nur für die aktuelle Browsersitzung und enthält keine Profildaten ausser dem lokalen Schlüssel der
+Profil-ID. Die Komponente und alle Bewegungen werden durch die bestehende Einstellung für reduzierte
+Animationen stillgelegt. `AppShell` setzt den Scrollstand bei Routenwechseln zurück.

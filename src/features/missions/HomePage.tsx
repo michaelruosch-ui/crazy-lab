@@ -19,6 +19,7 @@ import { useActiveProfileId, useProfile } from '../profile'
 import { useHiddenMissions } from './useHiddenMissions'
 import { MissionSection } from './MissionSection'
 import { MissionFiltersPanel } from './MissionFiltersPanel'
+import { LabPortal } from './LabPortal'
 import { indexedDbExperimentProgressRepository } from '../../storage/experimentProgressRepository'
 import { useLabCabinet } from '../lab-cabinet/useLabCabinet'
 import './HomePage.css'
@@ -97,9 +98,16 @@ export function HomePage() {
     today,
     new Set([...categoryMissionIds, ...completedMissionIds]),
   )
+  const personalSuggestions = CATEGORY_SECTIONS.map(({ category }) =>
+    categorySuggestions.get(category)?.at(0),
+  )
+    .filter((mission) => mission !== undefined)
+    .slice(0, 3)
+  const personalSuggestionIds = new Set(personalSuggestions.map((mission) => mission.id))
 
   return (
     <div className="home-page">
+      <LabPortal profileId={activeProfileId} researcherName={researcherName} />
       <header className="home-page__header">
         <Mascot mascotId={mascotId} size="small" />
         <div>
@@ -107,21 +115,6 @@ export function HomePage() {
           <p>Willkommen zurück im Labor, {researcherName}!</p>
         </div>
       </header>
-
-      <MissionFiltersPanel
-        filters={filters}
-        resultCount={matchingAvailableCount}
-        onChange={setFilters}
-      />
-
-      <button
-        type="button"
-        className={`home-page__available-toggle ${onlyAvailableMaterials ? 'is-active' : ''}`}
-        aria-pressed={onlyAvailableMaterials}
-        onClick={() => setOnlyAvailableMaterials((value) => !value)}
-      >
-        🧰 Missionen, für die ich alles zu Hause habe
-      </button>
 
       {ongoingExperiments.length > 0 && (
         <section className="home-page__ongoing">
@@ -135,7 +128,60 @@ export function HomePage() {
         </section>
       )}
 
-      <ResearchAchievements entries={diaryEntries} />
+      {dailyMission && todaysBirthdays.length > 0 && (
+        <section className="home-page__daily home-page__daily--birthday">
+          <h2>🎂 Geburtstagsmission für {todaysBirthdays.map((b) => b.personName).join(' & ')}!</h2>
+          <p>Heute ist ein besonderer Tag - wie wäre es damit?</p>
+          <MissionCard mission={dailyMission} featured />
+        </section>
+      )}
+
+      {dailyMission && todaysBirthdays.length === 0 && (
+        <section className="home-page__daily">
+          <p className="home-page__eyebrow">Nur heute für dich</p>
+          <h2>✨ Deine Tagesmission</h2>
+          <MissionCard mission={dailyMission} featured />
+        </section>
+      )}
+
+      {personalSuggestions.length > 0 && (
+        <section className="home-page__suggestions">
+          <div className="home-page__section-heading">
+            <div>
+              <p className="home-page__eyebrow">Dein nächstes Abenteuer</p>
+              <h2>🔮 Für dich entdeckt</h2>
+            </div>
+            <span>3 Ideen</span>
+          </div>
+          <div className="home-page__suggestion-rail">
+            {personalSuggestions.map((mission) => (
+              <MissionCard key={mission.id} mission={mission} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section className="home-page__explore">
+        <div className="home-page__section-heading">
+          <div>
+            <p className="home-page__eyebrow">Du entscheidest</p>
+            <h2>🗺️ Labor erkunden</h2>
+          </div>
+        </div>
+        <button
+          type="button"
+          className={`home-page__available-toggle ${onlyAvailableMaterials ? 'is-active' : ''}`}
+          aria-pressed={onlyAvailableMaterials}
+          onClick={() => setOnlyAvailableMaterials((value) => !value)}
+        >
+          🧰 Missionen, für die ich alles zu Hause habe
+        </button>
+        <MissionFiltersPanel
+          filters={filters}
+          resultCount={matchingAvailableCount}
+          onChange={setFilters}
+        />
+      </section>
 
       {matchingAvailableCount === 0 && (
         <p className="home-page__no-match">
@@ -143,33 +189,22 @@ export function HomePage() {
         </p>
       )}
 
-      {dailyMission && todaysBirthdays.length > 0 && (
-        <section className="home-page__daily home-page__daily--birthday">
-          <h2>🎂 Geburtstagsmission für {todaysBirthdays.map((b) => b.personName).join(' & ')}!</h2>
-          <p>Heute ist ein besonderer Tag - wie wäre es damit?</p>
-          <MissionCard mission={dailyMission} />
-        </section>
-      )}
-
-      {dailyMission && todaysBirthdays.length === 0 && (
-        <section className="home-page__daily">
-          <h2>✨ Tagesmission</h2>
-          <MissionCard mission={dailyMission} />
-        </section>
-      )}
-
       <div className="home-page__categories">
         {CATEGORY_SECTIONS.map(({ category, title }) => (
           <MissionSection
             key={category}
             title={title}
-            missions={categorySuggestions.get(category) ?? []}
+            missions={(categorySuggestions.get(category) ?? []).filter(
+              (mission) => !personalSuggestionIds.has(mission.id),
+            )}
             savedMissionIds={savedMissionIds}
             onToggleSave={toggleSaved}
             onHide={hide}
           />
         ))}
       </div>
+
+      <ResearchAchievements entries={diaryEntries} />
 
       <nav className="home-page__nav">
         {canEditMissionCatalog(activeProfileId) && (

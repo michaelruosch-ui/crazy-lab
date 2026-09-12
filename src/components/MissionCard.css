@@ -72,3 +72,40 @@
   flex: 1;
   width: auto;
 }
+
+.mission-card--featured {
+  border-color: rgba(181, 255, 46, 0.48);
+  background:
+    radial-gradient(circle at 84% 0%, rgba(180, 77, 255, 0.3), transparent 42%),
+    linear-gradient(145deg, rgba(20, 61, 67, 0.98), rgba(14, 28, 43, 0.98));
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
+}
+
+.mission-card--featured .mission-card__link {
+  align-items: stretch;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.mission-card--featured .mission-card__image {
+  width: 100%;
+}
+
+.mission-card--featured .mission-image {
+  aspect-ratio: 16 / 10;
+}
+
+.mission-card--featured .mission-card__title {
+  font-size: clamp(1.3rem, 5vw, 1.8rem);
+}
+
+@media (min-width: 620px) {
+  .mission-card--featured .mission-card__link {
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .mission-card--featured .mission-card__image {
+    width: min(45%, 330px);
+  }
+}

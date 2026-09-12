@@ -954,3 +954,16 @@ verwenden unverändert Face ID/Touch ID/Gerätecode, hochauflösende Icons und d
 **Konsequenzen:** Das alte Familien-iPad wird nicht durch eine modernere Mindestversion
 ausgeschlossen. Die spätere Familienabnahme muss trotzdem auf dem echten iPad erfolgen, weil ein
 Simulator weder dessen Speicherzustand noch Leistung vollständig nachbildet.
+
+## ADR-053: Wow-Einstieg ohne Zwang und gestufte Missionsauswahl
+
+**Status:** Angenommen und umgesetzt (Sprint 32, 2026-09-12)
+
+**Entscheidung:** Crazy Lab zeigt einmal pro App-Sitzung ein kurzes, sofort überspringbares
+Laborportal. Danach folgt zuerst eine grosse, einzigartige Tagesmission, dann drei Vorschläge aus
+unterschiedlichen Kategorien und erst danach Suche, Filter und aufklappbare Kategorien. Reduzierte
+Animationen deaktivieren sämtliche Portalbewegungen.
+
+**Begründung:** Ein zehnjähriges Kind soll beim Öffnen sofort Neugier und eine klare nächste Aktion
+erleben, ohne durch mehr als zwanzig gleichgewichtete Karten scrollen zu müssen. Das Portal darf
+dabei weder den Zugriff verzögern noch bei jedem internen Seitenwechsel erneut erscheinen.

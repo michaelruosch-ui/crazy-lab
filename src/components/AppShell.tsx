@@ -1,4 +1,5 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { useEffect } from 'react'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { canEditMissionCatalog, type AppLanguage } from '../domain'
 import { LANGUAGE_OPTIONS, useLanguage, type TranslationKey } from '../i18n'
 import { useActiveProfileId } from '../features/profile'
@@ -18,6 +19,11 @@ const NAVIGATION = [
 export function AppShell() {
   const { language, t, setLanguage } = useLanguage()
   const { activeProfileId } = useActiveProfileId()
+  const location = useLocation()
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [location.pathname])
 
   return (
     <div className="app-shell">

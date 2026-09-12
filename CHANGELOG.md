@@ -1,5 +1,19 @@
 # Changelog
 
+## Sprint 32 - Wow-Start und Entdeckung (2026-09-12)
+
+- Ein animiertes Laborportal begrüsst Kinder beim ersten Öffnen einer App-Sitzung und kann sofort
+  geöffnet beziehungsweise übersprungen werden.
+- Die Startseite führt nun klar von der grossen Tagesmission über drei verschiedenartige
+  persönliche Vorschläge zur freien Erkundung.
+- Kategorien sind kompakte, aufklappbare Laborbereiche mit horizontalen Missionsreihen. Dadurch
+  entfällt die frühere sehr lange Startseite.
+- Filter und der Zuhause-Schalter stehen erst im Erkundungsbereich; Kosten und Materialien sind
+  kindgerechter beschriftet.
+- Seitenwechsel springen zuverlässig nach oben; Portalbewegungen respektieren die Einstellung für
+  reduzierte Animationen.
+- Typecheck, Lint, 167 automatisierte Tests, Produktions-Build und mobile Sichtprüfung erfolgreich.
+
 ## Sprint 30 - Native App und Einmalfreischaltung (2026-09-11)
 
 - Ein eigenes Xcode-Projekt verpackt Crazy Lab als iPhone-/iPad-App mit lokal gebündelten

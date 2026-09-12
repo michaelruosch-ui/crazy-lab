@@ -5,7 +5,7 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich nach dem Abschluss von **Sprint 30** am 2026-09-11; Sprint 19
+Dieses Repository befindet sich nach dem Abschluss von **Sprint 32** am 2026-09-12; Sprint 19
 wurde auf Familienentscheid bewusst übersprungen. Der aktuelle Stand: Beim
 ersten Start wählt man eines von 33 Maskottchen (8 Tierarten in verschiedenen Farbwelten) und
 einen Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf
@@ -192,13 +192,14 @@ Siehe [ARCHITECTURE.md](./ARCHITECTURE.md) für Schichten, Datenfluss und Erweit
 Siehe [BACKLOG.md](./BACKLOG.md) für den aktuellen Sprint und offene Sprints, sowie
 [CHANGELOG.md](./CHANGELOG.md) für die Änderungshistorie.
 
-# Aktueller Stand (2026-09-11)
+# Aktueller Stand (2026-09-12)
 
-Die Sprints 25 bis 29 sind programmiert: Elternschutz und Kinder-Datenschutz, einfachere Missionsführung, Zuhause-Filter und kompakter
+Die Sprints 25 bis 30 sowie Sprint 32 sind programmiert: Elternschutz und Kinder-Datenschutz, einfachere Missionsführung, Zuhause-Filter und kompakter
 Laborschrank, Forscherwissen und freiwillige Abzeichen, 100 einzigartige Missionsmotive, ein neuer
-realistischer Nachtbär sowie bessere Barrierefreiheit und freundliche Fehlerhilfe. Als Nächstes
-folgt Sprint 30 mit der nativen App-Store-Verpackung und der einmaligen Freischaltung. Der
-Familientest auf den echten Geräten bleibt für Sprint 31 und 36 reserviert.
+realistischer Nachtbär, bessere Barrierefreiheit, die native App-Store-Hülle mit Einmalfreischaltung
+und der neue Wow-Start. Das Laborportal führt zur grossen Tagesmission, drei abwechslungsreichen
+Empfehlungen und kompakten Kategorie-Laboren. Der Familientest auf den echten Geräten bleibt für
+Sprint 31 und 36 reserviert.
 
 Nach dem Familientest wurden alle 33 Profil-Maskottchen auf denselben hochwertigen, detailreichen
 Bildstil wie der Nachtbär umgestellt. Jede der acht Tierarten besitzt jetzt eine echte zweiphasige

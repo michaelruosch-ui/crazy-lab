@@ -472,6 +472,19 @@ positiv beantwortet.
         eigene verrückte Ideen erfinden wollen.“
   - [ ] Erst nach erfolgreicher Familienfreigabe zur öffentlichen App-Store-Prüfung einreichen
 
+- **Sprint 32 - Wow-Start und kindgerechte Entdeckung:** **Umgesetzt am 2026-09-12.**
+  - [x] Beim ersten Öffnen jeder App-Sitzung ein geheimnisvolles Laborportal mit direktem
+        Überspringen zeigen
+  - [x] Tagesmission als grosse wichtigste Karte vor allen Suchwerkzeugen platzieren
+  - [x] Drei abwechslungsreiche persönliche Empfehlungen aus verschiedenen Kategorien zeigen
+  - [x] Die fünf Kategorien als kurze aufklappbare Laborbereiche statt als endlose Kartenliste
+        darstellen
+  - [x] Filter und „alles zu Hause“-Schalter in einen nachgeordneten Erkundungsbereich verschieben
+  - [x] Materialkosten verständlich als ungefähre Kosten und Bastelbedarf als Materialien statt
+        Zutaten bezeichnen
+  - [x] Beim Seitenwechsel immer oben beginnen und alle Wow-Bewegungen bei reduzierten Animationen
+        abschalten
+
 ## Unpriorisierte Ideen
 
 - [x] **Gemeinsamer geprüfter Missionskatalog (Familienentscheidung 2026-09-07):** Nur Elena darf

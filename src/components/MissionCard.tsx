@@ -17,14 +17,15 @@ const DIFFICULTY_KEYS: Record<Mission['difficulty'], TranslationKey> = {
 interface MissionCardProps {
   mission: Mission
   actions?: ReactNode
+  featured?: boolean
 }
 
-export function MissionCard({ mission, actions }: MissionCardProps) {
+export function MissionCard({ mission, actions, featured = false }: MissionCardProps) {
   const { t } = useLanguage()
   const entitlement = useEntitlement()
   const locked = entitlement.native && !entitlement.status.unlocked && !isMissionFree(mission)
   return (
-    <div className="mission-card">
+    <div className={`mission-card ${featured ? 'mission-card--featured' : ''}`}>
       <Link to={`/mission/${mission.id}`} className="mission-card__link">
         <div className="mission-card__image">
           <MissionImage placeholder={mission.imagePlaceholder} title={mission.title} />
@@ -44,10 +45,14 @@ export function MissionCard({ mission, actions }: MissionCardProps) {
               ⏱ {mission.durationMinutes} {t('minuteShort')}
             </Badge>
             <Badge tone="violet">{t(DIFFICULTY_KEYS[mission.difficulty])}</Badge>
-            <Badge tone="pink">CHF {mission.estimatedCostChf.toFixed(2)}</Badge>
+            <Badge tone="pink">
+              {t('approximateMaterialCost')} CHF {mission.estimatedCostChf.toFixed(2)}
+            </Badge>
             <Badge tone="acid">
               {mission.materials.length}{' '}
-              {mission.materials.length === 1 ? t('ingredient') : t('ingredients')}
+              {mission.materials.length === 1
+                ? t(mission.primaryCategory === 'getraenk' ? 'ingredient' : 'material')
+                : t(mission.primaryCategory === 'getraenk' ? 'ingredients' : 'materials')}
             </Badge>
           </div>
         </div>
