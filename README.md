@@ -223,3 +223,8 @@ einfachen Rechenaufgabe. Drei falsche Eingaben lösen eine auch nach Schliessen 
 Pause von zehn Minuten aus. Die Titelbild-Werkstatt zeigt zwölf komplett neue, deutlich
 unterscheidbare Premium-Szenen mit grossen Hauptmotiven; keine davon wird bereits für eine
 Katalogmission verwendet.
+
+In der vollständigen Abzeichen-Vitrine stehen alle bereits geschafften Abzeichen immer vor den
+noch offenen Abzeichen. Der Zurück-Knopf schwebt auf dem Handy oberhalb der unteren Navigation und
+bleibt beim Scrollen sichtbar, damit die Navigation auch in der langen Sammlung jederzeit
+erreichbar ist.

@@ -536,6 +536,9 @@ positiv beantwortet.
         gespeicherte Titelbilder kompatibel halten
   - [x] Deutsche, englische, französische, spanische und italienische Texte der neuen Oberfläche
         vollständig anbieten
+  - [x] In der Abzeichen-Vitrine alle geschafften Abzeichen vor den offenen Abzeichen anzeigen
+  - [x] Den Zurück-Knopf der langen Abzeichen-Vitrine auf dem Handy oberhalb der unteren Navigation
+        schweben lassen und beim Scrollen erreichbar halten
 
 ## Unpriorisierte Ideen
 

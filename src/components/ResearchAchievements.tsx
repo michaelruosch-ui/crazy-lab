@@ -44,7 +44,7 @@ export function ResearchAchievements({
         ...unlocked.slice(-2),
         ...locked.sort((a, b) => b.progress / b.target - a.progress / a.target).slice(0, 2),
       ]
-    : badges
+    : [...unlocked, ...locked]
 
   return (
     <section

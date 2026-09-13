@@ -9,6 +9,9 @@ export function BadgeCabinetPage() {
 
   return (
     <div className="badge-cabinet-page">
+      <div className="badge-cabinet-page__back">
+        <BackLink to="/">← Zurück ins Labor</BackLink>
+      </div>
       <header>
         <p>Deine magische Sammlung</p>
         <h1>🏆 Abzeichen-Vitrine</h1>
@@ -18,7 +21,6 @@ export function BadgeCabinetPage() {
         </span>
       </header>
       <ResearchAchievements entries={entries} />
-      <BackLink to="/">← Zurück ins Labor</BackLink>
     </div>
   )
 }

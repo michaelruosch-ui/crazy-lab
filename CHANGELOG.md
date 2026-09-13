@@ -13,7 +13,11 @@
   Unterwasserlabor und weitere Stimmungen geben eigenen Missionen ein vollwertiges Titelbild.
 - Bereits gespeicherte `custom-v1`-Titelbilder bleiben darstellbar und werden beim nächsten
   Bearbeiten einer passenden neuen Szene zugeordnet.
-- 177 automatische Tests, Web- und nativer Produktions-Build sowie iOS-Projekt-Build erfolgreich.
+- Die vollständige Abzeichen-Vitrine sortiert erreichte Abzeichen immer vor allen offenen
+  Abzeichen.
+- Der Zurück-Knopf der Vitrine schwebt auf dem Handy oberhalb der unteren Navigation und bleibt
+  beim Scrollen sichtbar, statt unerreichbar unter den 40 Abzeichen zu liegen.
+- 178 automatische Tests, Web- und nativer Produktions-Build sowie iOS-Projekt-Build erfolgreich.
 
 ## Sprint 35 - Premium-Missionsbilder und freie Figurenwahl (2026-09-12)
 

@@ -1059,3 +1059,17 @@ werden im Editor einer passenden neuen Szene zugeordnet.
 Vollständige Szenen liefern konsistentere Ergebnisse als drei kleine, nur lose kombinierte
 Symbole. Der einzelne komprimierte Atlas bleibt auch auf alten Geräten schnell, funktioniert ohne
 Cloud oder Bilddienst und verhindert zusätzliche Netzwerk- oder Datenschutzabhängigkeiten.
+
+## ADR-060: Die lange Abzeichen-Vitrine priorisiert Erfolge und hält den Rückweg sichtbar
+
+**Status:** Angenommen und umgesetzt (Familienkorrektur, 2026-09-13)
+
+**Entscheidung:** In der vollständigen Vitrine werden sämtliche freigeschalteten Abzeichen vor
+allen noch offenen Abzeichen dargestellt. Die Zurück-Navigation liegt im Dokument vor der
+Sammlung und schwebt auf Handys beim Scrollen oberhalb der unteren Navigation. Auf grösseren
+Geräten bleibt sie normal im Seitenfluss, weil dort die seitliche Navigation verfügbar ist.
+
+**Begründung:** Bereits erreichte Erfolge sind die wichtigsten Inhalte der persönlichen Sammlung
+und dürfen nicht zwischen gesperrten Zielen verschwinden. Eine Navigation hinter 40 Karten ist auf
+kleinen Bildschirmen praktisch unerreichbar; eine sichtbare, einhändig erreichbare Rückkehr
+verhindert eine Sackgasse, ohne Karten oder Inhalte zu verdecken.

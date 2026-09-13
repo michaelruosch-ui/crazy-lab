@@ -571,7 +571,11 @@ den Tagebucheinträgen. Es gibt weiterhin keinen separaten Abzeichen-Datenspeich
 keinen inkonsistenten Zähler. Neue Tagebuch-Schnappschüsse enthalten optional Dauer und Schwierigkeit
 der Mission; die optionalen Felder erhalten die Lesbarkeit älterer Backups.
 
-`ResearchAchievements` hat eine kompakte Startseiten- und eine vollständige Vitrinenansicht.
+`ResearchAchievements` hat eine kompakte Startseiten- und eine vollständige Vitrinenansicht. Die
+Vitrine bildet immer zuerst die gefilterte Liste der freigeschalteten und danach die Liste der
+offenen Ziele ab. `BadgeCabinetPage` setzt die Zurück-Navigation vor die Sammlung; auf kleinen
+Bildschirmen bleibt sie mit `position: fixed` oberhalb der unteren Navigation erreichbar. Ein
+zusätzlicher unterer Innenabstand verhindert, dass der Knopf die letzten Karten verdeckt.
 `AchievementCelebration` merkt sich nur die IDs bereits angezeigter Erfolge im lokalen
 Profilschlüssel und feiert beim nächsten Startseitenbesuch höchstens ein neues Abzeichen. Alle
 eigentlichen Freischaltungen bleiben jederzeit aus dem Tagebuch rekonstruierbar.

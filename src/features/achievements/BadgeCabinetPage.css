@@ -5,8 +5,33 @@
 }
 
 .badge-cabinet-page > header,
-.badge-cabinet-page > a {
+.badge-cabinet-page__back {
   margin: 0 16px;
+}
+
+.badge-cabinet-page__back .back-link-area {
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 699px) {
+  .badge-cabinet-page {
+    padding-bottom: calc(112px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .badge-cabinet-page__back {
+    position: fixed;
+    z-index: 20;
+    bottom: calc(78px + env(safe-area-inset-bottom, 0px));
+    left: 0;
+    width: max-content;
+  }
+
+  .badge-cabinet-page__back .back-link {
+    border-color: rgba(35, 230, 200, 0.58);
+    box-shadow: 0 10px 28px rgba(3, 14, 20, 0.72);
+    backdrop-filter: blur(12px);
+  }
 }
 
 .badge-cabinet-page > header {
@@ -41,7 +66,7 @@
   }
 
   .badge-cabinet-page > header,
-  .badge-cabinet-page > a {
+  .badge-cabinet-page__back {
     margin: 0;
   }
 }
