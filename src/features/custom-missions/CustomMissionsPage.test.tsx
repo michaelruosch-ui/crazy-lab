@@ -20,6 +20,7 @@ describe('Elenas Missionsfreigabe', () => {
       value: {
         getItem: (key: string) => data.get(key) ?? null,
         setItem: (key: string, value: string) => data.set(key, value),
+        removeItem: (key: string) => data.delete(key),
         clear: () => data.clear(),
       },
     })
@@ -49,9 +50,9 @@ describe('Elenas Missionsfreigabe', () => {
     expect(screen.queryByText(/Testlink/i)).not.toBeInTheDocument()
     await user.click(screen.getByRole('button', { name: '🌍 Für alle freigeben' }))
 
-    expect(screen.getByRole('dialog', { name: 'Eine erwachsene Person ist gefragt' })).toBeVisible()
-    await user.type(screen.getByLabelText('Antwort der Erwachsenen'), '42')
-    await user.click(screen.getByRole('button', { name: 'Antwort prüfen' }))
+    expect(screen.getByRole('dialog', { name: 'Product-Owner-Code' })).toBeVisible()
+    await user.type(screen.getByLabelText('Vierstelliger Code'), '4002')
+    await user.click(screen.getByRole('button', { name: 'Code prüfen und freigeben' }))
 
     expect(await screen.findByText('✅ Für das nächste App-Update freigegeben')).toBeInTheDocument()
     expect((await indexedDbCustomMissionRepository.get(custom.id))?.publicationStatus).toBe(

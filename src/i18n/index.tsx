@@ -89,6 +89,18 @@ const translations = {
     purchaseGateReason:
       'Alle Missionen sollen einmalig über den Apple App Store freigeschaltet werden.',
     restoreGateReason: 'Ein früherer Kauf soll mit dem Apple-Konto wiederhergestellt werden.',
+    publicationCodeTitle: 'Product-Owner-Code',
+    publicationCodeReason:
+      'Nur wer den geheimen Code kennt, darf „{title}“ für alle zur Prüfung freigeben.',
+    publicationCodeLabel: 'Vierstelliger Code',
+    publicationCodeUnlock: 'Code prüfen und freigeben',
+    publicationCodeLocked: '⏳ Code-Eingabe gesperrt',
+    publicationCodeRetryTime: 'Versuche es in {time} wieder.',
+    publicationCodeWrong: 'Der Code stimmt nicht. Noch mögliche Versuche: {count}.',
+    publicationCodeLockedMessage:
+      'Dreimal falsch. Die Code-Eingabe ist jetzt zehn Minuten gesperrt.',
+    publicationCodeReady: 'Du kannst den Code jetzt wieder eingeben.',
+    publicationCodeCancel: 'Abbrechen',
   },
   en: {
     language: 'Language',
@@ -162,6 +174,17 @@ const translations = {
       'Use an animal figure, doll, building-block figure, toy figure, cuddly toy, or make your own paper figure. You never need a particular brand—and if it suits your idea better, build the scene without a figure.',
     purchaseGateReason: 'All missions are about to be unlocked with one Apple App Store purchase.',
     restoreGateReason: 'An earlier purchase is about to be restored with the Apple Account.',
+    publicationCodeTitle: 'Product Owner code',
+    publicationCodeReason:
+      'Only someone who knows the secret code may approve “{title}” for everyone to review.',
+    publicationCodeLabel: 'Four-digit code',
+    publicationCodeUnlock: 'Check code and approve',
+    publicationCodeLocked: '⏳ Code entry locked',
+    publicationCodeRetryTime: 'Try again in {time}.',
+    publicationCodeWrong: 'That code is not correct. Attempts remaining: {count}.',
+    publicationCodeLockedMessage: 'Three wrong entries. Code entry is locked for ten minutes.',
+    publicationCodeReady: 'You can enter the code again now.',
+    publicationCodeCancel: 'Cancel',
   },
   fr: {
     language: 'Langue',
@@ -240,6 +263,18 @@ const translations = {
     purchaseGateReason:
       'Toutes les missions vont être débloquées par un achat unique sur l’App Store.',
     restoreGateReason: 'Un achat précédent va être restauré avec le compte Apple.',
+    publicationCodeTitle: 'Code Product Owner',
+    publicationCodeReason:
+      'Seule une personne connaissant le code secret peut approuver « {title} » pour tout le monde.',
+    publicationCodeLabel: 'Code à quatre chiffres',
+    publicationCodeUnlock: 'Vérifier le code et approuver',
+    publicationCodeLocked: '⏳ Saisie du code bloquée',
+    publicationCodeRetryTime: 'Réessaie dans {time}.',
+    publicationCodeWrong: 'Ce code est incorrect. Essais restants : {count}.',
+    publicationCodeLockedMessage:
+      'Trois erreurs. La saisie du code est bloquée pendant dix minutes.',
+    publicationCodeReady: 'Tu peux maintenant saisir à nouveau le code.',
+    publicationCodeCancel: 'Annuler',
   },
   es: {
     language: 'Idioma',
@@ -318,6 +353,18 @@ const translations = {
     purchaseGateReason:
       'Todas las misiones se van a desbloquear con una sola compra en el App Store.',
     restoreGateReason: 'Se va a restaurar una compra anterior con la cuenta de Apple.',
+    publicationCodeTitle: 'Código de Product Owner',
+    publicationCodeReason:
+      'Solo quien conozca el código secreto puede aprobar «{title}» para que todo el mundo la revise.',
+    publicationCodeLabel: 'Código de cuatro cifras',
+    publicationCodeUnlock: 'Comprobar código y aprobar',
+    publicationCodeLocked: '⏳ Entrada de código bloqueada',
+    publicationCodeRetryTime: 'Vuelve a intentarlo en {time}.',
+    publicationCodeWrong: 'El código no es correcto. Intentos restantes: {count}.',
+    publicationCodeLockedMessage:
+      'Tres intentos incorrectos. La entrada de código queda bloqueada diez minutos.',
+    publicationCodeReady: 'Ya puedes volver a introducir el código.',
+    publicationCodeCancel: 'Cancelar',
   },
   it: {
     language: 'Lingua',
@@ -394,6 +441,18 @@ const translations = {
       'Usa un animale giocattolo, una bambola, un personaggio di mattoncini, una statuina, un peluche oppure crea un personaggio di carta. Non serve mai una marca particolare e puoi anche costruire la scena senza personaggi.',
     purchaseGateReason: 'Tutte le missioni saranno sbloccate con un solo acquisto sull’App Store.',
     restoreGateReason: 'Un acquisto precedente sarà ripristinato con l’Apple Account.',
+    publicationCodeTitle: 'Codice Product Owner',
+    publicationCodeReason:
+      'Solo chi conosce il codice segreto può approvare “{title}” per la revisione di tutti.',
+    publicationCodeLabel: 'Codice di quattro cifre',
+    publicationCodeUnlock: 'Verifica il codice e approva',
+    publicationCodeLocked: '⏳ Inserimento codice bloccato',
+    publicationCodeRetryTime: 'Riprova tra {time}.',
+    publicationCodeWrong: 'Il codice non è corretto. Tentativi rimasti: {count}.',
+    publicationCodeLockedMessage:
+      'Tre tentativi errati. L’inserimento del codice è bloccato per dieci minuti.',
+    publicationCodeReady: 'Ora puoi inserire nuovamente il codice.',
+    publicationCodeCancel: 'Annulla',
   },
 } as const
 
@@ -497,6 +556,9 @@ const SPRINT_TRANSLATIONS: Record<Exclude<AppLanguage, 'de'>, Record<string, str
     'Privater Testlink kopiert. Die Mission wurde noch nicht veröffentlicht.':
       'Private test link copied. The mission has not been published yet.',
     '🎨 Titelbild zusammenstellen': '🎨 Design the cover image',
+    '🎨 Titelbild auswählen': '🎨 Choose a cover image',
+    'Wähle eine ganz neue Crazy-Lab-Szene. Jedes Bild hat eine eigene Stimmung.':
+      'Choose a completely new Crazy Lab scene. Each picture has its own mood.',
     'Wähle einen Hintergrund, ein Symbol und die Stimmung deiner Mission.':
       'Choose a background, a symbol and the mood of your mission.',
     Hintergrund: 'Background',
@@ -524,6 +586,18 @@ const SPRINT_TRANSLATIONS: Record<Exclude<AppLanguage, 'de'>, Record<string, str
     Magisch: 'Magical',
     Geheimnisvoll: 'Mysterious',
     Niedlich: 'Cute',
+    'Drei Monde': 'Three moons',
+    'Alien-Labor': 'Alien lab',
+    'Kristall-Drachenei': 'Crystal dragon egg',
+    'Pilzgarten im Glas': 'Mushroom garden in glass',
+    Hexenkessel: 'Witch cauldron',
+    Schleimgarten: 'Slime garden',
+    'Roboter-Erfinder': 'Robot inventor',
+    'Süssigkeiten-Sturm': 'Candy storm',
+    Geisterbibliothek: 'Ghost library',
+    'Unterwasser-Labor': 'Underwater lab',
+    'Kristall-Vulkan': 'Crystal volcano',
+    'Planeten-Teetasse': 'Planet teacup',
     '🌍 Für alle freigeben': '🌍 Approve for everyone',
     '✅ Für das nächste App-Update freigegeben': '✅ Approved for the next app update',
     '🌍 Nur du kannst Missionen für alle freigeben. Vor dem nächsten App-Update werden Inhalt und Sicherheit noch einmal geprüft.':
@@ -599,6 +673,9 @@ const SPRINT_TRANSLATIONS: Record<Exclude<AppLanguage, 'de'>, Record<string, str
     'Privater Testlink kopiert. Die Mission wurde noch nicht veröffentlicht.':
       'Lien de test privé copié. La mission n’est pas encore publiée.',
     '🎨 Titelbild zusammenstellen': '🎨 Créer l’image de couverture',
+    '🎨 Titelbild auswählen': '🎨 Choisir une image de couverture',
+    'Wähle eine ganz neue Crazy-Lab-Szene. Jedes Bild hat eine eigene Stimmung.':
+      'Choisis une toute nouvelle scène Crazy Lab. Chaque image possède sa propre ambiance.',
     'Wähle einen Hintergrund, ein Symbol und die Stimmung deiner Mission.':
       'Choisis un arrière-plan, un symbole et l’ambiance de ta mission.',
     Hintergrund: 'Arrière-plan',
@@ -626,6 +703,18 @@ const SPRINT_TRANSLATIONS: Record<Exclude<AppLanguage, 'de'>, Record<string, str
     Magisch: 'Magique',
     Geheimnisvoll: 'Mystérieuse',
     Niedlich: 'Mignonne',
+    'Drei Monde': 'Trois lunes',
+    'Alien-Labor': 'Laboratoire extraterrestre',
+    'Kristall-Drachenei': 'Œuf de dragon en cristal',
+    'Pilzgarten im Glas': 'Jardin de champignons sous verre',
+    Hexenkessel: 'Chaudron de sorcière',
+    Schleimgarten: 'Jardin de slime',
+    'Roboter-Erfinder': 'Robot inventeur',
+    'Süssigkeiten-Sturm': 'Tempête de bonbons',
+    Geisterbibliothek: 'Bibliothèque fantôme',
+    'Unterwasser-Labor': 'Laboratoire sous-marin',
+    'Kristall-Vulkan': 'Volcan de cristal',
+    'Planeten-Teetasse': 'Tasse à thé planétaire',
     '🌍 Für alle freigeben': '🌍 Approuver pour tout le monde',
     '✅ Für das nächste App-Update freigegeben': '✅ Approuvée pour la prochaine mise à jour',
     '🌍 Nur du kannst Missionen für alle freigeben. Vor dem nächsten App-Update werden Inhalt und Sicherheit noch einmal geprüft.':
@@ -700,6 +789,9 @@ const SPRINT_TRANSLATIONS: Record<Exclude<AppLanguage, 'de'>, Record<string, str
     'Privater Testlink kopiert. Die Mission wurde noch nicht veröffentlicht.':
       'Enlace de prueba privado copiado. La misión todavía no se ha publicado.',
     '🎨 Titelbild zusammenstellen': '🎨 Diseñar la portada',
+    '🎨 Titelbild auswählen': '🎨 Elegir una portada',
+    'Wähle eine ganz neue Crazy-Lab-Szene. Jedes Bild hat eine eigene Stimmung.':
+      'Elige una escena de Crazy Lab completamente nueva. Cada imagen tiene su propio ambiente.',
     'Wähle einen Hintergrund, ein Symbol und die Stimmung deiner Mission.':
       'Elige un fondo, un símbolo y el ambiente de tu misión.',
     Hintergrund: 'Fondo',
@@ -727,6 +819,18 @@ const SPRINT_TRANSLATIONS: Record<Exclude<AppLanguage, 'de'>, Record<string, str
     Magisch: 'Mágica',
     Geheimnisvoll: 'Misteriosa',
     Niedlich: 'Bonita',
+    'Drei Monde': 'Tres lunas',
+    'Alien-Labor': 'Laboratorio alienígena',
+    'Kristall-Drachenei': 'Huevo de dragón de cristal',
+    'Pilzgarten im Glas': 'Jardín de setas en cristal',
+    Hexenkessel: 'Caldero de bruja',
+    Schleimgarten: 'Jardín de slime',
+    'Roboter-Erfinder': 'Robot inventor',
+    'Süssigkeiten-Sturm': 'Tormenta de dulces',
+    Geisterbibliothek: 'Biblioteca fantasma',
+    'Unterwasser-Labor': 'Laboratorio submarino',
+    'Kristall-Vulkan': 'Volcán de cristal',
+    'Planeten-Teetasse': 'Taza planetaria',
     '🌍 Für alle freigeben': '🌍 Aprobar para todos',
     '✅ Für das nächste App-Update freigegeben': '✅ Aprobada para la próxima actualización',
     '🌍 Nur du kannst Missionen für alle freigeben. Vor dem nächsten App-Update werden Inhalt und Sicherheit noch einmal geprüft.':
@@ -801,6 +905,9 @@ const SPRINT_TRANSLATIONS: Record<Exclude<AppLanguage, 'de'>, Record<string, str
     'Privater Testlink kopiert. Die Mission wurde noch nicht veröffentlicht.':
       'Link di prova privato copiato. La missione non è ancora pubblicata.',
     '🎨 Titelbild zusammenstellen': '🎨 Crea l’immagine di copertina',
+    '🎨 Titelbild auswählen': '🎨 Scegli un’immagine di copertina',
+    'Wähle eine ganz neue Crazy-Lab-Szene. Jedes Bild hat eine eigene Stimmung.':
+      'Scegli una scena Crazy Lab completamente nuova. Ogni immagine ha una propria atmosfera.',
     'Wähle einen Hintergrund, ein Symbol und die Stimmung deiner Mission.':
       'Scegli uno sfondo, un simbolo e l’atmosfera della tua missione.',
     Hintergrund: 'Sfondo',
@@ -828,6 +935,18 @@ const SPRINT_TRANSLATIONS: Record<Exclude<AppLanguage, 'de'>, Record<string, str
     Magisch: 'Magica',
     Geheimnisvoll: 'Misteriosa',
     Niedlich: 'Carina',
+    'Drei Monde': 'Tre lune',
+    'Alien-Labor': 'Laboratorio alieno',
+    'Kristall-Drachenei': 'Uovo di drago di cristallo',
+    'Pilzgarten im Glas': 'Giardino di funghi nel vetro',
+    Hexenkessel: 'Calderone della strega',
+    Schleimgarten: 'Giardino di slime',
+    'Roboter-Erfinder': 'Robot inventore',
+    'Süssigkeiten-Sturm': 'Tempesta di dolci',
+    Geisterbibliothek: 'Biblioteca fantasma',
+    'Unterwasser-Labor': 'Laboratorio sottomarino',
+    'Kristall-Vulkan': 'Vulcano di cristallo',
+    'Planeten-Teetasse': 'Tazza planetaria',
     '🌍 Für alle freigeben': '🌍 Approva per tutti',
     '✅ Für das nächste App-Update freigegeben': '✅ Approvata per il prossimo aggiornamento',
     '🌍 Nur du kannst Missionen für alle freigeben. Vor dem nächsten App-Update werden Inhalt und Sicherheit noch einmal geprüft.':

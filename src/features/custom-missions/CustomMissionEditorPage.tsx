@@ -12,9 +12,7 @@ import {
 import {
   BackLink,
   Button,
-  CUSTOM_IMAGE_BACKGROUNDS,
-  CUSTOM_IMAGE_MOODS,
-  CUSTOM_IMAGE_SYMBOLS,
+  CUSTOM_IMAGE_SCENES,
   decodeCustomMissionImage,
   encodeCustomMissionImage,
   MissionImage,
@@ -266,68 +264,40 @@ export function CustomMissionEditorPage() {
       </label>
 
       <fieldset className="custom-mission-editor__image-builder">
-        <legend>🎨 Titelbild zusammenstellen</legend>
-        <p>Wähle einen Hintergrund, ein Symbol und die Stimmung deiner Mission.</p>
+        <legend>🎨 Titelbild auswählen</legend>
+        <p>Wähle eine ganz neue Crazy-Lab-Szene. Jedes Bild hat eine eigene Stimmung.</p>
         <div className="custom-mission-editor__image-preview">
           <MissionImage
             placeholder={encodeCustomMissionImage(draft.image)}
             title={draft.title || 'Meine neue Mission'}
           />
         </div>
-        <label>
-          Hintergrund
-          <select
-            value={draft.image.background}
-            onChange={(event) =>
-              update('image', {
-                ...draft.image,
-                background: event.target.value as CustomMissionImageSelection['background'],
-              })
-            }
-          >
-            {CUSTOM_IMAGE_BACKGROUNDS.map((background) => (
-              <option key={background.id} value={background.id}>
-                {background.label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Symbol
-          <select
-            value={draft.image.symbol}
-            onChange={(event) =>
-              update('image', {
-                ...draft.image,
-                symbol: event.target.value as CustomMissionImageSelection['symbol'],
-              })
-            }
-          >
-            {CUSTOM_IMAGE_SYMBOLS.map((symbol) => (
-              <option key={symbol.id} value={symbol.id}>
-                {symbol.symbol} {symbol.label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Stimmung
-          <select
-            value={draft.image.mood}
-            onChange={(event) =>
-              update('image', {
-                ...draft.image,
-                mood: event.target.value as CustomMissionImageSelection['mood'],
-              })
-            }
-          >
-            {CUSTOM_IMAGE_MOODS.map((mood) => (
-              <option key={mood.id} value={mood.id}>
-                {mood.label}
-              </option>
-            ))}
-          </select>
-        </label>
+        <div
+          className="custom-mission-editor__scene-picker"
+          role="radiogroup"
+          aria-label="Titelbild auswählen"
+        >
+          {CUSTOM_IMAGE_SCENES.map((scene) => (
+            <label
+              key={scene.id}
+              className={`custom-mission-editor__scene ${draft.image.scene === scene.id ? 'is-selected' : ''}`}
+            >
+              <input
+                type="radio"
+                name="mission-cover"
+                value={scene.id}
+                checked={draft.image.scene === scene.id}
+                onChange={() => update('image', { scene: scene.id })}
+              />
+              <MissionImage
+                placeholder={encodeCustomMissionImage({ scene: scene.id })}
+                title={scene.label}
+              />
+              <strong>{scene.label}</strong>
+              <span>{scene.mood}</span>
+            </label>
+          ))}
+        </div>
       </fieldset>
 
       <fieldset>

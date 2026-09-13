@@ -3,6 +3,7 @@ import { missions } from '../data'
 import {
   decodeCustomMissionImage,
   encodeCustomMissionImage,
+  getCustomMissionScene,
   getMissionVisualSpec,
   getPremiumMissionArt,
 } from './MissionImage'
@@ -16,18 +17,14 @@ describe('Missionsbilder', () => {
     expect(new Set(fingerprints).size).toBe(missions.length)
   })
 
-  it('bewahrt Elenas gewählten Hintergrund, Symbol und Stimmung', () => {
-    const placeholder = encodeCustomMissionImage({
-      background: 'blood',
-      symbol: 'ghost',
+  it('bewahrt die neue Premium-Szene und zeigt alte Bildkombinationen weiter an', () => {
+    const placeholder = encodeCustomMissionImage({ scene: 'witch-cauldron' })
+    expect(decodeCustomMissionImage(placeholder)).toEqual({ scene: 'witch-cauldron' })
+    expect(getCustomMissionScene(placeholder)).toMatchObject({
+      label: 'Hexenkessel',
       mood: 'gruselig',
     })
-    expect(decodeCustomMissionImage(placeholder)).toEqual({
-      background: 'blood',
-      symbol: 'ghost',
-      mood: 'gruselig',
-    })
-    expect(getMissionVisualSpec(placeholder, 'Der Blutkleim')).toMatchObject({
+    expect(getMissionVisualSpec('custom-v1:blood:ghost:gruselig', 'Alte Mission')).toMatchObject({
       hue: 344,
       symbol: '👻',
       mood: 'gruselig',
@@ -46,5 +43,11 @@ describe('Missionsbilder', () => {
     const positions = titles.map((title) => getPremiumMissionArt(title)?.position)
     expect(positions.every(Boolean)).toBe(true)
     expect(new Set(positions)).toHaveLength(6)
+  })
+
+  it('bietet zwölf voneinander getrennte neue Titelbild-Szenen', async () => {
+    const { CUSTOM_IMAGE_SCENES } = await import('./MissionImage')
+    expect(CUSTOM_IMAGE_SCENES).toHaveLength(12)
+    expect(new Set(CUSTOM_IMAGE_SCENES.map((scene) => scene.position))).toHaveLength(12)
   })
 })

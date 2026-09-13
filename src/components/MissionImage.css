@@ -29,12 +29,8 @@
     0 14px 34px -14px rgba(0, 255, 218, 0.7);
 }
 
-.mission-image--premium::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 65%, rgba(6, 16, 29, 0.24));
-  pointer-events: none;
+.mission-image--custom-premium {
+  background-size: 400% 300%;
 }
 
 .mission-image::before {
@@ -49,8 +45,17 @@
   transform: rotate(var(--mission-tilt));
 }
 
+.mission-image.mission-image--premium::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 65%, rgba(6, 16, 29, 0.24));
+  pointer-events: none;
+  transform: none;
+}
+
 .mission-image__icon {
-  font-size: clamp(3.6rem, 18vw, 6.4rem);
+  font-size: clamp(6rem, 25vw, 9rem);
   transform: rotate(var(--mission-tilt));
   filter: drop-shadow(0 10px 7px rgba(0, 0, 0, 0.45));
   z-index: 2;

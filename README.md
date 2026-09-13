@@ -5,7 +5,8 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich nach dem Abschluss von **Sprint 33** am 2026-09-12; Sprint 19
+Dieses Repository befindet sich nach dem Abschluss von **Sprint 35** und der Familienkorrektur vom
+2026-09-13; Sprint 19
 wurde auf Familienentscheid bewusst übersprungen. Der aktuelle Stand: Beim
 ersten Start wählt man eines von 33 Maskottchen (8 Tierarten in verschiedenen Farbwelten) und
 einen Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf
@@ -44,11 +45,14 @@ und Effekten im Tagebuch. 15 Schwestern-Missionen kombinieren getrennt aufklappb
 Teilaufgaben, optionale Fünf-Minuten-Challenges und einen gemeinsamen Abschluss.
 Über „Eigene Missionen“ kann ausschliesslich Elenas bestehendes Product-Owner-Profil mit Hilfe
 seines Maskottchens neue Missionen erfinden, vorhandene Missionen kopieren und Entwürfe später
-bearbeiten. Ein Titelbild lässt sich dabei kindgerecht aus Hintergrund, Symbol und Stimmung
-zusammenstellen; die Schwierigkeit berechnet Crazy Lab weiterhin aus der Dauer. Eigene Missionen
+bearbeiten. Für das Titelbild stehen zwölf neue, hochwertige Crazy-Lab-Szenen zur Auswahl; alte
+zusammengestellte Titelbilder bleiben lesbar. Die Schwierigkeit berechnet Crazy Lab weiterhin aus
+der Dauer. Eigene Missionen
 werden lokal gespeichert, wie normale Missionen gespielt und automatisch in Sicherungen
 aufgenommen. Der missverständliche private Testlink ist entfernt. Elena kann eine fertige Mission
-mit „Für alle freigeben“ für die redaktionelle Prüfung markieren. Nach Familien- und
+mit „Für alle freigeben“ nach Eingabe des Product-Owner-Codes für die redaktionelle Prüfung
+markieren. Nach drei falschen Eingaben sperrt die App weitere Versuche auf diesem Gerät für zehn
+Minuten. Nach Familien- und
 Sicherheitsprüfung wird sie ohne Cloud und ohne Zusatzkonto in das nächste normale App-Update
 übernommen; andere Profile besitzen weder Werkstatt noch Freigabeknopf.
 Das Labortagebuch bietet Suche, Filter, Bildkarten und eine sichere Bearbeitung samt Löschrückfrage
@@ -192,7 +196,7 @@ Siehe [ARCHITECTURE.md](./ARCHITECTURE.md) für Schichten, Datenfluss und Erweit
 Siehe [BACKLOG.md](./BACKLOG.md) für den aktuellen Sprint und offene Sprints, sowie
 [CHANGELOG.md](./CHANGELOG.md) für die Änderungshistorie.
 
-# Aktueller Stand (2026-09-12)
+# Aktueller Stand (2026-09-13)
 
 Die Sprints 25 bis 30 sowie Sprint 32 bis 35 sind programmiert: Elternschutz und Kinder-Datenschutz, einfachere Missionsführung, Zuhause-Filter und kompakter
 Laborschrank, Forscherwissen und freiwillige Abzeichen, 100 einzigartige Missionsmotive, ein neuer
@@ -213,3 +217,9 @@ Figurenanimation: Beim Auswählen winkt die Pfote beziehungsweise der Flügel, w
 Laborhintergrund stehen bleibt. Der beanstandete rote Strich ist vollständig entfernt;
 „Bewegung reduzieren“ bleibt unterstützt. Die fünf Sprachen umfassen nun auch Profilfelder,
 Tierarten, Geburtstagsmonate, Hinweise sowie dynamische Missionswerkstatt-Texte.
+
+Die Freigabe eigener Missionen verwendet jetzt den vereinbarten Product-Owner-Code statt einer
+einfachen Rechenaufgabe. Drei falsche Eingaben lösen eine auch nach Schliessen der Seite wirksame
+Pause von zehn Minuten aus. Die Titelbild-Werkstatt zeigt zwölf komplett neue, deutlich
+unterscheidbare Premium-Szenen mit grossen Hauptmotiven; keine davon wird bereits für eine
+Katalogmission verwendet.

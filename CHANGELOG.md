@@ -1,5 +1,20 @@
 # Changelog
 
+## Familienkorrektur - Product-Owner-Code und neue Titelbilder (2026-09-13)
+
+- „Für alle freigeben“ verlangt jetzt den vereinbarten vierstelligen Product-Owner-Code anstelle
+  der zu einfachen Erwachsenen-Rechenaufgabe.
+- Nach drei falschen Eingaben werden weitere Versuche auf diesem Gerät zehn Minuten lang gesperrt;
+  die Sperre bleibt auch beim Schliessen und erneuten Öffnen der Seite erhalten.
+- Ausschliesslich Elenas bestehendes Product-Owner-Profil besitzt weiterhin Werkstatt,
+  Bearbeitungs- und Freigabeknopf. Der Code erweitert diese Rechte nicht auf andere Profile.
+- Der frühere Titelbild-Baukasten wurde durch zwölf neue, hochwertige und klar unterscheidbare
+  Crazy-Lab-Szenen ersetzt. Grosse Hauptmotive, mehrere Monde, Sterne, Alien, Geisterbibliothek,
+  Unterwasserlabor und weitere Stimmungen geben eigenen Missionen ein vollwertiges Titelbild.
+- Bereits gespeicherte `custom-v1`-Titelbilder bleiben darstellbar und werden beim nächsten
+  Bearbeiten einer passenden neuen Szene zugeordnet.
+- 177 automatische Tests, Web- und nativer Produktions-Build sowie iOS-Projekt-Build erfolgreich.
+
 ## Sprint 35 - Premium-Missionsbilder und freie Figurenwahl (2026-09-12)
 
 - Die sechs kostenlosen Kernmissionen besitzen jetzt sechs eigene, detailreiche

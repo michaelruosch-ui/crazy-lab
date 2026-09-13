@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { CustomMission } from '../../domain'
 import { canEditMissionCatalog } from '../../domain'
-import { BackLink, Button, MissionCard, ParentGate, SpeechBubble } from '../../components'
+import { BackLink, Button, MissionCard, SpeechBubble } from '../../components'
 import { useActiveProfileId, useProfile } from '../profile'
 import { indexedDbCustomMissionRepository } from '../../storage/customMissionRepository'
 import './CustomMissionsPage.css'
 import { useLanguage } from '../../i18n'
+import { PublicationCodeGate } from './PublicationCodeGate'
 
 export function CustomMissionsPage() {
   const { t } = useLanguage()
@@ -93,14 +94,13 @@ export function CustomMissionsPage() {
           ))}
         </div>
       )}
-      <ParentGate
-        open={missionAwaitingApproval !== null}
-        reason="Diese Mission wird für den gemeinsamen, von Elena geprüften Katalog vorgemerkt."
-        onAuthorized={() =>
-          missionAwaitingApproval ? markReadyForReview(missionAwaitingApproval) : undefined
-        }
-        onClose={() => setMissionAwaitingApproval(null)}
-      />
+      {missionAwaitingApproval && (
+        <PublicationCodeGate
+          missionTitle={missionAwaitingApproval.title}
+          onAuthorized={() => markReadyForReview(missionAwaitingApproval)}
+          onClose={() => setMissionAwaitingApproval(null)}
+        />
+      )}
       <BackLink to="/">← Zurück zur Startseite</BackLink>
     </div>
   )

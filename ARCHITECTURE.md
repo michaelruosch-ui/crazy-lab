@@ -61,6 +61,13 @@ Der Atlas enthält ein einziges komprimiertes Rasterbild mit sechs quadratischen
 Karten nur eine Datei. Die Datei liegt auch im nativen Web-Bündel und verursacht weder Cloudzugriff
 noch Tracking. Alt-Texte entstehen weiterhin aus Missionstitel und Stimmung.
 
+Eigene Missionen verwenden seit der Familienkorrektur einen zweiten lokalen Atlas
+`public/mission-art/custom-covers-v2.jpg`. Er enthält zwölf neue Szenen in einem 4-mal-3-Raster;
+`MissionImage` speichert nur die Auswahl als `custom-v2:<scene>` und wählt den Ausschnitt per CSS.
+Der Editor zeigt die tatsächlichen Bilder als grosse Auswahlkarten statt drei abstrakter
+Dropdowns. Die frühere `custom-v1:<background>:<symbol>:<mood>`-Kodierung bleibt lesbar und wird
+beim Bearbeiten einer passenden v2-Szene zugeordnet.
+
 ## Datenfluss
 
 ### Startseite und Entdecken (Sprint 2)
@@ -311,8 +318,9 @@ andere Missionen. Eine freiwillige Teamnotiz wird im Tagebucheintrag gespeichert
 
 `features/custom-missions` enthält Übersicht und Editor. Der Editor baut aus kindgerechten
 Feldern ein vollständiges `CustomMission`-Objekt; Materialien und Schritte werden zeilenweise
-erfasst. Das Titelbild wird ohne Upload aus Hintergrund, Symbol und Stimmung zusammengesetzt und
-versioniert als `custom-v1:<background>:<symbol>:<mood>` in `imagePlaceholder` gespeichert. Die
+erfasst. Das Titelbild wird ohne Upload aus zwölf geprüften, lokal gebündelten Premium-Szenen
+gewählt und als `custom-v2:<scene>` in `imagePlaceholder` gespeichert. Frühere
+`custom-v1:<background>:<symbol>:<mood>`-Werte werden weiterhin angezeigt. Die
 Schwierigkeit wird aus der eingegebenen Dauer abgeleitet. Eine Kopie übernimmt sichtbare
 Grunddaten der Vorlage, erhält beim Speichern aber eine neue ID. Gelbe und rote Entwürfe benötigen
 vor dem Speichern einen ausreichend konkreten Sicherheitshinweis. `App.tsx` lädt eigene Missionen
@@ -325,8 +333,13 @@ einheitlich.
 `canEditMissionCatalog` begrenzt Werkstatt, Kopieren und Bearbeiten in der Familienversion auf
 Elenas unveränderte Profil-ID. Das ist eine lokale Produktregel, keine öffentliche
 Authentifizierung. `CustomMission.publicationStatus` unterscheidet lokale Entwürfe von
-`ready-for-review`. Der Knopf „Für alle freigeben“ setzt nur diesen lokalen Prüfstatus; er lädt
-keine Kinderinhalte hoch. Nach Familien- und Sicherheitsprüfung wird die Mission redaktionell in
+`ready-for-review`. Vor dieser Statusänderung öffnet `PublicationCodeGate`; die reine Domänenlogik
+in `domain/publicationCode.ts` erlaubt drei Versuche und berechnet danach eine zehnminütige Sperre.
+Fehlversuche und Sperrzeit liegen in `localStorage`, damit ein Schliessen der Seite die Pause nicht
+umgeht. Der Code ist ausdrücklich eine Familien- und Kinderbarriere, keine kryptografisch sichere
+Identitätsprüfung, weil Webcode lokal eingesehen werden kann. Der Knopf „Für alle freigeben“ setzt
+nur diesen lokalen Prüfstatus; er lädt keine Kinderinhalte hoch. Nach Familien- und
+Sicherheitsprüfung wird die Mission redaktionell in
 den versionierten statischen Katalog übernommen und erreicht alle Installationen mit dem nächsten
 normalen App-Update. Der frühere sichtbare private Testlink wurde entfernt. Der Decoder und die
 Import-Route bleiben vorläufig ausschliesslich zur Rückwärtskompatibilität alter Links im Code.

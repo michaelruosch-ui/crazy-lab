@@ -1025,3 +1025,37 @@ Figur verwendet werden können. Dieser Hinweis ist redaktionell in allen fünf S
 besitzen noch ein bestimmtes Figurenformat nachkaufen müssen. Bestehende Missions-IDs und
 Tagebucheinträge bleiben dabei stabil; „Spielfigur“ wird nur noch als eine von mehreren möglichen
 Ideen verstanden.
+
+## ADR-058: Missionsfreigabe verwendet einen lokalen Product-Owner-Code
+
+**Status:** Angenommen und umgesetzt (Familienkorrektur, 2026-09-13)
+
+**Entscheidung:** Werkstatt, Bearbeiten und „Für alle freigeben“ bleiben ausschliesslich Elenas
+bestehender Profil-ID vorbehalten. Vor der Freigabe muss zusätzlich der Familiencode `4002`
+eingegeben werden. Nach drei falschen Eingaben werden weitere Versuche zehn Minuten gesperrt. Der
+Fehlerstand und das Ende der Sperre werden auf dem Gerät gespeichert und überstehen dadurch das
+Schliessen und erneute Öffnen der Seite.
+
+**Begründung:** Die vorherige Erwachsenen-Rechenaufgabe war auch für kleine Kinder leicht lösbar
+und erfüllte die gewünschte Product-Owner-Abgrenzung nicht. Der Code ist eine alltagstaugliche
+Familienbarriere, aber bewusst keine sichere öffentliche Authentifizierung: Er ist Bestandteil des
+ausgelieferten App-Codes und könnte von technisch versierten Personen gefunden werden. Ohne
+Backend, Konto oder Cloud ist eine echte geheime Identitätsprüfung nicht möglich. Eine Freigabe
+bleibt lokal als `ready-for-review` markiert und gelangt erst nach redaktioneller Prüfung mit einem
+normalen App-Update zu anderen Geräten.
+
+## ADR-059: Eigene Missionen wählen aus zwölf exklusiven Premium-Szenen
+
+**Status:** Angenommen und umgesetzt (Familienkorrektur, 2026-09-13)
+
+**Entscheidung:** Der Editor ersetzt die abstrakte Kombination aus Hintergrund, Symbol und
+Stimmung durch zwölf neue, vollständige Crazy-Lab-Illustrationen in einem lokal gebündelten
+4-mal-3-Atlas. Jede Szene besitzt ein grosses Hauptmotiv und eine eigene Licht-, Farb- und
+Stimmungswelt. Keine Szene wird von einer bestehenden Katalogmission wiederverwendet. Neue
+Auswahlen werden als `custom-v2:<scene>` gespeichert; ältere `custom-v1`-Werte bleiben lesbar und
+werden im Editor einer passenden neuen Szene zugeordnet.
+
+**Begründung:** Ein Kind soll das spätere Titelbild direkt sehen und emotional auswählen können.
+Vollständige Szenen liefern konsistentere Ergebnisse als drei kleine, nur lose kombinierte
+Symbole. Der einzelne komprimierte Atlas bleibt auch auf alten Geräten schnell, funktioniert ohne
+Cloud oder Bilddienst und verhindert zusätzliche Netzwerk- oder Datenschutzabhängigkeiten.

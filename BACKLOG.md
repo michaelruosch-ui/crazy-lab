@@ -523,6 +523,20 @@ positiv beantwortet.
   - [x] Keine bestimmte Spielzeugmarke voraussetzen; alle Hinweise in den fünf App-Sprachen
         anbieten
 
+- **Familienkorrektur nach Sprint 35:** **Umgesetzt am 2026-09-13.**
+  - [x] Die zu einfache Erwachsenen-Rechnung bei der Missionsfreigabe durch den vereinbarten
+        vierstelligen Product-Owner-Code ersetzen
+  - [x] Nach drei falschen Eingaben zehn Minuten warten lassen und die Sperre auf dem Gerät auch
+        beim Schliessen der Seite beibehalten
+  - [x] Werkstatt, Bearbeitung und Freigabeknopf weiterhin ausschliesslich Elenas bestehendem
+        Product-Owner-Profil zeigen
+  - [x] Den bisherigen Titelbild-Baukasten durch zwölf komplett neue, hochwertige und deutlich
+        unterscheidbare Crazy-Lab-Szenen mit grossen Hauptmotiven ersetzen
+  - [x] Kein neues Titelbild aus dem bestehenden Missionskatalog wiederverwenden und alte lokal
+        gespeicherte Titelbilder kompatibel halten
+  - [x] Deutsche, englische, französische, spanische und italienische Texte der neuen Oberfläche
+        vollständig anbieten
+
 ## Unpriorisierte Ideen
 
 - [x] **Gemeinsamer geprüfter Missionskatalog (Familienentscheidung 2026-09-07):** Nur Elena darf

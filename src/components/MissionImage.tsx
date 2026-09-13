@@ -45,23 +45,45 @@ export const CUSTOM_IMAGE_MOODS = MOODS.map((id) => ({
   label: id.charAt(0).toUpperCase() + id.slice(1),
 }))
 
+export const CUSTOM_IMAGE_SCENES = [
+  { id: 'three-moons', label: 'Drei Monde', mood: 'geheimnisvoll', position: '0% 0%' },
+  { id: 'alien-lab', label: 'Alien-Labor', mood: 'lustig', position: '33.333% 0%' },
+  { id: 'dragon-egg', label: 'Kristall-Drachenei', mood: 'niedlich', position: '66.667% 0%' },
+  { id: 'mushroom-garden', label: 'Pilzgarten im Glas', mood: 'magisch', position: '100% 0%' },
+  { id: 'witch-cauldron', label: 'Hexenkessel', mood: 'gruselig', position: '0% 50%' },
+  { id: 'slime-garden', label: 'Schleimgarten', mood: 'eklig', position: '33.333% 50%' },
+  { id: 'robot-inventor', label: 'Roboter-Erfinder', mood: 'lustig', position: '66.667% 50%' },
+  { id: 'candy-storm', label: 'Süssigkeiten-Sturm', mood: 'niedlich', position: '100% 50%' },
+  { id: 'ghost-library', label: 'Geisterbibliothek', mood: 'gruselig', position: '0% 100%' },
+  {
+    id: 'underwater-lab',
+    label: 'Unterwasser-Labor',
+    mood: 'geheimnisvoll',
+    position: '33.333% 100%',
+  },
+  { id: 'crystal-volcano', label: 'Kristall-Vulkan', mood: 'gruselig', position: '66.667% 100%' },
+  { id: 'cosmic-teacup', label: 'Planeten-Teetasse', mood: 'magisch', position: '100% 100%' },
+] as const
+
+type CustomMissionSceneId = (typeof CUSTOM_IMAGE_SCENES)[number]['id']
+
 export interface CustomMissionImageSelection {
-  background: (typeof CUSTOM_IMAGE_BACKGROUNDS)[number]['id']
-  symbol: (typeof CUSTOM_IMAGE_SYMBOLS)[number]['id']
-  mood: (typeof MOODS)[number]
+  scene: CustomMissionSceneId
 }
 
 export const DEFAULT_CUSTOM_IMAGE: CustomMissionImageSelection = {
-  background: 'violet',
-  symbol: 'potion',
-  mood: 'magisch',
+  scene: 'three-moons',
 }
 
 export function encodeCustomMissionImage(selection: CustomMissionImageSelection): string {
-  return `custom-v1:${selection.background}:${selection.symbol}:${selection.mood}`
+  return `custom-v2:${selection.scene}`
 }
 
 export function decodeCustomMissionImage(placeholder: string): CustomMissionImageSelection {
+  const [version, scene] = placeholder.split(':')
+  if (version === 'custom-v2' && CUSTOM_IMAGE_SCENES.some((item) => item.id === scene)) {
+    return { scene: scene as CustomMissionSceneId }
+  }
   const [prefix, background, symbol, mood] = placeholder.split(':')
   if (
     prefix === 'custom-v1' &&
@@ -69,9 +91,23 @@ export function decodeCustomMissionImage(placeholder: string): CustomMissionImag
     CUSTOM_IMAGE_SYMBOLS.some((item) => item.id === symbol) &&
     MOODS.some((item) => item === mood)
   ) {
-    return { background, symbol, mood } as CustomMissionImageSelection
+    const legacyMoodScenes: Record<(typeof MOODS)[number], CustomMissionSceneId> = {
+      lustig: 'robot-inventor',
+      gruselig: 'witch-cauldron',
+      eklig: 'slime-garden',
+      magisch: 'cosmic-teacup',
+      geheimnisvoll: 'three-moons',
+      niedlich: 'dragon-egg',
+    }
+    return { scene: legacyMoodScenes[mood as (typeof MOODS)[number]] }
   }
   return DEFAULT_CUSTOM_IMAGE
+}
+
+export function getCustomMissionScene(placeholder: string) {
+  if (!placeholder.startsWith('custom-v2:')) return undefined
+  const selection = decodeCustomMissionImage(placeholder)
+  return CUSTOM_IMAGE_SCENES.find((item) => item.id === selection.scene)
 }
 
 function hashText(value: string) {
@@ -85,17 +121,20 @@ function hashText(value: string) {
 
 export function getMissionVisualSpec(placeholder: string, title: string) {
   if (placeholder.startsWith('custom-v1:')) {
-    const selection = decodeCustomMissionImage(placeholder)
-    const background = CUSTOM_IMAGE_BACKGROUNDS.find((item) => item.id === selection.background)!
-    const symbol = CUSTOM_IMAGE_SYMBOLS.find((item) => item.id === selection.symbol)!
+    const [, backgroundId, symbolId, mood = 'magisch'] = placeholder.split(':')
+    const background =
+      CUSTOM_IMAGE_BACKGROUNDS.find((item) => item.id === backgroundId) ??
+      CUSTOM_IMAGE_BACKGROUNDS[0]
+    const symbol =
+      CUSTOM_IMAGE_SYMBOLS.find((item) => item.id === symbolId) ?? CUSTOM_IMAGE_SYMBOLS[0]
     const hash = hashText(`${placeholder}:${title}`)
     return {
       fingerprint: `${placeholder}-${title}`,
       hue: background.hue,
       secondHue: background.secondHue,
       symbol: symbol.symbol,
-      accent: selection.mood === 'gruselig' ? '🕸️' : selection.mood === 'eklig' ? '🦠' : '✨',
-      mood: selection.mood,
+      accent: mood === 'gruselig' ? '🕸️' : mood === 'eklig' ? '🦠' : '✨',
+      mood,
       tilt: (hash % 13) - 6,
     }
   }
@@ -124,6 +163,21 @@ export function MissionImage({ placeholder, title }: { placeholder: string; titl
         style={premiumStyle}
         role="img"
         aria-label={`${title}, ${premium.mood}`}
+      />
+    )
+  }
+  const customScene = getCustomMissionScene(placeholder)
+  if (customScene) {
+    const customStyle = {
+      backgroundImage: `url(${import.meta.env.BASE_URL}mission-art/custom-covers-v2.jpg)`,
+      backgroundPosition: customScene.position,
+    }
+    return (
+      <div
+        className="mission-image mission-image--premium mission-image--custom-premium"
+        style={customStyle}
+        role="img"
+        aria-label={`${title}, ${customScene.label}, ${customScene.mood}`}
       />
     )
   }
