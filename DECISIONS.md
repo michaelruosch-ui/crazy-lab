@@ -1073,3 +1073,22 @@ Geräten bleibt sie normal im Seitenfluss, weil dort die seitliche Navigation ve
 und dürfen nicht zwischen gesperrten Zielen verschwinden. Eine Navigation hinter 40 Karten ist auf
 kleinen Bildschirmen praktisch unerreichbar; eine sichtbare, einhändig erreichbare Rückkehr
 verhindert eine Sackgasse, ohne Karten oder Inhalte zu verdecken.
+
+## ADR-061: Der private Besuch erhält eine getrennte, zeitlich begrenzte Web-App
+
+**Status:** Angenommen und umgesetzt (Besuchsversion, 2026-09-13)
+
+**Entscheidung:** Für den Besuch vom 2026-09-13 wird aus demselben Quellcode ein eigener
+installierbarer Einstieg mit festem Ablauf am 20. September 2026 um 14:02 Uhr (Europe/Zurich)
+gebaut. Der Einstieg prüft die Zeit beim Öffnen über den HTTPS-Antwortzeitstempel von GitHub Pages
+und bei jeder Rückkehr aus dem Hintergrund. Abgelaufene Besuche sehen nur noch einen freundlichen
+Hinweis. Die Besuchsversion verwendet getrennte lokale Speicherbezeichnungen und schaltet Elenas
+Product-Owner-Werkzeuge unabhängig vom gewählten Profil vollständig ab. Die normale Familien-App
+bleibt funktional und datenseitig unverändert.
+
+**Begründung:** Die Familie kann Crazy Lab kurzfristig auf den privaten Handys ihres Besuchs
+zeigen und installieren lassen, ohne eine zweite Cloud, ein zusätzliches Konto oder eine Änderung
+an Elenas Daten einzuführen. Ein QR-Code ist technisch weiterhin ein kopierbarer Link; die Lösung
+begrenzt deshalb zuverlässig die normale Nutzung nach sieben Tagen, verspricht aber bewusst keine
+personenbezogene oder kryptografisch nicht übertragbare Einladung. Dafür wäre später TestFlight
+mit einzelnen Apple-Konten oder ein Backend mit einmalig eingelösten Codes nötig.

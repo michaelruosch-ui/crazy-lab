@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Button } from '../../components'
 import './LabPortal.css'
+import { scopedStorageKey } from '../../visitorPreview'
 
 interface LabPortalProps {
   profileId: string
@@ -9,7 +10,9 @@ interface LabPortalProps {
 
 function hasSeenPortal(profileId: string) {
   try {
-    return window.sessionStorage.getItem(`crazy-lab-portal-${profileId}`) === 'seen'
+    return (
+      window.sessionStorage.getItem(scopedStorageKey(`crazy-lab-portal-${profileId}`)) === 'seen'
+    )
   } catch {
     return false
   }
@@ -20,7 +23,7 @@ export function LabPortal({ profileId, researcherName }: LabPortalProps) {
 
   const dismiss = useCallback(() => {
     try {
-      window.sessionStorage.setItem(`crazy-lab-portal-${profileId}`, 'seen')
+      window.sessionStorage.setItem(scopedStorageKey(`crazy-lab-portal-${profileId}`), 'seen')
     } catch {
       // Die Animation darf auch ohne verfügbaren Sitzungsspeicher funktionieren.
     }

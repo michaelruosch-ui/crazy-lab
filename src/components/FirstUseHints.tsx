@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { translateGeneratedText, useLanguage } from '../i18n'
 import { Button } from './Button'
+import { scopedStorageKey } from '../visitorPreview'
 import './FirstUseHints.css'
 
 const HINTS = [
@@ -12,7 +13,7 @@ const HINTS = [
 
 export function FirstUseHints({ profileId }: { profileId: string }) {
   const { language, t } = useLanguage()
-  const storageKey = `crazy-lab:hints:${profileId}`
+  const storageKey = scopedStorageKey(`crazy-lab:hints:${profileId}`)
   const [index, setIndex] = useState(() => {
     try {
       return Number(window.localStorage?.getItem(storageKey) ?? 0)

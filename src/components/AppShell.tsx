@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
-import { canEditMissionCatalog, type AppLanguage } from '../domain'
+import type { AppLanguage } from '../domain'
+import { canUseProductOwnerTools } from '../productOwnerAccess'
 import { LANGUAGE_OPTIONS, useLanguage, type TranslationKey } from '../i18n'
 import { useActiveProfileId } from '../features/profile'
 import './AppShell.css'
@@ -35,7 +36,7 @@ export function AppShell() {
         <div className="app-shell__brand">🔮 Crazy Lab</div>
         <nav aria-label={t('navigation')}>
           {NAVIGATION.filter(
-            (item) => item.to !== '/eigene-missionen' || canEditMissionCatalog(activeProfileId),
+            (item) => item.to !== '/eigene-missionen' || canUseProductOwnerTools(activeProfileId),
           ).map((item) => (
             <NavLink
               key={item.to}

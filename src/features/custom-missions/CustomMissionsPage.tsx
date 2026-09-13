@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { CustomMission } from '../../domain'
-import { canEditMissionCatalog } from '../../domain'
+import { canUseProductOwnerTools } from '../../productOwnerAccess'
 import { BackLink, Button, MissionCard, SpeechBubble } from '../../components'
 import { useActiveProfileId, useProfile } from '../profile'
 import { indexedDbCustomMissionRepository } from '../../storage/customMissionRepository'
@@ -16,7 +16,7 @@ export function CustomMissionsPage() {
   const { profile } = useProfile(activeProfileId)
   const [message, setMessage] = useState('')
   const [missionAwaitingApproval, setMissionAwaitingApproval] = useState<CustomMission | null>(null)
-  const isProductOwner = canEditMissionCatalog(activeProfileId)
+  const isProductOwner = canUseProductOwnerTools(activeProfileId)
 
   useEffect(() => {
     void indexedDbCustomMissionRepository.getAll(activeProfileId).then(setItems)

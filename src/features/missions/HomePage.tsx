@@ -5,13 +5,13 @@ import type { MissionCategory } from '../../domain'
 import {
   DEFAULT_MISSION_FILTERS,
   buildPreferenceProfile,
-  canEditMissionCatalog,
   filterMissions,
   isBirthdayToday,
   missionUsesOnlyAvailableMaterials,
   pickDailyMission,
   suggestionsForCategory,
 } from '../../domain'
+import { canUseProductOwnerTools } from '../../productOwnerAccess'
 import { Mascot, MissionCard, ResearchAchievements } from '../../components'
 import { useSecretVault } from '../secret-vault'
 import { useDiaryEntries } from '../diary'
@@ -209,7 +209,7 @@ export function HomePage() {
       <ResearchAchievements entries={diaryEntries} compact />
 
       <nav className="home-page__nav">
-        {canEditMissionCatalog(activeProfileId) && (
+        {canUseProductOwnerTools(activeProfileId) && (
           <Link to="/eigene-missionen" className="home-page__nav-link">
             ✨ Eigene Missionen
           </Link>

@@ -3,10 +3,10 @@ import { Link, useSearchParams } from 'react-router-dom'
 import {
   decodeSharedMission,
   generateId,
-  canEditMissionCatalog,
   type CustomMission,
   type MissionCategory,
 } from '../../domain'
+import { canUseProductOwnerTools } from '../../productOwnerAccess'
 import { BackLink, Button } from '../../components'
 import { indexedDbCustomMissionRepository } from '../../storage/customMissionRepository'
 import { useActiveProfileId } from '../profile'
@@ -35,7 +35,7 @@ export function SharedMissionImportPage() {
   const [importedId, setImportedId] = useState<string>()
   const [saving, setSaving] = useState(false)
   const { activeProfileId } = useActiveProfileId()
-  const isProductOwner = canEditMissionCatalog(activeProfileId)
+  const isProductOwner = canUseProductOwnerTools(activeProfileId)
 
   async function importMission() {
     if (!shared || saving || !isProductOwner) return

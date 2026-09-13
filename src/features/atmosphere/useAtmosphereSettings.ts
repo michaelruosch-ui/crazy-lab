@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { scopedStorageKey } from '../../visitorPreview'
 
 export interface AtmosphereSettings {
   soundEnabled: boolean
@@ -9,7 +10,7 @@ const EVENT = 'crazylab-atmosphere-change'
 const DEFAULTS: AtmosphereSettings = { soundEnabled: true, animationsEnabled: true }
 
 function profileKey(profileId?: string): string {
-  return profileId ? `${KEY}-${profileId}` : KEY
+  return scopedStorageKey(profileId ? `${KEY}-${profileId}` : KEY)
 }
 
 export function clearAtmosphereSettings(profileId: string): void {

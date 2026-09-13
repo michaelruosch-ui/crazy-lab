@@ -5,8 +5,8 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich nach dem Abschluss von **Sprint 35** und der Familienkorrektur vom
-2026-09-13; Sprint 19
+Dieses Repository befindet sich nach dem Abschluss von **Sprint 35**, der Familienkorrektur und
+der zeitlich begrenzten Besuchsversion vom 2026-09-13; Sprint 19
 wurde auf Familienentscheid bewusst übersprungen. Der aktuelle Stand: Beim
 ersten Start wählt man eines von 33 Maskottchen (8 Tierarten in verschiedenen Farbwelten) und
 einen Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf
@@ -172,6 +172,20 @@ in der alten App unter Profil ein Backup herunterladen, erst danach die alte Hom
 entfernen, die öffentliche Version installieren und dort das Backup wieder einspielen. Browser
 trennen die Datenspeicher der beiden Adressen voneinander.
 
+### Siebentägige Besuchsversion (2026-09-13)
+
+Für den privaten Besuch vom 2026-09-13 existiert eine getrennt installierbare Besuchsversion unter
+`/crazy-lab/besuch-20260913-v7m4/`. Sie prüft beim Öffnen die aktuelle Zeit über die bereits
+verwendete GitHub-Pages-Verbindung und funktioniert bis zum **20. September 2026 um 14:02 Uhr
+(Europe/Zurich)**. Danach zeigt sie nur noch den Ablaufhinweis. Ihre IndexedDB- und Browserdaten
+verwenden einen eigenen Namensraum und berühren die normale Familienversion nicht. Elenas
+Missionswerkstatt und alle Product-Owner-Werkzeuge sind in dieser Fassung unabhängig vom
+Profilnamen abgeschaltet.
+
+Der QR-Code beziehungsweise sein Link kann während der sieben Tage technisch fotografiert oder
+weitergeleitet werden. Die zeitliche Sperre verhindert die Nutzung nach dem Ablauf, ist aber kein
+personenbezogener App-Store- oder TestFlight-Zugang.
+
 ### Backup und Wiederherstellung (manuell)
 
 Auf der Profilseite (`/profil`, Abschnitt "📦 Datensicherung") erstellt Crazy Lab automatisch
@@ -228,3 +242,8 @@ In der vollständigen Abzeichen-Vitrine stehen alle bereits geschafften Abzeiche
 noch offenen Abzeichen. Der Zurück-Knopf schwebt auf dem Handy oberhalb der unteren Navigation und
 bleibt beim Scrollen sichtbar, damit die Navigation auch in der langen Sammlung jederzeit
 erreichbar ist.
+
+Zusätzlich steht für den Besuch vom 2026-09-13 eine eigene, sieben Tage gültige Installationsadresse
+bereit. Sie läuft mit getrenntem Gerätespeicher, enthält keine Product-Owner-Werkzeuge und sperrt
+sich nach dem 20. September 2026 um 14:02 Uhr selbst. Die normale Familienadresse bleibt davon
+unverändert.

@@ -5,10 +5,15 @@ import { Button } from '../../components'
 import './AchievementCelebration.css'
 import { playMagicSound, useAtmosphereSettings } from '../atmosphere'
 import { triggerNativeHaptic } from '../../native/bridge'
+import { scopedStorageKey } from '../../visitorPreview'
 
 function readSeen(profileId: string): Set<string> {
   try {
-    return new Set(JSON.parse(window.localStorage.getItem(`crazy-lab-badges-${profileId}`) ?? '[]'))
+    return new Set(
+      JSON.parse(
+        window.localStorage.getItem(scopedStorageKey(`crazy-lab-badges-${profileId}`)) ?? '[]',
+      ),
+    )
   } catch {
     return new Set()
   }
@@ -16,7 +21,10 @@ function readSeen(profileId: string): Set<string> {
 
 function saveSeen(profileId: string, ids: string[]) {
   try {
-    window.localStorage.setItem(`crazy-lab-badges-${profileId}`, JSON.stringify(ids))
+    window.localStorage.setItem(
+      scopedStorageKey(`crazy-lab-badges-${profileId}`),
+      JSON.stringify(ids),
+    )
   } catch {
     // Die Feier funktioniert auch, wenn der Browser keinen lokalen Schlüssel erlaubt.
   }

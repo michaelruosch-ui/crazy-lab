@@ -8,8 +8,9 @@ import {
 import { Button } from '../../components'
 import { useLanguage } from '../../i18n'
 import './PublicationCodeGate.css'
+import { scopedStorageKey } from '../../visitorPreview'
 
-const STORAGE_KEY = 'crazylab-publication-code-lock-v1'
+const STORAGE_KEY = scopedStorageKey('crazylab-publication-code-lock-v1')
 
 function readState(now: number): PublicationCodeState {
   try {

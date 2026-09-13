@@ -1,5 +1,24 @@
 # Changelog
 
+## Siebentägige Besuchsversion (2026-09-13)
+
+- Für den privaten Besuch steht eine getrennt installierbare Crazy-Lab-Adresse mit eigenem
+  PWA-Manifest bereit.
+- Die Besuchsversion prüft ihre Gültigkeit beim Öffnen über den Zeitstempel der bestehenden
+  GitHub-Pages-Verbindung und schliesst am 20. September 2026 um 14:02 Uhr (Europe/Zurich).
+- Danach ersetzt ein freundlicher Ablaufbildschirm die App; ohne Internet erklärt ein eigener
+  Bildschirm die notwendige Verbindung und bietet einen neuen Versuch an.
+- IndexedDB, Browser-Einstellungen, Hinweise, Abzeichenstatus und Sitzungsdaten der Besuchsversion
+  liegen in einem getrennten Namensraum. Die normale Familienversion und ihre Daten bleiben
+  unverändert.
+- Die Missionswerkstatt und alle Product-Owner-Aktionen sind in der Besuchsversion auch dann
+  gesperrt, wenn ein Profil Elena heisst.
+- Die Besuchsversion wurde in einer 390 × 844 Pixel grossen Handyansicht geprüft. Typecheck, Lint,
+  182 automatische Tests und Produktions-Build sind erfolgreich.
+- Bekannte Grenze: Während der sieben Tage kann der QR-Link fotografiert oder weitergeleitet
+  werden. Ohne Konto oder Backend ist ein personenbezogener, nicht übertragbarer QR-Zugang nicht
+  möglich.
+
 ## Familienkorrektur - Product-Owner-Code und neue Titelbilder (2026-09-13)
 
 - „Für alle freigeben“ verlangt jetzt den vereinbarten vierstelligen Product-Owner-Code anstelle

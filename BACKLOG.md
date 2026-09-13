@@ -540,6 +540,20 @@ positiv beantwortet.
   - [x] Den Zurück-Knopf der langen Abzeichen-Vitrine auf dem Handy oberhalb der unteren Navigation
         schweben lassen und beim Scrollen erreichbar halten
 
+- **Zeitlich begrenzte Besuchsversion nach Sprint 35:** **Umgesetzt am 2026-09-13.**
+  - [x] Eine getrennte Installationsadresse für den privaten Besuch bereitstellen
+  - [x] Den Zugang genau sieben Tage bis zum 20. September 2026 um 14:02 Uhr freigeben und danach
+        freundlich sperren
+  - [x] Die aktuelle Zeit bei jedem Öffnen online prüfen, statt nur der verstellbaren Geräteuhr zu
+        vertrauen
+  - [x] Besuchsdaten in einer eigenen lokalen Datenbank und eigenen Browser-Schlüsseln halten,
+        ohne Elenas oder Michaels normale Daten zu verändern
+  - [x] Elenas Missionswerkstatt und Product-Owner-Werkzeuge in der Besuchsversion vollständig
+        ausblenden
+  - [x] Einen druck- und scanbaren QR-Code für die Besuchsadresse erzeugen
+  - [x] Offen kommunizieren: Der Link bleibt innerhalb der sieben Tage weiterleitbar; die Sperre
+        beendet lediglich die Nutzung nach dem festen Ablaufzeitpunkt
+
 ## Unpriorisierte Ideen
 
 - [x] **Gemeinsamer geprüfter Missionskatalog (Familienentscheidung 2026-09-07):** Nur Elena darf

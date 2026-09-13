@@ -7,6 +7,8 @@ import react from '@vitejs/plugin-react'
 const certDir = fileURLToPath(new URL('./certs', import.meta.url))
 const certFile = `${certDir}/crazylab-cert.pem`
 const keyFile = `${certDir}/crazylab-key.pem`
+const mainHtml = fileURLToPath(new URL('./index.html', import.meta.url))
+const visitorHtml = fileURLToPath(new URL('./besuch-20260913-v7m4/index.html', import.meta.url))
 
 /**
  * Lokal per `mkcert` erzeugtes, vertrauenswürdiges HTTPS-Zertifikat für die LAN-IP dieses Macs
@@ -17,7 +19,7 @@ const keyFile = `${certDir}/crazylab-key.pem`
  * ganz normal über HTTP weiter.
  */
 const https =
-  existsSync(certFile) && existsSync(keyFile)
+  !process.env.CRAZY_LAB_HTTP && existsSync(certFile) && existsSync(keyFile)
     ? { cert: readFileSync(certFile), key: readFileSync(keyFile) }
     : undefined
 
@@ -30,6 +32,9 @@ export default defineConfig({
     // die Vite 8 standardmässig ausgibt. Moderne Geräte laden denselben semantisch identischen
     // Code; nur die Syntax wird für das alte Familien-iPad rückwärtskompatibel erzeugt.
     target: 'safari12',
+    rollupOptions: {
+      input: process.env.CRAZY_LAB_NATIVE ? mainHtml : { main: mainHtml, visitor: visitorHtml },
+    },
   },
   server: {
     https,

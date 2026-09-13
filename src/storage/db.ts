@@ -10,8 +10,9 @@ import type {
   ShoppingListItem,
   CustomMission,
 } from '../domain'
+import { visitorDatabaseName } from '../visitorPreview'
 
-const DB_NAME = 'crazylab'
+const DB_NAME = visitorDatabaseName()
 const DB_VERSION = 8
 
 export const DIARY_STORE = 'diaryEntries'

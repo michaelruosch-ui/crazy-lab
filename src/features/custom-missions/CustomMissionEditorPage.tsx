@@ -4,11 +4,11 @@ import { missions } from '../../data'
 import {
   generateId,
   isCustomMissionSafe,
-  canEditMissionCatalog,
   type CustomMission,
   type MissionCategory,
   type SafetyLevel,
 } from '../../domain'
+import { canUseProductOwnerTools } from '../../productOwnerAccess'
 import {
   BackLink,
   Button,
@@ -86,7 +86,7 @@ export function CustomMissionEditorPage() {
   const navigate = useNavigate()
   const { activeProfileId } = useActiveProfileId()
   const { profile } = useProfile(activeProfileId)
-  const isProductOwner = canEditMissionCatalog(activeProfileId)
+  const isProductOwner = canUseProductOwnerTools(activeProfileId)
 
   useEffect(() => {
     if (missionId) {

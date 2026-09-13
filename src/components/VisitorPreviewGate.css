@@ -1,0 +1,55 @@
+.visitor-preview {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+.visitor-preview__notice {
+  position: sticky;
+  top: env(safe-area-inset-top, 0);
+  z-index: 100;
+  padding: 7px 12px;
+  border-bottom: 1px solid rgba(255, 207, 79, 0.45);
+  background: rgba(32, 18, 47, 0.96);
+  color: #fff3b8;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.visitor-gate {
+  min-height: 100svh;
+  padding: max(56px, env(safe-area-inset-top)) 24px max(40px, env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 22%, rgba(164, 99, 242, 0.34), transparent 34%),
+    radial-gradient(circle at 25% 70%, rgba(35, 230, 200, 0.2), transparent 28%);
+}
+
+.visitor-gate img {
+  width: min(46vw, 190px);
+  height: auto;
+  margin-bottom: 18px;
+  border-radius: 28%;
+  box-shadow: 0 0 40px rgba(35, 230, 200, 0.28);
+}
+
+.visitor-gate h1 {
+  max-width: 420px;
+}
+
+.visitor-gate p {
+  max-width: 430px;
+  font-size: 18px;
+}
+
+.visitor-gate__sparkles {
+  margin-bottom: 10px;
+  color: var(--color-warning);
+  font-size: 26px;
+  letter-spacing: 8px;
+}

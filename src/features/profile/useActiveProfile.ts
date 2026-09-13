@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
 import { DEFAULT_PROFILE } from '../../domain'
+import { scopedStorageKey } from '../../visitorPreview'
 
-const ACTIVE_PROFILE_KEY = 'crazylab-active-profile'
+const ACTIVE_PROFILE_KEY = scopedStorageKey('crazylab-active-profile')
 const ACTIVE_PROFILE_EVENT = 'crazylab-active-profile-change'
 let memoryActiveProfileId = DEFAULT_PROFILE.id
 
