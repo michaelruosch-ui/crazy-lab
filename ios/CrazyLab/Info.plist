@@ -13,6 +13,9 @@
   <key>ITSAppUsesNonExemptEncryption</key><false/>
   <key>LSRequiresIPhoneOS</key><true/>
   <key>NSFaceIDUsageDescription</key><string>Crazy Lab nutzt Face ID nur, um Erwachsenenaktionen wie einen Kauf zu bestätigen. Es erhält und speichert keine Gesichtsdaten.</string>
+  <key>NSCameraUsageDescription</key><string>Crazy Lab verwendet die Kamera nur, wenn du selbst ein Foto oder ein kurzes Video für dein lokales Labortagebuch aufnimmst.</string>
+  <key>NSMicrophoneUsageDescription</key><string>Crazy Lab verwendet das Mikrofon nur, wenn du selbst ein kurzes Video für dein lokales Labortagebuch aufnimmst.</string>
+  <key>NSPhotoLibraryUsageDescription</key><string>Crazy Lab öffnet deine Fotomediathek nur, wenn du selbst ein vorhandenes Foto für dein lokales Labortagebuch auswählst.</string>
   <key>UILaunchStoryboardName</key><string>LaunchScreen</string>
   <key>UISupportedInterfaceOrientations</key><array><string>UIInterfaceOrientationPortrait</string></array>
   <key>UISupportedInterfaceOrientations~ipad</key><array><string>UIInterfaceOrientationPortrait</string><string>UIInterfaceOrientationPortraitUpsideDown</string><string>UIInterfaceOrientationLandscapeLeft</string><string>UIInterfaceOrientationLandscapeRight</string></array>

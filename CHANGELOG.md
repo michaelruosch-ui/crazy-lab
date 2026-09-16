@@ -1,5 +1,28 @@
 # Changelog
 
+## Sprint 31A und Fotomediathek-Korrektur (2026-09-16)
+
+- Missionsabschluss und Tagebuchbearbeitung bieten jetzt zwei eindeutige Wege: „Foto aufnehmen“
+  öffnet die Kamera, „Aus Fotos auswählen“ die vorhandene iPhone-/iPad-Fotomediathek. Nur die
+  Kameraaktion trägt das iOS-Kameraattribut; beide Wege verkleinern und speichern Bilder weiter
+  ausschliesslich lokal.
+- Die neuen Bedienelemente sind auf Deutsch, Englisch, Französisch, Spanisch und Italienisch
+  redaktionell hinterlegt und besitzen automatische Attribut- und Regressionstests.
+- Die native App erklärt iOS nun ausdrücklich und kindgerecht, warum sie Kamera, Fotomediathek und
+  Mikrofon verwendet. Die bestehende Face-ID-Erklärung bleibt unverändert.
+- Der Launch Screen besitzt einen eindeutigen Einstiegspunkt; der vollständige App-Icon-Satz ist
+  vorhanden und das 1024-Pixel-Store-Symbol enthält keinen Alpha-Kanal.
+- Michaels erfolgreiche Geräteprüfung auf iPhone, aktuellem iPad und altem Familien-iPad schliesst
+  Sprint 29 ab.
+- Sprint 31A wurde mit Xcode 26.6, aktuellem iOS-SDK, Typecheck, Lint, 183 automatischen Tests,
+  Web-Build, nativem Build und erfolgreichem Release-Simulator-Build abgeschlossen.
+- Der App-Store-Auftritt ist in `APP_STORE_METADATA.md` für fünf Sprachen vorbereitet. Offen sind
+  persönliche Support-/Copyrightangaben, Apple-Developer-Signierung, echter In-App-Kauf,
+  TestFlight und Apples Prüfung.
+- „Der Blutkleim“ bleibt gratis und besitzt bereits sein Premium-Bild. Der originale, nur auf
+  Elenas Gerät gespeicherte Missionsinhalt wird nicht erfunden und kann erst aus ihrer
+  Notfallkopie übernommen werden; auf dem Mac wurde keine solche Datei gefunden.
+
 ## Siebentägige Besuchsversion (2026-09-13)
 
 - Für den privaten Besuch steht eine getrennt installierbare Crazy-Lab-Adresse mit eigenem

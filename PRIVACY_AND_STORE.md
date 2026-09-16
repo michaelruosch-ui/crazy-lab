@@ -1,6 +1,6 @@
 # Datenschutz- und App-Store-Grundlage
 
-Stand: 2026-09-11. Dieses Dokument hält die verbindlichen Produktentscheidungen für eine spätere
+Stand: 2026-09-16. Dieses Dokument hält die verbindlichen Produktentscheidungen für eine spätere
 Veröffentlichung fest. Es ersetzt vor der Einreichung keine Prüfung der dann aktuellen
 Apple-Vorgaben.
 
@@ -56,6 +56,40 @@ gespeicherten Daten beschädigt werden.
 - Elenas „Der Blutkleim“ aus ihrem lokalen Backup redaktionell in den Katalog übernehmen.
 - App-Privacy-Angaben, Altersfragebogen und Metadaten anhand des fertigen Builds ausfüllen.
 - TestFlight-, Geräte-, Barrierefreiheits- und Store-Review durchführen.
+
+## Sprint 31A – technische Freigabeprüfung (2026-09-16)
+
+Technisch geprüft und bestanden:
+
+- Xcode 26.6 mit aktuellem iOS-SDK; Apples aktuelle Upload-Vorgabe Xcode 26 oder neuer ist erfüllt.
+- Release-Build für iPhone und iPad ab iOS 12, Bundle-ID `ch.crazylab.app`, Version 1.0, Build 1.
+- Vollständiger iPhone-/iPad-App-Icon-Satz; 1024-Pixel-Store-Icon ohne Transparenz.
+- Privacy Manifest: kein Tracking, keine erhobenen Daten, ausschließlich deklarierte
+  app-eigene UserDefaults-Verwendung.
+- Keine nicht ausgenommene Verschlüsselung, keine Analyse-, Werbe- oder Cloud-Bibliotheken.
+- Verständliche iOS-Nutzungstexte für Face ID, Kamera, Fotomediathek und Mikrofon.
+- Typecheck, Lint, 183 automatische Tests, Web-Produktions-Build, nativer Produktions-Build und
+  Xcode-Release-Build erfolgreich.
+
+Nicht als Codefehler, sondern als zwingende externe Veröffentlichungsschritte offen:
+
+- Auf diesem Mac ist noch keine gültige Apple-Code-Signing-Identität vorhanden; das Xcode-
+  Development-Team ist leer.
+- App, Bundle-ID und In-App-Kauf sind noch nicht im App Store Connect angelegt. Die vorhandene
+  StoreKit-Datei ist nur eine lokale Testkonfiguration.
+- Öffentliche Support-E-Mail, verantwortlicher Name/Copyright und daraus erzeugte öffentliche
+  Support-/Datenschutz-URL fehlen.
+- Elenas Originalinhalt von „Der Blutkleim“ fehlt, weil keine Notfallkopie auf diesem Mac liegt.
+- Signiertes Archiv, Sandbox-Kauf, TestFlight und Apple App Review können erst nach diesen Punkten
+  ausgeführt werden.
+
+Aktuelle offizielle Apple-Grundlagen:
+
+- https://developer.apple.com/help/app-store-connect/manage-builds/upload-builds
+- https://developer.apple.com/help/app-store-connect/reference/app-information/required-localizable-and-editable-properties
+- https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications
+- https://developer.apple.com/kids/
+- https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-app
 
 ## Umgesetzt in Sprint 25 (2026-09-11)
 

@@ -149,3 +149,31 @@
   flex-wrap: wrap;
   gap: 8px;
 }
+
+.diary-entry-detail__photo-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.diary-entry-detail__photo-actions label {
+  min-height: var(--touch-target);
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: rgba(35, 230, 200, 0.14);
+  text-align: center;
+  cursor: pointer;
+}
+
+.diary-entry-detail__photo-actions input {
+  display: none;
+}
+
+@media (max-width: 350px) {
+  .diary-entry-detail__photo-actions {
+    grid-template-columns: 1fr;
+  }
+}

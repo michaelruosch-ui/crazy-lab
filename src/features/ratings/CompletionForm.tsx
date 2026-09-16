@@ -203,16 +203,33 @@ export function CompletionForm({
 
         <div className="completion-form__special">
           <h2>📷 Fotos zur Mission</h2>
-          <label className="completion-form__photo-picker">
-            Kamera oder Fotos öffnen
-            <input
-              type="file"
-              accept="image/*"
-              capture="environment"
-              multiple
-              onChange={(event) => void addPhotos(event.target.files)}
-            />
-          </label>
+          <p>Du kannst ein neues Foto machen oder vorhandene Fotos aus deiner Mediathek wählen.</p>
+          <div className="completion-form__photo-actions">
+            <label className="completion-form__photo-picker">
+              📷 Foto aufnehmen
+              <input
+                type="file"
+                accept="image/*"
+                capture="environment"
+                onChange={(event) => {
+                  void addPhotos(event.target.files)
+                  event.target.value = ''
+                }}
+              />
+            </label>
+            <label className="completion-form__photo-picker">
+              🖼️ Aus Fotos auswählen
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={(event) => {
+                  void addPhotos(event.target.files)
+                  event.target.value = ''
+                }}
+              />
+            </label>
+          </div>
           <p>
             {photoDataUrls.length} von höchstens {MAX_PHOTOS_PER_ENTRY} Bildern gewählt
           </p>

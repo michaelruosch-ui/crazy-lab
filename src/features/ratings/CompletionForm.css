@@ -30,13 +30,27 @@
 .completion-form__photo-picker {
   min-height: var(--touch-target);
   place-items: center;
+  text-align: center;
   padding: 12px;
   border-radius: var(--radius-md);
   background: rgba(35, 230, 200, 0.14);
+  cursor: pointer;
 }
 
 .completion-form__photo-picker input {
   display: none;
+}
+
+.completion-form__photo-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+@media (max-width: 350px) {
+  .completion-form__photo-actions {
+    grid-template-columns: 1fr;
+  }
 }
 .completion-form__photo-preview {
   display: grid;

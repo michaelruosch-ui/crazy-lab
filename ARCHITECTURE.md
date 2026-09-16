@@ -510,6 +510,21 @@ StoreKit-Zahlungswarteschlange dauerhaft, schaltet nur nach den Apple-Zuständen
 In der Browser-Familienversion liefert der Provider absichtlich „freigeschaltet“; eine
 Bezahlschranke gibt es nur bei vorhandener nativer Apple-Brücke.
 
+### Native Medienauswahl und Freigabeprüfung (Sprint 31A)
+
+Fotoeingaben sind absichtlich in zwei getrennte HTML-Dateieingaben aufgeteilt. Nur „Foto
+aufnehmen“ setzt `capture="environment"`; „Aus Fotos auswählen“ verwendet `accept="image/*"`
+ohne `capture` und mit Mehrfachauswahl. Dadurch zwingt iOS die Mediathek nicht mehr in den
+Kameramodus. Beide Wege laufen danach durch dieselbe bestehende Bildverkleinerung und denselben
+lokalen IndexedDB-Speicher. Die Aufteilung gilt sowohl beim Missionsabschluss als auch beim
+Bearbeiten des Tagebuchs.
+
+`Info.plist` enthält die für die native WKWebView-Hülle notwendigen verständlichen Erklärungen für
+Kamera, Fotomediathek und Mikrofon. Es werden keine Medien in eine Cloud geladen. Der native
+Release-Check baut das UIKit-/StoreKit-Projekt ohne Code-Signierung gegen das aktuelle iOS-SDK;
+eine echte Archivierung und Upload-Validierung ist erst möglich, sobald ein Apple Development
+Team und eine Distribution-Signatur vorhanden sind.
+
 ## Zeitlich begrenzte Besuchsversion
 
 Vite erzeugt neben dem normalen Einstieg `index.html` einen zweiten Einstieg unter

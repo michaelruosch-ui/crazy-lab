@@ -97,6 +97,18 @@ describe('DiaryEntryDetailPage', () => {
     expect(persisted?.rating.stamp).toBe('genial')
   })
 
+  it('bietet beim Bearbeiten Kamera und bestehende Fotos getrennt an', async () => {
+    const user = userEvent.setup()
+    renderDetail('entry-1')
+    await user.click(await screen.findByRole('button', { name: '✏️ Eintrag bearbeiten' }))
+
+    const cameraInput = screen.getByLabelText('📷 Foto aufnehmen')
+    const libraryInput = screen.getByLabelText('🖼️ Aus Fotos auswählen')
+    expect(cameraInput).toHaveAttribute('capture', 'environment')
+    expect(libraryInput).toHaveAttribute('multiple')
+    expect(libraryInput).not.toHaveAttribute('capture')
+  })
+
   it('löscht erst nach einer klaren Rückfrage', async () => {
     vi.spyOn(window, 'confirm').mockReturnValue(true)
     const user = userEvent.setup()

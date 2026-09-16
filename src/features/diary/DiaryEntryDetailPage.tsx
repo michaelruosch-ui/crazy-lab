@@ -330,24 +330,51 @@ export function DiaryEntryDetailPage() {
               </div>
             </div>
           )}
-          <label>
-            Weitere Fotos hinzufügen
-            <input
-              type="file"
-              accept="image/*"
-              multiple
-              onChange={(event) => {
-                const remaining = MAX_PHOTOS_PER_ENTRY - editPhotos.length
-                const files = Array.from(event.target.files ?? []).slice(0, remaining)
-                void Promise.all(files.map(fileToCompressedPhoto)).then((photos) =>
-                  setEditPhotos((current) =>
-                    [...current, ...photos].slice(0, MAX_PHOTOS_PER_ENTRY),
-                  ),
-                )
-                event.target.value = ''
-              }}
-            />
-          </label>
+          <div>
+            <strong>Weitere Fotos</strong>
+            <p>
+              Du kannst ein neues Foto machen oder vorhandene Fotos aus deiner Mediathek wählen.
+            </p>
+            <div className="diary-entry-detail__photo-actions">
+              <label>
+                📷 Foto aufnehmen
+                <input
+                  type="file"
+                  accept="image/*"
+                  capture="environment"
+                  onChange={(event) => {
+                    const file = event.target.files?.[0]
+                    if (file && editPhotos.length < MAX_PHOTOS_PER_ENTRY) {
+                      void fileToCompressedPhoto(file).then((photo) =>
+                        setEditPhotos((current) =>
+                          [...current, photo].slice(0, MAX_PHOTOS_PER_ENTRY),
+                        ),
+                      )
+                    }
+                    event.target.value = ''
+                  }}
+                />
+              </label>
+              <label>
+                🖼️ Aus Fotos auswählen
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={(event) => {
+                    const remaining = MAX_PHOTOS_PER_ENTRY - editPhotos.length
+                    const files = Array.from(event.target.files ?? []).slice(0, remaining)
+                    void Promise.all(files.map(fileToCompressedPhoto)).then((photos) =>
+                      setEditPhotos((current) =>
+                        [...current, ...photos].slice(0, MAX_PHOTOS_PER_ENTRY),
+                      ),
+                    )
+                    event.target.value = ''
+                  }}
+                />
+              </label>
+            </div>
+          </div>
           {editVideo && (
             <div>
               <strong>Gespeichertes Video</strong>

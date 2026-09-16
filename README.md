@@ -5,8 +5,9 @@ coole trinkbare Getränke zu mixen, gruselig-schöne Dinge zu basteln, Experimen
 Foto-Challenges durchzuführen sowie Schwestern-Missionen zu erleben. Ergebnisse werden im
 geheimnisvollen Labortagebuch festgehalten.
 
-Dieses Repository befindet sich nach dem Abschluss von **Sprint 35**, der Familienkorrektur und
-der zeitlich begrenzten Besuchsversion vom 2026-09-13; Sprint 19
+Dieses Repository befindet sich nach dem Abschluss von **Sprint 35**, der Familienkorrektur, der
+zeitlich begrenzten Besuchsversion vom 2026-09-13 und der technischen App-Store-Freigabeprüfung
+31A vom 2026-09-16; Sprint 19
 wurde auf Familienentscheid bewusst übersprungen. Der aktuelle Stand: Beim
 ersten Start wählt man eines von 33 Maskottchen (8 Tierarten in verschiedenen Farbwelten) und
 einen Forschernamen. Danach öffnet die App eine echte Startseite mit Tagesmission und fünf
@@ -82,12 +83,19 @@ Der redaktionelle Katalog umfasst jetzt 100 Missionen: je 20 Getränke-, Bastel-
 Foto- und Schwestern-Missionen. Die 25 Ergänzungen aus Sprint 21 besitzen konkrete Materialien,
 Schritte, Sicherheitsangaben und die jeweils benötigten strukturierten Kategoriedaten.
 Zu jedem Missionsabschluss lassen sich bis zu zehn verkleinerte Fotos und ein lokal geprüftes
-Video von höchstens drei Sekunden speichern. Fotos und Video können im Tagebuch später ergänzt,
-ersetzt beziehungsweise entfernt werden und sind Bestandteil der Sicherungen.
+Video von höchstens drei Sekunden speichern. „Foto aufnehmen“ öffnet gezielt die Kamera;
+„Aus Fotos auswählen“ öffnet ohne Kamerazwang die vorhandene Fotomediathek. Dieselbe eindeutige
+Auswahl steht beim späteren Bearbeiten eines Tagebucheintrags bereit. Fotos und Video können im
+Tagebuch ergänzt, ersetzt beziehungsweise entfernt werden und sind Bestandteil der Sicherungen.
 Eine kindgerechte Datenschutzseite erklärt in allen fünf Sprachen mit Beispielen, welche Inhalte
 auf dem Gerät bleiben. Missionsfreigabe, Notfallkopie und vollständiges Profillöschen benötigen
 eine Erwachsenenprüfung. In der nativen App verwendet sie Face ID, Touch ID oder Gerätecode, ohne
 biometrische Rohdaten an Crazy Lab weiterzugeben; die Webversion besitzt eine Erwachsenenfrage.
+Der native Release-Build ist mit Xcode 26.6, iOS-26-SDK, 183 automatischen Tests, vollständigem
+Icon-Satz und Privacy Manifest technisch geprüft. Der aktuelle Store-Textentwurf steht in
+`APP_STORE_METADATA.md`. Für Signierung, TestFlight und App-Store-Upload fehlen noch Michaels
+Apple-Developer-Mitgliedschaft beziehungsweise Anmeldung, öffentliche Supportangaben und Elenas
+Original-Sicherung der Mission „Der Blutkleim“.
 
 ## Voraussetzungen
 

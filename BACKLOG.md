@@ -432,13 +432,14 @@ positiv beantwortet.
 
 ### P3 - Qualität und Veröffentlichung
 
-- **Sprint 29 - Barrierefreiheit, Fehlerhilfe und technische Qualität:** **Umgesetzt am 2026-09-04.**
+- **Sprint 29 - Barrierefreiheit, Fehlerhilfe und technische Qualität:** **Abgeschlossen;
+  Familien-Geräteprüfung am 2026-09-16 bestätigt.**
   - [x] Schriftgrössen, Kontraste, verständliche Texte und ausreichend grosse Touch-Ziele prüfen
   - [x] Bedienung ohne Animationen sowie mit „Bewegung reduzieren“ vollständig erhalten
   - [x] Fehlermeldungen lustig und hilfreich durch ein passendes Maskottchen erklären lassen
   - [x] Ladezeit und App-Grösse verbessern
-  - [ ] Familientest auf iPhone, aktuellem iPad und altem Familien-iPad; automatische und
-        simulierte Grössen-/Kompatibilitätsprüfungen sind abgeschlossen
+  - [x] Familientest auf iPhone, aktuellem iPad und altem Familien-iPad; Michael hat am
+        2026-09-16 bestätigt, dass die Geräteprüfung vollständig funktioniert hat
   - [x] Automatische Qualitäts-, Barrierefreiheits- und Regressionstests ausbauen
 
 - **Sprint 25 - Elternschutz und Datenschutz für Kinder:** **Umgesetzt am 2026-09-11.**
@@ -463,18 +464,51 @@ positiv beantwortet.
   - [ ] Elenas lokal erstellten „Der Blutkleim“ nach Erhalt ihres Backups redaktionell in den
         statischen Katalog übernehmen; die Freischaltungsregel erkennt den Titel bereits korrekt
 
-- **Sprint 31 - Familientest und Schweizer App-Store-Start:** **Geplant; Elena befragt am
-  2026-09-04.**
-  - [ ] Vor Veröffentlichung ausschliesslich mit Elenas Familie testen
-  - [ ] Missionen, Sprachen, Bilder, Käufe, Datenschutz und unterstützte Geräte vollständig prüfen
-  - [ ] App zuerst in der Schweiz in Deutsch, Englisch, Französisch, Italienisch und Spanisch
-        veröffentlichen
-  - [ ] Bestehendes Schleimmonster-App-Symbol und dessen aktuellen Look für die Store-Bilder
-        beibehalten
-  - [ ] Store-Kernaussage in Elenas Grundton verwenden: „Crazy Lab ist die App für Kinder, die mit
-        viel Spass neue Getränke, Bastelideen, Experimente und Foto-Challenges ausprobieren und
-        eigene verrückte Ideen erfinden wollen.“
-  - [ ] Erst nach erfolgreicher Familienfreigabe zur öffentlichen App-Store-Prüfung einreichen
+- **Sprint 31 - Familientest und Schweizer App-Store-Start:** **In Arbeit seit 2026-09-16.**
+  - **31A – Technische Freigabeprüfung:** **Abgeschlossen am 2026-09-16.**
+    - [x] Typecheck, Lint, 183 automatische Tests sowie Web- und nativer Produktions-Build
+    - [x] Native Release-Konfiguration mit Xcode 26.6 und aktuellem iOS-SDK erfolgreich bauen
+    - [x] Bundle-ID `ch.crazylab.app`, Version 1.0 (Build 1), iPhone/iPad und iOS 12 prüfen
+    - [x] Vollständigen App-Icon-Satz, Privacy Manifest und Verschlüsselungsangabe prüfen
+    - [x] Verständliche iOS-Berechtigungstexte für Kamera, Fotomediathek, Mikrofon und Face ID
+          ergänzen
+    - [x] Apple-Vorgaben zu Kids-Kategorie, Metadaten, Screenshots, Xcode und Einreichung anhand
+          der aktuellen offiziellen Apple-Dokumentation prüfen
+    - [x] Feststellen und transparent dokumentieren: Auf dem Mac ist noch keine Apple-
+          Entwickler-Signatur installiert und im Xcode-Projekt noch kein Development Team gewählt
+  - **31B – App-Store-Auftritt:** **Inhaltlich vorbereitet; persönliche Angaben offen.**
+    - [x] Name, Untertitel, Beschreibung, Suchbegriffe, Werbetext und Review-Hinweise für Deutsch,
+          Englisch, Französisch, Italienisch und Spanisch entwerfen (`APP_STORE_METADATA.md`)
+    - [x] Schweiz, Kids 9–11, Bildung mit Unterhaltung, kostenloser Download und einmaliger
+          Vollversionskauf als verbindliche Positionierung festhalten
+    - [x] Bestehendes Schleimmonster-App-Symbol und dessen aktuellen Look für die Store-Bilder
+          beibehalten
+    - [x] Store-Kernaussage in Elenas Grundton verwenden: „Crazy Lab ist die App für Kinder, die
+          mit viel Spass neue Getränke, Bastelideen, Experimente und Foto-Challenges ausprobieren
+          und eigene verrückte Ideen erfinden wollen.“
+    - [ ] Öffentliche Support-E-Mail und rechtlichen Namen für Kontakt/Copyright von Michael
+          erhalten
+    - [ ] Öffentliche Support- und Datenschutzseiten mit diesen Angaben bereitstellen
+    - [ ] Finale iPhone- und iPad-Store-Screenshots aus dem signierten Kandidaten erstellen
+  - **31C – Elenas finaler Missionsinhalt:** **Vorbereitet; Originaldaten fehlen.**
+    - [x] „Der Blutkleim“ als kostenlose Mission und mit eigenem Premium-Bild technisch vorbereiten
+    - [x] Mac, Projekt und übliche Download-/Dokumentordner ohne Fund nach einer Crazy-Lab-
+          Sicherung durchsuchen
+    - [ ] Elenas Notfallkopie vom iPhone erhalten und den Originalinhalt von „Der Blutkleim“
+          redaktionell in den statischen Katalog übernehmen; Inhalt nicht erfinden
+  - **31D – Apple-Zugang und Signierung:** **Benötigt Michael.**
+    - [ ] Aktive Apple-Developer-Mitgliedschaft, Identitätsprüfung und Zwei-Faktor-Anmeldung
+    - [ ] Xcode-Development-Team wählen, Zertifikat erzeugen und App-ID registrieren
+  - **31E – App Store Connect und Vollversionskauf:** **Danach gemeinsam ausführbar.**
+    - [ ] App-Eintrag für `ch.crazylab.app` und nicht verbrauchbaren Kauf
+          `ch.crazylab.fullversion` anlegen
+    - [ ] Paid-Apps-Vertrag, Bank- und Steuerangaben durch Michael abschliessen
+    - [ ] Kauf, Wiederherstellung und Elternschranke in Apples Sandbox prüfen
+  - **31F – TestFlight und Einreichung:** **Nach 31B–31E.**
+    - [ ] Signierten Build hochladen und ausschliesslich Elenas Familie über TestFlight prüfen
+    - [ ] Missionen, fünf Sprachen, Bilder, Kauf, Datenschutz, Fotos/Videos und unterstützte
+          Geräte im finalen Kandidaten prüfen
+    - [ ] Erst nach Michaels Familienfreigabe in der Schweiz zur Apple-Prüfung einreichen
 
 - **Sprint 32 - Wow-Start und kindgerechte Entdeckung:** **Umgesetzt am 2026-09-12.**
   - [x] Beim ersten Öffnen jeder App-Sitzung ein geheimnisvolles Laborportal mit direktem
@@ -560,13 +594,16 @@ positiv beantwortet.
 
 ## Unpriorisierte Ideen
 
-- [ ] **Bestehendes Missionsfoto auswählen (Praxisfeedback 2026-09-16):** Wenn eine Mission ein
+- [x] **Bestehendes Missionsfoto auswählen (umgesetzt 2026-09-16):** Wenn eine Mission ein
       Foto verlangt oder beim Abschluss ein Foto ergänzt wird, muss die finale App verständlich
       zwischen „Foto aufnehmen“ und „Aus Fotos auswählen“ wählen lassen. Bestehende Bilder aus der
       iPhone-/iPad-Fotomediathek müssen zuverlässig hochgeladen, verkleinert, lokal gespeichert
       und im Tagebuch angezeigt werden. Die Kamera bleibt zusätzlich verfügbar. Dieses Feedback
-      gilt als Fehlerkorrektur zu den bereits abgeschlossenen Sprints 13 und 22 und muss auf einem
-      echten iPhone sowie iPad geprüft werden.
+      gilt als Fehlerkorrektur zu den bereits abgeschlossenen Sprints 13 und 22. Kamera und
+      Mediathek sind im Abschluss sowie beim späteren Bearbeiten getrennte, eindeutige Aktionen;
+      die native App enthält die benötigten iOS-Berechtigungstexte. Automatische Tests prüfen,
+      dass nur die Kameraaktion das Kameraattribut besitzt. Der abschliessende reale Fotowahl-Test
+      erfolgt mit dem signierten TestFlight-Kandidaten in Sprint 31F.
 
 - [x] **Gemeinsamer geprüfter Missionskatalog (Familienentscheidung 2026-09-07):** Nur Elena darf
       als Product Owner Missionen erstellen und „Für alle freigeben“. Der private Testlink ist aus

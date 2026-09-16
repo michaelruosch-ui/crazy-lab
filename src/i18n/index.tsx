@@ -623,6 +623,11 @@ const SPRINT_TRANSLATIONS: Record<Exclude<AppLanguage, 'de'>, Record<string, str
     Minuten: 'Minutes',
     Sicherheitsstufe: 'Safety level',
     'Meine neue Mission, magisch': 'My new mission, magical',
+    '📷 Foto aufnehmen': '📷 Take a photo',
+    '🖼️ Aus Fotos auswählen': '🖼️ Choose from Photos',
+    'Du kannst ein neues Foto machen oder vorhandene Fotos aus deiner Mediathek wählen.':
+      'You can take a new photo or choose existing photos from your library.',
+    'Weitere Fotos': 'More photos',
   },
   fr: {
     '✨ Wissenskarte:': '✨ Carte de savoir :',
@@ -740,6 +745,11 @@ const SPRINT_TRANSLATIONS: Record<Exclude<AppLanguage, 'de'>, Record<string, str
     Minuten: 'Minutes',
     Sicherheitsstufe: 'Niveau de sécurité',
     'Meine neue Mission, magisch': 'Ma nouvelle mission, magique',
+    '📷 Foto aufnehmen': '📷 Prendre une photo',
+    '🖼️ Aus Fotos auswählen': '🖼️ Choisir dans Photos',
+    'Du kannst ein neues Foto machen oder vorhandene Fotos aus deiner Mediathek wählen.':
+      'Tu peux prendre une nouvelle photo ou choisir des photos dans ta photothèque.',
+    'Weitere Fotos': 'Autres photos',
   },
   es: {
     '✨ Wissenskarte:': '✨ Tarjeta de conocimientos:',
@@ -856,6 +866,11 @@ const SPRINT_TRANSLATIONS: Record<Exclude<AppLanguage, 'de'>, Record<string, str
     Minuten: 'Minutos',
     Sicherheitsstufe: 'Nivel de seguridad',
     'Meine neue Mission, magisch': 'Mi nueva misión, mágica',
+    '📷 Foto aufnehmen': '📷 Hacer una foto',
+    '🖼️ Aus Fotos auswählen': '🖼️ Elegir de Fotos',
+    'Du kannst ein neues Foto machen oder vorhandene Fotos aus deiner Mediathek wählen.':
+      'Puedes hacer una foto nueva o elegir fotos de tu fototeca.',
+    'Weitere Fotos': 'Más fotos',
   },
   it: {
     '✨ Wissenskarte:': '✨ Scheda delle conoscenze:',
@@ -972,6 +987,11 @@ const SPRINT_TRANSLATIONS: Record<Exclude<AppLanguage, 'de'>, Record<string, str
     Minuten: 'Minuti',
     Sicherheitsstufe: 'Livello di sicurezza',
     'Meine neue Mission, magisch': 'La mia nuova missione, magica',
+    '📷 Foto aufnehmen': '📷 Scatta una foto',
+    '🖼️ Aus Fotos auswählen': '🖼️ Scegli da Foto',
+    'Du kannst ein neues Foto machen oder vorhandene Fotos aus deiner Mediathek wählen.':
+      'Puoi scattare una nuova foto o scegliere foto esistenti dalla libreria.',
+    'Weitere Fotos': 'Altre foto',
   },
 }
 

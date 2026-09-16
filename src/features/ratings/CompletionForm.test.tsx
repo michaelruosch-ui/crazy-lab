@@ -103,7 +103,14 @@ describe('CompletionForm', () => {
     const photo = missions.find((item) => item.id === 'mission-foto-riesen-schatten')!
     const sisters = missions.find((item) => item.id === 'mission-schwestern-monster-bau')!
     const { unmount } = render(<CompletionForm mission={photo} onSubmit={vi.fn()} />)
-    expect(screen.getByText('Kamera oder Fotos öffnen')).toBeInTheDocument()
+    const cameraInput = screen.getByLabelText('📷 Foto aufnehmen')
+    const libraryInput = screen.getByLabelText('🖼️ Aus Fotos auswählen')
+    expect(cameraInput).toHaveAttribute('accept', 'image/*')
+    expect(cameraInput).toHaveAttribute('capture', 'environment')
+    expect(cameraInput).not.toHaveAttribute('multiple')
+    expect(libraryInput).toHaveAttribute('accept', 'image/*')
+    expect(libraryInput).toHaveAttribute('multiple')
+    expect(libraryInput).not.toHaveAttribute('capture')
     expect(screen.getByLabelText('Rahmen')).toBeInTheDocument()
     expect(screen.getByLabelText('Effekt')).toBeInTheDocument()
     unmount()

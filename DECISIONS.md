@@ -1092,3 +1092,35 @@ an Elenas Daten einzuführen. Ein QR-Code ist technisch weiterhin ein kopierbare
 begrenzt deshalb zuverlässig die normale Nutzung nach sieben Tagen, verspricht aber bewusst keine
 personenbezogene oder kryptografisch nicht übertragbare Einladung. Dafür wäre später TestFlight
 mit einzelnen Apple-Konten oder ein Backend mit einmalig eingelösten Codes nötig.
+
+## ADR-062: Kamera und Fotomediathek sind zwei ausdrückliche Aktionen
+
+**Status:** Angenommen und umgesetzt (Fehlerkorrektur, 2026-09-16)
+
+**Entscheidung:** An allen Stellen, an denen ein Missionsfoto ergänzt wird, zeigt Crazy Lab
+getrennt „Foto aufnehmen“ und „Aus Fotos auswählen“. Nur die Kameraaktion verwendet das
+`capture`-Attribut. Die Mediatheksaktion erlaubt mehrere vorhandene Bilder und besitzt bewusst
+kein `capture`. Beide verwenden anschließend dieselbe lokale Komprimierung, Mengenbegrenzung und
+Speicherung. Die native App deklariert zusätzlich Kamera-, Foto- und Mikrofonverwendung in der
+iOS-Konfiguration.
+
+**Begründung:** Ein kombiniertes Dateifeld mit `capture` öffnet auf iOS je nach Version direkt die
+Kamera und versteckt damit die Auswahl vorhandener Fotos. Zwei sichtbare, technisch getrennte
+Wege sind für Kinder verständlicher und auf alten wie neuen Geräten vorhersehbarer, ohne das
+Datenmodell oder bestehende Tagebucheinträge zu verändern.
+
+## ADR-063: Sprint 31 trennt Codefreigabe von Apple-Konto und Veröffentlichung
+
+**Status:** Angenommen (2026-09-16)
+
+**Entscheidung:** 31A bestätigt ausschließlich die technische Releasefähigkeit des lokalen
+Projekts. 31B bereitet den Store-Auftritt in fünf Sprachen vor. 31C übernimmt Elenas fehlenden
+Originalinhalt. Signierung, App Store Connect, echter Kauf, TestFlight und öffentliche Einreichung
+folgen erst in getrennten Schritten mit Michaels Apple-Developer-Zugang und ausdrücklicher
+Familienfreigabe.
+
+**Begründung:** Ein erfolgreicher lokaler Build ist nicht dasselbe wie ein von Apple signiertes
+und geprüftes Produkt. Die Trennung verhindert falsche Fertigmeldungen, hält persönliche
+Kontodaten bei Michael und macht klar, welche Arbeiten der Code-Agent selbst erledigen kann und
+welche Apple aus rechtlichen beziehungsweise sicherheitsrelevanten Gründen dem Kontoinhaber
+vorbehält.
