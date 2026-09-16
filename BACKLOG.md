@@ -3,6 +3,10 @@
 Neue Ideen werden nicht als neue Nummern zwischen bestehende Sprints geschoben. Sie landen zuerst
 hier im Abschnitt "Unpriorisierte Ideen" und werden später priorisiert.
 
+**Arbeitsziel ab 2026-09-16:** Alle neuen Änderungen gelten ausschliesslich der finalen
+Crazy-Lab-Version für den App Store. Die siebentägige Besuchsversion vom 2026-09-13 bleibt als
+unveränderter, zeitlich abgelaufener Stand bestehen und wird nicht weiterentwickelt.
+
 ## Aktueller Sprint
 
 ### Sprint 5 - PWA auf Elenas iPhone
@@ -555,6 +559,14 @@ positiv beantwortet.
         beendet lediglich die Nutzung nach dem festen Ablaufzeitpunkt
 
 ## Unpriorisierte Ideen
+
+- [ ] **Bestehendes Missionsfoto auswählen (Praxisfeedback 2026-09-16):** Wenn eine Mission ein
+      Foto verlangt oder beim Abschluss ein Foto ergänzt wird, muss die finale App verständlich
+      zwischen „Foto aufnehmen“ und „Aus Fotos auswählen“ wählen lassen. Bestehende Bilder aus der
+      iPhone-/iPad-Fotomediathek müssen zuverlässig hochgeladen, verkleinert, lokal gespeichert
+      und im Tagebuch angezeigt werden. Die Kamera bleibt zusätzlich verfügbar. Dieses Feedback
+      gilt als Fehlerkorrektur zu den bereits abgeschlossenen Sprints 13 und 22 und muss auf einem
+      echten iPhone sowie iPad geprüft werden.
 
 - [x] **Gemeinsamer geprüfter Missionskatalog (Familienentscheidung 2026-09-07):** Nur Elena darf
       als Product Owner Missionen erstellen und „Für alle freigeben“. Der private Testlink ist aus
