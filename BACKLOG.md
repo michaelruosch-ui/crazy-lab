@@ -3,9 +3,11 @@
 Neue Ideen werden nicht als neue Nummern zwischen bestehende Sprints geschoben. Sie landen zuerst
 hier im Abschnitt "Unpriorisierte Ideen" und werden später priorisiert.
 
-**Arbeitsziel ab 2026-09-16:** Alle neuen Änderungen gelten ausschliesslich der finalen
+**Arbeitsziel ab 2026-09-16:** Alle Produktänderungen gelten ausschliesslich der finalen
 Crazy-Lab-Version für den App Store. Die siebentägige Besuchsversion vom 2026-09-13 bleibt als
-unveränderter, zeitlich abgelaufener Stand bestehen und wird nicht weiterentwickelt.
+unveränderter, zeitlich abgelaufener Stand bestehen. Auf Michaels ausdrücklichen Wunsch wurde am
+2026-09-25 lediglich ein neuer, technisch getrennter Freunde-Testzugang bis Ende Oktober erzeugt;
+dieser erhält keine eigene Funktionsentwicklung.
 
 ## Aktueller Sprint
 
@@ -591,6 +593,20 @@ positiv beantwortet.
   - [x] Einen druck- und scanbaren QR-Code für die Besuchsadresse erzeugen
   - [x] Offen kommunizieren: Der Link bleibt innerhalb der sieben Tage weiterleitbar; die Sperre
         beendet lediglich die Nutzung nach dem festen Ablaufzeitpunkt
+
+- **Neuer Freunde-Testzugang bis Ende Oktober:** **Umgesetzt am 2026-09-25.**
+  - [x] Neue, schwer zu erratende Installationsadresse statt Wiederverwendung des abgelaufenen
+        September-Links
+  - [x] Zugriff vom 25. September bis einschliesslich 31. Oktober 2026; Sperre exakt am 1. November 2026 um 00:00 Uhr Schweizer Zeit
+  - [x] Online-Zeitprüfung über den GitHub-Pages-Antwortzeitstempel; verstellte Geräteuhr genügt
+        nicht zur Umgehung
+  - [x] Eigene IndexedDB und eigene Browser-Schlüssel; keine Berührung von Elena, Michael oder
+        früheren Testdaten
+  - [x] Product-Owner-Werkzeuge in beiden zeitlich begrenzten Varianten vollständig gesperrt
+  - [x] Alte September-Version mit bisherigem Ablaufdatum unverändert weiterführen
+  - [x] Neuen scanbaren QR-Code erzeugen und reale öffentliche Adresse nach Deployment prüfen
+  - [x] Transparent bleiben: Der QR-Code ist kopierbar und kein personenbezogener TestFlight-
+        Zugang; seine zeitliche Sperre greift unabhängig davon am festen Enddatum
 
 ## Unpriorisierte Ideen
 

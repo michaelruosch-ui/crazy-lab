@@ -525,26 +525,28 @@ Release-Check baut das UIKit-/StoreKit-Projekt ohne Code-Signierung gegen das ak
 eine echte Archivierung und Upload-Validierung ist erst möglich, sobald ein Apple Development
 Team und eine Distribution-Signatur vorhanden sind.
 
-## Zeitlich begrenzte Besuchsversion
+## Zeitlich begrenzte Testversionen
 
-Vite erzeugt neben dem normalen Einstieg `index.html` einen zweiten Einstieg unter
-`besuch-20260913-v7m4/index.html`. Dieser besitzt ein eigenes Web-App-Manifest und damit eine
-eigene Installationsadresse, verwendet aber denselben geprüften React-Code und dieselben
-gebündelten Bilder wie Crazy Lab. `VisitorPreviewGate` wird vor Router, Profil und Datenbank
-gerendert. Dadurch erreichen abgelaufene oder nicht online prüfbare Besuche keine App-Daten.
+Vite erzeugt neben dem normalen Einstieg `index.html` getrennte HTML-Einstiege für den alten
+September-Besuch und den neuen Freunde-Test bis Ende Oktober. Jeder Einstieg besitzt sein eigenes
+Web-App-Manifest und damit eine eigene Installationsadresse, verwendet aber denselben geprüften
+React-Code und dieselben gebündelten Bilder wie Crazy Lab. `VisitorPreviewGate` wird vor Router,
+Profil und Datenbank gerendert. Dadurch erreichen abgelaufene oder nicht online prüfbare Besuche
+keine App-Daten.
 
-`visitorPreview.ts` ist die einzige Quelle für Besuchspfad, festes Ablaufdatum und
-Namensraum. Beim Öffnen wird eine kleine statische Datei mit deaktiviertem Browsercache abgerufen;
-der HTTPS-Antwortzeitstempel von GitHub Pages entscheidet über aktiv oder abgelaufen. Bei Rückkehr
-aus dem Hintergrund wird erneut geprüft. Da Crazy Lab laut Familienentscheid ohnehin eine
-Internetverbindung verlangt, entsteht dadurch keine zusätzliche Offline-Anforderung.
+`visitorPreview.ts` ist die einzige Quelle für alle bekannten Testpfade, deren feste Ablaufdaten
+und Namensräume. Beim Öffnen wird die zum erkannten Pfad gehörende kleine statische Datei mit
+deaktiviertem Browsercache abgerufen; der HTTPS-Antwortzeitstempel von GitHub Pages entscheidet
+über aktiv oder abgelaufen. Bei Rückkehr aus dem Hintergrund wird erneut geprüft. Da Crazy Lab
+laut Familienentscheid ohnehin eine Internetverbindung verlangt, entsteht dadurch keine
+zusätzliche Offline-Anforderung.
 
-IndexedDB verwendet in der Besuchsversion einen eigenen Datenbanknamen. Alle zusätzlich in
+IndexedDB verwendet in jeder Testversion einen eigenen Datenbanknamen. Alle zusätzlich in
 `localStorage` beziehungsweise `sessionStorage` abgelegten Profileinstellungen, Hinweise,
 Abzeichenfeiern, Portalstatus und Codesperren werden ebenfalls präfixiert. Die normale Datenbank
 `crazylab` und ihre bestehenden Schlüssel ändern sich nicht. `productOwnerAccess.ts` kombiniert
-die bestehende Elena-Prüfung mit dem Betriebsmodus und verweigert in der Besuchsversion immer den
-Zugang zu Werkstatt, Bearbeitung und Freigabe.
+die bestehende Elena-Prüfung mit dem Betriebsmodus und verweigert in jeder zeitlich begrenzten
+Testversion immer den Zugang zu Werkstatt, Bearbeitung und Freigabe.
 
 Die Begrenzung ist absichtlich eine zeitliche Produktdemo, keine personenbezogene
 Zugriffskontrolle: Der statische QR-Link kann vor Ablauf kopiert werden. Ein wirklich nicht

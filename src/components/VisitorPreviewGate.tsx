@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import {
   isVisitorPreview,
   loadVisitorAccessState,
-  VISITOR_PREVIEW_EXPIRES_AT,
+  visitorPreviewConfig,
   type VisitorAccessState,
 } from '../visitorPreview'
 import { Button } from './Button'
@@ -10,27 +10,29 @@ import './VisitorPreviewGate.css'
 
 type CheckState = VisitorAccessState | 'checking' | 'unavailable'
 
-const expiryLabel = new Intl.DateTimeFormat('de-CH', {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-  hour: '2-digit',
-  minute: '2-digit',
-  timeZone: 'Europe/Zurich',
-}).format(new Date(VISITOR_PREVIEW_EXPIRES_AT))
-
 export function VisitorPreviewGate({ children }: { children: ReactNode }) {
   const visitorPreview = isVisitorPreview()
+  const previewConfig = visitorPreviewConfig()
   const [state, setState] = useState<CheckState>(visitorPreview ? 'checking' : 'active')
+  const expiryLabel = previewConfig
+    ? new Intl.DateTimeFormat('de-CH', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'Europe/Zurich',
+      }).format(new Date(previewConfig.expiresAt))
+    : ''
 
-  const checkAccess = useCallback(async () => {
+  const checkAccess = async () => {
     setState('checking')
     try {
       setState(await loadVisitorAccessState())
     } catch {
       setState('unavailable')
     }
-  }, [])
+  }
 
   useEffect(() => {
     if (!visitorPreview) return
@@ -82,7 +84,7 @@ export function VisitorPreviewGate({ children }: { children: ReactNode }) {
         </span>
         <h1>Der Besuchspass ist abgelaufen</h1>
         <p>
-          Danke, dass du Crazy Lab ausprobiert hast! Diese siebentägige Besuchsversion ist nun
+          Danke, dass du Crazy Lab ausprobiert hast! Diese zeitlich begrenzte Testversion ist nun
           geschlossen.
         </p>
       </main>

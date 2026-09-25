@@ -1,5 +1,20 @@
 # Changelog
 
+## Freunde-Testversion bis Ende Oktober (2026-09-25)
+
+- Eine neue installierbare Testadresse läuft bis einschliesslich 31. Oktober 2026 und sperrt sich
+  am 1. November um 00:00 Uhr Schweizer Zeit.
+- Die neue Version verwendet einen eigenen IndexedDB-Namen und eigene lokale Schlüssel. Daten aus
+  der Familienversion sowie aus der alten September-Besuchsversion bleiben unberührt.
+- Die bisherige siebentägige Version behält ihren ursprünglichen Link, Speicher und Ablaufzeitpunkt
+  und bleibt geschlossen.
+- Beide Testvarianten verwenden die Online-Zeit von GitHub Pages, prüfen beim Öffnen und bei der
+  Rückkehr aus dem Hintergrund und zeigen ohne Internet eine verständliche Meldung.
+- Elenas Werkstatt, Bearbeitung und Missionsfreigabe bleiben in allen zeitlich begrenzten
+  Testversionen gesperrt.
+- Ablaufgrenzen, Serverzeit, Speichertrennung und Product-Owner-Sperre sind automatisch getestet;
+  ein neuer QR-Code verweist ausschließlich auf die neue Adresse.
+
 ## Sprint 31A und Fotomediathek-Korrektur (2026-09-16)
 
 - Missionsabschluss und Tagebuchbearbeitung bieten jetzt zwei eindeutige Wege: „Foto aufnehmen“

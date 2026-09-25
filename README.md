@@ -180,7 +180,17 @@ in der alten App unter Profil ein Backup herunterladen, erst danach die alte Hom
 entfernen, die öffentliche Version installieren und dort das Backup wieder einspielen. Browser
 trennen die Datenspeicher der beiden Adressen voneinander.
 
-### Siebentägige Besuchsversion (2026-09-13)
+### Zeitlich begrenzte Testversionen
+
+Für Michaels Freunde steht seit dem 25. September 2026 eine neue, getrennt installierbare
+Testversion unter `/crazy-lab/freunde-20260925-oct31-k9p7/` bereit. Sie funktioniert bis
+einschliesslich **31. Oktober 2026** und sperrt den Zugang am **1. November 2026 um 00:00 Uhr
+(Europe/Zurich)**. Sie besitzt einen neuen lokalen Datenspeicher und berührt weder die normale
+Familienversion noch die frühere Besuchsversion. Elenas Missionswerkstatt und alle
+Product-Owner-Werkzeuge bleiben unabhängig vom gewählten Profil abgeschaltet.
+
+Die frühere siebentägige Besuchsversion vom 13. September bleibt unverändert unter ihrer alten
+Adresse erhalten und ist seit dem 20. September abgelaufen.
 
 Für den privaten Besuch vom 2026-09-13 existiert eine getrennt installierbare Besuchsversion unter
 `/crazy-lab/besuch-20260913-v7m4/`. Sie prüft beim Öffnen die aktuelle Zeit über die bereits
@@ -192,7 +202,8 @@ Profilnamen abgeschaltet.
 
 Der QR-Code beziehungsweise sein Link kann während der sieben Tage technisch fotografiert oder
 weitergeleitet werden. Die zeitliche Sperre verhindert die Nutzung nach dem Ablauf, ist aber kein
-personenbezogener App-Store- oder TestFlight-Zugang.
+personenbezogener App-Store- oder TestFlight-Zugang. Dasselbe gilt für den neuen Freunde-Link:
+Wer den QR-Code besitzt, kann ihn bis zum Ablauf weiterleiten.
 
 ### Backup und Wiederherstellung (manuell)
 

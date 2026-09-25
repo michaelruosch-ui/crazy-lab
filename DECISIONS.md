@@ -1124,3 +1124,21 @@ und geprüftes Produkt. Die Trennung verhindert falsche Fertigmeldungen, hält p
 Kontodaten bei Michael und macht klar, welche Arbeiten der Code-Agent selbst erledigen kann und
 welche Apple aus rechtlichen beziehungsweise sicherheitsrelevanten Gründen dem Kontoinhaber
 vorbehält.
+
+## ADR-064: Neue Freunde-Version erhält eigenen Pfad, Speicher und Ablauf
+
+**Status:** Angenommen und umgesetzt (2026-09-25)
+
+**Entscheidung:** Der neue Freunde-Test verwendet den eigenen Pfad
+`freunde-20260925-oct31-k9p7`, einen eigenen IndexedDB-Namen und eigene Browser-Schlüssel. Er ist
+bis zum 1. November 2026 um 00:00 Uhr in der Zeitzone Europe/Zurich aktiv. Die alte
+September-Version bleibt mit ihrem ursprünglichen Pfad, Speicher und Ablauf unverändert in der
+Konfigurationsliste. Beide Varianten nutzen denselben geprüften App-Code, dieselbe Online-
+Zeitprüfung und dieselbe vollständige Sperre der Product-Owner-Werkzeuge.
+
+**Begründung:** Ein neuer Namensraum verhindert jede Vermischung mit Elenas Daten, Michaels Daten
+und den Testdaten früherer Gäste. Eine gemeinsame deklarative Konfigurationsliste vermeidet zwei
+auseinanderlaufende Sicherheitsimplementierungen, bewahrt aber die historische Ablaufgrenze der
+alten Version. Das feste Enddatum umfasst den gesamten 31. Oktober auch nach der Schweizer
+Zeitumstellung. Der statische QR-Link bleibt bewusst weiterleitbar; echte personenbezogene
+Einladungen wären erst über TestFlight oder ein Backend möglich.

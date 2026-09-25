@@ -8,7 +8,12 @@ const certDir = fileURLToPath(new URL('./certs', import.meta.url))
 const certFile = `${certDir}/crazylab-cert.pem`
 const keyFile = `${certDir}/crazylab-key.pem`
 const mainHtml = fileURLToPath(new URL('./index.html', import.meta.url))
-const visitorHtml = fileURLToPath(new URL('./besuch-20260913-v7m4/index.html', import.meta.url))
+const legacyVisitorHtml = fileURLToPath(
+  new URL('./besuch-20260913-v7m4/index.html', import.meta.url),
+)
+const friendsPreviewHtml = fileURLToPath(
+  new URL('./freunde-20260925-oct31-k9p7/index.html', import.meta.url),
+)
 
 /**
  * Lokal per `mkcert` erzeugtes, vertrauenswürdiges HTTPS-Zertifikat für die LAN-IP dieses Macs
@@ -33,7 +38,13 @@ export default defineConfig({
     // Code; nur die Syntax wird für das alte Familien-iPad rückwärtskompatibel erzeugt.
     target: 'safari12',
     rollupOptions: {
-      input: process.env.CRAZY_LAB_NATIVE ? mainHtml : { main: mainHtml, visitor: visitorHtml },
+      input: process.env.CRAZY_LAB_NATIVE
+        ? mainHtml
+        : {
+            main: mainHtml,
+            legacyVisitor: legacyVisitorHtml,
+            friendsPreview: friendsPreviewHtml,
+          },
     },
   },
   server: {
