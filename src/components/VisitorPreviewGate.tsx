@@ -22,7 +22,7 @@ export function VisitorPreviewGate({ children }: { children: ReactNode }) {
         hour: '2-digit',
         minute: '2-digit',
         timeZone: 'Europe/Zurich',
-      }).format(new Date(previewConfig.expiresAt))
+      }).format(new Date(new Date(previewConfig.expiresAt).getTime() - 60_000))
     : ''
 
   const checkAccess = async () => {
@@ -104,9 +104,7 @@ export function VisitorPreviewGate({ children }: { children: ReactNode }) {
 
   return (
     <div className="visitor-preview">
-      <aside className="visitor-preview__notice">
-        🎟️ Besuchsversion · gültig bis {expiryLabel}
-      </aside>
+      <aside className="visitor-preview__notice">🎟️ Testversion · gültig bis {expiryLabel}</aside>
       {children}
     </div>
   )
